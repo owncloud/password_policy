@@ -72,7 +72,7 @@ class SpecialTest extends \PHPUnit_Framework_TestCase {
 
 	function providesExceptionalData() {
 		return [
-			['Password contains invalid special characters. Only #+ as allowed.', '#+?@#+?@', 4, '#+'],
+			['Password contains invalid special characters. Only #+ are allowed.', '#+?@#+?@', 4, '#+'],
 			['Password contains too few special characters. Minimum 9 special characters are required.', '#+?@#+?@', 9, []],
 			['Password contains too few special characters. Minimum 10 special characters are required.', '#+?@#+?@', 10, '#+?@'],
 			['Password contains too few special characters. Minimum 2 special characters are required.', '#', 2, '#!'],
