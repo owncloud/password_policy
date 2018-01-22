@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<info>
+	<id>password_policy</id>
+	<name>Password Policy</name>
+	<licence>GPLv2</licence>
+	<author>Thomas Müller, Vincent Petry</author>
+	<summary>Define password policies for user and public link passwords</summary>
+	<description>
+The Password Policy application enables ownCloud administrators to define password requirements like minimum characters, numbers, capital letters and more for all kinds of password endpoints like user passwords or public link sharing passwords. To add another layer of security, the administrator can enforce expiration dates for public link shares. As soon as the expiration date is reached the share will be removed automatically. Administrators find the configuration options in the 'Security' section of the ownCloud administration settings panel.
+
+The definition of certain password rules support administrators in the task of ensuring a minimum level of password security throughout the enterprise. It minimizes the risk of weak user passwords and therefore adds an additional security aspect to the ownCloud infrastructure. The expiration date for public link shares allows more control while e.g. working with external parties. Instead of having to manually remove a public link share when the work is done, the expiration date functionality will remove the link share after a defined period of time without further user interaction.</description>
+	<version>2.0.0</version>
+	<documentation>
+		<admin>https://doc.owncloud.com/server/10.0/admin_manual/configuration/server/security/password_policy.html</admin>
+	</documentation>
+	<dependencies>
+		<owncloud min-version="10.0" max-version="10.0" />
+	</dependencies>
+	<namespace>PasswordPolicy</namespace>
+	<settings>
+		<admin>OCA\PasswordPolicy\Controller\SettingsController</admin>
+	</settings>
+	<category>security</category>
+	<screenshot>https://raw.githubusercontent.com/owncloud/screenshots/master/password_policy/owncloud-app-password_policy.jpg</screenshot>
+	<screenshot>https://raw.githubusercontent.com/owncloud/screenshots/master/password_policy/owncloud-app-password_policy2.jpg</screenshot>
+</info>
