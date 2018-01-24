@@ -33,6 +33,8 @@ class EngineTest extends \PHPUnit_Framework_TestCase {
 		$default = [
 			'spv_min_chars_checked' => false,
 			'spv_min_chars_value' => 8,
+			'spv_lowercase_checked' => false,
+			'spv_lowercase_value' => 1,
 			'spv_uppercase_checked' => false,
 			'spv_uppercase_value' => 1,
 			'spv_numbers_checked' => false,
@@ -63,6 +65,7 @@ class EngineTest extends \PHPUnit_Framework_TestCase {
 		return [
 			[[], ''],
 			[['spv_min_chars_checked' => true], '1234567890'],
+			[['spv_lowercase_checked' => true], 'a234567890'],
 			[['spv_uppercase_checked' => true], 'A234567890'],
 			[['spv_numbers_checked' => true], '1234567890'],
 			[['spv_special_chars_checked' => true], '#234567890'],
@@ -77,6 +80,8 @@ class EngineTest extends \PHPUnit_Framework_TestCase {
 		$default = [
 			'spv_min_chars_checked' => false,
 			'spv_min_chars_value' => 8,
+			'spv_lowercase_checked' => false,
+			'spv_lowercase_value' => 1,
 			'spv_uppercase_checked' => false,
 			'spv_uppercase_value' => 1,
 			'spv_numbers_checked' => false,

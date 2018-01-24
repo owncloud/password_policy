@@ -90,6 +90,8 @@ class HooksHandler {
 		$appValues = [
 			'spv_min_chars_checked' => false,
 			'spv_min_chars_value' => 8,
+			'spv_lowercase_checked' => false,
+			'spv_lowercase_value' => 1,
 			'spv_uppercase_checked' => false,
 			'spv_uppercase_value' => 1,
 			'spv_numbers_checked' => false,

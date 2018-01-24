@@ -37,6 +37,9 @@ script('password_policy', 'ajax');
 			<li><label><input type="checkbox" name="spv_min_chars_checked"
 						<?php if ($_['spv_min_chars_checked']): ?> checked="checked"<?php endif; ?>>
 					<input type="number" name="spv_min_chars_value" min="0" max="255" value="<?php p($_['spv_min_chars_value']) ?>"> <?php p($l->t('minimum characters'));?></label></li>
+			<li><label><input type="checkbox" name="spv_lowercase_checked"
+						<?php if ($_['spv_lowercase_checked']): ?> checked="checked"<?php endif; ?>>
+					<input type="number" name="spv_lowercase_value" min="0" max="255" value="<?php p($_['spv_lowercase_value']) ?>"> <?php p($l->t('lowercase letters'));?></label></li>
 			<li><label><input type="checkbox" name="spv_uppercase_checked"
 						<?php if ($_['spv_uppercase_checked']): ?> checked="checked"<?php endif; ?>>
 					<input type="number" name="spv_uppercase_value" min="0" max="255" value="<?php p($_['spv_uppercase_value']) ?>"> <?php p($l->t('uppercase letters'));?></label></li>
