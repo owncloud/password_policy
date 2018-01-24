@@ -21,12 +21,16 @@
 
 namespace OCA\PasswordPolicy;
 
+use OCA\PasswordPolicy\Db\OldPasswordMapper;
 use OCA\PasswordPolicy\Rules\Length;
 use OCA\PasswordPolicy\Rules\Numbers;
 use OCA\PasswordPolicy\Rules\Special;
 use OCA\PasswordPolicy\Rules\Lowercase;
 use OCA\PasswordPolicy\Rules\Uppercase;
+use OCA\PasswordPolicy\Rules\PasswordHistory;
+use OCP\IDBConnection;
 use OCP\IL10N;
+use OCP\Security\IHasher;
 use OCP\Security\ISecureRandom;
 
 class Engine {
@@ -37,11 +41,31 @@ class Engine {
 	private $l10n;
 	/** @var ISecureRandom */
 	private $random;
+	/** @var IDBConnection */
+	private $db;
+	/** @var IHasher */
+	private $hasher;
 
-	public function __construct(array $configValues, IL10N $l10n, ISecureRandom $random) {
+
+	/**
+	 * @param array $configValues
+	 * @param IL10N $l10n
+	 * @param ISecureRandom $random
+	 * @param IDBConnection $db
+	 * @param IHasher $hasher
+	 */
+	public function __construct(
+		array $configValues,
+		IL10N $l10n,
+		ISecureRandom $random,
+		IDBConnection $db,
+		IHasher $hasher
+	) {
 		$this->configValues = $configValues;
 		$this->l10n = $l10n;
 		$this->random = $random;
+		$this->db = $db;
+		$this->hasher = $hasher;
 	}
 
 	public function generatePassword() {
@@ -75,8 +99,13 @@ class Engine {
 
 		return str_shuffle($password);
 	}
-	
-	public function verifyPassword($password) {
+
+	/**
+	 * @param string $password
+	 * @param string $uid
+	 * @throws \Exception
+	 */
+	public function verifyPassword($password, $uid = NULL) {
 		if ($this->yes('spv_min_chars_checked')) {
 			$val = $this->configValues['spv_min_chars_value'];
 			$r = new Length($this->l10n);
@@ -105,6 +134,12 @@ class Engine {
 			}
 			$r = new Special($this->l10n);
 			$r->verify($password, $val, $chars);
+		}
+		if ($this->yes('spv_password_history_checked') && !empty($uid)) {
+			$val = $this->configValues['spv_password_history_value'];
+			$dbMapper = new OldPasswordMapper($this->db);
+			$r = new PasswordHistory($this->l10n, $dbMapper, $this->hasher);
+			$r->verify($password, $val, $uid);
 		}
 	}
 

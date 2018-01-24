@@ -34,6 +34,9 @@ script('password_policy', 'ajax');
 		<p><?php p($l->t('Minimum password requirements for user accounts and public links:'));?></p>
 
 		<ul>
+			<li><label><input type="checkbox" name="spv_password_history_checked"
+						<?php if ($_['spv_password_history_checked']): ?> checked="checked"<?php endif; ?>>
+					<input type="number" name="spv_password_history_value" min="0" max="255" value="<?php p($_['spv_password_history_value']) ?>"> <?php p($l->t('different than last passwords'));?></label></li>
 			<li><label><input type="checkbox" name="spv_min_chars_checked"
 						<?php if ($_['spv_min_chars_checked']): ?> checked="checked"<?php endif; ?>>
 					<input type="number" name="spv_min_chars_value" min="0" max="255" value="<?php p($_['spv_min_chars_value']) ?>"> <?php p($l->t('minimum characters'));?></label></li>

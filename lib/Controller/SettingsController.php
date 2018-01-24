@@ -55,6 +55,8 @@ class SettingsController extends Controller implements ISettings {
 			'spv_special_chars_value' => 1,
 			'spv_def_special_chars_checked' => false,
 			'spv_def_special_chars_value' => '#!',
+			'spv_password_history_checked' => false,
+			'spv_password_history_value' => 3,
 			'spv_expiration_password_checked' => false,
 			'spv_expiration_password_value' => 7,
 			'spv_expiration_nopassword_checked' => false,

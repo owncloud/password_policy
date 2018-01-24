@@ -29,7 +29,10 @@ $eventDispatcher->addListener(
 	'OCP\User::validatePassword',
 	function($event) {
 		if ($event instanceof GenericEvent) {
-			HooksHandler::verifyPassword($event->getArguments()['password']);
+			HooksHandler::verifyPassword(
+				$event->getArguments()['password'],
+				$event->getArguments()['uid']
+			);
 		}
 	}
 );
@@ -50,4 +53,12 @@ $eventDispatcher->addListener(
 		}
 	}
 );
-
+\OC::$server->getEventDispatcher()->addListener(
+	'user.aftersetpassword',
+	function (GenericEvent $event) {
+		HooksHandler::saveOldPassword(
+			$event->getArgument('user'),
+			$event->getArgument('password')
+		);
+	}
+);
