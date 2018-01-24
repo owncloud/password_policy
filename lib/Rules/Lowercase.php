@@ -21,7 +21,7 @@
 
 namespace OCA\PasswordPolicy\Rules;
 
-class lowercase extends Base {
+class Lowercase extends Base {
 
 	public function verify($password, $val) {
 		if ($this->countLowercase($password) < $val) {
