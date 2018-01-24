@@ -21,6 +21,10 @@
 
 namespace OCA\PasswordPolicy;
 
+use OCA\PasswordPolicy\Db\OldPassword;
+use OCA\PasswordPolicy\Db\OldPasswordMapper;
+use OCP\IUser;
+
 class HooksHandler {
 
 	public static function generatePassword() {
@@ -28,22 +32,26 @@ class HooksHandler {
 
 		$engine = new Engine($configValues,
 			\OC::$server->getL10NFactory()->get('password_policy'),
-			\OC::$server->getSecureRandom()
+			\OC::$server->getSecureRandom(),
+			\OC::$server->getDatabaseConnection(),
+			\OC::$server->getHasher()
 		);
 
 		return $engine->generatePassword();
 	}
 
-	public static function verifyPassword($password) {
+	public static function verifyPassword($password, $uid = NULL) {
 
 		$configValues = self::loadConfiguration();
 
 		$engine = new Engine($configValues,
 			\OC::$server->getL10NFactory()->get('password_policy'),
-			\OC::$server->getSecureRandom()
+			\OC::$server->getSecureRandom(),
+			\OC::$server->getDatabaseConnection(),
+			\OC::$server->getHasher()
 			);
 
-		$engine->verifyPassword($password);
+		$engine->verifyPassword($password, $uid);
 	}
 
 	public static function updateLinkExpiry($params) {
@@ -98,6 +106,8 @@ class HooksHandler {
 			'spv_special_chars_value' => 1,
 			'spv_def_special_chars_checked' => false,
 			'spv_def_special_chars_value' => '#!',
+			'spv_password_history_checked' => false,
+			'spv_password_history_value' => 3,
 			'spv_expiration_password_checked' => false,
 			'spv_expiration_password_value' => 7,
 			'spv_expiration_nopassword_checked' => false,
@@ -109,5 +119,18 @@ class HooksHandler {
 			$configValues[$key] = \OC::$server->getConfig()->getAppValue('password_policy', $key, $default);
 		}
 		return $configValues;
+	}
+
+	/**
+	 * @param IUser  $user
+	 * @param string $password
+	 */
+	public static function saveOldPassword($user, $password) {
+		$dbMapper = new OldPasswordMapper(\OC::$server->getDatabaseConnection());
+		$oldPassword = new OldPassword();
+		$oldPassword->setUid($user->getUID());
+		$oldPassword->setPassword(\OC::$server->getHasher()->hash($password));
+		$oldPassword->setChangeTime(\OC::$server->getTimeFactory()->getTime());
+		$dbMapper->insert($oldPassword);
 	}
 }

@@ -41,12 +41,14 @@ class EngineTest extends \PHPUnit_Framework_TestCase {
 			'spv_special_chars_value' => 1,
 			'spv_def_special_chars_checked' => false,
 			'spv_def_special_chars_value' => '#!',
+			'spv_password_history_checked' => false,
+			'spv_password_history_value' => 3,
 		];
 
 		$config = array_replace($default, $config);
 
 		/** @var IL10N | \PHPUnit_Framework_MockObject_MockObject $l10n */
-		$l10n = $this->getMockBuilder('\OCP\IL10N')
+		$l10n = $this->getMockBuilder(IL10N::class)
 				->disableOriginalConstructor()->getMock();
 		$l10n
 			->expects($this->any())
@@ -55,7 +57,13 @@ class EngineTest extends \PHPUnit_Framework_TestCase {
 							return vsprintf($text, $parameters);
 			}));
 		$random = \OC::$server->getSecureRandom();
-		$r = new Engine($config, $l10n, $random);
+		/** @var \OCP\IDBConnection | \PHPUnit_Framework_MockObject_MockObject $db */
+		$db = $this->getMockBuilder(\OCP\IDBConnection::class)
+			->disableOriginalConstructor()->getMock();
+		/** @var \OCP\Security\IHasher | \PHPUnit_Framework_MockObject_MockObject $hasher */
+		$hasher = $this->getMockBuilder(\OCP\Security\IHasher::class)
+			->disableOriginalConstructor()->getMock();
+		$r = new Engine($config, $l10n, $random, $db, $hasher);
 		$r->verifyPassword($password);
 	}
 
@@ -85,12 +93,14 @@ class EngineTest extends \PHPUnit_Framework_TestCase {
 			'spv_special_chars_value' => 1,
 			'spv_def_special_chars_checked' => false,
 			'spv_def_special_chars_value' => '#!',
+			'spv_password_history_checked' => false,
+			'spv_password_history_value' => 3,
 		];
 
 		$config = array_replace($default, $config);
 
 		/** @var IL10N | \PHPUnit_Framework_MockObject_MockObject $l10n */
-		$l10n = $this->getMockBuilder('\OCP\IL10N')
+		$l10n = $this->getMockBuilder(IL10N::class)
 			->disableOriginalConstructor()->getMock();
 		$l10n
 			->expects($this->any())
@@ -99,7 +109,13 @@ class EngineTest extends \PHPUnit_Framework_TestCase {
 				return vsprintf($text, $parameters);
 			}));
 		$random = \OC::$server->getSecureRandom();
-		$r = new Engine($config, $l10n, $random);
+		/** @var \OCP\IDBConnection | \PHPUnit_Framework_MockObject_MockObject $db */
+		$db = $this->getMockBuilder(\OCP\IDBConnection::class)
+			->disableOriginalConstructor()->getMock();
+		/** @var \OCP\Security\IHasher | \PHPUnit_Framework_MockObject_MockObject $hasher */
+		$hasher = $this->getMockBuilder(\OCP\Security\IHasher::class)
+			->disableOriginalConstructor()->getMock();
+		$r = new Engine($config, $l10n, $random, $db, $hasher);
 		$password = $r->generatePassword();
 		$r->verifyPassword($password);
 	}
