@@ -24,6 +24,7 @@ namespace OCA\PasswordPolicy;
 use OCA\PasswordPolicy\Rules\Length;
 use OCA\PasswordPolicy\Rules\Numbers;
 use OCA\PasswordPolicy\Rules\Special;
+use OCA\PasswordPolicy\Rules\Lowercase;
 use OCA\PasswordPolicy\Rules\Uppercase;
 use OCP\IL10N;
 use OCP\Security\ISecureRandom;
@@ -50,6 +51,10 @@ class Engine {
 		if ($this->yes('spv_min_chars_checked')) {
 			$length = $this->configValues['spv_min_chars_value'] + 1;
 		}
+		if ($this->yes('spv_lowercase_checked')) {
+			$val = $this->configValues['spv_lowercase_value'];
+			$password .= $this->random->generate($val + 1, ISecureRandom::CHAR_LOWER);
+		}
 		if ($this->yes('spv_uppercase_checked')) {
 			$val = $this->configValues['spv_uppercase_value'];
 			$password .= $this->random->generate($val + 1, ISecureRandom::CHAR_UPPER);
@@ -75,6 +80,11 @@ class Engine {
 		if ($this->yes('spv_min_chars_checked')) {
 			$val = $this->configValues['spv_min_chars_value'];
 			$r = new Length($this->l10n);
+			$r->verify($password, $val);
+		}
+		if ($this->yes('spv_lowercase_checked')) {
+			$val = $this->configValues['spv_lowercase_value'];
+			$r = new Lowercase($this->l10n);
 			$r->verify($password, $val);
 		}
 		if ($this->yes('spv_uppercase_checked')) {
