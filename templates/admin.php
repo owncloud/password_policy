@@ -52,7 +52,7 @@ script('password_policy', 'ajax');
 
 			<li class="indented"><label><input type="checkbox" name="spv_def_special_chars_checked"
 						<?php if ($_['spv_def_special_chars_checked']): ?> checked="checked"<?php endif; ?>> <?php p($l->t('Define special characters:'));?></label>
-				<input type="text" name="spv_def_special_chars_value" value="<?php p($_['spv_def_special_chars_value']) ?>" placeholder="Separated by space or comma"></li>
+				<input type="text" name="spv_def_special_chars_value" value="<?php p($_['spv_def_special_chars_value']) ?>"></li>
 		</ul>
 		<input type="hidden" name="app" value="oca-password-policy" />
 
