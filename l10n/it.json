@@ -1,0 +1,23 @@
+{ "translations": {
+    "Saved" : "Salvato",
+    "Failed to save!" : "Salvataggio fallito!",
+    "Expiration date is required" : "La data di scadenza è richiesta",
+    "Password is too short. Minimum %d characters are required." : "La password è troppo corta. Sono richiesti un minimo di %dcaratteri.",
+    "Password contains too few numbers. Minimum %d numbers are required." : "La password non contiene abbastanza numeri. Sono necessari almeno%d caratteri numerici.",
+    "Password should be different than your last %d passwords" : "La password deve essere differente dalle tue ultime %d passwords utilizzate.",
+    "Password contains invalid special characters. Only %s are allowed." : "La password contiene caratteri non validi. Solo i caratteri %s sono ammessi. ",
+    "Password contains too few special characters. Minimum %d special characters are required." : "La password non contiene abbastanza caratteri speciali. Sono necessari almeno %d caratteri speciali.",
+    "Password contains too few uppercase characters. Minimum %d uppercase characters are required." : "La password non contiene abbastanza lettere maiuscole. Sono necessarie almeno %d lettere maiuscole.",
+    "Password and public link expiration policies" : "Policy di scadenza password e link pubblico",
+    "minimum characters" : "minimo di caratteri",
+    "lowercase letters" : "Lettere minuscole",
+    "uppercase letters" : "lettere maiuscole",
+    "numbers" : "numeri",
+    "special characters" : "caratteri speciali",
+    "Define special characters:" : "Definisci caratteri speciali:",
+    "Public link expiration policy:" : "Policy di scadenza link pubblico:",
+    "days until link expires if password is set" : "Giorni dopo i quali il collegamento scade se è stata impostata una password",
+    "days until link expires if password is not set" : "Giorni dopo i quali il collegamento scade se non è stata impostata una password",
+    "Save" : "Salva"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

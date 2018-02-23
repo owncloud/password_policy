@@ -1,0 +1,27 @@
+OC.L10N.register(
+    "password_policy",
+    {
+    "Saved" : "Lagret",
+    "Failed to save!" : "Kunne ikke lagre!",
+    "Expiration date is required" : "Utløpsdato kreves",
+    "_Expiration date cannot exceed %n day_::_Expiration date cannot exceed %n days_" : ["%n","Utløpsdatoen kan ikke overstige %n dager"],
+    "Password is too short. Minimum %d characters are required." : "Passordet er for kort. Minst%der påkrevd.",
+    "Password contains too few lowercase characters. Minimum %d lowercase characters are required." : "Passordet inneholder for få små bokstaver. Minimum %d små bokstaver er påkrevd.",
+    "Password contains too few numbers. Minimum %d numbers are required." : "Passordet inneholder for få tall. Minimum %d tall er påkrevd.",
+    "Password contains invalid special characters. Only %s are allowed." : "Passordet inneholder ugyldige spesialtegn. Kun %s er tillatt.",
+    "Password contains too few special characters. Minimum %d special characters are required." : "Passordet inneholder for få spesialtegn. Minimum %d spesialtegn er påkrevd.",
+    "Password contains too few uppercase characters. Minimum %d uppercase characters are required." : "Passordet inneholder for få store bokstaver. Minimum %d store bokstaver er påkrevd.",
+    "Password and public link expiration policies" : "Passord og retningslinjer for offentlig utløpsdato",
+    "Minimum password requirements for user accounts and public links:" : "Minimumskrav til passord for brukerkontoer og offentlige lenker:",
+    "minimum characters" : "minst antall tegn",
+    "lowercase letters" : "små bokstaver",
+    "uppercase letters" : "store bokstaver",
+    "numbers" : "tall",
+    "special characters" : "spesielle tegn",
+    "Define special characters:" : "Definer spesialtegn:",
+    "Public link expiration policy:" : "Offentelig lenker utløpspolitikk:",
+    "days until link expires if password is set" : "dager til lenken utløper hvis passordet er angitt",
+    "days until link expires if password is not set" : "dager til lenken utløper hvis passord ikke er angitt",
+    "Save" : "Lagre"
+},
+"nplurals=2; plural=(n != 1);");
