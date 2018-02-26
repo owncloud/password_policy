@@ -8,7 +8,7 @@ php:
 
 env:
   global:
-    - CORE_BRANCH=master
+    - CORE_BRANCH=stable10
     - APP_NAME=password_policy
     - TC=unit
   matrix:
@@ -42,6 +42,10 @@ matrix:
     - php: 5.6
       env: DB=mysql
     - php: 5.6
-      env: DB=mysql;TC=lint
+      env: DB=mysql TC=lint
+    - php: 7.1
+      env: DB=mysql CORE_BRANCH=master
+    - php: 7.2
+      env: DB=mysql TC=lint CORE_BRANCH=master
 
   fast_finish: true
