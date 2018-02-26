@@ -14,7 +14,7 @@ The definition of certain password rules support administrators in the task of e
 		<admin>https://doc.owncloud.com/server/10.0/admin_manual/configuration/server/security/password_policy.html</admin>
 	</documentation>
 	<dependencies>
-		<owncloud min-version="10.0.5" max-version="10.0" />
+		<owncloud min-version="10.0.5" max-version="10.1" />
 	</dependencies>
 	<namespace>PasswordPolicy</namespace>
 	<settings>
