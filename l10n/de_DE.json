@@ -6,6 +6,7 @@
     "Password is too short. Minimum %d characters are required." : "Das Passwort ist zu kurz. Es sind mindestens %d Zeichen erforderlich.",
     "Password contains too few lowercase characters. Minimum %d lowercase characters are required." : "Das Passwort enthält zu wenige Kleinbuchstaben. Es sind mindestens %d Kleinbuchstaben erforderlich.",
     "Password contains too few numbers. Minimum %d numbers are required." : "Das Passwort enthält zu wenige Ziffern. Es sind mindestens %d Ziffern erforderlich.",
+    "Password should be different than your last %d passwords" : "Passwort sollte anders sein als die letzten %d Passwörter",
     "Password contains invalid special characters. Only %s are allowed." : "Das Passwort enthält ungültige Sonderzeichen. Nur die Zeichen %s sind zulässig.",
     "Password contains too few special characters. Minimum %d special characters are required." : "Das Passwort enthält zu wenige Sonderzeichen. Es sind mindestens %d Sonderzeichen erforderlich.",
     "Password contains too few uppercase characters. Minimum %d uppercase characters are required." : "Das Passwort enthält zu wenige Großbuchstaben. Es sind mindestens %d Großbuchstaben erforderlich.",
