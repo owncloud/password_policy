@@ -14,6 +14,7 @@ OC.L10N.register(
     "Password contains too few uppercase characters. Minimum %d uppercase characters are required." : "Das Passwort enthält zu wenige Großbuchstaben. Es sind mindestens %d Großbuchstaben erforderlich.",
     "Password and public link expiration policies" : "Richtlinien zum Ablauf von Passwörtern und öffentlichen Links",
     "Minimum password requirements for user accounts and public links:" : "Mindestanforderungen an Passwörter für Benutzerkonten und öffentliche Links:",
+    "different than last passwords" : "anders als vorherige Passwörter",
     "minimum characters" : "Mindestlänge",
     "lowercase letters" : "Kleinbuchstaben",
     "uppercase letters" : "Großbuchstaben",
