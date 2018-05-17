@@ -4,7 +4,7 @@ OC.L10N.register(
     "Saved" : "נשמר",
     "Failed to save!" : "השמירה נכשלה!",
     "Expiration date is required" : "נדרש תאריך תפוגה",
-    "_Expiration date cannot exceed %n day_::_Expiration date cannot exceed %n days_" : ["תאריך התפוגה לא יכול לחרוג מעבר ליום אחד","תאריך התפוגה לא יכול לחרוג מעבר ל־%n ימים"],
+    "_Expiration date cannot exceed %n day_::_Expiration date cannot exceed %n days_" : ["תאריך התפוגה לא יכול לחרוג מעבר ליום אחד","תאריך התפוגה לא יכול לחרוג מעבר ל־%n ימים","תאריך התפוגה לא יכול לחרוג מעבר ל־%n ימים"],
     "Password is too short. Minimum %d characters are required." : "הססמה קצרה מדי. נדרשים לפחות %d תווים.",
     "Password contains too few lowercase characters. Minimum %d lowercase characters are required." : "הססמה אינה מכילה מספיק אותיות קטנות. נדרשות לפחות %d אותיות קטנות.",
     "Password contains too few numbers. Minimum %d numbers are required." : "הססמה אינה מכילה מספיק מספרים. נדרשים %d מספרים לפחות.",
@@ -26,4 +26,4 @@ OC.L10N.register(
     "days until link expires if password is not set" : "ימים עד לפקיעת הקישור אם לא מוגדרת ססמה",
     "Save" : "שמירה"
 },
-"nplurals=2; plural=(n != 1);");
+"nplurals=4; plural=(n==1 ? 1: n == 2 ? 2 : (n % 10 == 0 and n > 10) ? 4);");
