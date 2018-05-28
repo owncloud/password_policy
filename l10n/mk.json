@@ -1,0 +1,27 @@
+{ "translations": {
+    "Saved" : "Снимено",
+    "Failed to save!" : "Неуспешно снимање!",
+    "Expiration date is required" : "Потребен е датум на истекување",
+    "_Expiration date cannot exceed %n day_::_Expiration date cannot exceed %n days_" : ["Датумот на истекување неможе да надминува %n ден","Датумот на истекување неможе да надминува %n дена"],
+    "Password is too short. Minimum %d characters are required." : "Лозинката е премногу кратка. Минимум карактери се %d.",
+    "Password contains too few lowercase characters. Minimum %d lowercase characters are required." : "Лозинката содржи малку мали букви. Минимум %d мали букви се потребни.",
+    "Password contains too few numbers. Minimum %d numbers are required." : "Лозинката содржи малку броеви. Минимум %d броеви се потребни.",
+    "Password should be different than your last %d passwords" : "Лозинката треба да биде различа од вашите %d последни лозинк1",
+    "Password contains invalid special characters. Only %s are allowed." : "Лозинката содржи невалидни специјални карактери. само %s се дозволени.",
+    "Password contains too few special characters. Minimum %d special characters are required." : "Лозинката содржи малку специјални карактери. Минимум %d специјални карактери се потребни.",
+    "Password contains too few uppercase characters. Minimum %d uppercase characters are required." : "Лозинката содржи малку големи букви. Минимум %d големи букви се потребни.",
+    "Password and public link expiration policies" : "Политика на истекување на лозинка и јавна врска",
+    "Minimum password requirements for user accounts and public links:" : "Минимални барања за лозинка за кориснички сметки и јавни линкови:",
+    "different than last passwords" : "различна од последната лозинка",
+    "minimum characters" : "минимален број на карактери",
+    "lowercase letters" : "мали букви",
+    "uppercase letters" : "големи букви",
+    "numbers" : "броеви",
+    "special characters" : "специјални карактери",
+    "Define special characters:" : "Дефинирајте специјални знаци:",
+    "Public link expiration policy:" : "Политика на истекување на јавни линкови:",
+    "days until link expires if password is set" : "денови додека врската не истече ако е поставена лозинка",
+    "days until link expires if password is not set" : "денови додека врската не истече ако не е поставена лозинка",
+    "Save" : "Сними"
+},"pluralForm" :"nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;"
+}
