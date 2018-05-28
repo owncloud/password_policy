@@ -21,6 +21,13 @@ The definition of certain password rules support administrators in the task of e
 		<admin>OCA\PasswordPolicy\Controller\SettingsController</admin>
 	</settings>
 	<category>security</category>
+	<commands>
+		<command>OCA\PasswordPolicy\Command\ExpirePassword</command>
+	</commands>
+	<account-modules>
+		<module>OCA\PasswordPolicy\Authentication\AccountModule</module>
+	</account-modules>
+
 	<screenshot>https://raw.githubusercontent.com/owncloud/screenshots/master/password_policy/owncloud-app-password_policy.jpg</screenshot>
 	<screenshot>https://raw.githubusercontent.com/owncloud/screenshots/master/password_policy/owncloud-app-password_policy2.jpg</screenshot>
 	<use-migrations>true</use-migrations>

@@ -36,9 +36,13 @@ class PasswordHistory extends Base {
 	/**
 	 * @param IL10N $l10n
 	 * @param OldPasswordMapper $mapper
-	 * @param IHasher
+	 * @param IHasher $hasher
 	 */
-	public function __construct(IL10N $l10n, OldPasswordMapper $mapper, IHasher $hasher) {
+	public function __construct(
+		IL10N $l10n,
+		OldPasswordMapper $mapper,
+		IHasher $hasher
+	) {
 		parent::__construct($l10n);
 		$this->mapper = $mapper;
 		$this->hasher = $hasher;
@@ -48,7 +52,7 @@ class PasswordHistory extends Base {
 	 * @param string $password
 	 * @param int $val
 	 * @param string $uid
-	 * @throws \Exception
+	 * @throws PolicyException
 	 */
 	public function verify($password, $val, $uid) {
 		if(empty($uid)) {
@@ -60,8 +64,8 @@ class PasswordHistory extends Base {
 		);
 		foreach($oldPasswords as $oldPassword) {
 			if ($this->hasher->verify($password, $oldPassword->getPassword())) {
-				throw new \Exception(
-					$this->l10n->t("Password should be different than your last %d passwords", [$val]));
+				throw new PolicyException(
+					$this->l10n->t('The password must be different to your previous %d passwords.', [$val]));
 			}
 		}
 	}

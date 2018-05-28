@@ -19,46 +19,41 @@
  *
  */
 
-use Symfony\Component\EventDispatcher\GenericEvent;
 use OCA\PasswordPolicy\HooksHandler;
 
-OCP\Util::connectHook('\OC\Share', 'verifyExpirationDate', \OCA\PasswordPolicy\HooksHandler::class, 'updateLinkExpiry');
+$handler = new HooksHandler();
+
+OCP\Util::connectHook(
+	'\OC\Share', 'verifyExpirationDate',
+	$handler, 'updateLinkExpiry'
+);
 
 $eventDispatcher = \OC::$server->getEventDispatcher();
 $eventDispatcher->addListener(
 	'OCP\User::validatePassword',
-	function($event) {
-		if ($event instanceof GenericEvent) {
-			HooksHandler::verifyPassword(
-				$event->getArguments()['password'],
-				$event->getArguments()['uid']
-			);
-		}
-	}
+	[$handler, 'verifyPassword']
 );
 $eventDispatcher->addListener(
 	'OCP\Share::validatePassword',
-	function($event) {
-		if ($event instanceof GenericEvent) {
-			HooksHandler::verifyPassword($event->getArguments()['password']);
-		}
-	}
+	[$handler, 'verifyPassword']
 );
 $eventDispatcher->addListener(
 	'OCP\User::createPassword',
-	function($event) {
-		if ($event instanceof GenericEvent) {
-			$event['password'] = HooksHandler::generatePassword();
-			$event->stopPropagation();
-		}
-	}
+	[$handler, 'generatePassword']
 );
-\OC::$server->getEventDispatcher()->addListener(
+$eventDispatcher->addListener(
 	'user.aftersetpassword',
-	function (GenericEvent $event) {
-		HooksHandler::saveOldPassword(
-			$event->getArgument('user'),
-			$event->getArgument('password')
-		);
-	}
+	[$handler, 'saveOldPassword']
+);
+$eventDispatcher->addListener(
+	'user.afterlogin',
+	[$handler, 'checkPasswordExpired']
+);
+$eventDispatcher->addListener(
+	'user.afterlogin',
+	[$handler, 'checkAdminRequestedPasswordChange']
+);
+$eventDispatcher->addListener(
+	\OCP\IUser::class . '::firstLogin',
+	[$handler, 'checkForcePasswordChangeOnFirstLogin']
 );

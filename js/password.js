@@ -1,5 +1,5 @@
-<?php
 /**
+ * @author Jörn Friedrich Dreyer <jfd@butonic.de>
  *
  * @copyright Copyright (c) 2018, ownCloud GmbH
  * @license GPL-2.0
@@ -18,9 +18,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
-return ['routes' => [
-	['name' => 'Settings#updatePolicy', 'url' => '/update_policy', 'verb' => 'POST'],
-	['name' => 'password#show', 'url' => '/update_password', 'verb' => 'GET'],
-	['name' => 'password#update', 'url' => '/update_password', 'verb' => 'POST'],
-]];
+$(document).ready(function() {
+	var $newPassword = $("#password_policy #new_password"),
+		$confirmPassword = $("#password_policy #confirm_password"),
+		$submit = $("#password_policy #submit"),
+		check = function() {
+		if ($confirmPassword.val() !== '' && $newPassword.val() !== $confirmPassword.val()) {
+			$newPassword.addClass('password-mismatch');
+			$confirmPassword.addClass('password-mismatch');
+			$submit.attr('disabled', 'disabled');
+		} else {
+			$newPassword.removeClass('password-mismatch');
+			$confirmPassword.removeClass('password-mismatch');
+			$submit.removeAttr('disabled');
+		}
+	};
+	$newPassword.keyup(check);
+	$confirmPassword.keyup(check);
+});

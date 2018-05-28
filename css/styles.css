@@ -25,3 +25,8 @@
 #password_policy .indented {
   margin-left: 24px;
 }
+
+#new_password.password-mismatch,
+#confirm_password.password-mismatch {
+  color: red;
+}

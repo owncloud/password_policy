@@ -27,28 +27,28 @@ class Special extends Base {
 	 * @param string $password
 	 * @param string $val
 	 * @param string $allowedSpecialChars
-	 * @throws \Exception
+	 * @throws PolicyException
 	 */
 	public function verify($password, $val, $allowedSpecialChars) {
 		$special = $this->stripAlphaNumeric($password);
 		if (!empty($allowedSpecialChars) && !empty($special)) {
-			$allowedSpecialCharsAsArray = str_split($allowedSpecialChars);
-			$s = array_filter(str_split($special), function($char) use ($allowedSpecialCharsAsArray){
-				return !(in_array($char, $allowedSpecialCharsAsArray, true));
+			$allowedSpecialCharsAsArray = \str_split($allowedSpecialChars);
+			$s = \array_filter(\str_split($special), function($char) use ($allowedSpecialCharsAsArray){
+				return !\in_array($char, $allowedSpecialCharsAsArray, true);
 			});
-			if (count($s) > 0) {
-				throw new \Exception(
-					$this->l10n->t("Password contains invalid special characters. Only %s are allowed.", [$allowedSpecialChars]));
+			if (\count($s) > 0) {
+				throw new PolicyException(
+					$this->l10n->t('The password contains invalid special characters. Only %s are allowed.', [$allowedSpecialChars]));
 			}
 		}
-		if (strlen($special) < $val) {
-			throw new \Exception(
-				$this->l10n->t("Password contains too few special characters. Minimum %d special characters are required.", [$val]));
+		if (\strlen($special) < $val) {
+			throw new PolicyException(
+				$this->l10n->t('The password contains too few special characters. A minimum of %d special characters are required.', [$val]));
 		}
 	}
 
 	private function stripAlphaNumeric( $string ) {
-		return preg_replace( "/[a-z0-9]/i", "", $string );
+		return \preg_replace( '/[a-z0-9]/i', '', $string );
 	}
 
 }

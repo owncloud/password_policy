@@ -23,14 +23,19 @@ namespace OCA\PasswordPolicy\Rules;
 
 class Numbers extends Base {
 
+	/**
+	 * @param $password
+	 * @param $val
+	 * @throws PolicyException
+	 */
 	public function verify($password, $val) {
 		if ($this->countDigits($password) < $val) {
-			throw new \Exception(
-				$this->l10n->t("Password contains too few numbers. Minimum %d numbers are required.", [$val]));
+			throw new PolicyException(
+				$this->l10n->t('The password contains too few numbers. At least %d numbers are required.', [$val]));
 		}
 	}
 
 	private function countDigits( $str ) {
-		return preg_match_all( "/[0-9]/", $str );
+		return \preg_match_all( '/[0-9]/', $str );
 	}
 }

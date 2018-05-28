@@ -1,5 +1,6 @@
 <?php
 /**
+ * @author Jörn Friedrich Dreyer <jfd@butonic.de>
  *
  * @copyright Copyright (c) 2018, ownCloud GmbH
  * @license GPL-2.0
@@ -19,8 +20,7 @@
  *
  */
 
-return ['routes' => [
-	['name' => 'Settings#updatePolicy', 'url' => '/update_policy', 'verb' => 'POST'],
-	['name' => 'password#show', 'url' => '/update_password', 'verb' => 'GET'],
-	['name' => 'password#update', 'url' => '/update_password', 'verb' => 'POST'],
-]];
+namespace OCA\PasswordPolicy\Rules;
+
+class PolicyException extends \Exception {
+}

@@ -23,19 +23,24 @@ namespace OCA\PasswordPolicy\Rules;
 
 class Uppercase extends Base {
 
+	/**
+	 * @param $password
+	 * @param $val
+	 * @throws PolicyException
+	 */
 	public function verify($password, $val) {
 		if ($this->countCapitals($password) < $val) {
-			throw new \Exception(
-				$this->l10n->t("Password contains too few uppercase characters. Minimum %d uppercase characters are required.", [$val]));
+			throw new PolicyException(
+				$this->l10n->t('The password contains too few uppercase characters. A minimum of %d uppercase characters are required.', [$val]));
 		}
 	}
 
 	private function countCapitals($s) {
-		$split = preg_split('//u', $s, -1, PREG_SPLIT_NO_EMPTY);
+		$split = \preg_split('//u', $s, -1, PREG_SPLIT_NO_EMPTY);
 
 		$count = 0;
 		foreach ($split as $index => $char) {
-			if ($char === mb_strtoupper($char, 'UTF-8') && $char !== mb_strtolower($char, 'UTF-8')) {
+			if ($char === \mb_strtoupper($char, 'UTF-8') && $char !== \mb_strtolower($char, 'UTF-8')) {
 				$count++;
 			}
 		}

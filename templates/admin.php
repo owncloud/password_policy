@@ -60,7 +60,21 @@ script('password_policy', 'ajax');
 		<input type="hidden" name="app" value="oca-password-policy" />
 
 		<br>
-		<p><?php p($l->t('Public link expiration policy:'));?></p>
+		<p><?php p($l->t('User Password policies:'));?></p>
+
+		<ul>
+			<li><label><input type="checkbox" name="spv_user_password_expiration_checked"
+						<?php if ($_['spv_user_password_expiration_checked']): ?> checked="checked"<?php endif; ?>/>
+					<input type="number" name="spv_user_password_expiration_value"  min="0" value="<?php p($_['spv_user_password_expiration_value']) ?>" placeholder="90"/>
+					<?php p($l->t('days until user password expires'));?></label>
+			</li>
+			<li><label><input type="checkbox" name="spv_user_password_force_change_on_first_login_checked"
+						<?php if ($_['spv_user_password_force_change_on_first_login_checked']): ?> checked="checked"<?php endif; ?>/>
+					<?php p($l->t('force change on first login'));?></label>
+			</li>
+		</ul>
+		<br>
+		<p><?php p($l->t('Public link expiration policies:'));?></p>
 
 		<ul>
 			<li><label><input type="checkbox" name="spv_expiration_password_checked"
