@@ -1,5 +1,6 @@
 <?php
 /**
+ * @author Jörn Friedrich Dreyer <jfd@butonic.de>
  *
  * @copyright Copyright (c) 2018, ownCloud GmbH
  * @license GPL-2.0
@@ -19,10 +20,13 @@
  *
  */
 
+namespace OCA\PasswordPolicy\Tests\Rules;
+
 use OCA\PasswordPolicy\Rules\Uppercase;
 use OCP\IL10N;
+use Test\TestCase;
 
-class UppercaseTest extends \PHPUnit_Framework_TestCase {
+class UppercaseTest extends TestCase {
 
 	/** @var Uppercase */
 	private $r;
@@ -31,10 +35,8 @@ class UppercaseTest extends \PHPUnit_Framework_TestCase {
 		parent::setUp();
 
 		/** @var IL10N | \PHPUnit_Framework_MockObject_MockObject $l10n */
-		$l10n = $this->getMockBuilder('\OCP\IL10N')
-			->disableOriginalConstructor()->getMock();
+		$l10n = $this->createMock(IL10N::class);
 		$l10n
-			->expects($this->any())
 			->method('t')
 			->will($this->returnCallback(function($text, $parameters = array()) {
 				return vsprintf($text, $parameters);
@@ -44,40 +46,46 @@ class UppercaseTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage Password contains too few uppercase characters. Minimum 4 uppercase characters are required.
+	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
+	 * @expectedExceptionMessage The password contains too few uppercase characters. A minimum of 4 uppercase characters are required.
 	 */
 	public function testTooShort() {
 		$this->r->verify('ab', 4);
 	}
 
+	/**
+	 * @throws \OCA\PasswordPolicy\Rules\PolicyException
+	 */
 	public function testOkay() {
 		$this->r->verify('ABCFWA12345', 6);
 	}
 
 	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage Password contains too few uppercase characters. Minimum 5 uppercase characters are required.
+	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
+	 * @expectedExceptionMessage The password contains too few uppercase characters. A minimum of 5 uppercase characters are required.
 	 */
 	public function testSpecialUpperCaseTooShort() {
 		$this->r->verify('Ññññññññññ', 5);
 	}
 
+	/**
+	 * @throws \OCA\PasswordPolicy\Rules\PolicyException
+	 */
 	public function testSpecialUpperCaseOkay() {
 		$this->r->verify('ÑñÑñÑñÑñÑñ', 5);
 	}
 
 	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage Password contains too few uppercase characters. Minimum 5 uppercase characters are required.
+	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
+	 * @expectedExceptionMessage The password contains too few uppercase characters. A minimum of 5 uppercase characters are required.
 	 */
 	public function testNumericOnlyTooShort() {
 		$this->r->verify('11111111', 5);
 	}
 
 	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage Password contains too few uppercase characters. Minimum 5 uppercase characters are required.
+	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
+	 * @expectedExceptionMessage The password contains too few uppercase characters. A minimum of 5 uppercase characters are required.
 	 */
 	public function testSpecialOnlyTooShort() {
 		$this->r->verify('#+?@#+?@', 5);

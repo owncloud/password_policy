@@ -1,5 +1,6 @@
 <?php
 /**
+ * @author Jörn Friedrich Dreyer <jfd@butonic.de>
  *
  * @copyright Copyright (c) 2018, ownCloud GmbH
  * @license GPL-2.0
@@ -19,52 +20,43 @@
  *
  */
 
-use OCA\PasswordPolicy\Rules\Length;
+namespace OCA\PasswordPolicy\Tests\Rules;
+
+use OCA\PasswordPolicy\Rules\Numbers;
 use OCP\IL10N;
 
-class LengthTest extends \PHPUnit_Framework_TestCase {
+class NumbersTest extends \Test\TestCase {
 
-	/** @var Length */
+	/** @var Numbers */
 	private $r;
 
 	public function setUp() {
 		parent::setUp();
 
 		/** @var IL10N | \PHPUnit_Framework_MockObject_MockObject $l10n */
-		$l10n = $this->getMockBuilder('\OCP\IL10N')
-			->disableOriginalConstructor()->getMock();
+		$l10n = $this->createMock(IL10N::class);
 		$l10n
-			->expects($this->any())
 			->method('t')
 			->will($this->returnCallback(function($text, $parameters = array()) {
 				return vsprintf($text, $parameters);
 			}));
 
-		$this->r = new Length($l10n);
+		$this->r = new Numbers($l10n);
 	}
 
 	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage Password is too short. Minimum 25 characters are required.
+	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
+	 * @expectedExceptionMessage The password contains too few numbers. At least 4 numbers are required.
 	 */
 	public function testTooShort() {
-		$this->r->verify('1234567890', 25);
-	}
-
-	public function testOkay() {
-		$this->r->verify('1234567890', 6);
+		$this->r->verify('ab', 4);
 	}
 
 	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage Password is too short. Minimum 5 characters are required.
+	 * @throws \OCA\PasswordPolicy\Rules\PolicyException
 	 */
-	public function testSpecialCharsTooShort() {
-		$this->r->verify('ççç', 5);
-	}
-
-	public function testSpecialCharsOkay() {
-		$this->r->verify('çççççç', 5);
+	public function testOkay() {
+		$this->r->verify('1234567890', 6);
 	}
 
 }

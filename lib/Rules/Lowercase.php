@@ -23,19 +23,24 @@ namespace OCA\PasswordPolicy\Rules;
 
 class Lowercase extends Base {
 
+	/**
+	 * @param $password
+	 * @param $val
+	 * @throws PolicyException
+	 */
 	public function verify($password, $val) {
 		if ($this->countLowercase($password) < $val) {
-			throw new \Exception(
-				$this->l10n->t("Password contains too few lowercase characters. Minimum %d lowercase characters are required.", [$val]));
+			throw new PolicyException(
+				$this->l10n->t('The password contains too few lowercase characters. At least %d lowercase characters are required.', [$val]));
 		}
 	}
 
 	private function countLowercase($s) {
-		$split = preg_split('//u', $s, -1, PREG_SPLIT_NO_EMPTY);
+		$split = \preg_split('//u', $s, -1, PREG_SPLIT_NO_EMPTY);
 
 		$count = 0;
 		foreach ($split as $index => $char) {
-			if ($char === mb_strtolower($char, 'UTF-8') && $char !== mb_strtoupper($char, 'UTF-8')) {
+			if ($char === \mb_strtolower($char, 'UTF-8') && $char !== \mb_strtoupper($char, 'UTF-8')) {
 				$count++;
 			}
 		}

@@ -23,10 +23,15 @@ namespace OCA\PasswordPolicy\Rules;
 
 class Length extends Base {
 
+	/**
+	 * @param $password
+	 * @param $val
+	 * @throws PolicyException
+	 */
 	public function verify($password, $val) {
-		if (mb_strlen($password, 'UTF-8') < $val) {
-			throw new \Exception(
-				$this->l10n->t("Password is too short. Minimum %d characters are required.", [$val]));
+		if (\mb_strlen($password, 'UTF-8') < $val) {
+			throw new PolicyException(
+				$this->l10n->t('The password is too short. At least %d characters are required.', [$val]));
 		}
 	}
 

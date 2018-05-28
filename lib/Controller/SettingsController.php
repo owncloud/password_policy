@@ -29,52 +29,51 @@ use OCP\Template;
 
 class SettingsController extends Controller implements ISettings {
 
-	/** @var IRequest  */
-	protected $request;
 	/** @var IConfig  */
 	protected $config;
-	protected $appValues;
+
+	const DEFAULTS = [
+		'spv_min_chars_checked' => false,
+		'spv_min_chars_value' => 8,
+		'spv_lowercase_checked' => false,
+		'spv_lowercase_value' => 1,
+		'spv_uppercase_checked' => false,
+		'spv_uppercase_value' => 1,
+		'spv_numbers_checked' => false,
+		'spv_numbers_value' => 1,
+		'spv_special_chars_checked' => false,
+		'spv_special_chars_value' => 1,
+		'spv_def_special_chars_checked' => false,
+		'spv_def_special_chars_value' => '#!',
+		'spv_password_history_checked' => false,
+		'spv_password_history_value' => 3,
+		'spv_user_password_expiration_checked' => false,
+		'spv_user_password_expiration_value' => 90,
+		'spv_user_password_force_change_on_first_login_checked' => false,
+		'spv_expiration_password_checked' => false,
+		'spv_expiration_password_value' => 7,
+		'spv_expiration_nopassword_checked' => false,
+		'spv_expiration_nopassword_value' => 7,
+	];
 
 	public function __construct($appName,
 								IRequest $request,
 								IConfig $config) {
 		parent::__construct($appName, $request);
 		$this->config = $config;
-		$this->request = $request;
-
-		$this->appValues = [
-			'spv_min_chars_checked' => false,
-			'spv_min_chars_value' => 8,
-			'spv_lowercase_checked' => false,
-			'spv_lowercase_value' => 1,
-			'spv_uppercase_checked' => false,
-			'spv_uppercase_value' => 1,
-			'spv_numbers_checked' => false,
-			'spv_numbers_value' => 1,
-			'spv_special_chars_checked' => false,
-			'spv_special_chars_value' => 1,
-			'spv_def_special_chars_checked' => false,
-			'spv_def_special_chars_value' => '#!',
-			'spv_password_history_checked' => false,
-			'spv_password_history_value' => 3,
-			'spv_expiration_password_checked' => false,
-			'spv_expiration_password_value' => 7,
-			'spv_expiration_nopassword_checked' => false,
-			'spv_expiration_nopassword_value' => 7,
-		];
 	}
 
 	/**
 	 *
 	 */
 	public function updatePolicy() {
-		foreach ($this->appValues as $key => $default) {
-			if (!is_null($this->request->getParam($key))) {
-				if (substr($key, -6) === '_value' && $key !== 'spv_def_special_chars_value') {
-					$value = min(max(0, (int)$this->request->getParam($key)), 255);
+		foreach (self::DEFAULTS as $key => $default) {
+			if ($this->request->getParam($key) !== null) {
+				if ($key !== 'spv_def_special_chars_value' && \substr($key, -6) === '_value') {
+					$value = \min(\max(0, (int)$this->request->getParam($key)), 255);
 					$this->config->setAppValue('password_policy', $key, $value);
 				} else {
-					$this->config->setAppValue('password_policy', $key, strip_tags($this->request->getParam($key)));
+					$this->config->setAppValue('password_policy', $key, \strip_tags($this->request->getParam($key)));
 				}
 			} else {
 				$this->config->setAppValue('password_policy', $key, $default);
@@ -92,11 +91,10 @@ class SettingsController extends Controller implements ISettings {
 
 	public function getPanel() {
 		$template = new Template('password_policy', 'admin');
-		foreach($this->appValues as $key => $default) {
+		foreach(self::DEFAULTS as $key => $default) {
 			$template->assign($key, $this->config->getAppValue('password_policy', $key, $default));
 		}
 		return $template;
 	}
-
 
 }

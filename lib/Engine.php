@@ -24,6 +24,7 @@ namespace OCA\PasswordPolicy;
 use OCA\PasswordPolicy\Db\OldPasswordMapper;
 use OCA\PasswordPolicy\Rules\Length;
 use OCA\PasswordPolicy\Rules\Numbers;
+use OCA\PasswordPolicy\Rules\PolicyException;
 use OCA\PasswordPolicy\Rules\Special;
 use OCA\PasswordPolicy\Rules\Lowercase;
 use OCA\PasswordPolicy\Rules\Uppercase;
@@ -46,7 +47,6 @@ class Engine {
 	/** @var IHasher */
 	private $hasher;
 
-
 	/**
 	 * @param array $configValues
 	 * @param IL10N $l10n
@@ -68,8 +68,10 @@ class Engine {
 		$this->hasher = $hasher;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function generatePassword() {
-
 		$length = 20;
 		$password = '';
 		if ($this->yes('spv_min_chars_checked')) {
@@ -93,19 +95,19 @@ class Engine {
 			$password .= $this->random->generate($val + 1, $chars);
 		}
 
-		if ($length - strlen($password) > 0) {
-			$password .= $this->random->generate($length - strlen($password), ISecureRandom::CHAR_LOWER);
+		if ($length - \strlen($password) > 0) {
+			$password .= $this->random->generate($length - \strlen($password), ISecureRandom::CHAR_LOWER);
 		}
 
-		return str_shuffle($password);
+		return \str_shuffle($password);
 	}
 
 	/**
 	 * @param string $password
 	 * @param string $uid
-	 * @throws \Exception
+	 * @throws PolicyException
 	 */
-	public function verifyPassword($password, $uid = NULL) {
+	public function verifyPassword($password, $uid = null) {
 		if ($this->yes('spv_min_chars_checked')) {
 			$val = $this->configValues['spv_min_chars_value'];
 			$r = new Length($this->l10n);
@@ -135,7 +137,7 @@ class Engine {
 			$r = new Special($this->l10n);
 			$r->verify($password, $val, $chars);
 		}
-		if ($this->yes('spv_password_history_checked') && !empty($uid)) {
+		if ($uid !== null && $this->yes('spv_password_history_checked')) {
 			$val = $this->configValues['spv_password_history_value'];
 			$dbMapper = new OldPasswordMapper($this->db);
 			$r = new PasswordHistory($this->l10n, $dbMapper, $this->hasher);
@@ -147,11 +149,24 @@ class Engine {
 	 * @param string $key
 	 * @return bool
 	 */
-	private function yes($key) {
+	public function yes($key) {
 		if ($this->configValues[$key] === 'on') {
 			return true;
 		}
 		return $this->configValues[$key];
 	}
-}
 
+	/**
+	 * @return array
+	 */
+	public function getConfigValues() {
+		return $this->configValues;
+	}
+	/**
+	 * @param string $key
+	 * @return mixed
+	 */
+	public function getConfigValue($key) {
+		return $this->configValues[$key];
+	}
+}

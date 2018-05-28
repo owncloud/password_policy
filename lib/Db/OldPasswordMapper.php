@@ -39,16 +39,28 @@ class OldPasswordMapper extends Mapper {
 	public function getOldPasswords($uid, $length) {
 		/* @var IQueryBuilder $qb */
 		$qb = $this->db->getQueryBuilder();
-		$qb->select('password')
+		$qb->select('*')
 			->from('user_password_history')
 			->where($qb->expr()->eq('uid', $qb->createNamedParameter($uid)))
-			->orderBy('change_time', 'desc');
+			->orderBy('change_time', 'desc')
+			->setMaxResults($length);
 		$result = $qb->execute();
 		$rows = $result->fetchAll();
 		$result->closeCursor();
-		$rows = array_slice($rows,0, $length);
-		return array_map(function ($row) {
+		return \array_map(function ($row) {
 			return OldPassword::fromRow($row);
 		}, $rows);
+	}
+
+	/**
+	 * @param string $uid
+	 * @return OldPassword
+	 */
+	public function getLatestPassword($uid) {
+		$passwords = $this->getOldPasswords($uid, 1);
+		if (\count($passwords) === 0) {
+			return null;
+		}
+		return $passwords[0];
 	}
 }

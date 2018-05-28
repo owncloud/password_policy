@@ -1,5 +1,6 @@
 <?php
 /**
+ * @author Jörn Friedrich Dreyer <jfd@butonic.de>
  *
  * @copyright Copyright (c) 2018, ownCloud GmbH
  * @license GPL-2.0
@@ -19,6 +20,9 @@
  *
  */
 
+namespace OCA\PasswordPolicy\Tests\Rules;
+
+use OCA\PasswordPolicy\Rules\PolicyException;
 use OCA\PasswordPolicy\Rules\Special;
 use OCP\IL10N;
 
@@ -31,21 +35,19 @@ class SpecialTest extends \PHPUnit_Framework_TestCase {
 		parent::setUp();
 
 		/** @var IL10N | \PHPUnit_Framework_MockObject_MockObject $l10n */
-		$l10n = $this->getMockBuilder('\OCP\IL10N')
-			->disableOriginalConstructor()->getMock();
+		$l10n = $this->createMock(IL10N::class);
 		$l10n
-			->expects($this->any())
 			->method('t')
 			->will($this->returnCallback(function($text, $parameters = array()) {
-				return vsprintf($text, $parameters);
+				return \vsprintf($text, $parameters);
 			}));
 
 		$this->r = new Special($l10n);
 	}
 
 	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage Password contains too few special characters. Minimum 4 special characters are required.
+	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
+	 * @expectedExceptionMessage The password contains too few special characters. A minimum of 4 special characters are required.
 	 */
 	public function testTooShort() {
 		$this->r->verify('', 4, []);
@@ -53,6 +55,10 @@ class SpecialTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider providesTestData
+	 * @param $password
+	 * @param $val
+	 * @param $allowedSpecialChars
+	 * @throws PolicyException
 	 */
 	public function testOkay($password, $val, $allowedSpecialChars) {
 		$this->r->verify($password, $val, $allowedSpecialChars);
@@ -60,23 +66,27 @@ class SpecialTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider providesExceptionalData
+	 * @param $expectedMessage
+	 * @param $password
+	 * @param $val
+	 * @param $allowedSpecialChars
 	 */
 	public function testInvalidSpecial($expectedMessage, $password, $val, $allowedSpecialChars) {
 		try {
 			$this->r->verify($password, $val, $allowedSpecialChars);
 			$this->fail('');
-		} catch (Exception $ex) {
+		} catch (PolicyException $ex) {
 			$this->assertEquals($expectedMessage, $ex->getMessage());
 		}
 	}
 
 	function providesExceptionalData() {
 		return [
-			['Password contains invalid special characters. Only #+ are allowed.', '#+?@#+?@', 4, '#+'],
-			['Password contains too few special characters. Minimum 9 special characters are required.', '#+?@#+?@', 9, []],
-			['Password contains too few special characters. Minimum 10 special characters are required.', '#+?@#+?@', 10, '#+?@'],
-			['Password contains too few special characters. Minimum 2 special characters are required.', '#', 2, '#!'],
-			['Password contains too few special characters. Minimum 1 special characters are required.', 'qaa', 1, '#!']
+			['The password contains invalid special characters. Only #+ are allowed.', '#+?@#+?@', 4, '#+'],
+			['The password contains too few special characters. A minimum of 9 special characters are required.', '#+?@#+?@', 9, []],
+			['The password contains too few special characters. A minimum of 10 special characters are required.', '#+?@#+?@', 10, '#+?@'],
+			['The password contains too few special characters. A minimum of 2 special characters are required.', '#', 2, '#!'],
+			['The password contains too few special characters. A minimum of 1 special characters are required.', 'qaa', 1, '#!']
 		];
 	}
 
