@@ -19,14 +19,23 @@
  */
 
 #password-policy input[type='number'] {
-  width: 30px;
+	width: 30px;
 }
 
 #password_policy .indented {
-  margin-left: 24px;
+	margin-left: 24px;
 }
 
-#new_password.password-mismatch,
-#confirm_password.password-mismatch {
-  color: red;
+#password_policy #confirm_password.password-mismatch,
+#password_policy #new_password.password-mismatch {
+	color: red;
+}
+
+#password_policy #submit {
+	margin: 5px;
+	width : calc(100% - 10px);
+}
+
+#password_policy .margin-add-top {
+	margin-top: 24px;
 }

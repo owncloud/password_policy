@@ -32,31 +32,25 @@ style('password_policy', 'styles');
 
 <form id="password_policy" method="post">
 	<fieldset>
-	<h1 class="warning"><?php p($l->t('Password changed required'));?></h1>
+		<h1 class="warning">
+			<?php p($l->t('Password changed required'));?>
+		</h1>
+		<?php if (isset($_['error'])) { ?><div id="error" class="warning"><?php p($_['error']) ?></div> <?php } ?>
+		<input type="hidden" name="redirect_url" value="<?php p($_['redirect_url']) ?>" />
+		<input type="hidden" name="app" value="oca-password-policy" />
+		<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>" id="requesttoken">
 
-	<?php if (isset($_['error'])) { ?><div id="error" class="warning"><?php p($_['error']) ?></div> <?php } ?>
+		<label for="current_password" class="infield"><?php p($l->t('current password'));?></label>
+		<input type="password" id="current_password" name="current_password" value="" autofocus placeholder="<?php p($l->t('current password'));?>"/>
 
-	<p>
-
-	<input type="password" id="current_password" name="current_password"
-		   value="" autofocus placeholder="<?php p($l->t('current password'));?>"
-	/>
-	<label for="current_password" class="infield"><?php p($l->t('current password'));?></label>
-
-	<input type="password" id="new_password" name="new_password"
-		   value="" placeholder="<?php p($l->t('new password'));?>"
-	/>
-	<label for="new_password" class="infield"><?php p($l->t('new password'));?></label>
-
-	<input type="password" id="confirm_password" name="confirm_password"
-		   value="" placeholder="<?php p($l->t('confirm new password'));?>"
-	/>
-	<label for="confirm_password" class="infield"><?php p($l->t('confirm new password'));?></label>
-
-	<input type="hidden" name="redirect_url" value="<?php p($_['redirect_url']) ?>" />
-	<input type="hidden" name="app" value="oca-password-policy" />
-	<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>" id="requesttoken">
-	<input type="submit" id="submit" value="<?php p($l->t('Save'));?>" title="<?php p($l->t('Save'));?>"/>
-	</p>
+		<div class="grouptop">
+			<label for="new_password" class="infield"><?php p($l->t('new password'));?></label>
+			<input type="password" id="new_password" name="new_password" value="" placeholder="<?php p($l->t('new password'));?>"/>
+		</div>
+		<div class="groupbottom">
+			<label for="confirm_password" class="infield"><?php p($l->t('confirm new password'));?></label>
+			<input type="password" id="confirm_password" name="confirm_password" value="" placeholder="<?php p($l->t('confirm new password'));?>"/>
+		</div>
+		<button id="submit" type="submit"><?php p($l->t('Save'));?></button>
 	</fieldset>
 </form>
