@@ -150,7 +150,7 @@ class PasswordController extends Controller implements IAccountModuleController 
 		if(!$this->userManager->checkPassword($user->getUID(), $current_password)) {
 			return $this->createPasswordTemplateResponse(
 				$redirect_url,
-				$this->l10n->t('Incorrect password supplied.')
+				$this->l10n->t('Incorrect current password supplied.')
 			);
 		}
 
