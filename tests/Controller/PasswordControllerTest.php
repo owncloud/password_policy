@@ -170,7 +170,7 @@ class PasswordControllerTest extends TestCase {
 		$redirect_url = 'redirect/target';
 		$this->c->expects($this->once())
 			->method('createPasswordTemplateResponse')
-			->with($redirect_url, 'Incorrect password supplied.');
+			->with($redirect_url, 'Incorrect current password supplied.');
 
 		$user
 			->expects($this->never())
