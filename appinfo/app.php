@@ -61,3 +61,6 @@ $eventDispatcher->addListener(
 	\OCP\IUser::class . '::firstLogin',
 	[$handler, 'checkForcePasswordChangeOnFirstLogin']
 );
+
+$app = new \OCA\PasswordPolicy\AppInfo\Application();
+$app->registerNotifier();

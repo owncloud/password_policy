@@ -26,6 +26,7 @@ use OCA\PasswordPolicy\Db\OldPassword;
 use OCA\PasswordPolicy\Db\OldPasswordMapper;
 use OCA\PasswordPolicy\Engine;
 use OCA\PasswordPolicy\HooksHandler;
+use OCA\PasswordPolicy\UserNotificationConfigHandler;
 use OCA\PasswordPolicy\Rules\PasswordExpired;
 use OCA\PasswordPolicy\Rules\PolicyException;
 use OCP\AppFramework\Utility\ITimeFactory;
@@ -57,7 +58,8 @@ class HooksHandlerTest extends TestCase {
 	protected $session;
 	/** @var HooksHandler | \PHPUnit_Framework_MockObject_MockObject */
 	protected $handler;
-
+	/** @var UserNotificationConfigHandler | \PHPUnit_Framework_MockObject_MockObject */
+	protected $unConfigHandler;
 
 	protected function setUp() {
 		parent::setUp();
@@ -75,6 +77,7 @@ class HooksHandlerTest extends TestCase {
 		$this->passwordExpiredRule = $this->createMock(PasswordExpired::class);
 		$this->oldPasswordMapper = $this->createMock(OldPasswordMapper::class);
 		$this->session = $this->createMock(ISession::class);
+		$this->unConfigHandler = $this->createMock(UserNotificationConfigHandler::class);
 
 		$this->handler = new HooksHandler(
 			$this->config,
@@ -84,7 +87,8 @@ class HooksHandlerTest extends TestCase {
 			$this->l10n,
 			$this->passwordExpiredRule,
 			$this->oldPasswordMapper,
-			$this->session
+			$this->session,
+			$this->unConfigHandler
 		);
 	}
 
@@ -192,6 +196,9 @@ class HooksHandlerTest extends TestCase {
 					$oldPassword->getUid() === 'testuid' &&
 					$oldPassword->getChangeTime() === 12345;
 			}));
+
+		$this->unConfigHandler->expects($this->once())
+			->method('resetExpirationMarks');
 
 		$event = new GenericEvent(null, [
 			'user' => $user,

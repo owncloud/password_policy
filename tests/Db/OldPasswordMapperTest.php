@@ -26,6 +26,7 @@ namespace OCA\PasswordPolicy\Tests\Db;
 use OCA\PasswordPolicy\Db\OldPassword;
 use OCA\PasswordPolicy\Db\OldPasswordMapper;
 use OCP\IDBConnection;
+use OCP\DB\QueryBuilder\IQueryBuilder;
 use Test\TestCase;
 
 /**
@@ -38,11 +39,13 @@ class OldPasswordMapperTest extends TestCase {
 	private $mapper;
 	/** @var string */
 	private $testUID = 'test1';
+	private $testUIDs = ['test1', 'test2', 'test3'];
 
 	private function resetDB() {
 		$qb = $this->db->getQueryBuilder();
 		$qb->delete($this->mapper->getTableName())
-			->where($qb->expr()->eq('uid', $qb->createNamedParameter($this->testUID)));
+			//->where($qb->expr()->eq('uid', $qb->createNamedParameter($this->testUID)));
+			->where($qb->expr()->in('uid', $qb->createNamedParameter($this->testUIDs, IQueryBuilder::PARAM_STR_ARRAY)));
 		$qb->execute();
 	}
 	protected function setUp() {
@@ -57,46 +60,110 @@ class OldPasswordMapperTest extends TestCase {
 		$this->resetDB();
 	}
 
-	public function addInitialTestEntries() {
+	public function addInitialTestEntries($baseTime) {
 		//add an initial entries
-		$oldPassword = new OldPassword();
-		$oldPassword->setUid($this->testUID);
-		$oldPassword->setPassword('testpass1');
-		$oldPassword->setChangeTime(\OC::$server->getTimeFactory()->getTime());
-		$this->mapper->insert($oldPassword);
+		foreach ($this->testUIDs as $index => $uid) {
+			$oldPassword = new OldPassword();
+			$oldPassword->setUid($uid);
+			$oldPassword->setPassword("{$uid}testpass1");
+			$oldPassword->setChangeTime($baseTime);
+			$this->mapper->insert($oldPassword);
 
-		$oldPassword = new OldPassword();
-		$oldPassword->setUid($this->testUID);
-		$oldPassword->setPassword('testpass2');
-		$oldPassword->setChangeTime(\OC::$server->getTimeFactory()->getTime()+1);
-		$this->mapper->insert($oldPassword);
+			$oldPassword = new OldPassword();
+			$oldPassword->setUid($uid);
+			$oldPassword->setPassword("{$uid}testpass2");
+			$oldPassword->setChangeTime($baseTime + (10 * ($index + 1)));
+			$this->mapper->insert($oldPassword);
 
-		$oldPassword = new OldPassword();
-		$oldPassword->setUid($this->testUID);
-		$oldPassword->setPassword('testpass3');
-		$oldPassword->setChangeTime(\OC::$server->getTimeFactory()->getTime()+2);
-		$this->mapper->insert($oldPassword);
+			$oldPassword = new OldPassword();
+			$oldPassword->setUid($uid);
+			$oldPassword->setPassword("{$uid}testpass3");
+			$oldPassword->setChangeTime($baseTime + (20 * ($index + 1)));
+			$this->mapper->insert($oldPassword);
+		}
 	}
 
 	public function testGetOldPasswords() {
-		$this->assertCount(0, $this->mapper->getOldPasswords($this->testUID,3));
-		$this->addInitialTestEntries();
+		$uid = $this->testUIDs[0];
+		$this->assertCount(0, $this->mapper->getOldPasswords($uid, 3));
+		$this->addInitialTestEntries(\time());
 
-		$oldPasswords = $this->mapper->getOldPasswords($this->testUID,2);
+		$oldPasswords = $this->mapper->getOldPasswords($uid, 2);
 
 		$this->assertCount(2, $oldPasswords);
-		$this->assertNotSame("testpass1", $oldPasswords[0]->getPassword());
-		$this->assertNotSame("testpass1", $oldPasswords[1]->getPassword());
+		$this->assertNotSame("{$uid}testpass1", $oldPasswords[0]->getPassword());
+		$this->assertNotSame("{$uid}testpass1", $oldPasswords[1]->getPassword());
 
-		$this->assertCount(3, $this->mapper->getOldPasswords($this->testUID,3));
+		$this->assertCount(3, $this->mapper->getOldPasswords($uid, 3));
 	}
 
 	public function testLatestPassword() {
-		$this->assertNull($this->mapper->getLatestPassword($this->testUID));
-		$this->addInitialTestEntries();
+		$uid = $this->testUIDs[0];
+		$this->assertNull($this->mapper->getLatestPassword($uid));
+		$this->addInitialTestEntries(\time());
 
-		$latestPassword = $this->mapper->getLatestPassword($this->testUID);
+		$latestPassword = $this->mapper->getLatestPassword($uid);
 
-		$this->assertSame("testpass3", $latestPassword->getPassword());
+		$this->assertSame("{$uid}testpass3", $latestPassword->getPassword());
+	}
+
+	public function testGetPasswordsAboutToExpireAllOk() {
+		$baseTime = \time();
+		$this->addInitialTestEntries($baseTime);
+
+
+		$passwordList = $this->mapper->getPasswordsAboutToExpire($baseTime + 14);
+		// last password change after the timestamp, so we shouldn't get any result
+		$this->assertCount(0, $passwordList);
+	}
+
+	public function testGetPasswordsAboutToExpireSomePassMarked() {
+		$baseTime = \time();
+		$this->addInitialTestEntries($baseTime);
+
+
+		$passwordList = $this->mapper->getPasswordsAboutToExpire($baseTime + 44);
+		// last password change before the timestamp
+		$this->assertCount(2, $passwordList);
+
+		$uid = $this->testUIDs[0];
+		$latestPassword = $passwordList[0];
+		$this->assertSame("{$uid}testpass3", $latestPassword->getPassword());
+		$this->assertSame($uid, $latestPassword->getUid());
+		$this->assertLessThan($baseTime + 44, $latestPassword->getChangeTime());
+
+		$uid = $this->testUIDs[1];
+		$latestPassword = $passwordList[1];
+		$this->assertSame("{$uid}testpass3", $latestPassword->getPassword());
+		$this->assertSame($uid, $latestPassword->getUid());
+		$this->assertLessThan($baseTime + 44, $latestPassword->getChangeTime());
+	}
+
+	public function testGetPasswordsAboutToExpireAllMarked() {
+		$baseTime = \time();
+		$this->addInitialTestEntries($baseTime);
+
+
+		$passwordList = $this->mapper->getPasswordsAboutToExpire($baseTime + 130);
+		// last password change before the timestamp
+		$this->assertCount(3, $passwordList);
+
+		$uid = $this->testUIDs[0];
+		$latestPassword = $passwordList[0];
+		$this->assertSame("{$uid}testpass3", $latestPassword->getPassword());
+		$this->assertSame($uid, $latestPassword->getUid());
+		$this->assertLessThan($baseTime + 130, $latestPassword->getChangeTime());
+
+		$uid = $this->testUIDs[1];
+		$latestPassword = $passwordList[1];
+		$this->assertSame("{$uid}testpass3", $latestPassword->getPassword());
+		$this->assertSame($uid, $latestPassword->getUid());
+		$this->assertLessThan($baseTime +130, $latestPassword->getChangeTime());
+
+		$uid = $this->testUIDs[2];
+		$latestPassword = $passwordList[2];
+		$this->assertSame("{$uid}testpass3", $latestPassword->getPassword());
+		$this->assertSame($uid, $latestPassword->getUid());
+		$this->assertLessThan($baseTime + 130, $latestPassword->getChangeTime());
 	}
 }

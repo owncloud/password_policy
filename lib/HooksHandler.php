@@ -26,6 +26,7 @@ use OCA\PasswordPolicy\Db\OldPassword;
 use OCA\PasswordPolicy\Db\OldPasswordMapper;
 use OCA\PasswordPolicy\Rules\PasswordExpired;
 use OCA\PasswordPolicy\Rules\PolicyException;
+use OCA\PasswordPolicy\UserNotificationConfigHandler;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\IConfig;
 use OCP\IL10N;
@@ -60,6 +61,9 @@ class HooksHandler {
 	/** @var ISession */
 	private $session;
 
+	/** @var UserNotificationConfigHandler */
+	private $userNotificationConfigHandler;
+
 	public function __construct(
 		IConfig $config = null,
 		Engine $engine = null,
@@ -68,7 +72,8 @@ class HooksHandler {
 		IL10N $l10n = null,
 		PasswordExpired $passwordExpiredRule = null,
 		OldPasswordMapper $oldPasswordMapper = null,
-		ISession $session = null
+		ISession $session = null,
+		UserNotificationConfigHandler $userNotificationConfigHandler = null
 	) {
 		$this->config = $config;
 		$this->engine = $engine;
@@ -78,6 +83,7 @@ class HooksHandler {
 		$this->passwordExpiredRule = $passwordExpiredRule;
 		$this->oldPasswordMapper = $oldPasswordMapper;
 		$this->session = $session;
+		$this->userNotificationConfigHandler = $userNotificationConfigHandler;
 	}
 
 	private function fixDI() {
@@ -103,6 +109,7 @@ class HooksHandler {
 				$this->hasher
 			);
 			$this->session = \OC::$server->getSession();
+			$this->userNotificationConfigHandler = new UserNotificationConfigHandler($this->config);
 		}
 	}
 
@@ -201,6 +208,7 @@ class HooksHandler {
 		$oldPassword->setPassword($this->hasher->hash($password));
 		$oldPassword->setChangeTime($this->timeFactory->getTime());
 		$this->oldPasswordMapper->insert($oldPassword);
+		$this->userNotificationConfigHandler->resetExpirationMarks($user->getUID());
 	}
 
 	public function savePasswordForCreatedUser(GenericEvent $event) {

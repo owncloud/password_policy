@@ -92,6 +92,13 @@ script('password_policy', 'ajax');
 			</li>
 			<li>
 				<label>
+					<input type="checkbox" name="spv_user_password_expiration_notification_checked" <?php if ($_['spv_user_password_expiration_notification_checked']): ?> checked="checked"<?php endif; ?>/>
+					<input type="number" name="spv_user_password_expiration_notification_value"  min="0" value="<?php p($_['spv_user_password_expiration_notification_value']) ?>" placeholder="30"/>
+					<span><?php p($l->t('days to send a notification before the password expires'));?></span>
+				</label>
+			</li>
+			<li>
+				<label>
 					<input type="checkbox" name="spv_user_password_force_change_on_first_login_checked" <?php if ($_['spv_user_password_force_change_on_first_login_checked']): ?> checked="checked"<?php endif; ?>/>
 					<span><?php p($l->t('force change on first login'));?></span>
 				</label>
