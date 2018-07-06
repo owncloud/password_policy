@@ -80,7 +80,7 @@ script('password_policy', 'ajax');
 		</ul>
 		<input type="hidden" name="app" value="oca-password-policy" />
 		<p class="margin-add-top">
-			<?php p($l->t('User Password policies:'));?>
+			<?php p($l->t('User password policies:'));?>
 		</p>
 		<ul>
 			<li>
@@ -92,8 +92,15 @@ script('password_policy', 'ajax');
 			</li>
 			<li>
 				<label>
+					<input type="checkbox" name="spv_user_password_expiration_notification_checked" <?php if ($_['spv_user_password_expiration_notification_checked']): ?> checked="checked"<?php endif; ?>/>
+					<input type="number" name="spv_user_password_expiration_notification_value"  min="0" value="<?php p($_['spv_user_password_expiration_notification_value']) ?>" placeholder="30"/>
+					<span><?php p($l->t('days before password expires, users will receive a reminder notification'));?></span>
+				</label>
+			</li>
+			<li>
+				<label>
 					<input type="checkbox" name="spv_user_password_force_change_on_first_login_checked" <?php if ($_['spv_user_password_force_change_on_first_login_checked']): ?> checked="checked"<?php endif; ?>/>
-					<span><?php p($l->t('force change on first login'));?></span>
+					<span><?php p($l->t('Force users to change their password on first login'));?></span>
 				</label>
 			</li>
 		</ul>

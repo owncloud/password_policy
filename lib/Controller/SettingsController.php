@@ -26,6 +26,7 @@ use OCP\IConfig;
 use OCP\IRequest;
 use OCP\Settings\ISettings;
 use OCP\Template;
+use OCA\PasswordPolicy\UserNotificationConfigHandler;
 
 class SettingsController extends Controller implements ISettings {
 
@@ -49,11 +50,24 @@ class SettingsController extends Controller implements ISettings {
 		'spv_password_history_value' => 3,
 		'spv_user_password_expiration_checked' => false,
 		'spv_user_password_expiration_value' => 90,
+		'spv_user_password_expiration_notification_checked' => false,
+		'spv_user_password_expiration_notification_value' => UserNotificationConfigHandler::DEFAULT_EXPIRATION_FOR_NORMAL_NOTIFICATION,
 		'spv_user_password_force_change_on_first_login_checked' => false,
 		'spv_expiration_password_checked' => false,
 		'spv_expiration_password_value' => 7,
 		'spv_expiration_nopassword_checked' => false,
 		'spv_expiration_nopassword_value' => 7,
+	];
+
+	/**
+	 * functions to convert values between what is shown and what is stored
+	 * these functions must be defined in this class, they're per config key
+	 */
+	const CONVERSIONS = [
+		'spv_user_password_expiration_notification_value' => [
+			'in' => 'daysToSeconds',
+			'out' => 'secondsToDays',
+		],
 	];
 
 	public function __construct($appName,
@@ -71,6 +85,10 @@ class SettingsController extends Controller implements ISettings {
 			if ($this->request->getParam($key) !== null) {
 				if ($key !== 'spv_def_special_chars_value' && \substr($key, -6) === '_value') {
 					$value = \min(\max(0, (int)$this->request->getParam($key)), 255);
+					if (isset(self::CONVERSIONS[$key]['in'])) {
+						$convertFuncName = self::CONVERSIONS[$key]['in'];
+						$value = $this->$convertFuncName($value);
+					}
 					$this->config->setAppValue('password_policy', $key, $value);
 				} else {
 					$this->config->setAppValue('password_policy', $key, \strip_tags($this->request->getParam($key)));
@@ -92,9 +110,33 @@ class SettingsController extends Controller implements ISettings {
 	public function getPanel() {
 		$template = new Template('password_policy', 'admin');
 		foreach(self::DEFAULTS as $key => $default) {
-			$template->assign($key, $this->config->getAppValue('password_policy', $key, $default));
+			$value = $this->config->getAppValue('password_policy', $key, $default);
+			if (isset(self::CONVERSIONS[$key]['out'])) {
+				$convertFuncName = self::CONVERSIONS[$key]['out'];
+				$value = $this->$convertFuncName($value);
+			}
+			$template->assign($key, $value);
 		}
 		return $template;
 	}
 
+	/**
+	 * Convert the days to seconds
+	 * @param int $days
+	 * @return int the number of seconds
+	 */
+	private function daysToSeconds($days) {
+		return $days * 24 * 60 * 60;
+	}
+
+	/**
+	 * Convert seconds to days. The value will always be rounded up,
+	 * so 1 second will be converted to 1 day
+	 * @param int $seconds the number of seconds to be converted
+	 * @return int the number of days in those seconds, rounded up
+	 */
+	private function secondsToDays($seconds) {
+		$floatDays = $seconds / (24 * 60 * 60);
+		return \intval(\ceil($floatDays));
+	}
 }
