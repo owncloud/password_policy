@@ -41,13 +41,22 @@ class SpecialTest extends \PHPUnit_Framework_TestCase {
 			->will($this->returnCallback(function($text, $parameters = array()) {
 				return \vsprintf($text, $parameters);
 			}));
+		$l10n
+			->method('n')
+			->will($this->returnCallback(function($text_singular, $text_plural, $count, $parameters = array()) {
+				if ($count === 1) {
+					return (string) vsprintf(str_replace('%n', $count, $text_singular), $parameters);
+				} else {
+					return (string) vsprintf(str_replace('%n', $count, $text_plural), $parameters);
+				}
+			}));
 
 		$this->r = new Special($l10n);
 	}
 
 	/**
 	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
-	 * @expectedExceptionMessage The password contains too few special characters. A minimum of 4 special characters are required.
+	 * @expectedExceptionMessage The password contains too few special characters. At least 4 special characters are required.
 	 */
 	public function testTooShort() {
 		$this->r->verify('', 4, []);
@@ -83,10 +92,11 @@ class SpecialTest extends \PHPUnit_Framework_TestCase {
 	function providesExceptionalData() {
 		return [
 			['The password contains invalid special characters. Only #+ are allowed.', '#+?@#+?@', 4, '#+'],
-			['The password contains too few special characters. A minimum of 9 special characters are required.', '#+?@#+?@', 9, []],
-			['The password contains too few special characters. A minimum of 10 special characters are required.', '#+?@#+?@', 10, '#+?@'],
-			['The password contains too few special characters. A minimum of 2 special characters are required.', '#', 2, '#!'],
-			['The password contains too few special characters. A minimum of 1 special characters are required.', 'qaa', 1, '#!']
+			['The password contains too few special characters. At least one special character is required.', 'Abc123', 1, []],
+			['The password contains too few special characters. At least 9 special characters are required.', '#+?@#+?@', 9, []],
+			['The password contains too few special characters. At least 10 special characters (#+?@) are required.', '#+?@#+?@', 10, '#+?@'],
+			['The password contains too few special characters. At least 2 special characters (#!) are required.', '#', 2, '#!'],
+			['The password contains too few special characters. At least one special character (#!) is required.', 'qaa', 1, '#!']
 		];
 	}
 

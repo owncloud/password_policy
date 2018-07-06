@@ -24,14 +24,19 @@ namespace OCA\PasswordPolicy\Rules;
 class Lowercase extends Base {
 
 	/**
-	 * @param $password
-	 * @param $val
+	 * @param string $password
+	 * @param int $val
 	 * @throws PolicyException
 	 */
 	public function verify($password, $val) {
 		if ($this->countLowercase($password) < $val) {
 			throw new PolicyException(
-				$this->l10n->t('The password contains too few lowercase characters. At least %d lowercase characters are required.', [$val]));
+				$this->l10n->n(
+					'The password contains too few lowercase letters. At least one lowercase letter is required.',
+					'The password contains too few lowercase letters. At least %n lowercase letters are required.',
+					$val
+				)
+			);
 		}
 	}
 

@@ -24,8 +24,8 @@ namespace OCA\PasswordPolicy\Rules;
 class Length extends Base {
 
 	/**
-	 * @param $password
-	 * @param $val
+	 * @param string $password
+	 * @param int $val
 	 * @throws PolicyException
 	 */
 	public function verify($password, $val) {
