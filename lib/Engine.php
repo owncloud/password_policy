@@ -109,27 +109,27 @@ class Engine {
 	 */
 	public function verifyPassword($password, $uid = null) {
 		if ($this->yes('spv_min_chars_checked')) {
-			$val = $this->configValues['spv_min_chars_value'];
+			$val = (int) $this->configValues['spv_min_chars_value'];
 			$r = new Length($this->l10n);
 			$r->verify($password, $val);
 		}
 		if ($this->yes('spv_lowercase_checked')) {
-			$val = $this->configValues['spv_lowercase_value'];
+			$val = (int) $this->configValues['spv_lowercase_value'];
 			$r = new Lowercase($this->l10n);
 			$r->verify($password, $val);
 		}
 		if ($this->yes('spv_uppercase_checked')) {
-			$val = $this->configValues['spv_uppercase_value'];
+			$val = (int) $this->configValues['spv_uppercase_value'];
 			$r = new Uppercase($this->l10n);
 			$r->verify($password, $val);
 		}
 		if ($this->yes('spv_numbers_checked')) {
-			$val = $this->configValues['spv_numbers_value'];
+			$val = (int) $this->configValues['spv_numbers_value'];
 			$r = new Numbers($this->l10n);
 			$r->verify($password, $val);
 		}
 		if ($this->yes('spv_special_chars_checked')) {
-			$val = $this->configValues['spv_special_chars_value'];
+			$val = (int) $this->configValues['spv_special_chars_value'];
 			$chars = '';
 			if ($this->yes('spv_def_special_chars_checked')) {
 				$chars = $this->configValues['spv_def_special_chars_value'];
@@ -138,7 +138,7 @@ class Engine {
 			$r->verify($password, $val, $chars);
 		}
 		if ($uid !== null && $this->yes('spv_password_history_checked')) {
-			$val = $this->configValues['spv_password_history_value'];
+			$val = (int) $this->configValues['spv_password_history_value'];
 			$dbMapper = new OldPasswordMapper($this->db);
 			$r = new PasswordHistory($this->l10n, $dbMapper, $this->hasher);
 			$r->verify($password, $val, $uid);

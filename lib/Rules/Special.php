@@ -25,7 +25,7 @@ class Special extends Base {
 
 	/**
 	 * @param string $password
-	 * @param string $val
+	 * @param int $val
 	 * @param string $allowedSpecialChars
 	 * @throws PolicyException
 	 */
@@ -42,8 +42,24 @@ class Special extends Base {
 			}
 		}
 		if (\strlen($special) < $val) {
-			throw new PolicyException(
-				$this->l10n->t('The password contains too few special characters. A minimum of %d special characters are required.', [$val]));
+			if (!empty($allowedSpecialChars)) {
+				throw new PolicyException(
+					$this->l10n->n(
+						'The password contains too few special characters. At least one special character (%s) is required.',
+						'The password contains too few special characters. At least %n special characters (%s) are required.',
+						$val,
+						[$allowedSpecialChars]
+					)
+				);
+			} else {
+				throw new PolicyException(
+					$this->l10n->n(
+						'The password contains too few special characters. At least one special character is required.',
+						'The password contains too few special characters. At least %n special characters are required.',
+						$val
+					)
+				);
+			}
 		}
 	}
 
