@@ -65,11 +65,11 @@ class PasswordExpired extends Base {
 
 	/**
 	 * @param string $password
-	 * @param int $days days until a password is considered expired
+	 * @param int $seconds seconds until a password is considered expired
 	 * @param string $uid
 	 * @throws PolicyException
 	 */
-	public function verify($password, $days, $uid) {
+	public function verify($password, $seconds, $uid) {
 		$latestPassword = $this->mapper->getLatestPassword($uid);
 		if ($latestPassword === null) {
 			$this->logger->debug(
@@ -108,15 +108,14 @@ class PasswordExpired extends Base {
 		}
 
 		$date = new \DateTime("@$changed");
-		$date->add(new \DateInterval("P{$days}D"));
-		$date->setTime(23, 59, 59); // include last day
+		$date->add(new \DateInterval("PT{$seconds}S"));
 		$expiresAt = $date->getTimestamp();
 
 		$now = $this->timeFactory->getTime();
 
 		if ($expiresAt < $now) {
 			throw new PolicyException(
-				$this->l10n->t('The password is older than %d days.', [$days])
+				$this->l10n->t('The password is older than %d seconds.', [$seconds])
 			);
 		}
 		$this->logger->debug(

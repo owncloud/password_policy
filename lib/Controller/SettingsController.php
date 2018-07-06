@@ -49,7 +49,7 @@ class SettingsController extends Controller implements ISettings {
 		'spv_password_history_checked' => false,
 		'spv_password_history_value' => 3,
 		'spv_user_password_expiration_checked' => false,
-		'spv_user_password_expiration_value' => 90,
+		'spv_user_password_expiration_value' => 90*24*60*60,
 		'spv_user_password_expiration_notification_checked' => false,
 		'spv_user_password_expiration_notification_value' => UserNotificationConfigHandler::DEFAULT_EXPIRATION_FOR_NORMAL_NOTIFICATION,
 		'spv_user_password_force_change_on_first_login_checked' => false,

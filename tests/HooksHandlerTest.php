@@ -349,10 +349,10 @@ class HooksHandlerTest extends TestCase {
 		$this->engine->expects($this->once())
 			->method('getConfigValue')
 			->with('spv_user_password_expiration_value')
-			->willReturn('3'); // days
+			->willReturn('259200'); // 3 days = 3*24*60*60 seconds
 		$this->passwordExpiredRule->expects($this->once())
 			->method('verify')
-			->with('secret', '3', 'testuid')
+			->with('secret', '259200', 'testuid')
 			->willThrowException(new PolicyException());
 
 		$this->session->expects($this->once())
