@@ -103,7 +103,7 @@ class HooksHandlerTest extends TestCase {
 			->with('secret', null);
 
 		$event = new GenericEvent(null, ['password' => 'secret']);
-		$this->handler->verifyPassword($event);
+		$this->handler->verifyUserPassword($event);
 	}
 
 	public function testVerifyPasswordWithPasswordAndUid() {
@@ -112,7 +112,25 @@ class HooksHandlerTest extends TestCase {
 			->with('secret', 'testuid');
 
 		$event = new GenericEvent(null, ['uid' => 'testuid', 'password' => 'secret']);
-		$this->handler->verifyPassword($event);
+		$this->handler->verifyUserPassword($event);
+	}
+
+	public function testVerifyUserPassword() {
+		$this->engine->expects($this->once())
+			->method('verifyPassword')
+			->with('secret', null, 'user');
+
+		$event = new GenericEvent(null, ['password' => 'secret']);
+		$this->handler->verifyUserPassword($event);
+	}
+
+	public function testVerifyPublicPassword() {
+		$this->engine->expects($this->once())
+			->method('verifyPassword')
+			->with('secret', null, 'public');
+
+		$event = new GenericEvent(null, ['password' => 'secret']);
+		$this->handler->verifyPublicPassword($event);
 	}
 
 	public function updateLinkExpiryProvider() {
