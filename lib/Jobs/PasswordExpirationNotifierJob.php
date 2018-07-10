@@ -123,6 +123,12 @@ class PasswordExpirationNotifierJob extends TimedJob {
 			->setSubject('about_to_expire', [$passInfo->getChangeTime(), $expirationTime])
 			->setMessage('about_to_expire', [$passInfo->getChangeTime(), $expirationTime])
 			->setLink($this->getNotificationLink());
+
+		$linkAction = $notification->createAction();
+		$linkAction->setLabel('Change password')
+			->setLink($this->getNotificationLink(), 'GET');
+		$notification->addAction($linkAction);
+
 		$this->manager->notify($notification);
 
 		$this->unConfigHandler->markAboutToExpireNotificationSentFor($passInfo);
@@ -143,6 +149,12 @@ class PasswordExpirationNotifierJob extends TimedJob {
 			->setSubject('expired', [$passInfo->getChangeTime(), $expirationTime])
 			->setMessage('expired', [$passInfo->getChangeTime(), $expirationTime])
 			->setLink($this->getNotificationLink());
+
+		$linkAction = $notification->createAction();
+		$linkAction->setLabel('Change password')
+			->setLink($this->getNotificationLink(), 'GET');
+		$notification->addAction($linkAction);
+
 		$this->manager->notify($notification);
 
 		$this->unConfigHandler->markExpiredNotificationSentFor($passInfo);
