@@ -105,9 +105,10 @@ class Engine {
 	/**
 	 * @param string $password
 	 * @param string $uid
+	 * @param string $type
 	 * @throws PolicyException
 	 */
-	public function verifyPassword($password, $uid = null) {
+	public function verifyPassword($password, $uid = null, $type = 'user') {
 		if ($this->yes('spv_min_chars_checked')) {
 			$val = (int) $this->configValues['spv_min_chars_value'];
 			$r = new Length($this->l10n);

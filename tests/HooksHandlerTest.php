@@ -115,6 +115,15 @@ class HooksHandlerTest extends TestCase {
 		$this->handler->verifyPassword($event);
 	}
 
+	public function testVerifyPasswordWithPasswordAndType() {
+		$this->engine->expects($this->once())
+			->method('verifyPassword')
+			->with('secret', null, 'guest');
+
+		$event = new GenericEvent(null, ['password' => 'secret', 'type' => 'guest']);
+		$this->handler->verifyPassword($event);
+	}
+
 	public function updateLinkExpiryProvider() {
 		$tomorrow = new \DateTime();
 		$tomorrow->setTime(0,0,0);
