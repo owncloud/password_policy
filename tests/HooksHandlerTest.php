@@ -200,6 +200,32 @@ class HooksHandlerTest extends TestCase {
 		$this->handler->saveOldPassword($event);
 	}
 
+	public function testSavePasswordForCreatedUser() {
+
+		$this->hasher->expects($this->once())
+			->method('hash')
+			->with('secret')
+			->willReturn('somehash');
+
+		$this->timeFactory->expects($this->once())
+			->method('getTime')
+			->willReturn(12345);
+
+		$this->oldPasswordMapper->expects($this->once())
+			->method('insert')
+			->with($this->callback(function(OldPassword $oldPassword){
+				return $oldPassword->getPassword() === 'somehash' &&
+					$oldPassword->getUid() === 'testuid' &&
+					$oldPassword->getChangeTime() === 12345;
+			}));
+
+		$event = new GenericEvent(null, [
+			'uid' => 'testuid',
+			'password' => 'secret'
+		]);
+		$this->handler->savePasswordForCreatedUser($event);
+	}
+
 	/**
 	 * @expectedException \UnexpectedValueException
 	 */

@@ -42,6 +42,10 @@ $eventDispatcher->addListener(
 	[$handler, 'generatePassword']
 );
 $eventDispatcher->addListener(
+	'user.aftercreate',
+	[$handler, 'savePasswordForCreatedUser']
+);
+$eventDispatcher->addListener(
 	'user.aftersetpassword',
 	[$handler, 'saveOldPassword']
 );
