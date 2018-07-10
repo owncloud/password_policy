@@ -94,17 +94,56 @@ class EngineTest extends TestCase {
 	 * @dataProvider providesTestData
 	 * @param array $config
 	 * @param $password
-	 * @throws PolicyException
 	 */
-	public function testOkay(array $config, $password) {
+	public function testPolicyPasses(array $config, $password) {
 		$engine = $this->createEngine($config);
 		$engine->verifyPassword($password);
 	}
 
 	/**
+	 * @dataProvider providesFailTestData
+	 * @param array $config
+	 * @param $password
+	 * @expectedException OCA\PasswordPolicy\Rules\PolicyException
+	 */
+	public function testPolicyFails(array $config, $password) {
+		$engine = $this->createEngine($config);
+		$engine->verifyPassword($password);
+	}
+
+	/**
+	 * @dataProvider providesTypes
+	 * @param string $type
+	 * @expectedException OCA\PasswordPolicy\Rules\PolicyException
+	 */
+	public function testPolicyFailsWithTypes($type) {
+		$engine = $this->createEngine(['spv_min_chars_checked' => true]);
+		$engine->verifyPassword('ab', null, $type);
+	}
+
+	/**
+	 * @dataProvider providesTypes
+	 * @expectedException OCA\PasswordPolicy\Rules\PolicyException
+	 */
+	public function testPolicyFailsEmptyPassword() {
+		$engine = $this->createEngine(['spv_min_chars_checked' => true]);
+		$engine->verifyPassword('', null, 'user');
+	}
+
+	/**
+	 * @dataProvider providesFailTestData
+	 * @param array $config
+	 * @param $password
+	 * @expectedException OCA\PasswordPolicy\Rules\PolicyException
+	 */
+	public function testPolicyFailsWithUserType(array $config, $password) {
+		$engine = $this->createEngine($config);
+		$engine->verifyPassword($password, null, 'user');
+	}
+
+	/**
 	 * @dataProvider providesTestData
 	 * @param array $config
-	 * @throws PolicyException
 	 */
 	public function testPasswordGeneration(array $config) {
 		$engine = $this->createEngine($config);
@@ -115,12 +154,27 @@ class EngineTest extends TestCase {
 	public function providesTestData() {
 		return [
 			[[], ''],
+			[[], '1234567890'],
 			[['spv_min_chars_checked' => true], '1234567890'],
 			[['spv_lowercase_checked' => true], 'a234567890'],
 			[['spv_uppercase_checked' => true], 'A234567890'],
 			[['spv_numbers_checked' => true], '1234567890'],
 			[['spv_special_chars_checked' => true], '#234567890'],
 		];
+	}
+
+	public function providesFailTestData() {
+		return [
+			[['spv_min_chars_checked' => true], '12'],
+			[['spv_lowercase_checked' => true], '1234567890'],
+			[['spv_uppercase_checked' => true], '1234567890'],
+			[['spv_numbers_checked' => true], 'ABCDEFGH'],
+			[['spv_special_chars_checked' => true], 'ABCDEFGH'],
+		];
+	}
+
+	public function providesTypes() {
+		return [['user'], ['public'], ['guest'], ['unknown'], [null]];
 	}
 
 	public function testGetConfigValues() {

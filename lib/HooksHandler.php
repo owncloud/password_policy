@@ -129,7 +129,23 @@ class HooksHandler {
 	 * @param GenericEvent $event
 	 * @throws PolicyException
 	 */
-	public function verifyPassword(GenericEvent $event) {
+	public function verifyUserPassword(GenericEvent $event) {
+		$this->verifyPassword($event, 'user');
+	}
+
+	/**
+	 * @param GenericEvent $event
+	 * @throws PolicyException
+	 */
+	public function verifyPublicPassword(GenericEvent $event) {
+		$this->verifyPassword($event, 'public');
+	}
+
+	/**
+	 * @param GenericEvent $event
+	 * @throws PolicyException
+	 */
+	private function verifyPassword(GenericEvent $event, $type = 'user') {
 		$this->fixDI();
 		$password = $event->getArguments()['password'];
 		if ($event->hasArgument('uid')) {
@@ -137,7 +153,7 @@ class HooksHandler {
 		} else {
 			$uid = null;
 		}
-		$this->engine->verifyPassword($password, $uid);
+		$this->engine->verifyPassword($password, $uid, $type);
 	}
 
 	public function updateLinkExpiry($params) {

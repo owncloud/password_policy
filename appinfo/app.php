@@ -31,11 +31,11 @@ OCP\Util::connectHook(
 $eventDispatcher = \OC::$server->getEventDispatcher();
 $eventDispatcher->addListener(
 	'OCP\User::validatePassword',
-	[$handler, 'verifyPassword']
+	[$handler, 'verifyUserPassword']
 );
 $eventDispatcher->addListener(
 	'OCP\Share::validatePassword',
-	[$handler, 'verifyPassword']
+	[$handler, 'verifyPublicPassword']
 );
 $eventDispatcher->addListener(
 	'OCP\User::createPassword',
