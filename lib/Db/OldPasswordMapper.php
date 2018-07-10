@@ -76,10 +76,10 @@ class OldPasswordMapper extends Mapper {
 	public function getPasswordsAboutToExpire($maxTimestamp) {
 		$oldPasswords = [];
 
-		$query = "select `f`.`*` from (";
-		$query .= "select `uid`, max(`change_time`) as `maxtime` from `*PREFIX*user_password_history` group by `uid`";
-		$query .= ") as `x` inner join `*PREFIX*user_password_history` as `f` on `f`.`uid` = `x`.`uid` and `f`.`change_time` = `x`.`maxtime`";
-		$query .= " where `f`.`change_time` < ?";
+		$query = "SELECT `f`.`id`, `f`.`uid`, `f`.`password`, `f`.`change_time` FROM (";
+		$query .= "SELECT `uid`, max(`change_time`) AS `maxtime` FROM `*PREFIX*user_password_history` GROUP BY `uid`";
+		$query .= ") AS `x` INNER JOIN `*PREFIX*user_password_history` AS `f` ON `f`.`uid` = `x`.`uid` AND `f`.`change_time` = `x`.`maxtime`";
+		$query .= " WHERE `f`.`change_time` < ?";
 
 		$stmt = $this->db->prepare($query);
 		$stmt->bindValue(1, $maxTimestamp);
