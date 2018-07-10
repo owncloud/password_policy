@@ -131,6 +131,14 @@ class EngineTest extends TestCase {
 	}
 
 	/**
+	 * @dataProvider providesTypes
+	 */
+	public function testPolicyPassesEmptyPasswordTypePublic() {
+		$engine = $this->createEngine(['spv_min_chars_checked' => true]);
+		$engine->verifyPassword('', null, 'public');
+	}
+
+	/**
 	 * @dataProvider providesFailTestData
 	 * @param array $config
 	 * @param $password

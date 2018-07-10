@@ -109,6 +109,12 @@ class Engine {
 	 * @throws PolicyException
 	 */
 	public function verifyPassword($password, $uid = null, $type = 'user') {
+		// skip policy when no password is specified
+		// enforcement of password existence is done on a different level
+		if ($type === 'public' && ($password === null || $password === '')) {
+			return;
+		}
+
 		if ($this->yes('spv_min_chars_checked')) {
 			$val = (int) $this->configValues['spv_min_chars_value'];
 			$r = new Length($this->l10n);
