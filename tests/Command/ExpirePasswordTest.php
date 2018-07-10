@@ -24,6 +24,7 @@ namespace OCA\PasswordPolicy\Tests\Controller;
 
 use OCA\PasswordPolicy\Command\ExpirePassword;
 use OCP\IConfig;
+use OCP\IUser;
 use OCP\IUserManager;
 use Symfony\Component\Console\Tester\CommandTester;
 use Test\TestCase;
@@ -52,9 +53,9 @@ class ExpirePasswordTest extends TestCase {
 	public function testExpirePasswordUserNotExisting() {
 		$this->userManager
 			->expects(self::once())
-			->method('userExists')
+			->method('get')
 			->with('not-existing-uid')
-			->willReturn(false);
+			->willReturn(null);
 
 		$this->commandTester->execute([
 			'uid' => 'not-existing-uid',
@@ -65,11 +66,17 @@ class ExpirePasswordTest extends TestCase {
 	}
 
 	public function testExpirePassword() {
+		$user = $this->createMock(IUser::class);
+		$user
+			->expects($this->once())
+			->method('canChangePassword')
+			->willReturn(true);
+
 		$this->userManager
 			->expects($this->once())
-			->method('userExists')
+			->method('get')
 			->with('existing-uid')
-			->willReturn(true);
+			->willReturn($user);
 		$this->config
 			->expects($this->once())
 			->method('setUserValue')
@@ -86,6 +93,27 @@ class ExpirePasswordTest extends TestCase {
 		]);
 		$output = $this->commandTester->getDisplay();
 		self::assertContains('The password for existing-uid is set to expire on 2018-06-28 10:13:00 UTC.', $output);
+	}
+
+	public function testCannotExpirePassword() {
+		$user = $this->createMock(IUser::class);
+		$user
+			->expects($this->once())
+			->method('canChangePassword')
+			->willReturn(false);
+
+		$this->userManager
+			->expects($this->once())
+			->method('get')
+			->with('existing-uid')
+			->willReturn($user);
+
+		$this->commandTester->execute([
+			'uid' => 'existing-uid',
+			'expiredate' => '2018-06-28 10:13 UTC'
+		]);
+		$output = $this->commandTester->getDisplay();
+		self::assertContains("The user's backend doesn't support password changes. The password cannot be expired for user: existing-uid", $output);
 	}
 
 }
