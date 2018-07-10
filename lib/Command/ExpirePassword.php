@@ -78,14 +78,21 @@ class ExpirePassword extends Command {
 	protected function execute(InputInterface $input, OutputInterface $output) {
 		$uid = $input->getArgument('uid');
 
-		$exists = $this->userManager->userExists($uid);
-		if($exists === false) {
+		/** @var $user \OCP\IUser */
+		$user = $this->userManager->get($uid);
+
+		if ($user === null) {
 			$output->writeln("<error>Unknown user: $uid</error>");
 			/**
 			 * return EX_NOUSER from /usr/include/sysexits.h
 			 * @see http://tldp.org/LDP/abs/html/exitcodes.html#FTN.AEN23647
 			 */
 			return 67;
+		}
+
+		if (!$user->canChangePassword()) {
+			$output->writeln("<error>The user's backend doesn't support password changes. The password cannot be expired for user: $uid</error>");
+			return 1;
 		}
 
 		$date = new \DateTime($input->getArgument('expiredate'));
