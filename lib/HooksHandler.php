@@ -187,6 +187,19 @@ class HooksHandler {
 		$this->oldPasswordMapper->insert($oldPassword);
 	}
 
+	public function savePasswordForCreatedUser(GenericEvent $event) {
+		$this->fixDI();
+
+		$userid = $event->getArgument('uid');
+		$password = $event->getArgument('password');
+
+		$oldPassword = new OldPassword();
+		$oldPassword->setUid($userid);
+		$oldPassword->setPassword($this->hasher->hash($password));
+		$oldPassword->setChangeTime($this->timeFactory->getTime());
+		$this->oldPasswordMapper->insert($oldPassword);
+	}
+
 	/**
 	 * Flags the session to require a password change
 	 */
