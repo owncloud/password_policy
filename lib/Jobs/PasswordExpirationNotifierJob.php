@@ -161,10 +161,9 @@ class PasswordExpirationNotifierJob extends TimedJob {
 	}
 
 	private function getNotificationLink() {
-		$link = $this->urlGenerator->linkToRouteAbsolute(
-			'password_policy.password.show',
-			['redirect_url' => '']
+		return $this->urlGenerator->linkToRouteAbsolute(
+			'settings.SettingsPage.getPersonal',
+			['sectionid' => 'general']
 		);
-		return $link;
 	}
 }

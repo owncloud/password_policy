@@ -88,6 +88,18 @@ class Notifier implements INotifier {
 			);
 		}
 
+		foreach ($notification->getActions() as $action) {
+			switch ($action->getLabel()) {
+				case 'Change password':
+					$action->setParsedLabel(
+						(string) $l->t('Change Password')
+					);
+					break;
+			}
+
+			$notification->addParsedAction($action);
+		}
+
 		return $notification;
 	}
 
@@ -102,6 +114,18 @@ class Notifier implements INotifier {
 		$notification->setParsedMessage(
 			(string) $l->t('You have to change your password before you can access again', $messageParams)
 		);
+
+		foreach ($notification->getActions() as $action) {
+			switch ($action->getLabel()) {
+				case 'Change password':
+					$action->setParsedLabel(
+						(string) $l->t('Change Password')
+					);
+					break;
+			}
+
+			$notification->addParsedAction($action);
+		}
 
 		return $notification;
 	}
