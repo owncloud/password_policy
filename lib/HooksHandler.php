@@ -137,7 +137,12 @@ class HooksHandler {
 		} else {
 			$uid = null;
 		}
-		$this->engine->verifyPassword($password, $uid);
+		if ($event->hasArgument('type')) {
+			$type = $event->getArgument('type');
+		} else {
+			$type = 'user';
+		}
+		$this->engine->verifyPassword($password, $uid, $type);
 	}
 
 	public function updateLinkExpiry($params) {
