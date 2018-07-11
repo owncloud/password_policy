@@ -33,6 +33,7 @@ use OCP\IL10N;
 use OCP\ISession;
 use OCP\IUser;
 use OCP\Security\IHasher;
+use OCP\Notification\IManager;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
 class HooksHandler {
@@ -61,6 +62,9 @@ class HooksHandler {
 	/** @var ISession */
 	private $session;
 
+	/** @var IManager */
+	private $notificationManager;
+
 	/** @var UserNotificationConfigHandler */
 	private $userNotificationConfigHandler;
 
@@ -73,6 +77,7 @@ class HooksHandler {
 		PasswordExpired $passwordExpiredRule = null,
 		OldPasswordMapper $oldPasswordMapper = null,
 		ISession $session = null,
+		IManager $notificationManager = null,
 		UserNotificationConfigHandler $userNotificationConfigHandler = null
 	) {
 		$this->config = $config;
@@ -83,6 +88,7 @@ class HooksHandler {
 		$this->passwordExpiredRule = $passwordExpiredRule;
 		$this->oldPasswordMapper = $oldPasswordMapper;
 		$this->session = $session;
+		$this->notificationManager = $notificationManager;
 		$this->userNotificationConfigHandler = $userNotificationConfigHandler;
 	}
 
@@ -109,6 +115,7 @@ class HooksHandler {
 				$this->hasher
 			);
 			$this->session = \OC::$server->getSession();
+			$this->notificationManager = \OC::$server->getNotificationManager();
 			$this->userNotificationConfigHandler = new UserNotificationConfigHandler($this->config);
 		}
 	}
@@ -203,12 +210,34 @@ class HooksHandler {
 		$user = $this->getUser($event);
 		$password = $event->getArgument('password');
 
+		$userId = $user->getUID();
+
 		$oldPassword = new OldPassword();
-		$oldPassword->setUid($user->getUID());
+		$oldPassword->setUid($userId);
 		$oldPassword->setPassword($this->hasher->hash($password));
 		$oldPassword->setChangeTime($this->timeFactory->getTime());
 		$this->oldPasswordMapper->insert($oldPassword);
-		$this->userNotificationConfigHandler->resetExpirationMarks($user->getUID());
+
+		// get previous marks
+		$aboutToExpireMark = $this->userNotificationConfigHandler->getMarkAboutToExpireNotificationSentFor($userId);
+		$expiredMark = $this->userNotificationConfigHandler->getMarkExpiredNotificationSentFor($userId);
+
+		$this->userNotificationConfigHandler->resetExpirationMarks($userId);
+
+		if ($aboutToExpireMark !== null) {
+			$notification = $this->notificationManager->createNotification();
+			$notification->setApp('password_policy')
+				->setUser($userId)
+				->setObject('about_to_expire', $aboutToExpireMark);
+			$this->notificationManager->markProcessed($notification);
+		}
+		if ($expiredMark !== null) {
+			$notification = $this->notificationManager->createNotification();
+			$notification->setApp('password_policy')
+				->setUser($userId)
+				->setObject('expired', $expiredMark);
+			$this->notificationManager->markProcessed($notification);
+		}
 	}
 
 	public function savePasswordForCreatedUser(GenericEvent $event) {

@@ -114,6 +114,7 @@ class PasswordExpirationNotifierJob extends TimedJob {
 
 		$notificationTimestamp = $this->timeFactory->getTime();
 
+		// we'll use the id of the passInfo as object id and marker
 		$notification = $this->manager->createNotification();
 		$notification->setApp('password_policy')
 			->setUser($passInfo->getUid())
@@ -140,6 +141,7 @@ class PasswordExpirationNotifierJob extends TimedJob {
 
 		$notificationTimestamp = $this->timeFactory->getTime();
 
+		// we'll use the id of the passInfo as object id and marker
 		$notification = $this->manager->createNotification();
 		$notification->setApp('password_policy')
 			->setUser($passInfo->getUid())

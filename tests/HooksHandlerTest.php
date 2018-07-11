@@ -35,6 +35,7 @@ use OCP\IL10N;
 use OCP\ISession;
 use OCP\IUser;
 use OCP\Security\IHasher;
+use OCP\Notification\IManager;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Test\TestCase;
 
@@ -60,6 +61,8 @@ class HooksHandlerTest extends TestCase {
 	protected $handler;
 	/** @var UserNotificationConfigHandler | \PHPUnit_Framework_MockObject_MockObject */
 	protected $unConfigHandler;
+	/** @var IManager | \PHPUnit_Framework_MockObject_MockObject */
+	protected $manager;
 
 	protected function setUp() {
 		parent::setUp();
@@ -77,6 +80,7 @@ class HooksHandlerTest extends TestCase {
 		$this->passwordExpiredRule = $this->createMock(PasswordExpired::class);
 		$this->oldPasswordMapper = $this->createMock(OldPasswordMapper::class);
 		$this->session = $this->createMock(ISession::class);
+		$this->manager = $this->createMock(IManager::class);
 		$this->unConfigHandler = $this->createMock(UserNotificationConfigHandler::class);
 
 		$this->handler = new HooksHandler(
@@ -88,6 +92,7 @@ class HooksHandlerTest extends TestCase {
 			$this->passwordExpiredRule,
 			$this->oldPasswordMapper,
 			$this->session,
+			$this->manager,
 			$this->unConfigHandler
 		);
 	}

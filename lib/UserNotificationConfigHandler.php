@@ -92,7 +92,8 @@ class UserNotificationConfigHandler {
 	}
 
 	/**
-	 * Mark that a "password about to expire" notification has been sent
+	 * Mark that a "password about to expire" notification has been sent.
+	 * Note that we're using the id of the passInfo as marker, but this might change
 	 * @param OldPassword $passInfo the information about the password. It has
 	 * to include the userid owning the password and an id for the password
 	 */
@@ -101,12 +102,31 @@ class UserNotificationConfigHandler {
 	}
 
 	/**
-	 * Mark that a "password expired" notification has been sent
+	 * Mark that a "password expired" notification has been sent.
+	 * Note that we're using the id of the passInfo as marker, but this might change
 	 * @param OldPassword $passInfo the information about the password. It has
 	 * to include the userid owning the password and an id for the password
 	 */
 	public function markExpiredNotificationSentFor(OldPassword $passInfo) {
 		$this->config->setUserValue($passInfo->getUid(), 'password_policy', 'expiredSent', $passInfo->getId());
+	}
+
+	/**
+	 * Get the mark set with markAboutToExpireNotificationSentFor for the specified user
+	 * @param string $userid the user id to get the mark from
+	 * @return string|null the mark or null if there is no mark
+	 */
+	public function getMarkAboutToExpireNotificationSentFor($userid) {
+		return $this->config->getUserValue($userid, 'password_policy', 'aboutToExpireSent', null);
+	}
+
+	/**
+	 * Get the mark set with markExpiredNotificationSentFor for the specified user
+	 * @param string $userid the user id to get the mark from
+	 * @return string|null the mark or null if there is no mark
+	 */
+	public function getMarkExpiredNotificationSentFor($userid) {
+		return $this->config->getUserValue($userid, 'password_policy', 'expiredSent', null);
 	}
 
 	/**

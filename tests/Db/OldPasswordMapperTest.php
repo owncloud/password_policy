@@ -44,7 +44,6 @@ class OldPasswordMapperTest extends TestCase {
 	private function resetDB() {
 		$qb = $this->db->getQueryBuilder();
 		$qb->delete($this->mapper->getTableName())
-			//->where($qb->expr()->eq('uid', $qb->createNamedParameter($this->testUID)));
 			->where($qb->expr()->in('uid', $qb->createNamedParameter($this->testUIDs, IQueryBuilder::PARAM_STR_ARRAY)));
 		$qb->execute();
 	}
