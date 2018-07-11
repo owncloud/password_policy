@@ -124,7 +124,7 @@ class NotifierTest extends TestCase {
 
 		$notification->expects($this->once())
 			->method('setParsedMessage')
-			->with('Your password has already expired 2 days ago');
+			->with('Your password expired 2 days ago');
 
 		$this->notifier->prepare($notification, 'en_US');
 	}

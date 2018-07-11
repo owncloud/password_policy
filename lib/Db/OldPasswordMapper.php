@@ -65,8 +65,8 @@ class OldPasswordMapper extends Mapper {
 	}
 
 	/**
-	 * Get the passwords that are about to expired or already expired.
-	 * Last passwords which has been changed before the timestamp are the ones
+	 * Get the passwords that are about to expire or already expired.
+	 * Last passwords which have been changed before the timestamp are the ones
 	 * selectable. Previous stored passwords won't be included
 	 * In addition, passwords from multiple users are expected
 	 * @param int $maxTimestamp timestamp marker, last passwords changed before
@@ -87,7 +87,7 @@ class OldPasswordMapper extends Mapper {
 
 		if ($result === false) {
 			$info = \json_encode($stmt->erroInfo());
-			$message = "Cannot get the password that are going to be expired: error: {$info}";
+			$message = "Cannot get the passwords that are about to be expire. Error: {$info}";
 			\OCP\Util::writeLog('password_policy', $message, \OCP\Util::ERROR);
 			return false;
 		}

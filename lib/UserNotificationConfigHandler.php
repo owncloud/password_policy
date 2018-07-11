@@ -89,7 +89,7 @@ class UserNotificationConfigHandler {
 		if ($storedId === null) {
 			return false;  // notification not sent
 		} elseif (\intval($storedId) !== $passInfo->getId()) {
-			// if the pasword id doesn't match the one stored, the notification hasn't been sent
+			// if the password id doesn't match the one stored, the notification hasn't been sent
 			return false;
 		}
 		return true;
@@ -100,7 +100,7 @@ class UserNotificationConfigHandler {
 		if ($storedId === null) {
 			return false;  // notification not sent
 		} elseif (\intval($storedId) !== $passInfo->getId()) {
-			// if the pasword id doesn't match the one stored, the notification hasn't been sent
+			// if the password id doesn't match the one stored, the notification hasn't been sent
 			return false;
 		}
 		return true;

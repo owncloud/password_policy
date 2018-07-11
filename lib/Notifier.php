@@ -80,7 +80,7 @@ class Notifier implements INotifier {
 
 		if ($interval->invert) {
 			$notification->setParsedMessage(
-				(string) $l->t('Your password has already expired %1$s days ago', [$interval->days])
+				(string) $l->t('Your password expired %1$s days ago', [$interval->days])
 			);
 		} else {
 			$notification->setParsedMessage(

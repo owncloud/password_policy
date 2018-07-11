@@ -65,6 +65,7 @@ $eventDispatcher->addListener(
 $app = new \OCA\PasswordPolicy\AppInfo\Application();
 $app->registerNotifier();
 
+// only load notification JS code in the logged in layout page (not public links not login page)
 $request = \OC::$server->getRequest();
 if (\OC::$server->getUserSession() !== null && \OC::$server->getUserSession()->getUser() !== null
 	&& substr($request->getScriptName(), 0 - strlen('/index.php')) === '/index.php'
