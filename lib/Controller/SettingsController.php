@@ -26,6 +26,7 @@ use OCP\IConfig;
 use OCP\IRequest;
 use OCP\Settings\ISettings;
 use OCP\Template;
+use OCA\PasswordPolicy\UserNotificationConfigHandler;
 
 class SettingsController extends Controller implements ISettings {
 
@@ -50,7 +51,7 @@ class SettingsController extends Controller implements ISettings {
 		'spv_user_password_expiration_checked' => false,
 		'spv_user_password_expiration_value' => 90,
 		'spv_user_password_expiration_notification_checked' => false,
-		'spv_user_password_expiration_notification_value' => 30,
+		'spv_user_password_expiration_notification_value' => UserNotificationConfigHandler::DEFAULT_EXPIRATION_FOR_NORMAL_NOTIFICATION,
 		'spv_user_password_force_change_on_first_login_checked' => false,
 		'spv_expiration_password_checked' => false,
 		'spv_expiration_password_value' => 7,
