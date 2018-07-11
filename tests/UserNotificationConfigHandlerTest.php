@@ -77,9 +77,11 @@ class UserNotificationConfigHandlerTest extends TestCase {
 		$this->config->method('getAppValue')
 			->will($this->returnValueMap([
 				['password_policy', 'spv_user_password_expiration_checked', false, true],
-				['password_policy', 'spv_user_password_expiration_value', null, '12234']
+				['password_policy', 'spv_user_password_expiration_value', null, '90']
 			]));
-		$this->assertEquals(12234, $this->unConfigHandler->getExpirationTime());
+		// TODO: expiration time is currently stored in days,
+		// but the function returns seconds
+		$this->assertEquals(90*24*60*60, $this->unConfigHandler->getExpirationTime());
 	}
 
 	/**

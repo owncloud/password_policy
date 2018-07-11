@@ -87,7 +87,7 @@ class OldPasswordMapper extends Mapper {
 
 		if ($result === false) {
 			$info = \json_encode($stmt->erroInfo());
-			$message = "Cannot get the passwords that are about to be expire. Error: {$info}";
+			$message = "Cannot get the passwords that are about to expire. Error: {$info}";
 			\OCP\Util::writeLog('password_policy', $message, \OCP\Util::ERROR);
 			return false;
 		}

@@ -74,7 +74,6 @@ class PasswordExpirationNotifierJob extends TimedJob {
 			return;  // expiration not configured
 		}
 
-		$expirationTime = $expirationTime * 24 * 60 * 60;  // convert days to seconds
 		$expirationTimeNotification = $this->unConfigHandler->getExpirationTimeForNormalNotification();
 		if ($expirationTimeNotification === null) {
 			$expirationTimeNotification = 0;

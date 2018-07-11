@@ -35,6 +35,11 @@ class UserNotificationConfigHandler {
 		$this->config = $config;
 	}
 
+	/**
+	 * Return the number of seconds until the passwords should expire or
+	 * null if it isn't set (or disabled) or has a non parseable value
+	 * @return int|null seconds
+	 */
 	public function getExpirationTime() {
 		$isChecked = $this->config->getAppValue(
 			'password_policy',
@@ -53,9 +58,19 @@ class UserNotificationConfigHandler {
 		if ($expirationTime === null || !\is_numeric($expirationTime)) {
 			return null;  // passwords don't expire or have weird value
 		}
-		return \intval($expirationTime);
+		// the expiration time is currently stored in days, so we need to convert
+		// it to seconds.
+		return \intval($expirationTime) * 24 * 60 * 60;
 	}
 
+	/**
+	 * Return the number of seconds until a user should receive a notification
+	 * that his password is about to expire. This _should_ be less than the value
+	 * returned by the getExpirationTime function (you'll need to verify it outside)
+	 * It will return null if the value isn't set (or disabled) or it has a
+	 * non-parseable value
+	 * @return int|null seconds
+	 */
 	public function getExpirationTimeForNormalNotification() {
 		$isChecked = $this->config->getAppValue(
 			'password_policy',
@@ -76,14 +91,31 @@ class UserNotificationConfigHandler {
 		return \intval($expirationTime);
 	}
 
+	/**
+	 * Mark that a "password about to expire" notification has been sent
+	 * @param OldPassword $passInfo the information about the password. It has
+	 * to include the userid owning the password and an id for the password
+	 */
 	public function markAboutToExpireNotificationSentFor(OldPassword $passInfo) {
 		$this->config->setUserValue($passInfo->getUid(), 'password_policy', 'aboutToExpireSent', $passInfo->getId());
 	}
 
+	/**
+	 * Mark that a "password expired" notification has been sent
+	 * @param OldPassword $passInfo the information about the password. It has
+	 * to include the userid owning the password and an id for the password
+	 */
 	public function markExpiredNotificationSentFor(OldPassword $passInfo) {
 		$this->config->setUserValue($passInfo->getUid(), 'password_policy', 'expiredSent', $passInfo->getId());
 	}
 
+	/**
+	 * Check if a "password about to expire" notification has been sent for that
+	 * password
+	 * @param OldPassword $passInfo the password information to be checked
+	 * @return bool true if the notification has been sent already, false otherwise.
+	 * Note that we'll check only with the last password id sent
+	 */
 	public function isSentAboutToExpireNotification(OldPassword $passInfo) {
 		$storedId = $this->config->getUserValue($passInfo->getUid(), 'password_policy', 'aboutToExpireSent', null);
 		if ($storedId === null) {
@@ -95,6 +127,13 @@ class UserNotificationConfigHandler {
 		return true;
 	}
 
+	/**
+	 * Check if a "password expired" notification has been sent for that
+	 * password
+	 * @param OldPassword $passInfo the password information to be checked
+	 * @return bool true if the notification has been sent already, false otherwise.
+	 * Note that we'll check only with the last password id sent
+	 */
 	public function isSentExpiredNotification(OldPassword $passInfo) {
 		$storedId = $this->config->getUserValue($passInfo->getUid(), 'password_policy', 'expiredSent', null);
 		if ($storedId === null) {
@@ -106,6 +145,12 @@ class UserNotificationConfigHandler {
 		return true;
 	}
 
+	/**
+	 * Reset the marks created with markAboutToExpireNotificationSentFor and
+	 * markExpiredNotificationSentFor functions. This function should be call
+	 * once the password for the user has been changed
+	 * @param string $uid the id if the user that has changed his password
+	 */
 	public function resetExpirationMarks($uid) {
 		$targetKeys = [
 			'aboutToExpireSent',

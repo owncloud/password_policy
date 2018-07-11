@@ -92,6 +92,8 @@ class NotifierTest extends TestCase {
 		// expiration time starting from the password change time
 		$notification->method('getMessageParameters')->willReturn([$initialTime, $expireIn]);
 
+		$notification->method('getActions')->willReturn([]);  // FIXME: to recheck if we include actions
+
 		$this->timeFactory->method('getTime')->willReturn($initialTime + (7 * 24 * 60 * 60));
 
 		$notification->expects($this->once())
@@ -116,6 +118,8 @@ class NotifierTest extends TestCase {
 		// expiration time starting from the password change time
 		$notification->method('getMessageParameters')->willReturn([$initialTime, $expireIn]);
 
+		$notification->method('getActions')->willReturn([]);  // FIXME: to recheck if we include actions
+
 		$this->timeFactory->method('getTime')->willReturn($initialTime + (12 * 24 * 60 * 60));
 
 		$notification->expects($this->once())
@@ -139,6 +143,8 @@ class NotifierTest extends TestCase {
 		// first parameter is the password change time and the second is the
 		// expiration time starting from the password change time
 		$notification->method('getMessageParameters')->willReturn([$initialTime, $expireIn]);
+
+		$notification->method('getActions')->willReturn([]);  // FIXME: to recheck if we include actions
 
 		$this->timeFactory->method('getTime')->willReturn($initialTime + (12 * 24 * 60 * 60));
 
