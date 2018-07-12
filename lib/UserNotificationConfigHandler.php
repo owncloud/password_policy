@@ -55,7 +55,7 @@ class UserNotificationConfigHandler {
 			'spv_user_password_expiration_value',
 			null
 		);
-		if ($expirationTime === null || !\is_numeric($expirationTime)) {
+		if ($expirationTime === null || !\is_numeric($expirationTime) || $expirationTime < 0) {
 			return null;  // passwords don't expire or have weird value
 		}
 		// the expiration time is currently stored in days, so we need to convert
@@ -65,7 +65,7 @@ class UserNotificationConfigHandler {
 
 	/**
 	 * Return the number of seconds until a user should receive a notification
-	 * that his password is about to expire. This _should_ be less than the value
+	 * that their password is about to expire. This _should_ be less than the value
 	 * returned by the getExpirationTime function (you'll need to verify it outside)
 	 * It will return null if the value isn't set (or disabled) or it has a
 	 * non-parseable value
@@ -85,7 +85,7 @@ class UserNotificationConfigHandler {
 			'password_policy',
 			'spv_user_password_expiration_notification_value',
 			self::DEFAULT_EXPIRATION_FOR_NORMAL_NOTIFICATION);
-		if ($expirationTime === null || !\is_numeric($expirationTime)) {
+		if ($expirationTime === null || !\is_numeric($expirationTime) || $expirationTime < 0) {
 			return null;  // passwords don't expire or have weird value
 		}
 		return \intval($expirationTime);

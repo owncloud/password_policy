@@ -99,7 +99,7 @@ class NotifierTest extends TestCase {
 
 		$notification->expects($this->once())
 			->method('setParsedSubject')
-			->with('Your password is about to expire!');
+			->with('Password expiration notice');
 
 		$notification->expects($this->once())
 			->method('setParsedMessage')
@@ -130,7 +130,7 @@ class NotifierTest extends TestCase {
 
 		$notification->expects($this->once())
 			->method('setParsedSubject')
-			->with('Your password is about to expire!');
+			->with('Password expiration notice');
 
 		$notification->expects($this->once())
 			->method('setParsedMessage')
@@ -160,7 +160,7 @@ class NotifierTest extends TestCase {
 
 		$notification->expects($this->once())
 			->method('setParsedSubject')
-			->with('Your password is about to expire!');
+			->with('Password expiration notice');
 
 		$notification->expects($this->once())
 			->method('setParsedMessage')
@@ -195,7 +195,7 @@ class NotifierTest extends TestCase {
 
 		$notification->expects($this->once())
 			->method('setParsedMessage')
-			->with('You have to change your password before you can access again');
+			->with('Please change your password to gain back access to your account');
 
 		$notification->expects($this->once())
 			->method('addParsedAction')

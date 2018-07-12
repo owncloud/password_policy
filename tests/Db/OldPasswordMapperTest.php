@@ -122,6 +122,7 @@ class OldPasswordMapperTest extends TestCase {
 
 
 		$passwordList = $this->mapper->getPasswordsAboutToExpire($baseTime + 44);
+		$passwordList = \iterator_to_array($passwordList);  // convert to array
 		// last password change before the timestamp
 		$this->assertCount(2, $passwordList);
 
@@ -144,6 +145,7 @@ class OldPasswordMapperTest extends TestCase {
 
 
 		$passwordList = $this->mapper->getPasswordsAboutToExpire($baseTime + 130);
+		$passwordList = \iterator_to_array($passwordList);  // convert to array
 		// last password change before the timestamp
 		$this->assertCount(3, $passwordList);
 

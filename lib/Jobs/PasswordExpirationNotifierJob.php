@@ -107,6 +107,15 @@ class PasswordExpirationNotifierJob extends TimedJob {
 		}
 	}
 
+	/**
+	 * Send an "about to expire" notification using the password information
+	 * in $passInfo. The password should expire after $expirationTime (90 days
+	 * by default). This information will also be used in the notification
+	 * @param OldPassword $passInfo the password information used to send the
+	 * notification
+	 * @param int $expirationTime the time to expire the password in seconds
+	 * (for example, 90 days - in seconds)
+	 */
 	private function sendAboutToExpireNotification(OldPassword $passInfo, $expirationTime) {
 		if ($this->unConfigHandler->isSentAboutToExpireNotification($passInfo)) {
 			return;  // notification already sent
@@ -134,6 +143,15 @@ class PasswordExpirationNotifierJob extends TimedJob {
 		$this->unConfigHandler->markAboutToExpireNotificationSentFor($passInfo);
 	}
 
+	/**
+	 * Send an "expired" notification using the password information
+	 * in $passInfo. The password should expire after $expirationTime (90 days
+	 * by default). This information will also be used in the notification
+	 * @param OldPassword $passInfo the password information used to send the
+	 * notification
+	 * @param int $expirationTime the time to expire the password in seconds
+	 * (for example, 90 days - in seconds)
+	 */
 	private function sendPassExpiredNotification(OldPassword $passInfo, $expirationTime) {
 		if ($this->unConfigHandler->isSentExpiredNotification($passInfo)) {
 			return;  // notification already sent

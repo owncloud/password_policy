@@ -24,7 +24,7 @@ use OCP\Notification\INotifier;
 use OCP\Notification\IManager as INotificationManager;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\L10N\IFactory;
-use OC\L10N\L10N;
+use OCP\IL10N;
 
 class Notifier implements INotifier {
 	/** @var IFactory */
@@ -63,7 +63,7 @@ class Notifier implements INotifier {
 		}
 	}
 
-	private function formatAboutToExpire(INotification $notification, L10N $l) {
+	private function formatAboutToExpire(INotification $notification, IL10N $l) {
 		$params = $notification->getSubjectParameters();
 		$notification->setParsedSubject(
 			(string) $l->t('Password expiration notice', $params)
@@ -103,7 +103,7 @@ class Notifier implements INotifier {
 		return $notification;
 	}
 
-	private function formatExpired(INotification $notification, L10N $l) {
+	private function formatExpired(INotification $notification, IL10N $l) {
 		$params = $notification->getSubjectParameters();
 		$notification->setParsedSubject(
 			(string) $l->t('Your password has expired', $params)

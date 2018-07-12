@@ -71,11 +71,9 @@ class OldPasswordMapper extends Mapper {
 	 * In addition, passwords from multiple users are expected
 	 * @param int $maxTimestamp timestamp marker, last passwords changed before
 	 * the timestamp will be selected
-	 * @return OldPassword[] the selected passwords
+	 * @return Generator to traverse the selected passwords
 	 */
 	public function getPasswordsAboutToExpire($maxTimestamp) {
-		$oldPasswords = [];
-
 		$query = "SELECT `f`.`id`, `f`.`uid`, `f`.`password`, `f`.`change_time` FROM (";
 		$query .= "SELECT `uid`, max(`change_time`) AS `maxtime` FROM `*PREFIX*user_password_history` GROUP BY `uid`";
 		$query .= ") AS `x` INNER JOIN `*PREFIX*user_password_history` AS `f` ON `f`.`uid` = `x`.`uid` AND `f`.`change_time` = `x`.`maxtime`";
@@ -93,9 +91,8 @@ class OldPasswordMapper extends Mapper {
 		}
 
 		while ($row = $stmt->fetch()) {
-			$oldPasswords[] = OldPassword::fromRow($row);
+			yield OldPassword::fromRow($row);
 		}
 		$stmt->closeCursor();
-		return $oldPasswords;
 	}
 }
