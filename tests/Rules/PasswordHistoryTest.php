@@ -74,7 +74,7 @@ class PasswordHistoryTest extends \PHPUnit_Framework_TestCase {
 	 * @dataProvider failDataProvider
 	 * @param string $password
 	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
-	 * @expectedExceptionMessage The password must be different to your previous 2 passwords.
+	 * @expectedExceptionMessage The password must be different than your previous 2 passwords.
 	 */
 	public function testWithOldPassword($password) {
 		$this->r->verify($password, 2, 'testuser');

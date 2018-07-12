@@ -21,6 +21,8 @@
 namespace OCA\PasswordPolicy\AppInfo;
 
 use OCP\AppFramework\App;
+use OCP\Notification\Events\RegisterNotifierEvent;
+use OCA\PasswordPolicy\Notifier;
 
 class Application extends App {
 
@@ -28,4 +30,15 @@ class Application extends App {
 		parent::__construct('password_policy', $urlParams);
 	}
 
+	/**
+	 * Registers the notifier
+	 */
+	public function registerNotifier() {
+		$container = $this->getContainer();
+		$dispatcher = $container->getServer()->getEventDispatcher();
+		$dispatcher->addListener(RegisterNotifierEvent::NAME, function (RegisterNotifierEvent $event) use ($container) {
+			$l10n = $container->getServer()->getL10N('password_policy');
+			$event->registerNotifier($container->query(Notifier::class), 'password_policy', $l10n->t('Password Policy'));
+		});
+	}
 }

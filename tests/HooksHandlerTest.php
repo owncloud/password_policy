@@ -26,6 +26,7 @@ use OCA\PasswordPolicy\Db\OldPassword;
 use OCA\PasswordPolicy\Db\OldPasswordMapper;
 use OCA\PasswordPolicy\Engine;
 use OCA\PasswordPolicy\HooksHandler;
+use OCA\PasswordPolicy\UserNotificationConfigHandler;
 use OCA\PasswordPolicy\Rules\PasswordExpired;
 use OCA\PasswordPolicy\Rules\PolicyException;
 use OCP\AppFramework\Utility\ITimeFactory;
@@ -34,6 +35,8 @@ use OCP\IL10N;
 use OCP\ISession;
 use OCP\IUser;
 use OCP\Security\IHasher;
+use OCP\Notification\IManager;
+use OCP\Notification\INotification;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Test\TestCase;
 
@@ -57,7 +60,10 @@ class HooksHandlerTest extends TestCase {
 	protected $session;
 	/** @var HooksHandler | \PHPUnit_Framework_MockObject_MockObject */
 	protected $handler;
-
+	/** @var UserNotificationConfigHandler | \PHPUnit_Framework_MockObject_MockObject */
+	protected $unConfigHandler;
+	/** @var IManager | \PHPUnit_Framework_MockObject_MockObject */
+	protected $manager;
 
 	protected function setUp() {
 		parent::setUp();
@@ -75,6 +81,8 @@ class HooksHandlerTest extends TestCase {
 		$this->passwordExpiredRule = $this->createMock(PasswordExpired::class);
 		$this->oldPasswordMapper = $this->createMock(OldPasswordMapper::class);
 		$this->session = $this->createMock(ISession::class);
+		$this->manager = $this->createMock(IManager::class);
+		$this->unConfigHandler = $this->createMock(UserNotificationConfigHandler::class);
 
 		$this->handler = new HooksHandler(
 			$this->config,
@@ -84,8 +92,41 @@ class HooksHandlerTest extends TestCase {
 			$this->l10n,
 			$this->passwordExpiredRule,
 			$this->oldPasswordMapper,
-			$this->session
+			$this->session,
+			$this->manager,
+			$this->unConfigHandler
 		);
+
+		$this->manager->method('createNotification')
+			->will($this->returnCallback(function() {
+				$holder = [];
+				$mock = $this->createMock(INotification::class);
+				$mock->method('setApp')->will($this->returnCallback(function($app) use (&$holder, $mock) {
+					$holder['app'] = $app;
+					return $mock;
+				}));
+				$mock->method('setUser')->will($this->returnCallback(function($user) use (&$holder, $mock) {
+					$holder['user'] = $user;
+					return $mock;
+				}));
+				$mock->method('setObject')->will($this->returnCallback(function($obj, $id) use (&$holder, $mock) {
+					$holder['object'] = [$obj, $id];
+					return $mock;
+				}));
+				$mock->method('getApp')->will($this->returnCallback(function() use (&$holder) {
+					return $holder['app'];
+				}));
+				$mock->method('getUser')->will($this->returnCallback(function() use (&$holder) {
+					return $holder['user'];
+				}));
+				$mock->method('getObjectType')->will($this->returnCallback(function() use (&$holder) {
+					return $holder['object'][0];
+				}));
+				$mock->method('getObjectId')->will($this->returnCallback(function() use (&$holder) {
+					return $holder['object'][1];
+				}));
+				return $mock;
+			}));
 	}
 
 	public function testGeneratePassword() {
@@ -193,6 +234,9 @@ class HooksHandlerTest extends TestCase {
 					$oldPassword->getChangeTime() === 12345;
 			}));
 
+		$this->unConfigHandler->expects($this->once())
+			->method('resetExpirationMarks');
+
 		$event = new GenericEvent(null, [
 			'user' => $user,
 			'password' => 'secret'
@@ -201,7 +245,6 @@ class HooksHandlerTest extends TestCase {
 	}
 
 	public function testSavePasswordForCreatedUser() {
-
 		$this->hasher->expects($this->once())
 			->method('hash')
 			->with('secret')
@@ -224,6 +267,64 @@ class HooksHandlerTest extends TestCase {
 			'password' => 'secret'
 		]);
 		$this->handler->savePasswordForCreatedUser($event);
+	}
+
+	public function testSaveOldPasswordClearingNotifications() {
+		/** @var IUser | \PHPUnit_Framework_MockObject_MockObject $user */
+		$user = $this->createMock(IUser::class);
+		$user->method('getUID')->willReturn('testuid');
+
+		$this->hasher->expects($this->once())
+			->method('hash')
+			->with('secret')
+			->willReturn('somehash');
+
+		$this->timeFactory->expects($this->once())
+			->method('getTime')
+			->willReturn(12345);
+
+		$this->oldPasswordMapper->expects($this->once())
+			->method('insert')
+			->with($this->callback(function(OldPassword $oldPassword){
+				return $oldPassword->getPassword() === 'somehash' &&
+					$oldPassword->getUid() === 'testuid' &&
+					$oldPassword->getChangeTime() === 12345;
+			}));
+
+		$this->unConfigHandler->method('getMarkAboutToExpireNotificationSentFor')
+			->willReturn('222');
+		$this->unConfigHandler->method('getMarkExpiredNotificationSentFor')
+			->willReturn('333');
+
+		$this->unConfigHandler->expects($this->once())
+			->method('resetExpirationMarks');
+
+		$this->manager->expects($this->exactly(2))
+			->method('markProcessed')
+			->withConsecutive(
+				[
+					$this->callback(function($notif) {
+						return $notif->getApp() === 'password_policy' &&
+							$notif->getUser() === 'testuid' &&
+							$notif->getObjectType() === 'about_to_expire' &&
+							$notif->getObjectId() === '222';
+					})
+				],
+				[
+					$this->callback(function($notif) {
+						return $notif->getApp() === 'password_policy' &&
+							$notif->getUser() === 'testuid' &&
+							$notif->getObjectType() === 'expired' &&
+							$notif->getObjectId() === '333';
+					})
+				]
+			);
+
+		$event = new GenericEvent(null, [
+			'user' => $user,
+			'password' => 'secret'
+		]);
+		$this->handler->saveOldPassword($event);
 	}
 
 	/**

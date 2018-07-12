@@ -17,7 +17,7 @@ Administrators find the configuration options in the 'Security' section of the o
 		<admin>https://doc.owncloud.com/server/10.0/admin_manual/configuration/server/security/password_policy.html</admin>
 	</documentation>
 	<dependencies>
-		<owncloud min-version="10.0.5" max-version="10.1" />
+		<owncloud min-version="10.0.9" max-version="10.1" />
 	</dependencies>
 	<namespace>PasswordPolicy</namespace>
 	<settings>
@@ -30,6 +30,9 @@ Administrators find the configuration options in the 'Security' section of the o
 	<account-modules>
 		<module>OCA\PasswordPolicy\Authentication\AccountModule</module>
 	</account-modules>
+	<background-jobs>
+		<job>OCA\PasswordPolicy\Jobs\PasswordExpirationNotifierJob</job>
+	</background-jobs>
 
 	<screenshot>https://raw.githubusercontent.com/owncloud/screenshots/master/password_policy/owncloud-app-password_policy.jpg</screenshot>
 	<screenshot>https://raw.githubusercontent.com/owncloud/screenshots/master/password_policy/owncloud-app-password_policy2.jpg</screenshot>

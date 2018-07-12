@@ -63,4 +63,36 @@ class OldPasswordMapper extends Mapper {
 		}
 		return $passwords[0];
 	}
+
+	/**
+	 * Get the passwords that are about to expire or already expired.
+	 * Last passwords which have been changed before the timestamp are the ones
+	 * selectable. Previous stored passwords won't be included
+	 * In addition, passwords from multiple users are expected
+	 * @param int $maxTimestamp timestamp marker, last passwords changed before
+	 * the timestamp will be selected
+	 * @return Generator to traverse the selected passwords
+	 */
+	public function getPasswordsAboutToExpire($maxTimestamp) {
+		$query = "SELECT `f`.`id`, `f`.`uid`, `f`.`password`, `f`.`change_time` FROM (";
+		$query .= "SELECT `uid`, max(`change_time`) AS `maxtime` FROM `*PREFIX*user_password_history` GROUP BY `uid`";
+		$query .= ") AS `x` INNER JOIN `*PREFIX*user_password_history` AS `f` ON `f`.`uid` = `x`.`uid` AND `f`.`change_time` = `x`.`maxtime`";
+		$query .= " WHERE `f`.`change_time` < ?";
+
+		$stmt = $this->db->prepare($query);
+		$stmt->bindValue(1, $maxTimestamp);
+		$result = $stmt->execute();
+
+		if ($result === false) {
+			$info = \json_encode($stmt->erroInfo());
+			$message = "Cannot get the passwords that are about to expire. Error: {$info}";
+			\OCP\Util::writeLog('password_policy', $message, \OCP\Util::ERROR);
+			return;
+		}
+
+		while ($row = $stmt->fetch()) {
+			yield OldPassword::fromRow($row);
+		}
+		$stmt->closeCursor();
+	}
 }

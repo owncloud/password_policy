@@ -61,3 +61,16 @@ $eventDispatcher->addListener(
 	\OCP\IUser::class . '::firstLogin',
 	[$handler, 'checkForcePasswordChangeOnFirstLogin']
 );
+
+$app = new \OCA\PasswordPolicy\AppInfo\Application();
+$app->registerNotifier();
+
+// only load notification JS code in the logged in layout page (not public links not login page)
+$request = \OC::$server->getRequest();
+if (\OC::$server->getUserSession() !== null && \OC::$server->getUserSession()->getUser() !== null
+	&& substr($request->getScriptName(), 0 - strlen('/index.php')) === '/index.php'
+	&& substr($request->getPathInfo(), 0, strlen('/s/')) !== '/s/'
+	&& substr($request->getPathInfo(), 0, strlen('/login')) !== '/login') {
+
+	\OCP\Util::addScript('password_policy', 'notification');
+}

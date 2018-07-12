@@ -141,7 +141,7 @@ class PasswordController extends Controller implements IAccountModuleController 
 		if ($new_password !== $confirm_password) {
 			return $this->createPasswordTemplateResponse(
 				$redirect_url,
-				$this->l10n->t('New passwords are not the same.')
+				$this->l10n->t('Password confirmation does not match the password.')
 			);
 		}
 
@@ -150,7 +150,7 @@ class PasswordController extends Controller implements IAccountModuleController 
 		if(!$this->userManager->checkPassword($user->getUID(), $current_password)) {
 			return $this->createPasswordTemplateResponse(
 				$redirect_url,
-				$this->l10n->t('Incorrect current password supplied.')
+				$this->l10n->t('The current password is incorrect.')
 			);
 		}
 
