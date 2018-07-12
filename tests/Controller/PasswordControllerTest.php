@@ -151,6 +151,26 @@ class PasswordControllerTest extends TestCase {
 		$this->c->update(null, 'newsecret', 'different', $redirect_url);
 	}
 
+	public function testUpdatePasswordsMatchesCurrent() {
+		$redirect_url = 'redirect/target';
+		$this->c->expects($this->once())
+			->method('createPasswordTemplateResponse')
+			->with($redirect_url, 'Password must be different than the old password.');
+
+		$this->userSession
+			->expects($this->never())
+			->method('getUser');
+
+		$this->session
+			->expects($this->never())
+			->method('remove');
+		$this->config
+			->expects($this->never())
+			->method('deleteUserValue');
+
+		$this->c->update('oldsecret', 'oldsecret', 'oldsecret', $redirect_url);
+	}
+
 	public function testUpdateWrongPassword() {
 		$user = $this->createMock(IUser::class);
 		$user
