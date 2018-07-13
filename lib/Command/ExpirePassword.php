@@ -30,6 +30,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use OCP\AppFramework\Utility\ITimeFactory;
 
 
 class ExpirePassword extends Command {
@@ -45,17 +46,20 @@ class ExpirePassword extends Command {
 	/**
 	 * @param IConfig $config
 	 * @param IUserManager $userManager
+	 * @param ITimeFactory $timeFactory
 	 * @param OldPasswordMapper $mapper
 	 */
 	public function __construct(
 		IConfig $config,
 		IUserManager $userManager,
+		ITimeFactory $timeFactory,
 		OldPasswordMapper $mapper
 	) {
 		parent::__construct();
 		$this->config = $config;
 		$this->userManager = $userManager;
 		$this->mapper = $mapper;
+		$this->timeFactory = $timeFactory;
 	}
 
 	protected function configure() {
@@ -106,10 +110,12 @@ class ExpirePassword extends Command {
 			return 1;
 		}
 
-		$date = new \DateTime($input->getArgument('expiredate'));
+		$date = new \DateTime();
 		$date->setTimezone(new \DateTimeZone('UTC'));
+		$date->setTimestamp($this->timeFactory->getTime());
+		$date->modify($input->getArgument('expiredate'));
 
-		if ($this->config->getAppValue('password_policy', 'spv_user_password_expiration_checked', 'no') === 'on') {
+		if ($this->config->getAppValue('password_policy', 'spv_user_password_expiration_checked', false) === 'on') {
 			$delta = $this->config->getAppValue('password_policy', 'spv_user_password_expiration_value', 90);
 			$date->modify("-$delta days");
 		}

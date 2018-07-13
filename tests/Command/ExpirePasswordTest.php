@@ -30,6 +30,7 @@ use OCP\IUser;
 use OCP\IUserManager;
 use Symfony\Component\Console\Tester\CommandTester;
 use Test\TestCase;
+use OCP\AppFramework\Utility\ITimeFactory;
 
 class ExpirePasswordTest extends TestCase {
 
@@ -37,6 +38,8 @@ class ExpirePasswordTest extends TestCase {
 	protected $config;
 	/** @var IUserManager | \PHPUnit_Framework_MockObject_MockObject */
 	protected $userManager;
+	/** @var ITimeFactory | \PHPUnit_Framework_MockObject_MockObject */
+	private $timeFactory;
 	/** @var OldPasswordMapper | \PHPUnit_Framework_MockObject_MockObject */
 	private $mapper;
 	/** @var CommandTester */
@@ -47,10 +50,12 @@ class ExpirePasswordTest extends TestCase {
 
 		$this->config = $this->createMock(IConfig::class);
 		$this->userManager = $this->createMock(IUserManager::class);
+		$this->timeFactory = $this->createMock(ITimeFactory::class);
 		$this->mapper = $this->createMock(OldPasswordMapper::class);
 		$command = new ExpirePassword(
 			$this->config,
 			$this->userManager,
+			$this->timeFactory,
 			$this->mapper
 		);
 		$this->commandTester = new CommandTester($command);
@@ -71,50 +76,23 @@ class ExpirePasswordTest extends TestCase {
 		self::assertContains('Unknown user: not-existing-uid', $output);
 	}
 
-	public function testExpirePassword() {
-		$user = $this->createMock(IUser::class);
-		$user
-			->expects($this->once())
-			->method('canChangePassword')
-			->willReturn(true);
-
-		$this->userManager
-			->expects($this->once())
-			->method('get')
-			->with('existing-uid')
-			->willReturn($user);
-		$this->config
-			->expects($this->once())
-			->method('setUserValue')
-			->with(
-				'existing-uid',
-				'password_policy',
-				'forcePasswordChange',
-				'2018-06-28T10:13:00Z'
-			);
-
-		$latestPassword = OldPassword::fromRow([
-			'id' => 2233,
-			'uid' => 'usertest1',
-			'password' => 'randomHashedPassword',
-			'changeTime' => '1515151515'
-		]);
-
-		$this->mapper->method('getLatestPassword')
-			->willReturn($latestPassword);
-
-		$this->mapper->expects($this->once())
-			->method('insert');
-
-		$this->commandTester->execute([
-			'uid' => 'existing-uid',
-			'expiredate' => '2018-06-28 10:13 UTC'
-		]);
-		$output = $this->commandTester->getDisplay();
-		self::assertContains('The password for existing-uid is set to expire on 2018-06-28 10:13:00 UTC.', $output);
+	public function providesExpirePassword() {
+		return [
+			// expire immediately, no policy, defaults to -1 days
+			[null, null, '2018-06-27 10:13:00 UTC'],
+			// expire later, no policy
+			['2018-06-28 10:13 UTC', null, '2018-06-28 10:13:00 UTC'],
+			// expire immediately, with policy, defaults to -1 days
+			[null, 7, '2018-06-20 10:13:00 UTC'],
+			// expire later, with policy
+			['2018-06-28 10:13 UTC', 7, '2018-06-21 10:13:00 UTC'],
+		];
 	}
 
-	public function testExpirePasswordDummy() {
+	/**
+	 * @dataProvider providesExpirePassword
+	 */
+	public function testExpirePassword($expireArg, $expireRuleDays, $expectedTimestamp) {
 		$user = $this->createMock(IUser::class);
 		$user
 			->expects($this->once())
@@ -126,35 +104,36 @@ class ExpirePasswordTest extends TestCase {
 			->method('get')
 			->with('existing-uid')
 			->willReturn($user);
+
+		$this->timeFactory
+			->method('getTime')
+			->willReturn(1530180780);
+
 		$this->config
-			->expects($this->once())
-			->method('setUserValue')
-			->with(
-				'existing-uid',
-				'password_policy',
-				'forcePasswordChange',
-				'2018-06-28T10:13:00Z'
-			);
+			->method('getAppValue')
+			->will($this->returnValueMap([
+				['password_policy', 'spv_user_password_expiration_checked', false, ($expireRuleDays !== null) ? 'on' : false],
+				['password_policy', 'spv_user_password_expiration_value', 90, $expireRuleDays]
+			]));
 
-		$latestPassword = OldPassword::fromRow([
-			'id' => 2233,
-			'uid' => 'usertest1',
-			'password' => 'expired',
-			'changeTime' => '1515151515'
-		]);
-
-		$this->mapper->method('getLatestPassword')
-			->willReturn($latestPassword);
-
-		$this->mapper->expects($this->never())
-			->method('insert');
+		$oldPassword = null;
+		$this->mapper->expects($this->once())
+			->method('insert')
+			->will($this->returnCallback(function($obj) use (&$oldPassword) {
+				$oldPassword = $obj;
+			}));
 
 		$this->commandTester->execute([
 			'uid' => 'existing-uid',
-			'expiredate' => '2018-06-28 10:13 UTC'
+			'expiredate' => $expireArg
 		]);
+
 		$output = $this->commandTester->getDisplay();
-		self::assertContains('The password for existing-uid is set to expire on 2018-06-28 10:13:00 UTC.', $output);
+		self::assertContains("The password for existing-uid is set to expire on $expectedTimestamp.", $output);
+
+		$this->assertEquals('existing-uid', $oldPassword->getUid());
+		$this->assertEquals(OldPassword::EXPIRED, $oldPassword->getPassword());
+		$this->assertEquals((new \DateTime($expectedTimestamp))->getTimestamp(), $oldPassword->getChangeTime());
 	}
 
 	public function testCannotExpirePassword() {
