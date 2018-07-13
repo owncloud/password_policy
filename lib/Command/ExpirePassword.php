@@ -24,6 +24,8 @@ namespace OCA\PasswordPolicy\Command;
 
 use OCP\IConfig;
 use OCP\IUserManager;
+use OCA\PasswordPolicy\Db\OldPasswordMapper;
+use OCA\PasswordPolicy\Db\OldPassword;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -37,14 +39,22 @@ class ExpirePassword extends Command {
 	/** @var \OCP\IUserManager */
 	protected $userManager;
 
+	/** @var OldPasswordMapper */
+	private $mapper;
+
 	/**
 	 * @param IConfig $config
 	 * @param IUserManager $userManager
 	 */
-	public function __construct(IConfig $config, IUserManager $userManager) {
+	public function __construct(
+		IConfig $config,
+		IUserManager $userManager,
+		OldPasswordMapper $mapper
+	) {
 		parent::__construct();
 		$this->config = $config;
 		$this->userManager = $userManager;
+		$this->mapper = $mapper;
 	}
 
 	protected function configure() {
@@ -105,6 +115,19 @@ class ExpirePassword extends Command {
 			'forcePasswordChange',
 			$value
 		);
+
+		// add a dummy password in the user_password_history so the cron job
+		// can notify about the expiration of the password. We'll use "dummy"
+		// as password hash (we won't hash "dummy")
+		$latestPassword = $this->mapper->getLatestPassword($uid);
+		if ($latestPassword->getPassword() !== 'dummy') {
+			// insert dummy only if it isn't the last
+			$oldPassword = new OldPassword();
+			$oldPassword->setUid($uid);
+			$oldPassword->setPassword('dummy');
+			$oldPassword->setChangeTime(\max($date->getTimestamp(), $latestPassword->getChangeTime() + 1));
+			$this->mapper->insert($oldPassword);
+		}
 
 		// show expire date if it was given
 		if ($input->hasArgument('expiredate')) {

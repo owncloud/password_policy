@@ -23,6 +23,8 @@
 namespace OCA\PasswordPolicy\Tests\Controller;
 
 use OCA\PasswordPolicy\Command\ExpirePassword;
+use OCA\PasswordPolicy\Db\OldPasswordMapper;
+use OCA\PasswordPolicy\Db\OldPassword;
 use OCP\IConfig;
 use OCP\IUser;
 use OCP\IUserManager;
@@ -35,6 +37,8 @@ class ExpirePasswordTest extends TestCase {
 	protected $config;
 	/** @var IUserManager | \PHPUnit_Framework_MockObject_MockObject */
 	protected $userManager;
+	/** @var OldPasswordMapper | \PHPUnit_Framework_MockObject_MockObject */
+	private $mapper;
 	/** @var CommandTester */
 	private $commandTester;
 
@@ -43,9 +47,11 @@ class ExpirePasswordTest extends TestCase {
 
 		$this->config = $this->createMock(IConfig::class);
 		$this->userManager = $this->createMock(IUserManager::class);
+		$this->mapper = $this->createMock(OldPasswordMapper::class);
 		$command = new ExpirePassword(
 			$this->config,
-			$this->userManager
+			$this->userManager,
+			$this->mapper
 		);
 		$this->commandTester = new CommandTester($command);
 	}
@@ -86,6 +92,62 @@ class ExpirePasswordTest extends TestCase {
 				'forcePasswordChange',
 				'2018-06-28T10:13:00Z'
 			);
+
+		$latestPassword = OldPassword::fromRow([
+			'id' => 2233,
+			'uid' => 'usertest1',
+			'password' => 'randomHashedPassword',
+			'changeTime' => '1515151515'
+		]);
+
+		$this->mapper->method('getLatestPassword')
+			->willReturn($latestPassword);
+
+		$this->mapper->expects($this->once())
+			->method('insert');
+
+		$this->commandTester->execute([
+			'uid' => 'existing-uid',
+			'expiredate' => '2018-06-28 10:13 UTC'
+		]);
+		$output = $this->commandTester->getDisplay();
+		self::assertContains('The password for existing-uid is set to expire on 2018-06-28 10:13:00 UTC.', $output);
+	}
+
+	public function testExpirePasswordDummy() {
+		$user = $this->createMock(IUser::class);
+		$user
+			->expects($this->once())
+			->method('canChangePassword')
+			->willReturn(true);
+
+		$this->userManager
+			->expects($this->once())
+			->method('get')
+			->with('existing-uid')
+			->willReturn($user);
+		$this->config
+			->expects($this->once())
+			->method('setUserValue')
+			->with(
+				'existing-uid',
+				'password_policy',
+				'forcePasswordChange',
+				'2018-06-28T10:13:00Z'
+			);
+
+		$latestPassword = OldPassword::fromRow([
+			'id' => 2233,
+			'uid' => 'usertest1',
+			'password' => 'dummy',
+			'changeTime' => '1515151515'
+		]);
+
+		$this->mapper->method('getLatestPassword')
+			->willReturn($latestPassword);
+
+		$this->mapper->expects($this->never())
+			->method('insert');
 
 		$this->commandTester->execute([
 			'uid' => 'existing-uid',

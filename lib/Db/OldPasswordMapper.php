@@ -77,7 +77,7 @@ class OldPasswordMapper extends Mapper {
 		$query = "SELECT `f`.`id`, `f`.`uid`, `f`.`password`, `f`.`change_time` FROM (";
 		$query .= "SELECT `uid`, max(`change_time`) AS `maxtime` FROM `*PREFIX*user_password_history` GROUP BY `uid`";
 		$query .= ") AS `x` INNER JOIN `*PREFIX*user_password_history` AS `f` ON `f`.`uid` = `x`.`uid` AND `f`.`change_time` = `x`.`maxtime`";
-		$query .= " WHERE `f`.`change_time` < ?";
+		$query .= " WHERE `f`.`change_time` < ? OR `password` = 'dummy'";
 
 		$stmt = $this->db->prepare($query);
 		$stmt->bindValue(1, $maxTimestamp);

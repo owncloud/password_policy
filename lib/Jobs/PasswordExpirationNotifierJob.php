@@ -97,7 +97,11 @@ class PasswordExpirationNotifierJob extends TimedJob {
 		$oldPasswordsAboutToExpire = $this->mapper->getPasswordsAboutToExpire($maxTimestamp);
 		foreach ($oldPasswordsAboutToExpire as $passInfo) {
 			$elapsedTime = $currentTime - $passInfo->getChangeTime();
-			if ($elapsedTime >= $expirationTime) {
+			if ($passInfo->getPassword() === 'dummy') {
+				// TODO: use a different notification
+				$this->logger->debug("password timestamp for {$passInfo->getUid()}: {$passInfo->getChangeTime()}; elapsed time: {$elapsedTime} -> ADMINEXPIRED", ['app' => 'password_policy']);
+				$this->sendPassExpiredNotification($passInfo, $expirationTime);
+			} elseif ($elapsedTime >= $expirationTime) {
 				$this->logger->debug("password timestamp for {$passInfo->getUid()}: {$passInfo->getChangeTime()}; elapsed time: {$elapsedTime} -> EXPIRED", ['app' => 'password_policy']);
 				$this->sendPassExpiredNotification($passInfo, $expirationTime);
 			} elseif ($elapsedTime >= $notifyAfter) {
