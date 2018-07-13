@@ -27,6 +27,7 @@ use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\IDBConnection;
 
 class OldPasswordMapper extends Mapper {
+
 	public function __construct(IDBConnection $db) {
 		parent::__construct($db, 'user_password_history');
 	}
@@ -34,16 +35,20 @@ class OldPasswordMapper extends Mapper {
 	/**
 	 * @param string $uid
 	 * @param int $length
+	 * @param bool $excludeForceExpired
 	 * @return OldPassword[]
 	 */
-	public function getOldPasswords($uid, $length) {
+	public function getOldPasswords($uid, $length, $excludeForceExpired = true) {
 		/* @var IQueryBuilder $qb */
 		$qb = $this->db->getQueryBuilder();
 		$qb->select('*')
 			->from('user_password_history')
 			->where($qb->expr()->eq('uid', $qb->createNamedParameter($uid)))
-			->orderBy('change_time', 'desc')
+			->orderBy('id', 'desc')
 			->setMaxResults($length);
+		if ($excludeForceExpired) {
+			$qb->andWhere($qb->expr()->neq('password', OldPassword::EXPIRED));
+		}
 		$result = $qb->execute();
 		$rows = $result->fetchAll();
 		$result->closeCursor();
@@ -57,7 +62,7 @@ class OldPasswordMapper extends Mapper {
 	 * @return OldPassword
 	 */
 	public function getLatestPassword($uid) {
-		$passwords = $this->getOldPasswords($uid, 1);
+		$passwords = $this->getOldPasswords($uid, 1, false);
 		if (\count($passwords) === 0) {
 			return null;
 		}
@@ -74,17 +79,22 @@ class OldPasswordMapper extends Mapper {
 	 * @return Generator to traverse the selected passwords
 	 */
 	public function getPasswordsAboutToExpire($maxTimestamp) {
-		$query = "SELECT `f`.`id`, `f`.`uid`, `f`.`password`, `f`.`change_time` FROM (";
-		$query .= "SELECT `uid`, max(`change_time`) AS `maxtime` FROM `*PREFIX*user_password_history` GROUP BY `uid`";
-		$query .= ") AS `x` INNER JOIN `*PREFIX*user_password_history` AS `f` ON `f`.`uid` = `x`.`uid` AND `f`.`change_time` = `x`.`maxtime`";
-		$query .= " WHERE `f`.`change_time` < ? OR `password` = 'dummy'";
+		$query = "SELECT `f`.`id`, `f`.`uid`, `f`.`password`, `f`.`change_time`
+				  FROM (
+					SELECT `uid`, max(`id`) AS `maxid`
+					FROM `*PREFIX*user_password_history`
+					GROUP BY `uid`
+				  ) AS `x` INNER JOIN `*PREFIX*user_password_history` AS `f`
+				  ON `f`.`uid` = `x`.`uid`
+				    AND `f`.`id` = `x`.`maxid`
+				  WHERE `f`.`change_time` < ?";
 
 		$stmt = $this->db->prepare($query);
 		$stmt->bindValue(1, $maxTimestamp);
 		$result = $stmt->execute();
 
 		if ($result === false) {
-			$info = \json_encode($stmt->erroInfo());
+			$info = \json_encode($stmt->errorInfo());
 			$message = "Cannot get the passwords that are about to expire. Error: {$info}";
 			\OCP\Util::writeLog('password_policy', $message, \OCP\Util::ERROR);
 			return;
