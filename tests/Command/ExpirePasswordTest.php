@@ -79,20 +79,21 @@ class ExpirePasswordTest extends TestCase {
 	public function providesExpirePassword() {
 		return [
 			// expire immediately, no policy, defaults to -1 days
-			[null, null, '2018-06-27 10:13:00 UTC'],
+			[null, null, '2018-06-27 10:13:00 UTC', '2018-06-27 10:13:00 UTC'],
 			// expire later, no policy
-			['2018-06-28 10:13 UTC', null, '2018-06-28 10:13:00 UTC'],
+			['2018-06-28 10:13 UTC', null, '2018-06-28 10:13:00 UTC', '2018-06-28 10:13:00 UTC'],
 			// expire immediately, with policy, defaults to -1 days
-			[null, 7, '2018-06-20 10:13:00 UTC'],
+			[null, 7, '2018-06-20 10:13:00 UTC', '2018-06-27 10:13:00 UTC'],
 			// expire later, with policy
-			['2018-06-28 10:13 UTC', 7, '2018-06-21 10:13:00 UTC'],
+			['2018-06-28 10:13 UTC', 7, '2018-06-21 10:13:00 UTC', '2018-06-28 10:13:00 UTC'],
 		];
 	}
 
 	/**
 	 * @dataProvider providesExpirePassword
 	 */
-	public function testExpirePassword($expireArg, $expireRuleDays, $expectedTimestamp) {
+	public function testExpirePassword(
+		$expireArg, $expireRuleDays, $expectedHistoryTimestamp, $expectedReportedTimestamp) {
 		$user = $this->createMock(IUser::class);
 		$user
 			->expects($this->once())
@@ -129,11 +130,11 @@ class ExpirePasswordTest extends TestCase {
 		]);
 
 		$output = $this->commandTester->getDisplay();
-		self::assertContains("The password for existing-uid is set to expire on $expectedTimestamp.", $output);
+		self::assertContains("The password for existing-uid is set to expire on $expectedReportedTimestamp.", $output);
 
 		$this->assertEquals('existing-uid', $oldPassword->getUid());
 		$this->assertEquals(OldPassword::EXPIRED, $oldPassword->getPassword());
-		$this->assertEquals((new \DateTime($expectedTimestamp))->getTimestamp(), $oldPassword->getChangeTime());
+		$this->assertEquals((new \DateTime($expectedHistoryTimestamp))->getTimestamp(), $oldPassword->getChangeTime());
 	}
 
 	public function testCannotExpirePassword() {
