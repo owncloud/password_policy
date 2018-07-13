@@ -112,6 +112,27 @@ class PasswordExpiredTest extends TestCase {
 		$this->r->verify('secret', 1, 'testuid');
 	}
 
+	public function testSpecialExpiredPasswordNoWarning() {
+		$password = new OldPassword();
+		$password->setChangeTime(1234);
+		$password->setPassword(OldPassword::EXPIRED);
+		$this->mapper
+			->expects($this->once())
+			->method('getLatestPassword')
+			->willReturn($password);
+		$this->hasher
+			->expects($this->never())
+			->method('verify');
+		$this->timeFactory
+			->expects($this->once())
+			->method('getTime');
+		$this->logger
+			->expects($this->never())
+			->method('warning');
+
+		$this->r->verify('secret', 1, 'testuid');
+	}
+
 	/**
 	 * @throws \OCA\PasswordPolicy\Rules\PolicyException
 	 */
