@@ -110,14 +110,19 @@ class ExpirePassword extends Command {
 			return 1;
 		}
 
-		$date = new \DateTime();
-		$date->setTimezone(new \DateTimeZone('UTC'));
-		$date->setTimestamp($this->timeFactory->getTime());
-		$date->modify($input->getArgument('expiredate'));
+		$expireDate = new \DateTime();
+		$expireDate->setTimezone(new \DateTimeZone('UTC'));
+		$expireDate->setTimestamp($this->timeFactory->getTime());
+		$expireDate->modify($input->getArgument('expiredate'));
+
+		$oldDate = new \DateTime();
+		$oldDate->setTimezone(new \DateTimeZone('UTC'));
+		$oldDate->setTimestamp($this->timeFactory->getTime());
+		$oldDate->modify($input->getArgument('expiredate'));
 
 		if ($this->config->getAppValue('password_policy', 'spv_user_password_expiration_checked', false) === 'on') {
 			$delta = $this->config->getAppValue('password_policy', 'spv_user_password_expiration_value', 90);
-			$date->modify("-$delta days");
+			$oldDate->modify("-$delta days");
 		}
 
 		$this->config->deleteUserValue(
@@ -131,12 +136,12 @@ class ExpirePassword extends Command {
 		$oldPassword = new OldPassword();
 		$oldPassword->setUid($uid);
 		$oldPassword->setPassword(OldPassword::EXPIRED);
-		$oldPassword->setChangeTime($date->getTimestamp());
+		$oldPassword->setChangeTime($oldDate->getTimestamp());
 		$this->mapper->insert($oldPassword);
 
 		// show expire date if it was given
 		if ($input->hasArgument('expiredate')) {
-			$output->writeln("The password for $uid is set to expire on ". $date->format('Y-m-d H:i:s T').'.');
+			$output->writeln("The password for $uid is set to expire on ". $expireDate->format('Y-m-d H:i:s T').'.');
 		}
 		return 0;
 	}
