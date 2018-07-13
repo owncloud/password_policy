@@ -145,6 +145,13 @@ class PasswordController extends Controller implements IAccountModuleController 
 			);
 		}
 
+		if ($new_password === $current_password) {
+			return $this->createPasswordTemplateResponse(
+				$redirect_url,
+				$this->l10n->t('Password must be different than the old password.')
+			);
+		}
+
 		$user = $this->userSession->getUser();
 
 		if(!$this->userManager->checkPassword($user->getUID(), $current_password)) {
