@@ -185,11 +185,11 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 		$this->invokePrivate($this->job, 'run', [[]]);
 	}
 
-	private function getOldPassword($id, $userid, $baseTime) {
+	private function getOldPassword($id, $userid, $baseTime, $password = 'password') {
 		$data = [
 			'id' => $id,
 			'uid' => $userid,
-			'password' => 'password',
+			'password' => $password,
 			'changeTime' => $baseTime
 		];
 		return OldPassword::fromRow($data);
@@ -241,7 +241,18 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 		$this->invokePrivate($this->job, 'run', [[]]);
 	}
 
-	public function testRunAboutToExpire() {
+	public function providesExpirePassword() {
+		return [
+			[md5('password')],
+			// special password
+			[OldPassword::EXPIRED],
+		];
+	}
+
+	/**
+	 * @dataProvider providesExpirePassword
+	 */
+	public function testRunAboutToExpire($password) {
 		$this->unConfigHandler->method('getExpirationTime')
 			->willReturn(180);
 		$this->unConfigHandler->method('getExpirationTimeForNormalNotification')
@@ -251,7 +262,7 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 		$this->timeFactory->method('getTime')
 			->willReturn($baseTime + 150);
 
-		$returnedOldPassword = $this->getOldPassword('22', 'usertest', $baseTime);
+		$returnedOldPassword = $this->getOldPassword('22', 'usertest', $baseTime, $password);
 		$this->mapper->method('getPasswordsAboutToExpire')
 			->willReturn([$returnedOldPassword]);
 
@@ -267,7 +278,10 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 		$this->invokePrivate($this->job, 'run', [[]]);
 	}
 
-	public function testRunExpired() {
+	/**
+	 * @dataProvider providesExpirePassword
+	 */
+	public function testRunExpired($password) {
 		$this->unConfigHandler->method('getExpirationTime')
 			->willReturn(180);
 		$this->unConfigHandler->method('getExpirationTimeForNormalNotification')
@@ -277,7 +291,7 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 		$this->timeFactory->method('getTime')
 			->willReturn($baseTime + 250);
 
-		$returnedOldPassword = $this->getOldPassword('22', 'usertest', $baseTime);
+		$returnedOldPassword = $this->getOldPassword('22', 'usertest', $baseTime, $password);
 		$this->mapper->method('getPasswordsAboutToExpire')
 			->willReturn([$returnedOldPassword]);
 

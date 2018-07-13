@@ -82,36 +82,78 @@ class OldPasswordMapperTest extends TestCase {
 		}
 	}
 
-	public function testGetOldPasswords() {
+	public function providesBool() {
+		return [[false], [true]];
+	}
+
+	/**
+	 * @dataProvider providesBool
+	 */
+	public function testGetOldPasswords($excludeForceExpired) {
+		$baseTime = \time();
 		$uid = $this->testUIDs[0];
-		$this->assertCount(0, $this->mapper->getOldPasswords($uid, 3));
-		$this->addInitialTestEntries(\time());
+		$this->assertCount(0, $this->mapper->getOldPasswords($uid, 3, $excludeForceExpired));
+		$this->addInitialTestEntries($baseTime);
 
-		$oldPasswords = $this->mapper->getOldPasswords($uid, 2);
+		$oldPassword = new OldPassword();
+		$oldPassword->setUid($uid);
+		$oldPassword->setPassword(OldPassword::EXPIRED);
+		$oldPassword->setChangeTime($baseTime + 100);
+		$this->mapper->insert($oldPassword);
 
-		$this->assertCount(2, $oldPasswords);
-		$this->assertNotSame("{$uid}testpass1", $oldPasswords[0]->getPassword());
-		$this->assertNotSame("{$uid}testpass1", $oldPasswords[1]->getPassword());
+		$oldPasswords = $this->mapper->getOldPasswords($uid, 2, $excludeForceExpired);
 
-		$this->assertCount(3, $this->mapper->getOldPasswords($uid, 3));
+		if ($excludeForceExpired) {
+			$this->assertCount(2, $oldPasswords);
+			$this->assertSame("{$uid}testpass3", $oldPasswords[0]->getPassword());
+			$this->assertSame("{$uid}testpass2", $oldPasswords[1]->getPassword());
+
+			$this->assertCount(3, $this->mapper->getOldPasswords($uid, 3, $excludeForceExpired));
+		} else {
+			$this->assertCount(2, $oldPasswords);
+			$this->assertSame(OldPassword::EXPIRED, $oldPasswords[0]->getPassword());
+			$this->assertSame("{$uid}testpass3", $oldPasswords[1]->getPassword());
+
+			$this->assertCount(3, $this->mapper->getOldPasswords($uid, 3, $excludeForceExpired));
+		}
 	}
 
 	public function testLatestPassword() {
+		$baseTime = \time();
 		$uid = $this->testUIDs[0];
 		$this->assertNull($this->mapper->getLatestPassword($uid));
-		$this->addInitialTestEntries(\time());
+		$this->addInitialTestEntries($baseTime);
 
 		$latestPassword = $this->mapper->getLatestPassword($uid);
 
 		$this->assertSame("{$uid}testpass3", $latestPassword->getPassword());
 	}
 
+	public function testLatestPasswordIncludesExpired() {
+		$baseTime = \time();
+		$uid = $this->testUIDs[0];
+		$this->assertNull($this->mapper->getLatestPassword($uid));
+		$this->addInitialTestEntries($baseTime);
+
+		// this one is excluded
+		$oldPassword = new OldPassword();
+		$oldPassword->setUid($uid);
+		$oldPassword->setPassword(OldPassword::EXPIRED);
+		$oldPassword->setChangeTime($baseTime + 100);
+		$this->mapper->insert($oldPassword);
+
+		$latestPassword = $this->mapper->getLatestPassword($uid);
+
+		$this->assertSame(OldPassword::EXPIRED, $latestPassword->getPassword());
+	}
+
 	public function testGetPasswordsAboutToExpireAllOk() {
 		$baseTime = \time();
 		$this->addInitialTestEntries($baseTime);
 
-
 		$passwordList = $this->mapper->getPasswordsAboutToExpire($baseTime + 14);
+		$passwordList = \iterator_to_array($passwordList);  // convert to array
+
 		// last password change after the timestamp, so we shouldn't get any result
 		$this->assertCount(0, $passwordList);
 	}
@@ -119,7 +161,6 @@ class OldPasswordMapperTest extends TestCase {
 	public function testGetPasswordsAboutToExpireSomePassMarked() {
 		$baseTime = \time();
 		$this->addInitialTestEntries($baseTime);
-
 
 		$passwordList = $this->mapper->getPasswordsAboutToExpire($baseTime + 44);
 		$passwordList = \iterator_to_array($passwordList);  // convert to array
@@ -142,7 +183,6 @@ class OldPasswordMapperTest extends TestCase {
 	public function testGetPasswordsAboutToExpireAllMarked() {
 		$baseTime = \time();
 		$this->addInitialTestEntries($baseTime);
-
 
 		$passwordList = $this->mapper->getPasswordsAboutToExpire($baseTime + 130);
 		$passwordList = \iterator_to_array($passwordList);  // convert to array
