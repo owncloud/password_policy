@@ -47,7 +47,7 @@ class OldPasswordMapper extends Mapper {
 			->orderBy('id', 'desc')
 			->setMaxResults($length);
 		if ($excludeForceExpired) {
-			$qb->andWhere($qb->expr()->neq('password', OldPassword::EXPIRED));
+			$qb->andWhere($qb->expr()->neq('password', $qb->expr()->literal(OldPassword::EXPIRED)));
 		}
 		$result = $qb->execute();
 		$rows = $result->fetchAll();
