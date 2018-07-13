@@ -45,6 +45,7 @@ class ExpirePassword extends Command {
 	/**
 	 * @param IConfig $config
 	 * @param IUserManager $userManager
+	 * @param OldPasswordMapper $mapper
 	 */
 	public function __construct(
 		IConfig $config,
@@ -107,27 +108,25 @@ class ExpirePassword extends Command {
 
 		$date = new \DateTime($input->getArgument('expiredate'));
 		$date->setTimezone(new \DateTimeZone('UTC'));
-		$value = $date->format('Y-m-d\TH:i:s\Z'); // ISO8601 with Zulu = UTC
 
-		$this->config->setUserValue(
+		if ($this->config->getAppValue('password_policy', 'spv_user_password_expiration_checked', 'no') === 'on') {
+			$delta = $this->config->getAppValue('password_policy', 'spv_user_password_expiration_value', 90);
+			$date->modify("-$delta days");
+		}
+
+		$this->config->deleteUserValue(
 			$uid,
 			'password_policy',
-			'forcePasswordChange',
-			$value
+			'forcePasswordChange'
 		);
 
 		// add a dummy password in the user_password_history so the cron job
-		// can notify about the expiration of the password. We'll use "dummy"
-		// as password hash (we won't hash "dummy")
-		$latestPassword = $this->mapper->getLatestPassword($uid);
-		if ($latestPassword->getPassword() !== 'dummy') {
-			// insert dummy only if it isn't the last
-			$oldPassword = new OldPassword();
-			$oldPassword->setUid($uid);
-			$oldPassword->setPassword('dummy');
-			$oldPassword->setChangeTime(\max($date->getTimestamp(), $latestPassword->getChangeTime() + 1));
-			$this->mapper->insert($oldPassword);
-		}
+		// can notify about the expiration of the password.
+		$oldPassword = new OldPassword();
+		$oldPassword->setUid($uid);
+		$oldPassword->setPassword(OldPassword::EXPIRED);
+		$oldPassword->setChangeTime($date->getTimestamp());
+		$this->mapper->insert($oldPassword);
 
 		// show expire date if it was given
 		if ($input->hasArgument('expiredate')) {

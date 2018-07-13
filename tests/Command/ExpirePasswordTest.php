@@ -139,7 +139,7 @@ class ExpirePasswordTest extends TestCase {
 		$latestPassword = OldPassword::fromRow([
 			'id' => 2233,
 			'uid' => 'usertest1',
-			'password' => 'dummy',
+			'password' => 'expired',
 			'changeTime' => '1515151515'
 		]);
 
