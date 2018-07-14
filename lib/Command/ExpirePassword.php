@@ -40,6 +40,9 @@ class ExpirePassword extends Command {
 	/** @var \OCP\IUserManager */
 	protected $userManager;
 
+	/** @var ITimeFactory */
+	private $timeFactory;
+
 	/** @var OldPasswordMapper */
 	private $mapper;
 
@@ -58,8 +61,8 @@ class ExpirePassword extends Command {
 		parent::__construct();
 		$this->config = $config;
 		$this->userManager = $userManager;
-		$this->mapper = $mapper;
 		$this->timeFactory = $timeFactory;
+		$this->mapper = $mapper;
 	}
 
 	protected function configure() {
