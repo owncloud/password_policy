@@ -65,7 +65,8 @@ class PasswordHistory extends Base {
 		foreach($oldPasswords as $oldPassword) {
 			if ($this->hasher->verify($password, $oldPassword->getPassword())) {
 				throw new PolicyException(
-					$this->l10n->t('The password must be different than your previous %d passwords.', [$val]));
+					$this->l10n->t('The password must be different than your previous %d passwords.', [$val])
+				);
 			}
 		}
 	}

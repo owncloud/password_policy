@@ -22,6 +22,7 @@
 
 namespace OCA\PasswordPolicy\Rules;
 
+use OCA\PasswordPolicy\Db\OldPassword;
 use OCA\PasswordPolicy\Db\OldPasswordMapper;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\IL10N;
@@ -82,7 +83,7 @@ class PasswordExpired extends Base {
 			return;
 		}
 
-		if (!$this->hasher->verify($password, $latestPassword->getPassword())) {
+		if ($latestPassword->getPassword() !== OldPassword::EXPIRED && !$this->hasher->verify($password, $latestPassword->getPassword())) {
 			$this->logger->warning(
 				'Cannot determine the password\'s age, as the existing password {id} for uid {uid} does not match the new password.',
 				[

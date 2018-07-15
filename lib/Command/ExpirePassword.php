@@ -24,10 +24,13 @@ namespace OCA\PasswordPolicy\Command;
 
 use OCP\IConfig;
 use OCP\IUserManager;
+use OCA\PasswordPolicy\Db\OldPasswordMapper;
+use OCA\PasswordPolicy\Db\OldPassword;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use OCP\AppFramework\Utility\ITimeFactory;
 
 
 class ExpirePassword extends Command {
@@ -37,14 +40,29 @@ class ExpirePassword extends Command {
 	/** @var \OCP\IUserManager */
 	protected $userManager;
 
+	/** @var ITimeFactory */
+	private $timeFactory;
+
+	/** @var OldPasswordMapper */
+	private $mapper;
+
 	/**
 	 * @param IConfig $config
 	 * @param IUserManager $userManager
+	 * @param ITimeFactory $timeFactory
+	 * @param OldPasswordMapper $mapper
 	 */
-	public function __construct(IConfig $config, IUserManager $userManager) {
+	public function __construct(
+		IConfig $config,
+		IUserManager $userManager,
+		ITimeFactory $timeFactory,
+		OldPasswordMapper $mapper
+	) {
 		parent::__construct();
 		$this->config = $config;
 		$this->userManager = $userManager;
+		$this->timeFactory = $timeFactory;
+		$this->mapper = $mapper;
 	}
 
 	protected function configure() {
@@ -95,20 +113,38 @@ class ExpirePassword extends Command {
 			return 1;
 		}
 
-		$date = new \DateTime($input->getArgument('expiredate'));
-		$date->setTimezone(new \DateTimeZone('UTC'));
-		$value = $date->format('Y-m-d\TH:i:s\Z'); // ISO8601 with Zulu = UTC
+		$expireDate = new \DateTime();
+		$expireDate->setTimezone(new \DateTimeZone('UTC'));
+		$expireDate->setTimestamp($this->timeFactory->getTime());
+		$expireDate->modify($input->getArgument('expiredate'));
 
-		$this->config->setUserValue(
+		$oldDate = new \DateTime();
+		$oldDate->setTimezone(new \DateTimeZone('UTC'));
+		$oldDate->setTimestamp($this->timeFactory->getTime());
+		$oldDate->modify($input->getArgument('expiredate'));
+
+		if ($this->config->getAppValue('password_policy', 'spv_user_password_expiration_checked', false) === 'on') {
+			$delta = $this->config->getAppValue('password_policy', 'spv_user_password_expiration_value', 90);
+			$oldDate->modify("-$delta days");
+		}
+
+		$this->config->deleteUserValue(
 			$uid,
 			'password_policy',
-			'forcePasswordChange',
-			$value
+			'forcePasswordChange'
 		);
+
+		// add a dummy password in the user_password_history so the cron job
+		// can notify about the expiration of the password.
+		$oldPassword = new OldPassword();
+		$oldPassword->setUid($uid);
+		$oldPassword->setPassword(OldPassword::EXPIRED);
+		$oldPassword->setChangeTime($oldDate->getTimestamp());
+		$this->mapper->insert($oldPassword);
 
 		// show expire date if it was given
 		if ($input->hasArgument('expiredate')) {
-			$output->writeln("The password for $uid is set to expire on ". $date->format('Y-m-d H:i:s T').'.');
+			$output->writeln("The password for $uid is set to expire on ". $expireDate->format('Y-m-d H:i:s T').'.');
 		}
 		return 0;
 	}
