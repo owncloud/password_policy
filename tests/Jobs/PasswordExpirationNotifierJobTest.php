@@ -27,6 +27,7 @@ use OCP\Notification\INotification;
 use OCP\Notification\IAction;
 use OCP\IURLGenerator;
 use OCP\ILogger;
+use OCP\IUserManager;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCA\PasswordPolicy\Db\OldPasswordMapper;
 use OCA\PasswordPolicy\Db\OldPassword;
@@ -43,6 +44,9 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 
 	/** @var UserNotificationConfigHandler */
 	private $unConfigHandler;
+
+	/** @var IUserManager */
+	private $userManager;
 
 	/** @var ITimeFactory */
 	private $timeFactory;
@@ -67,6 +71,9 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 		$this->unConfigHandler = $this->getMockBuilder(UserNotificationConfigHandler::class)
 			->disableOriginalConstructor()
 			->getMock();
+		$this->userManager = $this->getMockBuilder(IUserManager::class)
+			->disableOriginalConstructor()
+			->getMock();
 		$this->timeFactory = $this->getMockBuilder(ITimeFactory::class)
 			->disableOriginalConstructor()
 			->getMock();
@@ -81,6 +88,7 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 			$this->mapper,
 			$this->manager,
 			$this->unConfigHandler,
+			$this->userManager,
 			$this->timeFactory,
 			$this->urlGenerator,
 			$this->logger
@@ -209,6 +217,10 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 		$this->mapper->method('getPasswordsAboutToExpire')
 			->willReturn([$returnedOldPassword]);
 
+		$this->userManager->method('userExists')
+			->with('usertest')
+			->willReturn(true);
+
 		$this->unConfigHandler->method('isSentAboutToExpireNotification')
 			->willReturn(true);
 
@@ -234,6 +246,64 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 
 		$this->unConfigHandler->method('isSentExpiredNotification')
 			->willReturn(true);
+
+		$this->userManager->method('userExists')
+			->with('usertest')
+			->willReturn(true);
+
+		$this->manager->expects($this->never())
+			->method('notify');
+
+		$this->invokePrivate($this->job, 'run', [[]]);
+	}
+
+	public function testRunAboutToExpireMissingUser() {
+		$this->unConfigHandler->method('getExpirationTime')
+			->willReturn(180);
+		$this->unConfigHandler->method('getExpirationTimeForNormalNotification')
+			->willReturn(120);
+
+		$baseTime = 1531232050;
+		$this->timeFactory->method('getTime')
+			->willReturn($baseTime + 150);
+
+		$returnedOldPassword = $this->getOldPassword('22', 'usertest', $baseTime);
+		$this->mapper->method('getPasswordsAboutToExpire')
+			->willReturn([$returnedOldPassword]);
+
+		$this->userManager->method('userExists')
+			->with('usertest')
+			->willReturn(false);
+
+		$this->unConfigHandler->method('isSentAboutToExpireNotification')
+			->willReturn(false);
+
+		$this->manager->expects($this->never())
+			->method('notify');
+
+		$this->invokePrivate($this->job, 'run', [[]]);
+	}
+
+	public function testRunExpiredMissingUser() {
+		$this->unConfigHandler->method('getExpirationTime')
+			->willReturn(180);
+		$this->unConfigHandler->method('getExpirationTimeForNormalNotification')
+			->willReturn(120);
+
+		$baseTime = 1531232050;
+		$this->timeFactory->method('getTime')
+			->willReturn($baseTime + 250);
+
+		$returnedOldPassword = $this->getOldPassword('22', 'usertest', $baseTime);
+		$this->mapper->method('getPasswordsAboutToExpire')
+			->willReturn([$returnedOldPassword]);
+
+		$this->unConfigHandler->method('isSentExpiredNotification')
+			->willReturn(false);
+
+		$this->userManager->method('userExists')
+			->with('usertest')
+			->willReturn(false);
 
 		$this->manager->expects($this->never())
 			->method('notify');
@@ -269,6 +339,10 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 		$this->unConfigHandler->method('isSentAboutToExpireNotification')
 			->willReturn(false);
 
+		$this->userManager->method('userExists')
+			->with('usertest')
+			->willReturn(true);
+
 		$this->manager->expects($this->once())
 			->method('notify');
 		$this->unConfigHandler->expects($this->once())
@@ -298,6 +372,10 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 		$this->unConfigHandler->method('isSentExpiredNotification')
 			->willReturn(false);
 
+		$this->userManager->method('userExists')
+			->with('usertest')
+			->willReturn(true);
+
 		$this->manager->expects($this->once())
 			->method('notify');
 		$this->unConfigHandler->expects($this->once())
@@ -323,6 +401,10 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 
 		$this->unConfigHandler->method('isSentAboutToExpireNotification')
 			->willReturn(false);
+
+		$this->userManager->method('userExists')
+			->with('usertest')
+			->willReturn(true);
 
 		$this->manager->expects($this->never())
 			->method('notify');
