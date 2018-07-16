@@ -26,6 +26,7 @@ use OC\BackgroundJob\TimedJob;
 use OCP\Notification\IManager;
 use OCP\IURLGenerator;
 use OCP\ILogger;
+use OCP\IUserManager;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCA\PasswordPolicy\Db\OldPasswordMapper;
 use OCA\PasswordPolicy\Db\OldPassword;
@@ -41,6 +42,9 @@ class PasswordExpirationNotifierJob extends TimedJob {
 	/** @var UserNotificationConfigHandler */
 	private $unConfigHandler;
 
+	/** @var IUserManager */
+	private $userManager;
+
 	/** @var ITimeFactory */
 	private $timeFactory;
 
@@ -54,6 +58,7 @@ class PasswordExpirationNotifierJob extends TimedJob {
 		OldPasswordMapper $mapper,
 		IManager $manager,
 		UserNotificationConfigHandler $unConfigHandler,
+		IUserManager $userManager,
 		ITimeFactory $timeFactory,
 		IURLGenerator $urlGenerator,
 		ILogger $logger
@@ -61,6 +66,7 @@ class PasswordExpirationNotifierJob extends TimedJob {
 		$this->mapper = $mapper;
 		$this->manager = $manager;
 		$this->unConfigHandler = $unConfigHandler;
+		$this->userManager = $userManager;
 		$this->timeFactory = $timeFactory;
 		$this->urlGenerator = $urlGenerator;
 		$this->logger = $logger;
@@ -122,7 +128,8 @@ class PasswordExpirationNotifierJob extends TimedJob {
 	 * (for example, 90 days - in seconds)
 	 */
 	private function sendAboutToExpireNotification(OldPassword $passInfo, $expirationTime) {
-		if ($this->unConfigHandler->isSentAboutToExpireNotification($passInfo)) {
+		if (!$this->userManager->userExists($passInfo->getUid()) ||
+				$this->unConfigHandler->isSentAboutToExpireNotification($passInfo)) {
 			return;  // notification already sent
 		}
 
@@ -158,7 +165,8 @@ class PasswordExpirationNotifierJob extends TimedJob {
 	 * (for example, 90 days - in seconds)
 	 */
 	private function sendPassExpiredNotification(OldPassword $passInfo, $expirationTime) {
-		if ($this->unConfigHandler->isSentExpiredNotification($passInfo)) {
+		if (!$this->userManager->userExists($passInfo->getUid()) ||
+				$this->unConfigHandler->isSentExpiredNotification($passInfo)) {
 			return;  // notification already sent
 		}
 
