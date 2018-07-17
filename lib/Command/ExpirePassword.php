@@ -34,6 +34,12 @@ use OCP\AppFramework\Utility\ITimeFactory;
 
 
 class ExpirePassword extends Command {
+	/**
+	 * Catchall for general errors
+	 * @see http://tldp.org/LDP/abs/html/exitcodes.html#FTN.AEN23647
+	 */
+	const EX_GENERAL_ERROR = 1;
+
 	/** @var \OCP\IConfig */
 	private $config;
 
@@ -110,7 +116,7 @@ class ExpirePassword extends Command {
 
 		if (!$user->canChangePassword()) {
 			$output->writeln("<error>The user's backend doesn't support password changes. The password cannot be expired for user: $uid</error>");
-			return 1;
+			return self::EX_GENERAL_ERROR;
 		}
 
 		$expireDate = new \DateTime();
