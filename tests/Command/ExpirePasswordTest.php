@@ -68,12 +68,14 @@ class ExpirePasswordTest extends TestCase {
 			->with('not-existing-uid')
 			->willReturn(null);
 
-		$this->commandTester->execute([
+		$returnCode = $this->commandTester->execute([
 			'uid' => 'not-existing-uid',
 			'expiredate' => '2018-06-28 10:13 UTC'
-			]);
+		]);
 		$output = $this->commandTester->getDisplay();
+
 		self::assertContains('Unknown user: not-existing-uid', $output);
+		self::assertSame(67, $returnCode);
 	}
 
 	public function providesExpirePassword() {
