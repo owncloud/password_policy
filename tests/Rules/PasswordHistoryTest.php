@@ -62,7 +62,7 @@ class PasswordHistoryTest extends \PHPUnit_Framework_TestCase {
 			->will($this->returnValue(\OC::$server->getHasher()->hash("testpass2")));
 		$mapper
 			->method('getOldPasswords')
-			->with('testuser', '3')
+			->with('testuser', '2')
 			->will($this->returnValue(
 				[$entity1, $entity2]
 			));

@@ -60,7 +60,7 @@ class PasswordHistory extends Base {
 		}
 		$oldPasswords = $this->mapper->getOldPasswords(
 			$uid,
-			$val+1
+			$val
 		);
 		foreach($oldPasswords as $oldPassword) {
 			if ($this->hasher->verify($password, $oldPassword->getPassword())) {
