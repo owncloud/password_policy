@@ -162,4 +162,39 @@ class ExpirePasswordTest extends TestCase {
 		self::assertSame(1, $returnCode);
 	}
 
+	/**
+	 * @dataProvider providesDateTimeString
+	 */
+	public function testCanRetrieveDateTimeCorrectly($dateTimeString)
+	{
+		$time = 1530180780;
+
+		$this->timeFactory
+			->method('getTime')
+			->willReturn($time);
+
+		$command = new ExpirePassword(
+			$this->config,
+			$this->userManager,
+			$this->timeFactory,
+			$this->mapper
+		);
+
+		$dateTime = $command->getExpiryDateTime($dateTimeString);
+
+		if (is_null($dateTimeString)) {
+			$this->assertSame($dateTime->getTimestamp(), $time);
+		} else {
+			$this->assertSame($dateTime->format('Y-m-d H:i:s T'), $dateTimeString);
+		}
+	}
+
+	public function providesDateTimeString()
+	{
+		return [
+			[null],
+			['2018-06-28 10:13:00 UTC'],
+		];
+	}
+
 }

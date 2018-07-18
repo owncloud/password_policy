@@ -121,15 +121,7 @@ class ExpirePassword extends Command {
 			return self::EX_GENERAL_ERROR;
 		}
 
-		$expireDate = new \DateTime();
-		$expireDate->setTimezone(new \DateTimeZone('UTC'));
-		$expireDate->setTimestamp($this->timeFactory->getTime());
-		$expireDate->modify($input->getArgument('expiredate'));
-
-		$oldDate = new \DateTime();
-		$oldDate->setTimezone(new \DateTimeZone('UTC'));
-		$oldDate->setTimestamp($this->timeFactory->getTime());
-		$oldDate->modify($input->getArgument('expiredate'));
+		$oldDate = $this->getExpiryDateTime($input->getArgument('expiredate'));
 
 		if ($this->config->getAppValue('password_policy', 'spv_user_password_expiration_checked', false) === 'on') {
 			$delta = $this->config->getAppValue('password_policy', 'spv_user_password_expiration_value', 90);
@@ -153,7 +145,25 @@ class ExpirePassword extends Command {
 		// show expire date if it was given
 		if ($input->hasArgument('expiredate')) {
 			$output->writeln("The password for $uid is set to expire on ". $expireDate->format('Y-m-d H:i:s T').'.');
+			$expireDate = $this->getExpiryDateTime($input->getArgument('expiredate'));
 		}
 		return 0;
+
+	/**
+	 * Return a DateTime object, optionally modified by $expiryDate
+	 * @param string $expiryDate
+	 * @return \DateTime
+	 */
+	public function getExpiryDateTime($expiryDate)
+	{
+		$dateTime = (new \DateTime(
+			'now', new \DateTimeZone('UTC')
+		))->setTimestamp($this->timeFactory->getTime());
+
+		if (!empty((string)$expiryDate)) {
+			$dateTime->modify($expiryDate);
+		}
+
+		return $dateTime;
 	}
 }
