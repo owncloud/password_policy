@@ -39,6 +39,7 @@ class ExpirePassword extends Command {
 	 * @see http://tldp.org/LDP/abs/html/exitcodes.html#FTN.AEN23647
 	 */
 	const EX_GENERAL_ERROR = 1;
+	const EX_SUCCESS = 0;
 
 	/**
 	 * return EX_NOUSER from /usr/include/sysexits.h
@@ -105,8 +106,7 @@ class ExpirePassword extends Command {
 	 * @return int
 	 * @throws \OCP\PreConditionNotMetException
 	 */
-	protected function execute(InputInterface $input, OutputInterface $output)
-	{
+	protected function execute(InputInterface $input, OutputInterface $output) {
 		/** @var $user \OCP\IUser */
 		$user = $this->userManager->get($input->getArgument('uid'));
 
@@ -147,7 +147,7 @@ class ExpirePassword extends Command {
 			$output->writeln("The password for {$user->getUID()} is set to expire on " . $expireDate->format('Y-m-d H:i:s T') . '.');
 		}
 
-		return 0;
+		return self::EX_SUCCESS;
 	}
 
 	/**
