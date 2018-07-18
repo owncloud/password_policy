@@ -102,6 +102,11 @@ class ExpirePasswordTest extends TestCase {
 			->method('canChangePassword')
 			->willReturn(true);
 
+		$user
+			->expects($this->exactly(3))
+			->method('getUID')
+			->willReturn('existing-uid');
+
 		$this->userManager
 			->expects($this->once())
 			->method('get')
@@ -145,6 +150,11 @@ class ExpirePasswordTest extends TestCase {
 			->expects($this->once())
 			->method('canChangePassword')
 			->willReturn(false);
+
+		$user
+			->expects($this->once())
+			->method('getUID')
+			->willReturn('existing-uid');
 
 		$this->userManager
 			->expects($this->once())

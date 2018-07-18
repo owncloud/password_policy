@@ -105,19 +105,18 @@ class ExpirePassword extends Command {
 	 * @return int
 	 * @throws \OCP\PreConditionNotMetException
 	 */
-	protected function execute(InputInterface $input, OutputInterface $output) {
-		$uid = $input->getArgument('uid');
-
+	protected function execute(InputInterface $input, OutputInterface $output)
+	{
 		/** @var $user \OCP\IUser */
-		$user = $this->userManager->get($uid);
+		$user = $this->userManager->get($input->getArgument('uid'));
 
 		if ($user === null) {
-			$output->writeln("<error>Unknown user: $uid</error>");
+			$output->writeln("<error>Unknown user: {$input->getArgument('uid')}</error>");
 			return self::EX_NOUSER;
 		}
 
 		if (!$user->canChangePassword()) {
-			$output->writeln("<error>The user's backend doesn't support password changes. The password cannot be expired for user: $uid</error>");
+			$output->writeln("<error>The user's backend doesn't support password changes. The password cannot be expired for user: {$user->getUID()}</error>");
 			return self::EX_GENERAL_ERROR;
 		}
 
@@ -129,7 +128,7 @@ class ExpirePassword extends Command {
 		}
 
 		$this->config->deleteUserValue(
-			$uid,
+			$user->getUID(),
 			'password_policy',
 			'forcePasswordChange'
 		);
@@ -137,17 +136,19 @@ class ExpirePassword extends Command {
 		// add a dummy password in the user_password_history so the cron job
 		// can notify about the expiration of the password.
 		$this->mapper->insert(OldPassword::fromParams([
-			'uid' => $uid,
+			'uid' => $user->getUID(),
 			'password' => OldPassword::EXPIRED,
 			'changeTime' => $oldDate->getTimestamp(),
 		]));
 
 		// show expire date if it was given
 		if ($input->hasArgument('expiredate')) {
-			$output->writeln("The password for $uid is set to expire on ". $expireDate->format('Y-m-d H:i:s T').'.');
 			$expireDate = $this->getExpiryDateTime($input->getArgument('expiredate'));
+			$output->writeln("The password for {$user->getUID()} is set to expire on " . $expireDate->format('Y-m-d H:i:s T') . '.');
 		}
+
 		return 0;
+	}
 
 	/**
 	 * Return a DateTime object, optionally modified by $expiryDate
