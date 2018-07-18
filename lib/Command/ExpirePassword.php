@@ -136,11 +136,11 @@ class ExpirePassword extends Command {
 
 		// add a dummy password in the user_password_history so the cron job
 		// can notify about the expiration of the password.
-		$oldPassword = new OldPassword();
-		$oldPassword->setUid($uid);
-		$oldPassword->setPassword(OldPassword::EXPIRED);
-		$oldPassword->setChangeTime($oldDate->getTimestamp());
-		$this->mapper->insert($oldPassword);
+		$this->mapper->insert(OldPassword::fromParams([
+			'uid' => $uid,
+			'password' => OldPassword::EXPIRED,
+			'changeTime' => $oldDate->getTimestamp(),
+		]));
 
 		// show expire date if it was given
 		if ($input->hasArgument('expiredate')) {
