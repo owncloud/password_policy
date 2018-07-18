@@ -150,12 +150,14 @@ class ExpirePasswordTest extends TestCase {
 			->with('existing-uid')
 			->willReturn($user);
 
-		$this->commandTester->execute([
+		$returnCode = $this->commandTester->execute([
 			'uid' => 'existing-uid',
 			'expiredate' => '2018-06-28 10:13 UTC'
 		]);
 		$output = $this->commandTester->getDisplay();
+
 		self::assertContains("The user's backend doesn't support password changes. The password cannot be expired for user: existing-uid", $output);
+		self::assertSame(1, $returnCode);
 	}
 
 }
