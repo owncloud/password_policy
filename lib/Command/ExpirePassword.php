@@ -116,7 +116,10 @@ class ExpirePassword extends Command {
 		}
 
 		if (!$user->canChangePassword()) {
-			$output->writeln("<error>The user's backend doesn't support password changes. The password cannot be expired for user: {$user->getUID()}</error>");
+			$output->writeln(sprintf(
+				"<error>The user's backend doesn't support password changes. The password cannot be expired for user: %s.</error>",
+				$user->getUID()
+			));
 			return self::EX_GENERAL_ERROR;
 		}
 
@@ -144,7 +147,11 @@ class ExpirePassword extends Command {
 		// show expire date if it was given
 		if ($input->hasArgument('expiredate')) {
 			$expireDate = $this->getExpiryDateTime($input->getArgument('expiredate'));
-			$output->writeln("The password for {$user->getUID()} is set to expire on " . $expireDate->format('Y-m-d H:i:s T') . '.');
+			$output->writeln(sprintf(
+				"The password for %s is set to expire on %s.",
+				$user->getUID(),
+				$expireDate->format('Y-m-d H:i:s T')
+			));
 		}
 
 		return self::EX_SUCCESS;
