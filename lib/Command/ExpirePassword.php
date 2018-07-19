@@ -40,6 +40,12 @@ class ExpirePassword extends Command {
 	 */
 	const EX_GENERAL_ERROR = 1;
 
+	/**
+	 * return EX_NOUSER from /usr/include/sysexits.h
+	 * @see http://tldp.org/LDP/abs/html/exitcodes.html#FTN.AEN23647
+	 */
+	const EX_NOUSER = 67;
+
 	/** @var \OCP\IConfig */
 	private $config;
 
@@ -107,11 +113,7 @@ class ExpirePassword extends Command {
 
 		if ($user === null) {
 			$output->writeln("<error>Unknown user: $uid</error>");
-			/**
-			 * return EX_NOUSER from /usr/include/sysexits.h
-			 * @see http://tldp.org/LDP/abs/html/exitcodes.html#FTN.AEN23647
-			 */
-			return 67;
+			return self::EX_NOUSER;
 		}
 
 		if (!$user->canChangePassword()) {
