@@ -87,7 +87,7 @@ script('password_policy', 'ajax');
 				<label>
 					<input type="checkbox" name="spv_user_password_expiration_checked" <?php if ($_['spv_user_password_expiration_checked']): ?> checked="checked"<?php endif; ?>/>
 					<input type="number" name="spv_user_password_expiration_value"  min="0" value="<?php p($_['spv_user_password_expiration_value']) ?>" placeholder="90"/>
-					<span><?php p($l->t('days until user password expires'));?></span>
+					<span><?php p($l->t('seconds until user password expires'));?></span>
 				</label>
 			</li>
 			<li>
