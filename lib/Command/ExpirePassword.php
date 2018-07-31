@@ -23,12 +23,15 @@
 namespace OCA\PasswordPolicy\Command;
 
 use OCP\IConfig;
+use OCP\IGroupManager;
+use OCP\IUser;
 use OCP\IUserManager;
 use OCA\PasswordPolicy\Db\OldPasswordMapper;
 use OCA\PasswordPolicy\Db\OldPassword;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use OCP\AppFramework\Utility\ITimeFactory;
 
@@ -52,27 +55,36 @@ class ExpirePassword extends Command {
 	/** @var \OCP\IUserManager */
 	protected $userManager;
 
+	/** @var IGroupManager */
+	private $groupManager;
+
 	/** @var ITimeFactory */
 	private $timeFactory;
 
 	/** @var OldPasswordMapper */
 	private $mapper;
 
+
 	/**
+	 * ExpirePassword constructor.
+	 *
 	 * @param IConfig $config
 	 * @param IUserManager $userManager
+	 * @param IGroupManager $groupManager
 	 * @param ITimeFactory $timeFactory
 	 * @param OldPasswordMapper $mapper
 	 */
 	public function __construct(
 		IConfig $config,
 		IUserManager $userManager,
+		IGroupManager $groupManager,
 		ITimeFactory $timeFactory,
 		OldPasswordMapper $mapper
 	) {
 		parent::__construct();
 		$this->config = $config;
 		$this->userManager = $userManager;
+		$this->groupManager = $groupManager;
 		$this->timeFactory = $timeFactory;
 		$this->mapper = $mapper;
 	}
@@ -82,18 +94,30 @@ class ExpirePassword extends Command {
 			->setName('user:expire-password')
 			->setDescription('Expire a user\'s password')
 			->addArgument(
-					'uid',
-					InputArgument::REQUIRED,
-					'The user\'s ownCloud uid (username).'
-				     )
-			->addArgument(
 					'expiredate',
 					InputArgument::OPTIONAL,
 					'The date and time when a password expires, e.g. "2019-01-01 14:00:00 CET".',
 					'-1 days'		// base.php sets timezone to utc, so
 										// make sure date is in the past
-				     )
-		;
+				)
+			->addOption(
+				'all',
+				null,
+				InputOption::VALUE_NONE,
+				'Will add password expiry to all known users. uid and group option will be discarded if all option is provided by user.'
+			)
+			->addOption(
+				'uid',
+				'u',
+				InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY,
+				'The user\'s uid is used. This option can be used as --uid "Alice" --uid "Bob"'
+			)
+			->addOption(
+				'group',
+				'g',
+				InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY,
+				'Add password expiry to user(s) under group(s). This option can be used as --group "foo" --group "bar" to add expiry passwords for users in group foo and bar. If uid option (eg: --uid "user1") is passed with group, then uid will also be processed.'
+			);
 	}
 
 	/**
@@ -106,30 +130,84 @@ class ExpirePassword extends Command {
 	 * @throws \OCP\PreConditionNotMetException
 	 */
 	protected function execute(InputInterface $input, OutputInterface $output) {
-		$uid = $input->getArgument('uid');
-
-		/** @var $user \OCP\IUser */
-		$user = $this->userManager->get($uid);
-
-		if ($user === null) {
-			$output->writeln("<error>Unknown user: $uid</error>");
-			return self::EX_NOUSER;
-		}
-
-		if (!$user->canChangePassword()) {
-			$output->writeln("<error>The user's backend doesn't support password changes. The password cannot be expired for user: $uid</error>");
-			return self::EX_GENERAL_ERROR;
-		}
+		$groups = $input->getOption('group');
+		$allUsers = $input->getOption('all');
+		$uids = $input->getOption('uid');
 
 		$expireDate = new \DateTime();
-		$expireDate->setTimezone(new \DateTimeZone('UTC'));
-		$expireDate->setTimestamp($this->timeFactory->getTime());
-		$expireDate->modify($input->getArgument('expiredate'));
-
 		$oldDate = new \DateTime();
-		$oldDate->setTimezone(new \DateTimeZone('UTC'));
+		$timeZone = new \DateTimeZone('UTC');
+		$inputExpireDate = $input->getArgument('expiredate');
+
+		//This array will hold the uids of users process when group option is passed
+		$users = [];
+		if ($allUsers !== false) {
+			$this->userManager->callForAllUsers(function (IUser $user) use ($expireDate, $oldDate, $timeZone, $inputExpireDate, $output, &$users) {
+				if (isset($users[$user->getUID()]) === false) {
+					if ($user->canChangePassword()) {
+						$calculatedExpireDate = $this->setPasswordExpiry($expireDate, $oldDate, $timeZone, $inputExpireDate, $user);
+						$output->writeln('The password for ' . $user->getUID() . ' is set to expire on ' . $calculatedExpireDate->format('Y-m-d H:i:s T') . '.');
+						$users[$user->getUID()] = true;
+					}
+				}
+			});
+		} else {
+			if (\count($groups) >= 1) {
+				foreach ($groups as $group) {
+					if ($this->groupManager->groupExists($group) === true) {
+						foreach ($this->groupManager->findUsersInGroup($group) as $user) {
+							if (isset($users[$user->getUID()]) === false) {
+								if ($user->canChangePassword()) {
+									$calculatedExpireDate = $this->setPasswordExpiry($expireDate, $oldDate, $timeZone, $inputExpireDate, $user);
+									$output->writeln('The password for ' . $user->getUID() . ' is set to expire on ' . $calculatedExpireDate->format('Y-m-d H:i:s T') . '.');
+									$users[$user->getUID()] = true;
+								}
+							}
+						}
+					} else {
+						$output->writeln("Ignoring missing group $group");
+					}
+				}
+			}
+
+			if (\count($uids) > 0) {
+				foreach ($uids as $uid) {
+					/** @var $user \OCP\IUser */
+					$user = $this->userManager->get($uid);
+
+					if ($user === null) {
+						$output->writeln("<error>Unknown user: $uid</error>");
+					} else {
+						if (isset($users[$user->getUID()])) {
+							continue;
+						}
+						if (!$user->canChangePassword()) {
+							$output->writeln("<error>The user's backend doesn't support password changes. The password cannot be expired for user: $uid</error>");
+						} else {
+							$calculatedExpireDate = $this->setPasswordExpiry($expireDate, $oldDate, $timeZone, $inputExpireDate, $user);
+							$output->writeln('The password for ' . $user->getUID() . ' is set to expire on ' . $calculatedExpireDate->format('Y-m-d H:i:s T') . '.');
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * @param \DateTime $expireDate
+	 * @param \DateTime $oldDate
+	 * @param \DateTimeZone $timeZone
+	 * @param $inputExpireDate
+	 * @param IUser $user
+	 */
+	protected function setPasswordExpiry(\DateTime $expireDate, \DateTime $oldDate, \DateTimeZone $timeZone, $inputExpireDate , IUser $user) {
+		$expireDate->setTimezone($timeZone);
+		$expireDate->setTimestamp($this->timeFactory->getTime());
+		$expireDate->modify($inputExpireDate);
+
+		$oldDate->setTimezone($timeZone);
 		$oldDate->setTimestamp($this->timeFactory->getTime());
-		$oldDate->modify($input->getArgument('expiredate'));
+		$oldDate->modify($inputExpireDate);
 
 		if ($this->config->getAppValue('password_policy', 'spv_user_password_expiration_checked', false) === 'on') {
 			$delta = $this->config->getAppValue('password_policy', 'spv_user_password_expiration_value', 90);
@@ -137,7 +215,7 @@ class ExpirePassword extends Command {
 		}
 
 		$this->config->deleteUserValue(
-			$uid,
+			$user->getUID(),
 			'password_policy',
 			'forcePasswordChange'
 		);
@@ -145,15 +223,11 @@ class ExpirePassword extends Command {
 		// add a dummy password in the user_password_history so the cron job
 		// can notify about the expiration of the password.
 		$oldPassword = new OldPassword();
-		$oldPassword->setUid($uid);
+		$oldPassword->setUid($user->getUID());
 		$oldPassword->setPassword(OldPassword::EXPIRED);
 		$oldPassword->setChangeTime($oldDate->getTimestamp());
 		$this->mapper->insert($oldPassword);
 
-		// show expire date if it was given
-		if ($input->hasArgument('expiredate')) {
-			$output->writeln("The password for $uid is set to expire on ". $expireDate->format('Y-m-d H:i:s T').'.');
-		}
-		return 0;
+		return $expireDate;
 	}
 }
