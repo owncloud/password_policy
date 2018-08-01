@@ -147,7 +147,12 @@ class PasswordExpirationNotifierJob extends TimedJob {
 
 		$linkAction = $notification->createAction();
 		$linkAction->setLabel('Change password')
-			->setLink($this->getNotificationLink(), 'GET');
+			->setLink($this->getActionLinkAboutToExpire($passInfo->getId()), 'POST');
+
+		if (\method_exists($linkAction, 'setRedirect')) {
+			$linkAction->setRedirect(true);
+		}
+
 		$notification->addAction($linkAction);
 
 		$this->manager->notify($notification);
@@ -184,7 +189,12 @@ class PasswordExpirationNotifierJob extends TimedJob {
 
 		$linkAction = $notification->createAction();
 		$linkAction->setLabel('Change password')
-			->setLink($this->getNotificationLink(), 'GET');
+			->setLink($this->getActionLinkExpired($passInfo->getId()), 'POST');
+
+		if (\method_exists($linkAction, 'setRedirect')) {
+			$linkAction->setRedirect(true);
+		}
+
 		$notification->addAction($linkAction);
 
 		$this->manager->notify($notification);
@@ -196,6 +206,20 @@ class PasswordExpirationNotifierJob extends TimedJob {
 		return $this->urlGenerator->linkToRouteAbsolute(
 			'settings.SettingsPage.getPersonal',
 			['sectionid' => 'general']
+		);
+	}
+
+	private function getActionLinkAboutToExpire($id) {
+		return $this->urlGenerator->linkToRouteAbsolute(
+			'ocs.password_policy.NotificationRedirector.markAndRedirectAboutToExpire',
+			['id' => $id, 'format' => 'json']
+		);
+	}
+
+	private function getActionLinkExpired($id) {
+		return $this->urlGenerator->linkToRouteAbsolute(
+			'ocs.password_policy.NotificationRedirector.markAndRedirectExpired',
+			['id' => $id, 'format' => 'json']
 		);
 	}
 }

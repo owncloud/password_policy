@@ -19,8 +19,22 @@
  *
  */
 
-return ['routes' => [
-	['name' => 'Settings#updatePolicy', 'url' => '/update_policy', 'verb' => 'POST'],
-	['name' => 'password#show', 'url' => '/update_password', 'verb' => 'GET'],
-	['name' => 'password#update', 'url' => '/update_password', 'verb' => 'POST'],
-]];
+return [
+	'routes' => [
+		['name' => 'Settings#updatePolicy', 'url' => '/update_policy', 'verb' => 'POST'],
+		['name' => 'password#show', 'url' => '/update_password', 'verb' => 'GET'],
+		['name' => 'password#update', 'url' => '/update_password', 'verb' => 'POST'],
+	],
+	'ocs' => [
+		[
+			'name' => 'NotificationRedirector#markAndRedirectAboutToExpire',
+			'url' => '/process_notification/about_to_expire/{id}',
+			'verb' => 'POST',
+		],
+		[
+			'name' => 'NotificationRedirector#markAndRedirectExpired',
+			'url' => '/process_notification/expired/{id}',
+			'verb' => 'POST',
+		],
+	]
+];
