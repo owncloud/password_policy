@@ -37,12 +37,6 @@ script('password_policy', 'ajax');
 		<ul>
 			<li>
 				<label>
-					<input type="checkbox" name="spv_password_history_checked" <?php if ($_['spv_password_history_checked']): ?> checked="checked"<?php endif; ?>>
-					<input type="number" name="spv_password_history_value" min="0" max="255" value="<?php p($_['spv_password_history_value']) ?>"> <?php p($l->t('different than last passwords'));?>
-				</label>
-			</li>
-			<li>
-				<label>
 					<input type="checkbox" name="spv_min_chars_checked" <?php if ($_['spv_min_chars_checked']): ?> checked="checked"<?php endif; ?>>
 					<input type="number" name="spv_min_chars_value" min="0" max="255" value="<?php p($_['spv_min_chars_value']) ?>"> <?php p($l->t('minimum characters'));?>
 				</label>
@@ -73,7 +67,7 @@ script('password_policy', 'ajax');
 			</li>
 			<li class="indented">
 				<label>
-					<input type="checkbox" name="spv_def_special_chars_checked" <?php if ($_['spv_def_special_chars_checked']): ?> checked="checked"<?php endif; ?>> <?php p($l->t('Define special characters:'));?>
+					<input type="checkbox" name="spv_def_special_chars_checked" <?php if ($_['spv_def_special_chars_checked']): ?> checked="checked"<?php endif; ?>> <?php p($l->t('Restrict to these special characters:'));?>
 				</label>
 				<input type="text" name="spv_def_special_chars_value" value="<?php p($_['spv_def_special_chars_value']) ?>">
 			</li>
@@ -83,6 +77,12 @@ script('password_policy', 'ajax');
 			<?php p($l->t('User password policies:'));?>
 		</p>
 		<ul>
+			<li>
+				<label>
+					<input type="checkbox" name="spv_password_history_checked" <?php if ($_['spv_password_history_checked']): ?> checked="checked"<?php endif; ?>>
+					<input type="number" name="spv_password_history_value" min="0" max="255" value="<?php p($_['spv_password_history_value']) ?>"> <?php p($l->t('last passwords should not be used'));?>
+				</label>
+			</li>
 			<li>
 				<label>
 					<input type="checkbox" name="spv_user_password_expiration_checked" <?php if ($_['spv_user_password_expiration_checked']): ?> checked="checked"<?php endif; ?>/>
