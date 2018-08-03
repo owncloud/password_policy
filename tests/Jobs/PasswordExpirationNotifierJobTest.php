@@ -22,6 +22,7 @@
 
 namespace OCA\PasswordPolicy\Tests\Jobs;
 
+use OCP\IUser;
 use OCP\Notification\IManager;
 use OCP\Notification\INotification;
 use OCP\Notification\IAction;
@@ -33,6 +34,8 @@ use OCA\PasswordPolicy\Db\OldPasswordMapper;
 use OCA\PasswordPolicy\Db\OldPassword;
 use OCA\PasswordPolicy\UserNotificationConfigHandler;
 use OCA\PasswordPolicy\Jobs\PasswordExpirationNotifierJob;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\GenericEvent;
 use Test\TestCase;
 
 class PasswordExpirationNotifierJobTest extends TestCase {
@@ -56,6 +59,8 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 
 	/** @var ILogger */
 	private $logger;
+
+	private $eventDispatcher;
 
 	/** @var PasswordExpirationNotifierJob */
 	private $job;
@@ -83,6 +88,7 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 		$this->logger = $this->getMockBuilder(ILogger::class)
 			->disableOriginalConstructor()
 			->getMock();
+		$this->eventDispatcher = $this->createMock(EventDispatcher::class);
 
 		$this->job = new PasswordExpirationNotifierJob(
 			$this->mapper,
@@ -91,7 +97,8 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 			$this->userManager,
 			$this->timeFactory,
 			$this->urlGenerator,
-			$this->logger
+			$this->logger,
+			$this->eventDispatcher
 		);
 
 		$this->manager->method('createNotification')
@@ -349,6 +356,18 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 			->method('markAboutToExpireNotificationSentFor')
 			->with($returnedOldPassword);
 
+		$iUser = $this->createMock(IUser::class);
+		$this->userManager->expects($this->once())
+			->method('get')
+			->willReturn($iUser);
+		$aboutToExpireEvent = new GenericEvent(null,
+			['expireStatus' => 'about_to_expire',
+				'user' => $iUser,
+				'passwordExpireInSeconds' => 180]);
+		$this->eventDispatcher->expects($this->once())
+			->method('dispatch')
+			->with('user.passwordAboutToExpire', $aboutToExpireEvent);
+
 		$this->invokePrivate($this->job, 'run', [[]]);
 	}
 
@@ -381,6 +400,18 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 		$this->unConfigHandler->expects($this->once())
 			->method('markExpiredNotificationSentFor')
 			->with($returnedOldPassword);
+
+		$iUser = $this->createMock(IUser::class);
+		$this->userManager->expects($this->once())
+			->method('get')
+			->willReturn($iUser);
+		$aboutToExpireEvent = new GenericEvent(null,
+			['expireStatus' => 'expired',
+				'user' => $iUser,
+				'passwordExpireInSeconds' => 180]);
+		$this->eventDispatcher->expects($this->once())
+			->method('dispatch')
+			->with('user.passwordExpired', $aboutToExpireEvent);
 
 		$this->invokePrivate($this->job, 'run', [[]]);
 	}

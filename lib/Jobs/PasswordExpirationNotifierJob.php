@@ -31,6 +31,8 @@ use OCP\AppFramework\Utility\ITimeFactory;
 use OCA\PasswordPolicy\Db\OldPasswordMapper;
 use OCA\PasswordPolicy\Db\OldPassword;
 use OCA\PasswordPolicy\UserNotificationConfigHandler;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\GenericEvent;
 
 class PasswordExpirationNotifierJob extends TimedJob {
 	/** @var OldPasswordMapper */
@@ -54,6 +56,9 @@ class PasswordExpirationNotifierJob extends TimedJob {
 	/** @var ILogger */
 	private $logger;
 
+	/** @var EventDispatcher */
+	private $eventDispatcher;
+
 	public function __construct(
 		OldPasswordMapper $mapper,
 		IManager $manager,
@@ -61,7 +66,8 @@ class PasswordExpirationNotifierJob extends TimedJob {
 		IUserManager $userManager,
 		ITimeFactory $timeFactory,
 		IURLGenerator $urlGenerator,
-		ILogger $logger
+		ILogger $logger,
+		EventDispatcher $eventDispatcher
 	) {
 		$this->mapper = $mapper;
 		$this->manager = $manager;
@@ -70,6 +76,7 @@ class PasswordExpirationNotifierJob extends TimedJob {
 		$this->timeFactory = $timeFactory;
 		$this->urlGenerator = $urlGenerator;
 		$this->logger = $logger;
+		$this->eventDispatcher = $eventDispatcher;
 
 		$this->setInterval(12 * 60 * 60);
 	}
@@ -153,6 +160,14 @@ class PasswordExpirationNotifierJob extends TimedJob {
 		$this->manager->notify($notification);
 
 		$this->unConfigHandler->markAboutToExpireNotificationSentFor($passInfo);
+
+		$aboutToExpireEvent = new GenericEvent(null,
+			[
+				'expireStatus' => 'about_to_expire',
+				'user' => $this->userManager->get($passInfo->getUid()),
+				'passwordExpireInSeconds' => $expirationTime
+			]);
+		$this->eventDispatcher->dispatch('user.passwordAboutToExpire', $aboutToExpireEvent);
 	}
 
 	/**
@@ -190,6 +205,14 @@ class PasswordExpirationNotifierJob extends TimedJob {
 		$this->manager->notify($notification);
 
 		$this->unConfigHandler->markExpiredNotificationSentFor($passInfo);
+
+		$expiredEvent = new GenericEvent(null,
+			[
+				'expireStatus' => 'expired',
+				'user' => $this->userManager->get($passInfo->getUid()),
+				'passwordExpireInSeconds' => $expirationTime
+			]);
+		$this->eventDispatcher->dispatch('user.passwordExpired', $expiredEvent);
 	}
 
 	private function getNotificationLink() {
