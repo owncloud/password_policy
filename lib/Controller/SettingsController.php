@@ -91,7 +91,7 @@ class SettingsController extends Controller implements ISettings {
 					}
 					$this->config->setAppValue('password_policy', $key, $value);
 				} else {
-					$this->config->setAppValue('password_policy', $key, \strip_tags($this->request->getParam($key)));
+					$this->config->setAppValue('password_policy', $key, $this->request->getParam($key));
 				}
 			} else {
 				$this->config->setAppValue('password_policy', $key, $default);
