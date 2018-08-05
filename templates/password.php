@@ -33,8 +33,22 @@ style('password_policy', 'styles');
 <form id="password_policy" method="post">
 	<fieldset>
 		<h1 class="warning">
-			<div><?php p($l->t('Your password has expired.')); ?></div>
-			<div><?php p($l->t('Please choose a new password.')); ?></div>
+			<div>
+				<?php
+					if ($_['firstLogin'] === true) {
+						p($l->t('Please set a new password'));
+					} else {
+						p($l->t('Your password has expired.'));
+					}
+				?>
+			</div>
+			<div>
+				<?php
+					if ($_['firstLogin'] !== true) {
+						p($l->t('Please choose a new password.'));
+					}
+				?>
+			</div>
 		</h1>
 		<?php if (isset($_['error'])) { ?><div id="error" class="warning"><?php p($_['error']) ?></div> <?php } ?>
 		<input type="hidden" name="redirect_url" value="<?php p($_['redirect_url']) ?>" />

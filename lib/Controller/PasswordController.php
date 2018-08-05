@@ -93,6 +93,13 @@ class PasswordController extends Controller implements IAccountModuleController 
 			'redirect_url' => $redirect_url,
 			'webroot' => \OC::$WEBROOT
 		];
+
+		$user = $this->userSession->getUser();
+		if ($user !== null) {
+			if ($this->config->getUserValue($user->getUID(), 'password_policy', 'firstLoginPasswordChange') === '1') {
+				$params['firstLogin'] = true;
+			}
+		}
 		if (empty($params['redirect_url'])) {
 			$params['redirect_url'] = $this->urlGenerator->getAbsoluteURL('');
 		}
@@ -138,6 +145,14 @@ class PasswordController extends Controller implements IAccountModuleController 
 	 * @return TemplateResponse|RedirectResponse
 	 */
 	public function update($current_password, $new_password, $confirm_password, $redirect_url) {
+		$user = $this->userSession->getUser();
+		if(($user !== null) && !$this->userManager->checkPassword($user->getUID(), $current_password)) {
+			return $this->createPasswordTemplateResponse(
+				$redirect_url,
+				$this->l10n->t('Old password is wrong.')
+			);
+		}
+
 		if ($new_password !== $confirm_password) {
 			return $this->createPasswordTemplateResponse(
 				$redirect_url,
@@ -149,15 +164,6 @@ class PasswordController extends Controller implements IAccountModuleController 
 			return $this->createPasswordTemplateResponse(
 				$redirect_url,
 				$this->l10n->t('Password must be different than the old password.')
-			);
-		}
-
-		$user = $this->userSession->getUser();
-
-		if(!$this->userManager->checkPassword($user->getUID(), $current_password)) {
-			return $this->createPasswordTemplateResponse(
-				$redirect_url,
-				$this->l10n->t('The current password is incorrect.')
 			);
 		}
 
@@ -178,6 +184,9 @@ class PasswordController extends Controller implements IAccountModuleController 
 		$this->session->remove('password_policy.forcePasswordChange');
 		// unset user config flag
 		$this->config->deleteUserValue($user->getUID(), 'password_policy', 'forcePasswordChange');
+		if ($this->config->getUserValue($user->getUID(), 'password_policy', 'firstLoginPasswordChange')) {
+			$this->config->deleteUserValue($user->getUID(), 'password_policy', 'firstLoginPasswordChange');
+		}
 		return new RedirectResponse($redirect_url);
 	}
 }
