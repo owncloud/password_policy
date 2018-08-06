@@ -433,4 +433,12 @@ class HooksHandlerTest extends TestCase {
 		$event = new GenericEvent('foo');
 		$this->handler->checkForcePasswordChangeOnFirstLogin($event);
 	}
+
+	public function testRemoveUserEntriesFromTable() {
+		$event = new GenericEvent(null, ['uid' => 'foo']);
+		$this->oldPasswordMapper->expects($this->once())
+			->method('cleanUserHistory');
+
+		$this->handler->removeUserEntriesFromTable($event);
+	}
 }

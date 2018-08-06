@@ -328,4 +328,17 @@ class HooksHandler {
 			$this->forcePasswordChange(true, $user);
 		}
 	}
+
+	/**
+	 * This method removes the entries which remain in oc_user_password_history
+	 * table and oc_notifications table after the deletion of the user
+	 *
+	 * @param GenericEvent $event
+	 */
+	public function removeUserEntriesFromTable(GenericEvent $event) {
+		$this->fixDI();
+		$uid = $event->getArgument('uid');
+
+		$this->oldPasswordMapper->cleanUserHistory($uid);
+	}
 }
