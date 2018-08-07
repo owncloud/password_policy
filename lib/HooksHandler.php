@@ -257,7 +257,10 @@ class HooksHandler {
 	/**
 	 * Flags the session to require a password change
 	 */
-	protected function forcePasswordChange() {
+	protected function forcePasswordChange($firstLogin = null, IUser $user = null) {
+		if (($firstLogin === true) && ($user !== null)) {
+			$this->config->setUserValue($user->getUID(), 'password_policy', 'firstLoginPasswordChange', '1');
+		}
 		$this->session->set('password_policy.forcePasswordChange', true);
 	}
 
@@ -322,7 +325,7 @@ class HooksHandler {
 		// If option is enabled in security settings check first login
 		if ($this->engine->yes('spv_user_password_force_change_on_first_login_checked')) {
 			// try to find user in account table, needs find to search additional search terms,
-			$this->forcePasswordChange();
+			$this->forcePasswordChange(true, $user);
 		}
 	}
 }

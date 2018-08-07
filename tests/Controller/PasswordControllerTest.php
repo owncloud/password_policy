@@ -97,12 +97,26 @@ class PasswordControllerTest extends TestCase {
 				$this->urlGenerator,
 				$this->l10n
 			);
+
+		$this->config->expects($this->exactly(2))
+			->method('getUserValue')
+			->willReturn('1');
+
+		$iUser = $this->createMock(IUser::class);
+		$iUser->expects($this->any())
+			->method('getUID')
+			->willReturn('testuid');
+		$this->userSession->expects($this->exactly(2))
+			->method('getUser')
+			->willReturn($iUser);
 		self::assertInstanceOf(
 			TemplateResponse::class,
 			self::invokePrivate(
 			$this->c, 'createPasswordTemplateResponse',
 			['redirect/target', 'Error message']
 		));
+		$this->assertInstanceOf(TemplateResponse::class,
+			$this->invokePrivate($this->c, 'createPasswordTemplateResponse', ['']));
 	}
 
 	public function testShowWeb() {
@@ -137,9 +151,18 @@ class PasswordControllerTest extends TestCase {
 			->method('createPasswordTemplateResponse')
 			->with($redirect_url, 'Password confirmation does not match the password.');
 
+		$iUser = $this->createMock(IUser::class);
+		$iUser->expects($this->once())
+			->method('getUID')
+			->willReturn('foo');
 		$this->userSession
-			->expects($this->never())
-			->method('getUser');
+			->expects($this->once())
+			->method('getUser')
+			->willReturn($iUser);
+
+		$this->userManager->expects($this->once())
+			->method('checkPassword')
+			->willReturn(true);
 
 		$this->session
 			->expects($this->never())
@@ -157,9 +180,19 @@ class PasswordControllerTest extends TestCase {
 			->method('createPasswordTemplateResponse')
 			->with($redirect_url, 'Password must be different than the old password.');
 
+		$iUser = $this->createMock(IUser::class);
+		$iUser->expects($this->once())
+			->method('getUID')
+			->willReturn('foo');
+
 		$this->userSession
-			->expects($this->never())
-			->method('getUser');
+			->expects($this->once())
+			->method('getUser')
+			->willReturn($iUser);
+
+		$this->userManager->expects($this->once())
+			->method('checkPassword')
+			->willReturn(true);
 
 		$this->session
 			->expects($this->never())
@@ -190,7 +223,7 @@ class PasswordControllerTest extends TestCase {
 		$redirect_url = 'redirect/target';
 		$this->c->expects($this->once())
 			->method('createPasswordTemplateResponse')
-			->with($redirect_url, 'The current password is incorrect.');
+			->with($redirect_url, 'Old password is wrong.');
 
 		$user
 			->expects($this->never())
@@ -311,9 +344,16 @@ class PasswordControllerTest extends TestCase {
 			->method('remove')
 			->with('password_policy.forcePasswordChange');
 		$this->config
-			->expects($this->once())
+			->expects($this->any())
 			->method('deleteUserValue')
-			->with('testuid', 'password_policy', 'forcePasswordChange');
+			->withConsecutive(
+				['testuid', 'password_policy', 'forcePasswordChange'],
+				['testuid', 'password_policy', 'firstLoginPasswordChange']
+			);
+		$this->config
+			->expects($this->once())
+			->method('getUserValue')
+			->willReturn(true);
 
 		$redirectResponse = $this->c->update(null, 'newsecret', 'newsecret', $redirect_url);
 		self::assertInstanceOf(

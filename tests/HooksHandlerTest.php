@@ -423,6 +423,14 @@ class HooksHandlerTest extends TestCase {
 
 		$event = new GenericEvent($user);
 		$this->handler->checkForcePasswordChangeOnFirstLogin($event);
+	}
 
+	/**
+	 * @expectedException \UnexpectedValueException
+	 * @expectedExceptionMessage 'foo' is not an instance of IUser.
+	 */
+	public function testCheckForcePasswordChangeOnFirstLoginException() {
+		$event = new GenericEvent('foo');
+		$this->handler->checkForcePasswordChangeOnFirstLogin($event);
 	}
 }
