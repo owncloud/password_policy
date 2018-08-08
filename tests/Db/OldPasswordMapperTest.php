@@ -25,6 +25,8 @@ namespace OCA\PasswordPolicy\Tests\Db;
 
 use OCA\PasswordPolicy\Db\OldPassword;
 use OCA\PasswordPolicy\Db\OldPasswordMapper;
+use OCP\DB\QueryBuilder\IExpressionBuilder;
+use OCP\DB\QueryBuilder\IParameter;
 use OCP\IDBConnection;
 use OCP\DB\QueryBuilder\IQueryBuilder;
 use Test\TestCase;
@@ -206,5 +208,22 @@ class OldPasswordMapperTest extends TestCase {
 		$this->assertSame("{$uid}testpass3", $latestPassword->getPassword());
 		$this->assertSame($uid, $latestPassword->getUid());
 		$this->assertLessThan($baseTime + 130, $latestPassword->getChangeTime());
+	}
+
+	public function testCleanUserHistory() {
+		$baseTime = 80000;
+		$this->addInitialTestEntries($baseTime);
+
+		$this->mapper->cleanUserHistory("test1");
+
+		//No reference of test1 user should be there after cleanUserHistory called.
+		$this->assertNull($this->mapper->getLatestPassword("test1"));
+
+		$test2OldPasswordInstance = $this->mapper->getLatestPassword("test2");
+		$this->assertInstanceOf(OldPassword::class, $test2OldPasswordInstance);
+		$this->assertEquals('test2', $test2OldPasswordInstance->getUid());
+		$test3OldPasswordInstance = $this->mapper->getLatestPassword("test3");
+		$this->assertInstanceOf(OldPassword::class, $test3OldPasswordInstance);
+		$this->assertEquals('test3', $test3OldPasswordInstance->getUid());
 	}
 }

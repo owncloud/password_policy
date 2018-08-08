@@ -105,4 +105,18 @@ class OldPasswordMapper extends Mapper {
 		}
 		$stmt->closeCursor();
 	}
+
+	/**
+	 * Remove the entries of user from the user_password_history table once the
+	 * user is deleted from oC
+	 *
+	 * @param string $uid uid of a user
+	 */
+	public function cleanUserHistory($uid) {
+		/* @var IQueryBuilder $qb */
+		$qb = $this->db->getQueryBuilder();
+		$qb->delete('user_password_history')
+			->where($qb->expr()->eq('uid', $qb->createNamedParameter($uid)));
+		$qb->execute();
+	}
 }

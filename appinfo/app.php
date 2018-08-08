@@ -61,6 +61,10 @@ $eventDispatcher->addListener(
 	\OCP\IUser::class . '::firstLogin',
 	[$handler, 'checkForcePasswordChangeOnFirstLogin']
 );
+$eventDispatcher->addListener(
+	'user.afterdelete',
+	[$handler, 'removeUserEntriesFromTable']
+);
 
 $app = new \OCA\PasswordPolicy\AppInfo\Application();
 $app->registerNotifier();
