@@ -4,7 +4,6 @@
     "Password Policy" : "นโยบายรหัสผ่าน",
     "Password confirmation does not match the password." : "รหัสผ่านที่ใช้ยืนยันไม่ถูกต้อง",
     "Password must be different than the old password." : "ห้ามใช้รหัสผ่านเดิม",
-    "The current password is incorrect." : "รหัสผ่านปัจจุบันไม่ถูกต้อง",
     "An expiration date is required." : "จำเป็นต้องระบุวันหมดอายุ",
     "_The expiration date cannot exceed %n day._::_The expiration date cannot exceed %n days._" : ["วันหมดอายุต้องไม่เกิน %n วัน"],
     "Password expiration notice" : "แจ้งรหัสผ่านหมดอายุ",

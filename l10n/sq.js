@@ -6,7 +6,6 @@ OC.L10N.register(
     "Password Policy" : "Rregulla Fjalëkalimesh",
     "Password confirmation does not match the password." : "Fjalëkalimi i ripohuar s’përputhet me fjalëkalimin.",
     "Password must be different than the old password." : "Fjalëkalimi duhet të jetë i ndryshëm nga fjalëkalimi i vjetër.",
-    "The current password is incorrect." : "Fjalëkalimi i tanishëm është i pasaktë.",
     "An expiration date is required." : "Data e skadimit është e domosdoshme.",
     "_The expiration date cannot exceed %n day._::_The expiration date cannot exceed %n days._" : ["Data e skadimit s’mund të tejkalojë ditë.","Data e skadimit s’mund të tejkalojë %n ditë."],
     "Password expiration notice" : "Njoftim skadimi fjalëkalimi",

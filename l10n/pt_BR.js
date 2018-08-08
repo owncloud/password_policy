@@ -6,7 +6,6 @@ OC.L10N.register(
     "Password Policy" : "Política de Senha",
     "Password confirmation does not match the password." : "Confirmação de senha não coincide com à senha.",
     "Password must be different than the old password." : "A senha deve ser diferente da senha antiga.",
-    "The current password is incorrect." : "A senha atual está incorreta.",
     "An expiration date is required." : "Uma data de expiração é obrigatória.",
     "_The expiration date cannot exceed %n day._::_The expiration date cannot exceed %n days._" : ["A data de validade não pode exceder %n dia.","A data de validade não pode exceder%n dias."],
     "Password expiration notice" : "Aviso de expiração de senha",

@@ -6,7 +6,6 @@ OC.L10N.register(
     "Password Policy" : "Passwortrichtlinie",
     "Password confirmation does not match the password." : "Die Passwortbestätigung stimmt nicht mit dem Passwort überein.",
     "Password must be different than the old password." : "Das neue Passwort muss sich von dem vorherigen unterscheiden.",
-    "The current password is incorrect." : "Bitte überprüfe das aktuelle Passwort und versuche es erneut.",
     "An expiration date is required." : "Ein Ablaufdatum ist erforderlich.",
     "_The expiration date cannot exceed %n day._::_The expiration date cannot exceed %n days._" : ["Das Ablaufdatum darf nicht länger als %n Tag in der Zukunft liegen.","Das Ablaufdatum darf nicht länger als %n Tage in der Zukunft liegen."],
     "Password expiration notice" : "Dein Passwort läuft bald ab",

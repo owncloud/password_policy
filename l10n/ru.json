@@ -4,7 +4,6 @@
     "Password Policy" : "Политика пароля",
     "Password confirmation does not match the password." : "Подтверждение пароля не соответствует паролю.",
     "Password must be different than the old password." : "Пароль должен отличаться от старого пароля.",
-    "The current password is incorrect." : "Текущий пароль неправильный.",
     "An expiration date is required." : "Требуется дата истечения срока действия.",
     "_The expiration date cannot exceed %n day._::_The expiration date cannot exceed %n days._" : ["Дата истечения срока действия не может превышать %n день.","Дата истечения срока действия не может превышать %n дня.","Дата истечения срока действия не может превышать %n дней.","Дата истечения срока действия не может превышать %n дней."],
     "Password expiration notice" : "Замечание об устаревании пароля",
