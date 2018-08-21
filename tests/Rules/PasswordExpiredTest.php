@@ -51,8 +51,8 @@ class PasswordExpiredTest extends TestCase {
 		$l10n = $this->createMock(IL10N::class);
 		$l10n
 			->method('t')
-			->will($this->returnCallback(function($text, $parameters = array()) {
-				return vsprintf($text, $parameters);
+			->will($this->returnCallback(function ($text, $parameters = []) {
+				return \vsprintf($text, $parameters);
 			}));
 		$this->logger = $this->createMock(ILogger::class);
 		$this->mapper = $this->createMock(OldPasswordMapper::class);

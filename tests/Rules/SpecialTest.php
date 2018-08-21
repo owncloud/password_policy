@@ -38,16 +38,16 @@ class SpecialTest extends \PHPUnit_Framework_TestCase {
 		$l10n = $this->createMock(IL10N::class);
 		$l10n
 			->method('t')
-			->will($this->returnCallback(function($text, $parameters = array()) {
+			->will($this->returnCallback(function ($text, $parameters = []) {
 				return \vsprintf($text, $parameters);
 			}));
 		$l10n
 			->method('n')
-			->will($this->returnCallback(function($text_singular, $text_plural, $count, $parameters = array()) {
+			->will($this->returnCallback(function ($text_singular, $text_plural, $count, $parameters = []) {
 				if ($count === 1) {
-					return (string) vsprintf(str_replace('%n', $count, $text_singular), $parameters);
+					return (string) \vsprintf(\str_replace('%n', $count, $text_singular), $parameters);
 				} else {
-					return (string) vsprintf(str_replace('%n', $count, $text_plural), $parameters);
+					return (string) \vsprintf(\str_replace('%n', $count, $text_plural), $parameters);
 				}
 			}));
 
@@ -89,7 +89,7 @@ class SpecialTest extends \PHPUnit_Framework_TestCase {
 		}
 	}
 
-	function providesExceptionalData() {
+	public function providesExceptionalData() {
 		return [
 			['The password contains invalid special characters. Only #+ are allowed.', '#+?@#+?@', 4, '#+'],
 			['The password contains too few special characters. At least one special character is required.', 'Abc123', 1, []],
@@ -100,7 +100,7 @@ class SpecialTest extends \PHPUnit_Framework_TestCase {
 		];
 	}
 
-	function providesTestData() {
+	public function providesTestData() {
 		return [
 			['#+?@#+?@', 6, []],
 			['#+?@#+?@', 6, '#+?@'],

@@ -39,10 +39,9 @@ class PasswordHistoryTest extends \PHPUnit_Framework_TestCase {
 		$l10n = $this->createMock(IL10N::class);
 		$l10n
 			->method('t')
-			->will($this->returnCallback(function($text, $parameters = array()) {
-				return vsprintf($text, $parameters);
+			->will($this->returnCallback(function ($text, $parameters = []) {
+				return \vsprintf($text, $parameters);
 			}));
-
 
 		/** @var \OCA\PasswordPolicy\Db\OldPasswordMapper | \PHPUnit_Framework_MockObject_MockObject $mapper */
 		$mapper = $this->getMockBuilder(OldPasswordMapper::class)

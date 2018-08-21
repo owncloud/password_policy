@@ -68,8 +68,8 @@ class PasswordControllerTest extends TestCase {
 		$this->l10n = $this->createMock(IL10N::class);
 		$this->l10n
 			->method('t')
-			->will($this->returnCallback(function($text, $parameters = array()) {
-				return vsprintf($text, $parameters);
+			->will($this->returnCallback(function ($text, $parameters = []) {
+				return \vsprintf($text, $parameters);
 			}));
 		$this->c = $this->getMockBuilder(PasswordController::class)
 			->setConstructorArgs([

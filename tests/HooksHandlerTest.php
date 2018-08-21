@@ -75,7 +75,7 @@ class HooksHandlerTest extends TestCase {
 		$this->l10n = $this->createMock(IL10N::class);
 		$this->l10n
 			->method('t')
-			->will($this->returnCallback(function($text, $parameters = []) {
+			->will($this->returnCallback(function ($text, $parameters = []) {
 				return \vsprintf($text, $parameters);
 			}));
 		$this->passwordExpiredRule = $this->createMock(PasswordExpired::class);
@@ -98,31 +98,31 @@ class HooksHandlerTest extends TestCase {
 		);
 
 		$this->manager->method('createNotification')
-			->will($this->returnCallback(function() {
+			->will($this->returnCallback(function () {
 				$holder = [];
 				$mock = $this->createMock(INotification::class);
-				$mock->method('setApp')->will($this->returnCallback(function($app) use (&$holder, $mock) {
+				$mock->method('setApp')->will($this->returnCallback(function ($app) use (&$holder, $mock) {
 					$holder['app'] = $app;
 					return $mock;
 				}));
-				$mock->method('setUser')->will($this->returnCallback(function($user) use (&$holder, $mock) {
+				$mock->method('setUser')->will($this->returnCallback(function ($user) use (&$holder, $mock) {
 					$holder['user'] = $user;
 					return $mock;
 				}));
-				$mock->method('setObject')->will($this->returnCallback(function($obj, $id) use (&$holder, $mock) {
+				$mock->method('setObject')->will($this->returnCallback(function ($obj, $id) use (&$holder, $mock) {
 					$holder['object'] = [$obj, $id];
 					return $mock;
 				}));
-				$mock->method('getApp')->will($this->returnCallback(function() use (&$holder) {
+				$mock->method('getApp')->will($this->returnCallback(function () use (&$holder) {
 					return $holder['app'];
 				}));
-				$mock->method('getUser')->will($this->returnCallback(function() use (&$holder) {
+				$mock->method('getUser')->will($this->returnCallback(function () use (&$holder) {
 					return $holder['user'];
 				}));
-				$mock->method('getObjectType')->will($this->returnCallback(function() use (&$holder) {
+				$mock->method('getObjectType')->will($this->returnCallback(function () use (&$holder) {
 					return $holder['object'][0];
 				}));
-				$mock->method('getObjectId')->will($this->returnCallback(function() use (&$holder) {
+				$mock->method('getObjectId')->will($this->returnCallback(function () use (&$holder) {
 					return $holder['object'][1];
 				}));
 				return $mock;
@@ -176,10 +176,10 @@ class HooksHandlerTest extends TestCase {
 
 	public function updateLinkExpiryProvider() {
 		$tomorrow = new \DateTime();
-		$tomorrow->setTime(0,0,0);
+		$tomorrow->setTime(0, 0, 0);
 		$tomorrow->add(new \DateInterval('P1D')); // tomorrow
 		$in5days = new \DateTime();
-		$in5days->setTime(0,0,0);
+		$in5days->setTime(0, 0, 0);
 		$in5days->add(new \DateInterval('P5D')); // in 5 days
 
 		$accepted = true; // needs to be reset on every test set
@@ -209,7 +209,6 @@ class HooksHandlerTest extends TestCase {
 		$params['accepted'] = true; // needs to be reset on every test set
 		$this->handler->updateLinkExpiry($params);
 		self::assertSame($expected, $params['accepted']);
-
 	}
 
 	public function testSaveOldPassword() {
@@ -228,7 +227,7 @@ class HooksHandlerTest extends TestCase {
 
 		$this->oldPasswordMapper->expects($this->once())
 			->method('insert')
-			->with($this->callback(function(OldPassword $oldPassword){
+			->with($this->callback(function (OldPassword $oldPassword) {
 				return $oldPassword->getPassword() === 'somehash' &&
 					$oldPassword->getUid() === 'testuid' &&
 					$oldPassword->getChangeTime() === 12345;
@@ -256,7 +255,7 @@ class HooksHandlerTest extends TestCase {
 
 		$this->oldPasswordMapper->expects($this->once())
 			->method('insert')
-			->with($this->callback(function(OldPassword $oldPassword){
+			->with($this->callback(function (OldPassword $oldPassword) {
 				return $oldPassword->getPassword() === 'somehash' &&
 					$oldPassword->getUid() === 'testuid' &&
 					$oldPassword->getChangeTime() === 12345;
@@ -285,7 +284,7 @@ class HooksHandlerTest extends TestCase {
 
 		$this->oldPasswordMapper->expects($this->once())
 			->method('insert')
-			->with($this->callback(function(OldPassword $oldPassword){
+			->with($this->callback(function (OldPassword $oldPassword) {
 				return $oldPassword->getPassword() === 'somehash' &&
 					$oldPassword->getUid() === 'testuid' &&
 					$oldPassword->getChangeTime() === 12345;
@@ -303,7 +302,7 @@ class HooksHandlerTest extends TestCase {
 			->method('markProcessed')
 			->withConsecutive(
 				[
-					$this->callback(function($notif) {
+					$this->callback(function ($notif) {
 						return $notif->getApp() === 'password_policy' &&
 							$notif->getUser() === 'testuid' &&
 							$notif->getObjectType() === 'about_to_expire' &&
@@ -311,7 +310,7 @@ class HooksHandlerTest extends TestCase {
 					})
 				],
 				[
-					$this->callback(function($notif) {
+					$this->callback(function ($notif) {
 						return $notif->getApp() === 'password_policy' &&
 							$notif->getUser() === 'testuid' &&
 							$notif->getObjectType() === 'expired' &&

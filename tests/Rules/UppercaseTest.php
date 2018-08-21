@@ -38,16 +38,16 @@ class UppercaseTest extends TestCase {
 		$l10n = $this->createMock(IL10N::class);
 		$l10n
 			->method('t')
-			->will($this->returnCallback(function($text, $parameters = array()) {
-				return vsprintf($text, $parameters);
+			->will($this->returnCallback(function ($text, $parameters = []) {
+				return \vsprintf($text, $parameters);
 			}));
 		$l10n
 			->method('n')
-			->will($this->returnCallback(function($text_singular, $text_plural, $count, $parameters = array()) {
+			->will($this->returnCallback(function ($text_singular, $text_plural, $count, $parameters = []) {
 				if ($count === 1) {
-					return (string) vsprintf(str_replace('%n', $count, $text_singular), $parameters);
+					return (string) \vsprintf(\str_replace('%n', $count, $text_singular), $parameters);
 				} else {
-					return (string) vsprintf(str_replace('%n', $count, $text_plural), $parameters);
+					return (string) \vsprintf(\str_replace('%n', $count, $text_plural), $parameters);
 				}
 			}));
 
@@ -107,5 +107,4 @@ class UppercaseTest extends TestCase {
 	public function testSpecialOnlyTooShort() {
 		$this->r->verify('#+?@#+?@', 5);
 	}
-
 }

@@ -39,8 +39,8 @@ class LengthTest extends TestCase {
 		$l10n = $this->createMock(IL10N::class);
 		$l10n
 			->method('t')
-			->will($this->returnCallback(function($text, $parameters = array()) {
-				return vsprintf($text, $parameters);
+			->will($this->returnCallback(function ($text, $parameters = []) {
+				return \vsprintf($text, $parameters);
 			}));
 
 		$this->r = new Length($l10n);
@@ -75,5 +75,4 @@ class LengthTest extends TestCase {
 	public function testSpecialCharsOkay() {
 		$this->r->verify('çççççç', 5);
 	}
-
 }
