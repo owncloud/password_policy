@@ -50,7 +50,9 @@ style('password_policy', 'styles');
 				?>
 			</div>
 		</h1>
-		<?php if (isset($_['error'])) { ?><div id="error" class="warning"><?php p($_['error']) ?></div> <?php } ?>
+		<?php if (isset($_['error'])) {
+					?><div id="error" class="warning"><?php p($_['error']) ?></div> <?php
+				} ?>
 		<input type="hidden" name="redirect_url" value="<?php p($_['redirect_url']) ?>" />
 		<input type="hidden" name="app" value="oca-password-policy" />
 		<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>" id="requesttoken">

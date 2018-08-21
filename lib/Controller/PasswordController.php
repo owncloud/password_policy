@@ -146,7 +146,7 @@ class PasswordController extends Controller implements IAccountModuleController 
 	 */
 	public function update($current_password, $new_password, $confirm_password, $redirect_url) {
 		$user = $this->userSession->getUser();
-		if(($user !== null) && !$this->userManager->checkPassword($user->getUID(), $current_password)) {
+		if (($user !== null) && !$this->userManager->checkPassword($user->getUID(), $current_password)) {
 			return $this->createPasswordTemplateResponse(
 				$redirect_url,
 				$this->l10n->t('Old password is wrong.')

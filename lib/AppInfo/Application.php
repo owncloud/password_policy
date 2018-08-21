@@ -25,8 +25,7 @@ use OCP\Notification\Events\RegisterNotifierEvent;
 use OCA\PasswordPolicy\Notifier;
 
 class Application extends App {
-
-	public function __construct (array $urlParams = []) {
+	public function __construct(array $urlParams = []) {
 		parent::__construct('password_policy', $urlParams);
 	}
 

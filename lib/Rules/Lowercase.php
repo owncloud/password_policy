@@ -51,5 +51,4 @@ class Lowercase extends Base {
 		}
 		return $count;
 	}
-
 }

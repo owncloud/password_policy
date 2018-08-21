@@ -62,7 +62,7 @@ class AccountModule implements IAccountModule {
 		if ($forcePasswordChange) {
 			$redirectUrl = $this->request->getRequestUri();
 			$response = new RedirectResponse(
-				$this->urlGenerator->linkToRoute( 'password_policy.password.show', [
+				$this->urlGenerator->linkToRoute('password_policy.password.show', [
 						'redirect_url' => $redirectUrl
 					])
 			);

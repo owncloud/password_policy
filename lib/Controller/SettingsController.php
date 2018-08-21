@@ -109,7 +109,7 @@ class SettingsController extends Controller implements ISettings {
 
 	public function getPanel() {
 		$template = new Template('password_policy', 'admin');
-		foreach(self::DEFAULTS as $key => $default) {
+		foreach (self::DEFAULTS as $key => $default) {
 			$value = $this->config->getAppValue('password_policy', $key, $default);
 			if (isset(self::CONVERSIONS[$key]['out'])) {
 				$convertFuncName = self::CONVERSIONS[$key]['out'];
