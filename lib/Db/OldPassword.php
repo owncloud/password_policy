@@ -23,6 +23,7 @@
 namespace OCA\PasswordPolicy\Db;
 
 use OCP\AppFramework\Db\Entity;
+
 /**
  * @method int getId()
  * @method void setId(\int $id)
@@ -33,7 +34,6 @@ use OCP\AppFramework\Db\Entity;
  * @method void setChangeTime(\int $changeTime)
  */
 class OldPassword extends Entity {
-
 	const EXPIRED = 'expired';
 
 	/** @var string $uid */

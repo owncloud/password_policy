@@ -33,7 +33,7 @@ class Special extends Base {
 		$special = $this->stripAlphaNumeric($password);
 		if (!empty($allowedSpecialChars) && !empty($special)) {
 			$allowedSpecialCharsAsArray = \str_split($allowedSpecialChars);
-			$s = \array_filter(\str_split($special), function($char) use ($allowedSpecialCharsAsArray){
+			$s = \array_filter(\str_split($special), function ($char) use ($allowedSpecialCharsAsArray) {
 				return !\in_array($char, $allowedSpecialCharsAsArray, true);
 			});
 			if (\count($s) > 0) {
@@ -63,9 +63,7 @@ class Special extends Base {
 		}
 	}
 
-	private function stripAlphaNumeric( $string ) {
-		return \preg_replace( '/[a-z0-9]/i', '', $string );
+	private function stripAlphaNumeric($string) {
+		return \preg_replace('/[a-z0-9]/i', '', $string);
 	}
-
 }
-

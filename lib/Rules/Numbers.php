@@ -40,7 +40,7 @@ class Numbers extends Base {
 		}
 	}
 
-	private function countDigits( $str ) {
-		return \preg_match_all( '/[0-9]/', $str );
+	private function countDigits($str) {
+		return \preg_match_all('/[0-9]/', $str);
 	}
 }

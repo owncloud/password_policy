@@ -51,5 +51,4 @@ class Uppercase extends Base {
 		}
 		return $count;
 	}
-
 }

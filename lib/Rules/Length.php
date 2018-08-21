@@ -34,5 +34,4 @@ class Length extends Base {
 				$this->l10n->t('The password is too short. At least %d characters are required.', [$val]));
 		}
 	}
-
 }

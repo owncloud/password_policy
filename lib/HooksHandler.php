@@ -188,7 +188,7 @@ class HooksHandler {
 
 		if ($days !== null) {
 			$date = new \DateTime();
-			$date->setTime(0,0,0);
+			$date->setTime(0, 0, 0);
 			$date->add(new \DateInterval('P'.$days.'D'));
 
 			if ($params['expirationDate'] === null) {
@@ -272,7 +272,7 @@ class HooksHandler {
 	 */
 	private function getUser(GenericEvent $event) {
 		$user = $event->getArgument('user');
-		if(!$user instanceof IUser) {
+		if (!$user instanceof IUser) {
 			throw new \UnexpectedValueException("'$user' is not an instance of IUser.");
 		}
 		return $user;
@@ -319,7 +319,7 @@ class HooksHandler {
 	public function checkForcePasswordChangeOnFirstLogin(GenericEvent $event) {
 		$this->fixDI();
 		$user = $event->getSubject();
-		if(!$user instanceof IUser) {
+		if (!$user instanceof IUser) {
 			throw new \UnexpectedValueException("'$user' is not an instance of IUser.");
 		}
 		// If option is enabled in security settings check first login

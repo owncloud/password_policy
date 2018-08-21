@@ -35,7 +35,6 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use OCP\AppFramework\Utility\ITimeFactory;
 
-
 class ExpirePassword extends Command {
 	/**
 	 * Catchall for general errors
@@ -63,7 +62,6 @@ class ExpirePassword extends Command {
 
 	/** @var OldPasswordMapper */
 	private $mapper;
-
 
 	/**
 	 * ExpirePassword constructor.
@@ -200,7 +198,7 @@ class ExpirePassword extends Command {
 	 * @param $inputExpireDate
 	 * @param IUser $user
 	 */
-	protected function setPasswordExpiry(\DateTime $expireDate, \DateTime $oldDate, \DateTimeZone $timeZone, $inputExpireDate , IUser $user) {
+	protected function setPasswordExpiry(\DateTime $expireDate, \DateTime $oldDate, \DateTimeZone $timeZone, $inputExpireDate, IUser $user) {
 		$expireDate->setTimezone($timeZone);
 		$expireDate->setTimestamp($this->timeFactory->getTime());
 		$expireDate->modify($inputExpireDate);
