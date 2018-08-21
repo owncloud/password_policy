@@ -225,7 +225,7 @@ Ignoring missing group group3
 		$oldPassword = null;
 		$this->mapper->expects($this->once())
 			->method('insert')
-			->will($this->returnCallback(function($obj) use (&$oldPassword) {
+			->will($this->returnCallback(function ($obj) use (&$oldPassword) {
 				$oldPassword = $obj;
 			}));
 

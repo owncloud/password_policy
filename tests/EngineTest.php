@@ -31,7 +31,6 @@ use OCP\Security\ISecureRandom;
 use Test\TestCase;
 
 class EngineTest extends TestCase {
-
 	private $defaults = [
 		'spv_min_chars_checked' => false,
 		'spv_min_chars_value' => 8,
@@ -62,7 +61,7 @@ class EngineTest extends TestCase {
 		$this->l10n = $this->createMock(IL10N::class);
 		$this->l10n
 			->method('t')
-			->will($this->returnCallback(function($text, $parameters = []) {
+			->will($this->returnCallback(function ($text, $parameters = []) {
 				return \vsprintf($text, $parameters);
 			}));
 

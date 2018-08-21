@@ -102,50 +102,50 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 		);
 
 		$this->manager->method('createNotification')
-			->will($this->returnCallback(function() {
+			->will($this->returnCallback(function () {
 				$holder = [];
 				$mock = $this->createMock(INotification::class);
-				$mock->method('setApp')->will($this->returnCallback(function($app) use (&$holder, $mock) {
+				$mock->method('setApp')->will($this->returnCallback(function ($app) use (&$holder, $mock) {
 					$holder['app'] = $app;
 					return $mock;
 				}));
-				$mock->method('setUser')->will($this->returnCallback(function($user) use (&$holder, $mock) {
+				$mock->method('setUser')->will($this->returnCallback(function ($user) use (&$holder, $mock) {
 					$holder['user'] = $user;
 					return $mock;
 				}));
-				$mock->method('setObject')->will($this->returnCallback(function($obj, $id) use (&$holder, $mock) {
+				$mock->method('setObject')->will($this->returnCallback(function ($obj, $id) use (&$holder, $mock) {
 					$holder['object'] = [$obj, $id];
 					return $mock;
 				}));
-				$mock->method('setDateTime')->will($this->returnCallback(function($time) use (&$holder, $mock) {
+				$mock->method('setDateTime')->will($this->returnCallback(function ($time) use (&$holder, $mock) {
 					$holder['datetime'] = $time;
 					return $mock;
 				}));
-				$mock->method('setSubject')->will($this->returnCallback(function($subject) use (&$holder, $mock) {
+				$mock->method('setSubject')->will($this->returnCallback(function ($subject) use (&$holder, $mock) {
 					$holder['subject'] = $subject;
 					return $mock;
 				}));
-				$mock->method('setMessage')->will($this->returnCallback(function($message) use (&$holder, $mock) {
+				$mock->method('setMessage')->will($this->returnCallback(function ($message) use (&$holder, $mock) {
 					$holder['message'] = $message;
 					return $mock;
 				}));
-				$mock->method('setLink')->will($this->returnCallback(function($link) use (&$holder, $mock) {
+				$mock->method('setLink')->will($this->returnCallback(function ($link) use (&$holder, $mock) {
 					$holder['link'] = $link;
 					return $mock;
 				}));
-				$mock->method('getApp')->will($this->returnCallback(function() use (&$holder) {
+				$mock->method('getApp')->will($this->returnCallback(function () use (&$holder) {
 					return $holder['app'];
 				}));
-				$mock->method('getUser')->will($this->returnCallback(function() use (&$holder) {
+				$mock->method('getUser')->will($this->returnCallback(function () use (&$holder) {
 					return $holder['user'];
 				}));
-				$mock->method('getObjectType')->will($this->returnCallback(function() use (&$holder) {
+				$mock->method('getObjectType')->will($this->returnCallback(function () use (&$holder) {
 					return $holder['object'][0];
 				}));
-				$mock->method('getObjectId')->will($this->returnCallback(function() use (&$holder) {
+				$mock->method('getObjectId')->will($this->returnCallback(function () use (&$holder) {
 					return $holder['object'][1];
 				}));
-				$mock->method('createAction')->will($this->returnCallback(function() {
+				$mock->method('createAction')->will($this->returnCallback(function () {
 					$actionMock = $this->createMock(IAction::class);
 					$actionMock->method('setLabel')->will($this->returnSelf());
 					$actionMock->method('setLink')->will($this->returnSelf());
@@ -320,7 +320,7 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 
 	public function providesExpirePassword() {
 		return [
-			[md5('password')],
+			[\md5('password')],
 			// special password
 			[OldPassword::EXPIRED],
 		];
