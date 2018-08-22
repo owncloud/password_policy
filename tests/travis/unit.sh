@@ -3,5 +3,5 @@
 set -e
 
 # Run phpunit tests
-cd tests
-../../../lib/composer/bin/phpunit --configuration phpunit.xml
+cd tests/unit
+../../../../lib/composer/bin/phpunit --configuration phpunit.xml
