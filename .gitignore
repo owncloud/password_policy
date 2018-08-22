@@ -8,7 +8,7 @@ vendor/
 .DS_Store
 
 # test coverage
-tests/clover.xml
+tests/unit/clover.xml
 
 # Node.js modules
 node_modules/

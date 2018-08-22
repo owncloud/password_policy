@@ -11,10 +11,10 @@
 	<!-- filters for code coverage -->
 	<filter>
 		<whitelist>
-			<directory suffix=".php">../../password_policy</directory>
+			<directory suffix=".php">../../../password_policy</directory>
 			<exclude>
-				<directory suffix=".php">../../password_policy/l10n</directory>
-				<directory suffix=".php">../../password_policy/tests</directory>
+				<directory suffix=".php">../../../password_policy/l10n</directory>
+				<directory suffix=".php">../../../password_policy/tests</directory>
 			</exclude>
 		</whitelist>
 	</filter>
@@ -23,4 +23,3 @@
 		<log type="coverage-clover" target="./clover.xml"/>
 	</logging>
 </phpunit>
-
