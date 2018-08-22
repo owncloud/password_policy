@@ -85,8 +85,8 @@ class SettingsController extends Controller implements ISettings {
 			if ($this->request->getParam($key) !== null) {
 				if ($key !== 'spv_def_special_chars_value' && \substr($key, -6) === '_value') {
 					$value = \min(\max(0, (int)$this->request->getParam($key)), 255);
-					if (array_key_exists($key, self::CONVERSIONS)
-						&& array_key_exists('in', self::CONVERSIONS[$key])
+					if (\array_key_exists($key, self::CONVERSIONS)
+						&& \array_key_exists('in', self::CONVERSIONS[$key])
 					) {
 						$convertFuncName = self::CONVERSIONS[$key]['in'];
 						$value = $this->$convertFuncName($value);
@@ -113,8 +113,8 @@ class SettingsController extends Controller implements ISettings {
 		$template = new Template('password_policy', 'admin');
 		foreach (self::DEFAULTS as $key => $default) {
 			$value = $this->config->getAppValue('password_policy', $key, $default);
-			if (array_key_exists($key, self::CONVERSIONS)
-				&& array_key_exists('out', self::CONVERSIONS[$key])
+			if (\array_key_exists($key, self::CONVERSIONS)
+				&& \array_key_exists('out', self::CONVERSIONS[$key])
 			) {
 				$convertFuncName = self::CONVERSIONS[$key]['out'];
 				$value = $this->$convertFuncName($value);
