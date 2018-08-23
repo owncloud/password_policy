@@ -1,5 +1,10 @@
 {
   "name": "owncloud/password_policy",
+  "config" : {
+    "platform": {
+      "php": "5.6.37"
+    }
+  },
   "require": {
   },
   "require-dev": {
