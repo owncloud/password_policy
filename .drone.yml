@@ -3,6 +3,7 @@ workspace:
   path: apps/password_policy
 
 
+
 branches: [master release*, release/*]
 
 pipeline:
