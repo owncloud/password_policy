@@ -169,6 +169,14 @@ class OldPasswordMapperTest extends TestCase {
 		// last password change before the timestamp
 		$this->assertCount(2, $passwordList);
 
+		// The password list is not necessarily sorted in the order of the UIDs
+		if ($passwordList[1]->getUid() == $this->testUIDs[0]) {
+			// Swap entries to sort them for the checks below
+			$savedEntry = $passwordList[0];
+			$passwordList[0] = $passwordList[1];
+			$passwordList[1] = $savedEntry;
+		}
+
 		$uid = $this->testUIDs[0];
 		$latestPassword = $passwordList[0];
 		$this->assertSame("{$uid}testpass3", $latestPassword->getPassword());
@@ -190,6 +198,26 @@ class OldPasswordMapperTest extends TestCase {
 		$passwordList = \iterator_to_array($passwordList);  // convert to array
 		// last password change before the timestamp
 		$this->assertCount(3, $passwordList);
+
+		// The password list is not necessarily sorted in the order of the UIDs
+		if ($passwordList[1]->getUid() == $this->testUIDs[0]) {
+			// Swap entries to sort them for the checks below
+			$savedEntry = $passwordList[0];
+			$passwordList[0] = $passwordList[1];
+			$passwordList[1] = $savedEntry;
+		}
+		if ($passwordList[2]->getUid() == $this->testUIDs[0]) {
+			// Swap entries to sort them for the checks below
+			$savedEntry = $passwordList[0];
+			$passwordList[0] = $passwordList[2];
+			$passwordList[2] = $savedEntry;
+		}
+		if ($passwordList[2]->getUid() == $this->testUIDs[1]) {
+			// Swap entries to sort them for the checks below
+			$savedEntry = $passwordList[1];
+			$passwordList[1] = $passwordList[2];
+			$passwordList[2] = $savedEntry;
+		}
 
 		$uid = $this->testUIDs[0];
 		$latestPassword = $passwordList[0];
