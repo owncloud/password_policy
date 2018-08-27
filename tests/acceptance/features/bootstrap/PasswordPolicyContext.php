@@ -37,9 +37,274 @@ class PasswordPolicyContext implements Context {
 	private $featureContext;
 
 	/**
+	 * @param string $enabledOrDisabled
+	 *
+	 * @return string "on" or ""
+	 */
+	private function appSettingIsExpectedToBe($enabledOrDisabled) {
+		if ($enabledOrDisabled === "enabled") {
+			return 'on';
+		} else {
+			return '';
+		}
+	}
+
+	/**
+	 * @Then /^the minimum characters password policy should be (enabled|disabled)$/
+	 *
+	 * @param string $enabledOrDisabled
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theMinimumCharactersPasswordPolicyShouldBe(
+		$enabledOrDisabled
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$this->appSettingIsExpectedToBe($enabledOrDisabled),
+			$this->getPasswordPolicySetting(
+				'spv_min_chars_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the lowercase letters password policy should be (enabled|disabled)$/
+	 *
+	 * @param string $enabledOrDisabled
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theLowercaseLettersPasswordPolicyShouldBe(
+		$enabledOrDisabled
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$this->appSettingIsExpectedToBe($enabledOrDisabled),
+			$this->getPasswordPolicySetting(
+				'spv_lowercase_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the uppercase letters password policy should be (enabled|disabled)$/
+	 *
+	 * @param string $enabledOrDisabled
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theUppercaseLettersPasswordPolicyShouldBe(
+		$enabledOrDisabled
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$this->appSettingIsExpectedToBe($enabledOrDisabled),
+			$this->getPasswordPolicySetting(
+				'spv_uppercase_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the numbers password policy should be (enabled|disabled)$/
+	 *
+	 * @param string $enabledOrDisabled
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theNumbersPasswordPolicyShouldBe(
+		$enabledOrDisabled
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$this->appSettingIsExpectedToBe($enabledOrDisabled),
+			$this->getPasswordPolicySetting(
+				'spv_numbers_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the special characters password policy should be (enabled|disabled)$/
+	 *
+	 * @param string $enabledOrDisabled
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theSpecialCharactersPasswordPolicyShouldBe(
+		$enabledOrDisabled
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$this->appSettingIsExpectedToBe($enabledOrDisabled),
+			$this->getPasswordPolicySetting(
+				'spv_special_chars_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the restrict to these special characters password policy should be (enabled|disabled)$/
+	 *
+	 * @param string $enabledOrDisabled
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theRestrictSpecialCharactersPasswordPolicyShouldBe(
+		$enabledOrDisabled
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$this->appSettingIsExpectedToBe($enabledOrDisabled),
+			$this->getPasswordPolicySetting(
+				'spv_def_special_chars_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the last passwords user password policy should be (enabled|disabled)$/
+	 *
+	 * @param string $enabledOrDisabled
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theLastPasswordsPasswordPolicyShouldBe(
+		$enabledOrDisabled
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$this->appSettingIsExpectedToBe($enabledOrDisabled),
+			$this->getPasswordPolicySetting(
+				'spv_password_history_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the days until user password expires user password policy should be (enabled|disabled)$/
+	 *
+	 * @param string $enabledOrDisabled
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theDaysUntilUserPasswordExpiresPasswordPolicyShouldBe(
+		$enabledOrDisabled
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$this->appSettingIsExpectedToBe($enabledOrDisabled),
+			$this->getPasswordPolicySetting(
+				'spv_user_password_expiration_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the notification days before password expires user password policy should be (enabled|disabled)$/
+	 *
+	 * @param string $enabledOrDisabled
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theNotificationDaysBeforeUserPasswordExpiresPasswordPolicyShouldBe(
+		$enabledOrDisabled
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$this->appSettingIsExpectedToBe($enabledOrDisabled),
+			$this->getPasswordPolicySetting(
+				'spv_user_password_expiration_notification_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the force password change on first login user password policy should be (enabled|disabled)$/
+	 *
+	 * @param string $enabledOrDisabled
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theForcePasswordChangeOnFirstLoginPasswordPolicyShouldBe(
+		$enabledOrDisabled
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$this->appSettingIsExpectedToBe($enabledOrDisabled),
+			$this->getPasswordPolicySetting(
+				'spv_user_password_force_change_on_first_login_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the days until link expires if password is set public link password policy should be (enabled|disabled)$/
+	 *
+	 * @param string $enabledOrDisabled
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theDaysUntilLinkExpiresWithPasswordPasswordPolicyShouldBe(
+		$enabledOrDisabled
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$this->appSettingIsExpectedToBe($enabledOrDisabled),
+			$this->getPasswordPolicySetting(
+				'spv_expiration_password_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the days until link expires if password is not set public link password policy should be (enabled|disabled)$/
+	 *
+	 * @param string $enabledOrDisabled
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theDaysUntilLinkExpiresWithoutPasswordPasswordPolicyShouldBe(
+		$enabledOrDisabled
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$this->appSettingIsExpectedToBe($enabledOrDisabled),
+			$this->getPasswordPolicySetting(
+				'spv_expiration_nopassword_checked'
+			)
+		);
+	}
+
+	/**
+	 *
+	 * @param string $setting
+	 *
+	 * @return string
+	 * @throws Exception
+	 */
+	public function getPasswordPolicySetting($setting) {
+		$occResult = SetupHelper::runOcc(
+			[
+				'config:app:get',
+				'password_policy',
+				$setting
+			]
+		);
+		if ($occResult['code'] !== "0") {
+			// The setting is not set. This is expectd if settings have never
+			// been saved yet. Treat this as the empty string.
+			return '';
+		}
+		return \trim($occResult['stdOut']);
+	}
+
+	/**
 	 *
 	 * @param string $setting
 	 * @param string $value
+	 *
 	 * @throws \Exception
 	 * @return void
 	 */
@@ -65,6 +330,7 @@ class PasswordPolicyContext implements Context {
 	/**
 	 *
 	 * @param string $setting
+	 *
 	 * @throws \Exception
 	 * @return void
 	 */
