@@ -86,7 +86,7 @@ pipeline:
     - BEHAT_SUITE=${BEHAT_SUITE}
     commands:
     - cd /var/www/owncloud/tests/acceptance/
-    - su-exec www-data ./run.sh --remote --config /var/www/owncloud/apps/password_policy/tests/acceptance/config/behat.yml
+    - ./run.sh --remote --config /var/www/owncloud/apps/password_policy/tests/acceptance/config/behat.yml
     when:
       matrix:
         TEST_SUITE: acceptance
