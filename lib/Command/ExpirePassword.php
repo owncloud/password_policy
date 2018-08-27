@@ -34,6 +34,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use OCP\AppFramework\Utility\ITimeFactory;
+use OCA\PasswordPolicy\UserNotificationConfigHandler;
 
 class ExpirePassword extends Command {
 	/**
@@ -137,6 +138,11 @@ class ExpirePassword extends Command {
 		$timeZone = new \DateTimeZone('UTC');
 		$inputExpireDate = $input->getArgument('expiredate');
 
+		if ($this->config->getAppValue('password_policy', 'spv_user_password_expiration_checked', false) !== 'on') {
+			$output->writeln("<error>Cannot use this command because no expiration rule was configured</error>");
+			return 1;
+		}
+
 		//This array will hold the uids of users process when group option is passed
 		$users = [];
 		if ($allUsers !== false) {
@@ -175,12 +181,14 @@ class ExpirePassword extends Command {
 
 					if ($user === null) {
 						$output->writeln("<error>Unknown user: $uid</error>");
+						return 2;
 					} else {
 						if (isset($users[$user->getUID()])) {
 							continue;
 						}
 						if (!$user->canChangePassword()) {
 							$output->writeln("<error>The user's backend doesn't support password changes. The password cannot be expired for user: $uid</error>");
+							return 3;
 						} else {
 							$calculatedExpireDate = $this->setPasswordExpiry($expireDate, $oldDate, $timeZone, $inputExpireDate, $user);
 							$output->writeln('The password for ' . $user->getUID() . ' is set to expire on ' . $calculatedExpireDate->format('Y-m-d H:i:s T') . '.');
