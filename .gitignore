@@ -10,8 +10,9 @@ vendor-bin/**/composer.lock
 # Mac OS
 .DS_Store
 
-# test coverage
-tests/unit/clover.xml
+# Tests - auto-generated files
+/tests/acceptance/output*
+/tests/unit/clover.xml
 
 # Node.js modules
 node_modules/
