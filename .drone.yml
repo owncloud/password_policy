@@ -14,7 +14,6 @@ pipeline:
     db_host: ${DB_TYPE}
     db_username: autotest
     db_password: owncloud
-    exclude: apps/password_policy
     when:
       matrix:
         NEED_SERVER: true
@@ -59,7 +58,6 @@ pipeline:
     image: owncloudci/php:${PHP_VERSION}
     pull: true
     commands:
-      - cd /var/www/owncloud/apps/password_policy
       - make test-php-style
     when:
       matrix:
@@ -71,7 +69,6 @@ pipeline:
     environment:
       - PHP_VERSION=${PHP_VERSION}
     commands:
-      - cd /var/www/owncloud/apps/password_policy
       - make test-php-unit
     when:
       matrix:
@@ -89,7 +86,7 @@ pipeline:
     - BEHAT_SUITE=${BEHAT_SUITE}
     commands:
     - cd /var/www/owncloud/tests/acceptance/
-    - su-exec www-data ./run.sh --remote --config /var/www/owncloud/apps/password_policy/tests/acceptance/config/behat.yml
+    - ./run.sh --remote --config /var/www/owncloud/apps/password_policy/tests/acceptance/config/behat.yml
     when:
       matrix:
         TEST_SUITE: acceptance
