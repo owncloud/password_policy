@@ -25,6 +25,7 @@ namespace OCA\PasswordPolicy\Db;
 use OCP\AppFramework\Db\Mapper;
 use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\IDBConnection;
+use Doctrine\DBAL\Platforms\OraclePlatform;
 
 class OldPasswordMapper extends Mapper {
 	public function __construct(IDBConnection $db) {
@@ -46,8 +47,13 @@ class OldPasswordMapper extends Mapper {
 			->orderBy('id', 'desc')
 			->setMaxResults($length);
 		if ($excludeForceExpired) {
-			// to_char() because for Oracle we need to convert CLOB to STRING...
-			$qb->andWhere($qb->expr()->neq($qb->createFunction('TO_CHAR(`password`)'), $qb->expr()->literal(OldPassword::EXPIRED)));
+			if ($this->db->getDatabasePlatform() instanceof OraclePlatform) {
+				// to_char() because for Oracle we need to convert CLOB to STRING...
+				$passwordField = $qb->createFunction('TO_CHAR(`password`)');
+			} else {
+				$passwordField = 'password';
+			}
+			$qb->andWhere($qb->expr()->neq($passwordField, $qb->expr()->literal(OldPassword::EXPIRED)));
 		}
 		$result = $qb->execute();
 		$rows = $result->fetchAll();
