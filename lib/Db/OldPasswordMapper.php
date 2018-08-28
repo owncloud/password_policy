@@ -25,6 +25,7 @@ namespace OCA\PasswordPolicy\Db;
 use OCP\AppFramework\Db\Mapper;
 use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\IDBConnection;
+use Doctrine\DBAL\Platforms\OraclePlatform;
 
 class OldPasswordMapper extends Mapper {
 	public function __construct(IDBConnection $db) {
@@ -46,7 +47,13 @@ class OldPasswordMapper extends Mapper {
 			->orderBy('id', 'desc')
 			->setMaxResults($length);
 		if ($excludeForceExpired) {
-			$qb->andWhere($qb->expr()->neq('password', $qb->expr()->literal(OldPassword::EXPIRED)));
+			if ($this->db->getDatabasePlatform() instanceof OraclePlatform) {
+				// to_char() because for Oracle we need to convert CLOB to STRING...
+				$passwordField = $qb->createFunction('TO_CHAR(`password`)');
+			} else {
+				$passwordField = 'password';
+			}
+			$qb->andWhere($qb->expr()->neq($passwordField, $qb->expr()->literal(OldPassword::EXPIRED)));
 		}
 		$result = $qb->execute();
 		$rows = $result->fetchAll();
@@ -83,7 +90,7 @@ class OldPasswordMapper extends Mapper {
 					SELECT `uid`, max(`id`) AS `maxid`
 					FROM `*PREFIX*user_password_history`
 					GROUP BY `uid`
-				  ) AS `x` INNER JOIN `*PREFIX*user_password_history` AS `f`
+				  ) `x` INNER JOIN `*PREFIX*user_password_history` `f`
 				  ON `f`.`uid` = `x`.`uid`
 				    AND `f`.`id` = `x`.`maxid`
 				  WHERE `f`.`change_time` < ?";
