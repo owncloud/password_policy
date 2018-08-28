@@ -68,8 +68,10 @@ pipeline:
     pull: true
     environment:
       - PHP_VERSION=${PHP_VERSION}
+      - COVERAGE=${COVERAGE}
     commands:
-      - make test-php-unit
+      - if [ -z "${COVERAGE}" ]; then make test-php-unit; fi
+      - if [ "${COVERAGE}" = "true" ]; then make test-php-unit-dbg; fi
     when:
       matrix:
         TEST_SUITE: phpunit
@@ -91,21 +93,17 @@ pipeline:
       matrix:
         TEST_SUITE: acceptance
 
-# TODO codecov
-#  codecov:
-#    image: plugins/codecov:2
-#    secrets: [codecov_token]
-#    pull: true
-#    paths:
-#     - tests/unit/clover.xml
-#    files:
-#     - '*.xml'
-#    when:
-#      matrix:
-#        TEST_SUITE: phpunit
-#        PHP_VERSION: 7.2
-#        DB_TYPE: mysql
-#        OC_VERSION: daily-master-qa
+  codecov:
+    image: plugins/codecov:2
+    secrets: [codecov_token]
+    pull: true
+    paths:
+     - tests/unit/clover.xml
+    files:
+     - '*.xml'
+    when:
+      matrix:
+        COVERAGE: true
 
   notify:
     image: plugins/slack:1
@@ -243,6 +241,7 @@ matrix:
       DB_NAME: owncloud
       NEED_SERVER: true
       NEED_INSTALL_APP: true
+      COVERAGE: true
 
     - PHP_VERSION: 7.0
       OC_VERSION: daily-stable10-qa
