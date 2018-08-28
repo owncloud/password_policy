@@ -286,6 +286,25 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
+	 * @Then /^the required minimum characters should be set to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theMinimumCharactersShouldBeSetTo(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->getPasswordPolicySetting(
+				'spv_min_chars_value'
+			)
+		);
+	}
+
+	/**
 	 * @Then /^the lowercase letters password policy should be (enabled|disabled)$/
 	 *
 	 * @param string $enabledOrDisabled
@@ -300,6 +319,25 @@ class PasswordPolicyContext implements Context {
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_lowercase_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the required number of lowercase letters should be set to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theLowercaseLettersShouldBeSetTo(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->getPasswordPolicySetting(
+				'spv_lowercase_value'
 			)
 		);
 	}
@@ -324,6 +362,25 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
+	 * @Then /^the required number of uppercase letters should be set to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theUppercaseLettersShouldBeSetTo(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->getPasswordPolicySetting(
+				'spv_uppercase_value'
+			)
+		);
+	}
+
+	/**
 	 * @Then /^the numbers password policy should be (enabled|disabled)$/
 	 *
 	 * @param string $enabledOrDisabled
@@ -338,6 +395,25 @@ class PasswordPolicyContext implements Context {
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_numbers_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the required number of numbers should be set to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theNumbersShouldBeSetTo(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->getPasswordPolicySetting(
+				'spv_numbers_value'
 			)
 		);
 	}
@@ -362,6 +438,25 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
+	 * @Then /^the required number of special characters should be set to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theSpecialCharactersShouldBeSetTo(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->getPasswordPolicySetting(
+				'spv_special_chars_value'
+			)
+		);
+	}
+
+	/**
 	 * @Then /^the restrict to these special characters password policy should be (enabled|disabled)$/
 	 *
 	 * @param string $enabledOrDisabled
@@ -376,6 +471,25 @@ class PasswordPolicyContext implements Context {
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_def_special_chars_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^restrict to these special characters should be set to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function restrictSpecialCharactersShouldBeSetTo(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->getPasswordPolicySetting(
+				'spv_def_special_chars_value'
 			)
 		);
 	}
@@ -400,6 +514,25 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
+	 * @Then /^last passwords that should not be used should be set to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theLastPasswordsShouldBeSetTo(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->getPasswordPolicySetting(
+				'spv_password_history_value'
+			)
+		);
+	}
+
+	/**
 	 * @Then /^the days until user password expires user password policy should be (enabled|disabled)$/
 	 *
 	 * @param string $enabledOrDisabled
@@ -419,6 +552,25 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
+	 * @Then /^the number of days until user password expires should be set to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theDaysUntilUserPasswordExpiresShouldBeSetTo(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->getPasswordPolicySetting(
+				'spv_user_password_expiration_value'
+			)
+		);
+	}
+
+	/**
 	 * @Then /^the notification days before password expires user password policy should be (enabled|disabled)$/
 	 *
 	 * @param string $enabledOrDisabled
@@ -433,6 +585,25 @@ class PasswordPolicyContext implements Context {
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_user_password_expiration_notification_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the notification seconds before password expires should be set to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theNotificationSecondsBeforeUserPasswordExpiresShouldBeSetTo(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->getPasswordPolicySetting(
+				'spv_user_password_expiration_notification_value'
 			)
 		);
 	}
@@ -476,6 +647,25 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
+	 * @Then /^the number of days until link expires if password is set should be set to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theDaysUntilLinkExpiresWithPasswordShouldBeSetTo(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->getPasswordPolicySetting(
+				'spv_expiration_password_value'
+			)
+		);
+	}
+
+	/**
 	 * @Then /^the days until link expires if password is not set public link password policy should be (enabled|disabled)$/
 	 *
 	 * @param string $enabledOrDisabled
@@ -490,6 +680,25 @@ class PasswordPolicyContext implements Context {
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_expiration_nopassword_checked'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the number of days until link expires if password is not set should be set to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theDaysUntilLinkExpiresWithoutPasswordShouldBeSetTo(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->getPasswordPolicySetting(
+				'spv_expiration_nopassword_value'
 			)
 		);
 	}

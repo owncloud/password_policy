@@ -52,6 +52,19 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 		'daysUntilLinkExpiresWithPassword' => 'spv_expiration_password_checked',
 		'daysUntilLinkExpiresWithoutPassword' => 'spv_expiration_nopassword_checked',
 	];
+	private $policyValueNames = [
+		'minimumCharacters' => 'spv_min_chars_value',
+		'lowercaseLetters' => 'spv_lowercase_value',
+		'uppercaseLetters' => 'spv_uppercase_value',
+		'numbers' => 'spv_numbers_value',
+		'specialCharacters' => 'spv_special_chars_value',
+		'restrictToTheseSpecialCharacters' => 'spv_def_special_chars_value',
+		'lastPasswords' => 'spv_password_history_value',
+		'daysUntilUserPasswordExpires' => 'spv_user_password_expiration_value',
+		'notificationDaysBeforeUserPasswordExpires' => 'spv_user_password_expiration_notification_value',
+		'daysUntilLinkExpiresWithPassword' => 'spv_expiration_password_value',
+		'daysUntilLinkExpiresWithoutPassword' => 'spv_expiration_nopassword_value',
+	];
 	private $passwordPolicyFormId = 'password_policy';
 	private $saveButtonValue = 'Save';
 
@@ -64,7 +77,7 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @throws ElementNotFoundException
 	 */
 	public function findSettingsCheckbox($checkboxName) {
-		$checkbox = $this->find("named", ["id_or_name", $checkboxName]);
+		$checkbox = $this->findField($checkboxName);
 		if ($checkbox === null) {
 			throw new ElementNotFoundException(
 				__METHOD__ .
@@ -138,6 +151,54 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 		} else {
 			throw new \Exception(
 				__METHOD__ . " unknown policyCheckboxKey: $policyCheckboxKey"
+			);
+		}
+	}
+
+	/**
+	 * enter a value in the specified field
+	 *
+	 * @param string $policyValueKey one of the known keys in the policyValueNames array
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws \Behat\Mink\Exception\ElementNotFoundException
+	 * @throws \Exception
+	 */
+	public function enterPolicyValue($policyValueKey, $value) {
+		if (\array_key_exists($policyValueKey, $this->policyValueNames)) {
+			$this->fillField($this->policyValueNames[$policyValueKey], $value);
+		} else {
+			throw new \Exception(
+				__METHOD__ . " unknown policyValueKey: $policyValueKey"
+			);
+		}
+	}
+
+	/**
+	 * get the value in the specified field
+	 *
+	 * @param string $policyValueKey one of the known keys in the policyValueNames array
+	 *
+	 * @return string value in the field
+	 * @throws \Behat\Mink\Exception\ElementNotFoundException
+	 * @throws \Exception
+	 */
+	public function getPolicyValue($policyValueKey) {
+		if (\array_key_exists($policyValueKey, $this->policyValueNames)) {
+			$name = $this->policyValueNames[$policyValueKey];
+			$field = $this->findField($name);
+			if ($field === null) {
+				throw new ElementNotFoundException(
+					__METHOD__ .
+					" could not find field with name $name "
+				);
+			}
+
+			return $field->getValue();
+		} else {
+			throw new \Exception(
+				__METHOD__ . " unknown policyValueKey: $policyValueKey"
 			);
 		}
 	}
