@@ -22,6 +22,7 @@
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use TestHelpers\AppConfigHelper;
 use TestHelpers\SetupHelper;
 
 require_once 'bootstrap.php';
@@ -371,34 +372,51 @@ class PasswordPolicyContext implements Context {
 			$this->featureContext->getOcPath()
 		);
 
-		// TODO: Make this more efficient. It takes time to clear all these
-		//       settings one by one before every scenario.
 		// TODO: Think about if we care enough to remember the current settings
 		//       and put them back at the end of each scenario. That is not
 		//       necessary during CI runs. But it is nice to developers who
 		//       run test scenarios locally.
-		$this->deletePasswordPolicySetting('spv_def_special_chars_checked');
-		$this->deletePasswordPolicySetting('spv_def_special_chars_value');
-		$this->deletePasswordPolicySetting('spv_expiration_nopassword_checked');
-		$this->deletePasswordPolicySetting('spv_expiration_nopassword_value');
-		$this->deletePasswordPolicySetting('spv_expiration_password_checked');
-		$this->deletePasswordPolicySetting('spv_expiration_password_value');
-		$this->deletePasswordPolicySetting('spv_lowercase_checked');
-		$this->deletePasswordPolicySetting('spv_lowercase_value');
-		$this->deletePasswordPolicySetting('spv_min_chars_checked');
-		$this->deletePasswordPolicySetting('spv_min_chars_value');
-		$this->deletePasswordPolicySetting('spv_numbers_checked');
-		$this->deletePasswordPolicySetting('spv_numbers_value');
-		$this->deletePasswordPolicySetting('spv_password_history_checked');
-		$this->deletePasswordPolicySetting('spv_password_history_value');
-		$this->deletePasswordPolicySetting('spv_special_chars_checked');
-		$this->deletePasswordPolicySetting('spv_special_chars_value');
-		$this->deletePasswordPolicySetting('spv_uppercase_checked');
-		$this->deletePasswordPolicySetting('spv_uppercase_value');
-		$this->deletePasswordPolicySetting('spv_user_password_expiration_checked');
-		$this->deletePasswordPolicySetting('spv_user_password_expiration_value');
-		$this->deletePasswordPolicySetting('spv_user_password_expiration_notification_checked');
-		$this->deletePasswordPolicySetting('spv_user_password_expiration_notification_value');
-		$this->deletePasswordPolicySetting('spv_user_password_force_change_on_first_login_checked');
+
+		// Delete all app config settings so they are at their defaults
+		$configKeys = [
+			'spv_def_special_chars_checked',
+			'spv_def_special_chars_value',
+			'spv_expiration_nopassword_checked',
+			'spv_expiration_nopassword_value',
+			'spv_expiration_password_checked',
+			'spv_expiration_password_value',
+			'spv_lowercase_checked',
+			'spv_lowercase_value',
+			'spv_min_chars_checked',
+			'spv_min_chars_value',
+			'spv_numbers_checked',
+			'spv_numbers_value',
+			'spv_password_history_checked',
+			'spv_password_history_value',
+			'spv_special_chars_checked',
+			'spv_special_chars_value',
+			'spv_uppercase_checked',
+			'spv_uppercase_value',
+			'spv_user_password_expiration_checked',
+			'spv_user_password_expiration_value',
+			'spv_user_password_expiration_notification_checked',
+			'spv_user_password_expiration_notification_value',
+			'spv_user_password_force_change_on_first_login_checked'
+		];
+
+		$appConfigSettingsToDelete = [];
+		foreach ($configKeys as $configKey) {
+			$appConfigSettingsToDelete[] = [
+				'appid' => 'password_policy',
+				'configkey' => $configKey
+			];
+		}
+
+		AppConfigHelper::deleteAppConfigs(
+			$this->featureContext->getBaseUrl(),
+			$this->featureContext->getAdminUsername(),
+			$this->featureContext->getAdminPassword(),
+			$appConfigSettingsToDelete
+		);
 	}
 }
