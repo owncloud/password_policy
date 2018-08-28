@@ -43,11 +43,227 @@ class PasswordPolicyContext implements Context {
 	 * @return string "on" or ""
 	 */
 	private function appSettingIsExpectedToBe($enabledOrDisabled) {
-		if ($enabledOrDisabled === "enabled") {
+		if (\substr($enabledOrDisabled, 0, 6) === "enable") {
 			return 'on';
 		} else {
 			return '';
 		}
+	}
+
+	/**
+	 * @When /^the administrator (enables|disables) the minimum characters password policy using the occ commmand$/
+	 * @Given /^the administrator has (enabled|disabled) the minimum characters password policy$/
+	 *
+	 * @param string $action
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminTogglesMinimumCharactersPasswordPolicyUsingOcc(
+		$action
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_min_chars_checked',
+			$this->appSettingIsExpectedToBe($action)
+		);
+	}
+
+	/**
+	 * @When /^the administrator (enables|disables) the lowercase letters password policy using the occ commmand$/
+	 * @Given /^the administrator has (enabled|disabled) the lowercase letters password policy$/
+	 *
+	 * @param string $action
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminTogglesLowercaseLettersPasswordPolicyUsingOcc(
+		$action
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_lowercase_checked',
+			$this->appSettingIsExpectedToBe($action)
+		);
+	}
+
+	/**
+	 * @When /^the administrator (enables|disables) the uppercase letters password policy using the occ commmand$/
+	 * @Given /^the administrator has (enabled|disabled) the uppercase letters password policy$/
+	 *
+	 * @param string $action
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminTogglesUppercaseLettersPasswordPolicyUsingOcc(
+		$action
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_uppercase_checked',
+			$this->appSettingIsExpectedToBe($action)
+		);
+	}
+
+	/**
+	 * @When /^the administrator (enables|disables) the numbers password policy using the occ commmand$/
+	 * @Given /^the administrator has (enabled|disabled) the numbers password policy$/
+	 *
+	 * @param string $action
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminTogglesNumbersPasswordPolicyUsingOcc(
+		$action
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_numbers_checked',
+			$this->appSettingIsExpectedToBe($action)
+		);
+	}
+
+	/**
+	 * @When /^the administrator (enables|disables) the special characters password policy using the occ commmand$/
+	 * @Given /^the administrator has (enabled|disabled) the special characters password policy$/
+	 *
+	 * @param string $action
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminTogglesSpecialCharactersPasswordPolicyUsingOcc(
+		$action
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_special_chars_checked',
+			$this->appSettingIsExpectedToBe($action)
+		);
+	}
+
+	/**
+	 * @When /^the administrator (enables|disables) the restrict to these special characters password policy using the occ commmand$/
+	 * @Given /^the administrator has (enabled|disabled) the restrict to these special characters password policy$/
+	 *
+	 * @param string $action
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminTogglesRestrictSpecialCharactersPasswordPolicyUsingOcc(
+		$action
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_def_special_chars_checked',
+			$this->appSettingIsExpectedToBe($action)
+		);
+	}
+
+	/**
+	 * @When /^the administrator (enables|disables) the last passwords user password policy using the occ commmand$/
+	 * @Given /^the administrator has (enabled|disabled) the last passwords user password policy$/
+	 *
+	 * @param string $action
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminTogglesLastPasswordsPasswordPolicyUsingOcc(
+		$action
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_password_history_checked',
+			$this->appSettingIsExpectedToBe($action)
+		);
+	}
+
+	/**
+	 * @When /^the administrator (enables|disables) the days until user password expires user password policy using the occ commmand$/
+	 * @Given /^the administrator has (enabled|disabled) the days until user password expires user password policy$/
+	 *
+	 * @param string $action
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminTogglesDaysUntilUserPasswordExpiresPasswordPolicyUsingOcc(
+		$action
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_user_password_expiration_checked',
+			$this->appSettingIsExpectedToBe($action)
+		);
+	}
+
+	/**
+	 * @When /^the administrator (enables|disables) the notification days before password expires user password policy using the occ commmand$/
+	 * @Given /^the administrator has (enabled|disabled) the notification days before password expires user password policy$/
+	 *
+	 * @param string $action
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminTogglesNotificationDaysBeforeUserPasswordExpiresPasswordPolicyUsingOcc(
+		$action
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_user_password_expiration_notification_checked',
+			$this->appSettingIsExpectedToBe($action)
+		);
+	}
+
+	/**
+	 * @When /^the administrator (enables|disables) the force password change on first login user password policy using the occ commmand$/
+	 * @Given /^the administrator has (enabled|disabled) the force password change on first login user password policy$/
+	 *
+	 * @param string $action
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminTogglesForcePasswordChangeOnFirstLoginPasswordPolicyUsingOcc(
+		$action
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_user_password_force_change_on_first_login_checked',
+			$this->appSettingIsExpectedToBe($action)
+		);
+	}
+
+	/**
+	 * @When /^the administrator (enables|disables) the days until link expires if password is set public link password policy using the occ commmand$/
+	 * @Given /^the administrator has (enabled|disabled) the days until link expires if password is set public link password policy$/
+	 *
+	 * @param string $action
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminTogglesDaysUntilLinkExpiresWithPasswordPublicLinkPasswordPolicyUsingOcc(
+		$action
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_expiration_password_checked',
+			$this->appSettingIsExpectedToBe($action)
+		);
+	}
+
+	/**
+	 * @When /^the administrator (enables|disables) the days until link expires if password is not set public link password policy using the occ commmand$/
+	 * @Given /^the administrator has (enabled|disabled) the days until link expires if password is not set public link password policy$/
+	 *
+	 * @param string $action
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminTogglesDaysUntilLinkExpiresWithoutPasswordPublicLinkPasswordPolicyUsingOcc(
+		$action
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_expiration_nopassword_checked',
+			$this->appSettingIsExpectedToBe($action)
+		);
 	}
 
 	/**
@@ -294,7 +510,7 @@ class PasswordPolicyContext implements Context {
 			]
 		);
 		if ($occResult['code'] !== "0") {
-			// The setting is not set. This is expectd if settings have never
+			// The setting is not set. This is expected if settings have never
 			// been saved yet. Treat this as the empty string.
 			return '';
 		}

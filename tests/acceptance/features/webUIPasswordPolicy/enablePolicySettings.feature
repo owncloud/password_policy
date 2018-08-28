@@ -1,8 +1,8 @@
 @webUI
-Feature: password requirement settings
+Feature: enable password policy settings
 
   As an administrator
-  I want to be able to set password requirements (minimum length, lowercase/uppercase/numeric/special characters)
+  I want to be able to enable password requirements (minimum length, lowercase/uppercase/numeric/special characters)
   So that user and public link passwords have a minimum level of complexity
 
   Background:
