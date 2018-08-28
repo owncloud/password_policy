@@ -122,6 +122,22 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @When /^the administrator sets the minimum characters required to "([^"]*)" using the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsMinimumCharactersUsingTheWebui(
+		$value
+	) {
+		$this->passwordPolicySettingsPage->enterPolicyValue(
+			'minimumCharacters', $value
+		);
+	}
+
+	/**
 	 * @When /^the administrator (enables|disables) the lowercase letters password policy using the webUI$/
 	 *
 	 * @param string $action
@@ -134,6 +150,22 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	) {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'lowercaseLetters', $action
+		);
+	}
+
+	/**
+	 * @When /^the administrator sets the lowercase letters required to "([^"]*)" using the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsLowercaseLettersUsingTheWebui(
+		$value
+	) {
+		$this->passwordPolicySettingsPage->enterPolicyValue(
+			'lowercaseLetters', $value
 		);
 	}
 
@@ -154,6 +186,22 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @When /^the administrator sets the uppercase letters required to "([^"]*)" using the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsUppercaseLettersUsingTheWebui(
+		$value
+	) {
+		$this->passwordPolicySettingsPage->enterPolicyValue(
+			'uppercaseLetters', $value
+		);
+	}
+
+	/**
 	 * @When /^the administrator (enables|disables) the numbers password policy using the webUI$/
 	 *
 	 * @param string $action
@@ -166,6 +214,22 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	) {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'numbers', $action
+		);
+	}
+
+	/**
+	 * @When /^the administrator sets the numbers required to "([^"]*)" using the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsNumbersUsingTheWebui(
+		$value
+	) {
+		$this->passwordPolicySettingsPage->enterPolicyValue(
+			'numbers', $value
 		);
 	}
 
@@ -186,6 +250,22 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @When /^the administrator sets the special characters required to "([^"]*)" using the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsSpecialCharactersUsingTheWebui(
+		$value
+	) {
+		$this->passwordPolicySettingsPage->enterPolicyValue(
+			'specialCharacters', $value
+		);
+	}
+
+	/**
 	 * @When /^the administrator (enables|disables) the restrict to these special characters password policy using the webUI$/
 	 *
 	 * @param string $action
@@ -198,6 +278,22 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	) {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'restrictToTheseSpecialCharacters', $action
+		);
+	}
+
+	/**
+	 * @When /^the administrator sets the restricted list of special characters to "([^"]*)" using the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsRestrictSpecialCharactersUsingTheWebui(
+		$value
+	) {
+		$this->passwordPolicySettingsPage->enterPolicyValue(
+			'restrictToTheseSpecialCharacters', $value
 		);
 	}
 
@@ -218,6 +314,22 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @When /^the administrator sets the number of last passwords that should not be used to "([^"]*)" using the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsLastPasswordsUsingTheWebui(
+		$value
+	) {
+		$this->passwordPolicySettingsPage->enterPolicyValue(
+			'lastPasswords', $value
+		);
+	}
+
+	/**
 	 * @When /^the administrator (enables|disables) the days until user password expires user password policy using the webUI$/
 	 *
 	 * @param string $action
@@ -234,6 +346,22 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @When /^the administrator sets the number of days until user password expires to "([^"]*)" using the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsDaysUntilUserPasswordExpiresUsingTheWebui(
+		$value
+	) {
+		$this->passwordPolicySettingsPage->enterPolicyValue(
+			'daysUntilUserPasswordExpires', $value
+		);
+	}
+
+	/**
 	 * @When /^the administrator (enables|disables) the notification days before password expires user password policy using the webUI$/
 	 *
 	 * @param string $action
@@ -246,6 +374,22 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	) {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'notificationDaysBeforeUserPasswordExpires', $action
+		);
+	}
+
+	/**
+	 * @When /^the administrator sets the notification days before password expires to "([^"]*)" using the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsNotificationDaysBeforeUserPasswordExpiresUsingTheWebui(
+		$value
+	) {
+		$this->passwordPolicySettingsPage->enterPolicyValue(
+			'notificationDaysBeforeUserPasswordExpires', $value
 		);
 	}
 
@@ -282,6 +426,22 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @When /^the administrator sets the number of days until link expires if password is set to "([^"]*)" using the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsDaysUntilLinkExpiresWithPasswordUsingTheWebui(
+		$value
+	) {
+		$this->passwordPolicySettingsPage->enterPolicyValue(
+			'daysUntilLinkExpiresWithPassword', $value
+		);
+	}
+
+	/**
 	 * @When /^the administrator (enables|disables) the days until link expires if password is not set public link password policy using the webUI$/
 	 *
 	 * @param string $action
@@ -294,6 +454,22 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	) {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'daysUntilLinkExpiresWithoutPassword', $action
+		);
+	}
+
+	/**
+	 * @When /^the administrator sets the number of days until link expires if password is not set to "([^"]*)" using the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsDaysUntilLinkExpiresWithoutPasswordUsingTheWebui(
+		$value
+	) {
+		$this->passwordPolicySettingsPage->enterPolicyValue(
+			'daysUntilLinkExpiresWithoutPassword', $value
 		);
 	}
 
@@ -337,6 +513,25 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @Then /^the required minimum characters should be set to "([^"]*)" on the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theMinimumCharactersShouldBeSetToOnTheWebui(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->passwordPolicySettingsPage->getPolicyValue(
+				'minimumCharacters'
+			)
+		);
+	}
+
+	/**
 	 * @Then /^the lowercase letters password policy checkbox should be (checked|unchecked) on the webUI$/
 	 *
 	 * @param string $checkedOrUnchecked
@@ -350,6 +545,25 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		PHPUnit_Framework_Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
+				'lowercaseLetters'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the required number of lowercase letters should be set to "([^"]*)" on the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theLowercaseLettersShouldBeSetToOnTheWebui(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->passwordPolicySettingsPage->getPolicyValue(
 				'lowercaseLetters'
 			)
 		);
@@ -375,6 +589,25 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @Then /^the required number of uppercase letters should be set to "([^"]*)" on the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theUppercaseLettersShouldBeSetToOnTheWebui(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->passwordPolicySettingsPage->getPolicyValue(
+				'uppercaseLetters'
+			)
+		);
+	}
+
+	/**
 	 * @Then /^the numbers password policy checkbox should be (checked|unchecked) on the webUI$/
 	 *
 	 * @param string $checkedOrUnchecked
@@ -386,6 +619,25 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		PHPUnit_Framework_Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
+				'numbers'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the required number of numbers should be set to "([^"]*)" on the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theNumbersShouldBeSetToOnTheWebui(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->passwordPolicySettingsPage->getPolicyValue(
 				'numbers'
 			)
 		);
@@ -411,6 +663,25 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @Then /^the required number of special characters should be set to "([^"]*)" on the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theSpecialCharactersShouldBeSetToOnTheWebui(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->passwordPolicySettingsPage->getPolicyValue(
+				'specialCharacters'
+			)
+		);
+	}
+
+	/**
 	 * @Then /^the restrict to these special characters password policy checkbox should be (checked|unchecked) on the webUI$/
 	 *
 	 * @param string $checkedOrUnchecked
@@ -424,6 +695,25 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		PHPUnit_Framework_Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
+				'restrictToTheseSpecialCharacters'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^restrict to these special characters should be set to "([^"]*)" on the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function restrictSpecialCharactersShouldBeSetToOnTheWebui(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->passwordPolicySettingsPage->getPolicyValue(
 				'restrictToTheseSpecialCharacters'
 			)
 		);
@@ -449,6 +739,25 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @Then /^last passwords that should not be used should be set to "([^"]*)" on the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function lastPasswordsShouldBeSetToOnTheWebui(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->passwordPolicySettingsPage->getPolicyValue(
+				'lastPasswords'
+			)
+		);
+	}
+
+	/**
 	 * @Then /^the days until user password expires user password policy checkbox should be (checked|unchecked) on the webUI$/
 	 *
 	 * @param string $checkedOrUnchecked
@@ -468,6 +777,25 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @Then /^the number of days until user password expires should be set to "([^"]*)" on the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theDaysUntilUserPasswordExpiresShouldBeSetToOnTheWebui(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->passwordPolicySettingsPage->getPolicyValue(
+				'daysUntilUserPasswordExpires'
+			)
+		);
+	}
+
+	/**
 	 * @Then /^the notification days before password expires user password policy checkbox should be (checked|unchecked) on the webUI$/
 	 *
 	 * @param string $checkedOrUnchecked
@@ -481,6 +809,25 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		PHPUnit_Framework_Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
+				'notificationDaysBeforeUserPasswordExpires'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the notification days before password expires should be set to "([^"]*)" on the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theNotificationDaysBeforeUserPasswordExpiresShouldBeSetToOnTheWebui(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->passwordPolicySettingsPage->getPolicyValue(
 				'notificationDaysBeforeUserPasswordExpires'
 			)
 		);
@@ -525,6 +872,25 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @Then /^the number of days until link expires if password is set should be set to "([^"]*)" on the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theDaysUntilLinkExpiresWithPasswordShouldBeSetToOnTheWebui(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->passwordPolicySettingsPage->getPolicyValue(
+				'daysUntilLinkExpiresWithPassword'
+			)
+		);
+	}
+
+	/**
 	 * @Then /^the days until link expires if password is not set public link password policy checkbox should be (checked|unchecked) on the webUI$/
 	 *
 	 * @param string $checkedOrUnchecked
@@ -538,6 +904,25 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		PHPUnit_Framework_Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
+				'daysUntilLinkExpiresWithoutPassword'
+			)
+		);
+	}
+
+	/**
+	 * @Then /^the number of days until link expires if password is not set should be set to "([^"]*)" on the webUI$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theDaysUntilLinkExpiresWithoutPasswordShouldBeSetToOnTheWebui(
+		$value
+	) {
+		PHPUnit_Framework_Assert::assertEquals(
+			$value,
+			$this->passwordPolicySettingsPage->getPolicyValue(
 				'daysUntilLinkExpiresWithoutPassword'
 			)
 		);
