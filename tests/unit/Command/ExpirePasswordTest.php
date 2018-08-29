@@ -71,6 +71,11 @@ class ExpirePasswordTest extends TestCase {
 			->method('get')
 			->with('not-existing-uid')
 			->willReturn(null);
+		$this->config
+			->method('getAppValue')
+			->will($this->returnValueMap([
+				['password_policy', 'spv_user_password_expiration_checked', false, 'on'],
+			]));
 
 		$this->commandTester->execute([
 			'--uid' => ['not-existing-uid'],
@@ -164,6 +169,13 @@ The password for user5 is set to expire on 2018-06-27 10:13:00 UTC.
 			->method('getTime')
 			->willReturn(1530180780);
 
+		$this->config
+			->method('getAppValue')
+			->will($this->returnValueMap([
+				['password_policy', 'spv_user_password_expiration_checked', false, 'on'],
+				['password_policy', 'spv_user_password_expiration_value', 90, 10]
+			]));
+
 		$this->commandTester->execute([
 			'--group' => ['group1', 'group2', 'group4,foo', 'group3'],
 			'expiredate' => '2019-01-01 14:00:00 CET'
@@ -180,10 +192,6 @@ Ignoring missing group group3
 
 	public function providesExpirePassword() {
 		return [
-			// expire immediately, no policy, defaults to -1 days
-			[null, null, '2018-06-27 10:13:00 UTC', '2018-06-27 10:13:00 UTC'],
-			// expire later, no policy
-			['2018-06-28 10:13 UTC', null, '2018-06-28 10:13:00 UTC', '2018-06-28 10:13:00 UTC'],
 			// expire immediately, with policy, defaults to -1 days
 			[null, 7, '2018-06-20 10:13:00 UTC', '2018-06-27 10:13:00 UTC'],
 			// expire later, with policy
@@ -255,6 +263,13 @@ Ignoring missing group group3
 			->with('existing-uid')
 			->willReturn($user);
 
+		$this->config
+			->method('getAppValue')
+			->will($this->returnValueMap([
+				['password_policy', 'spv_user_password_expiration_checked', false, 'on'],
+				['password_policy', 'spv_user_password_expiration_value', 90, 10]
+			]));
+
 		$this->commandTester->execute([
 			'--uid' => ['existing-uid'],
 			'expiredate' => '2018-06-28 10:13 UTC'
@@ -262,5 +277,21 @@ Ignoring missing group group3
 		$output = $this->commandTester->getDisplay();
 
 		self::assertContains("The user's backend doesn't support password changes. The password cannot be expired for user: existing-uid", $output);
+	}
+
+	public function testNoRulesSetup() {
+		$this->config
+			->method('getAppValue')
+			->will($this->returnValueMap([
+				['password_policy', 'spv_user_password_expiration_checked', false, false],
+			]));
+
+		$this->commandTester->execute([
+			'--uid' => ['existing-uid'],
+			'expiredate' => '2018-06-28 10:13 UTC'
+		]);
+		$output = $this->commandTester->getDisplay();
+
+		self::assertContains("Cannot use this command because no expiration rule was configured", $output);
 	}
 }
