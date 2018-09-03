@@ -3,22 +3,42 @@ default:
      '': %paths.base%/../features/bootstrap
 
   suites:
-    webUIPasswordPolicy:
+    webUIPasswordPolicySettings:
       paths:
-        - %paths.base%/../features/webUIPasswordPolicy
+        - %paths.base%/../features/webUIPasswordPolicySettings
       contexts:
         - PasswordPolicyContext:
         - WebUIPasswordPolicyContext:
         - WebUIGeneralContext:
         - WebUILoginContext:
-        - WebUIPersonalGeneralSettingsContext:
-        - EmailContext:
         - FeatureContext: &common_feature_context_params
             baseUrl:  http://localhost:8080
             adminUsername: admin
             adminPassword: admin
             regularUserPassword: 123456
             ocPath: apps/testing/api/v1/occ
+
+    webUIPasswordReset:
+      paths:
+        - %paths.base%/../features/webUIPasswordReset
+      contexts:
+        - PasswordPolicyContext:
+        - WebUIPasswordPolicyContext:
+        - WebUIGeneralContext:
+        - WebUILoginContext:
+        - EmailContext:
+        - FeatureContext: *common_feature_context_params
+
+    webUIPasswordChange:
+      paths:
+        - %paths.base%/../features/webUIPasswordChange
+      contexts:
+        - PasswordPolicyContext:
+        - WebUIPasswordPolicyContext:
+        - WebUIGeneralContext:
+        - WebUILoginContext:
+        - WebUIPersonalGeneralSettingsContext:
+        - FeatureContext: *common_feature_context_params
 
   extensions:
       jarnaiz\JUnitFormatter\JUnitFormatterExtension:
