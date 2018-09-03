@@ -1,5 +1,5 @@
 @webUI @mailhog
-Feature: password special characters
+Feature: enforce the required number of special characters in a password on the password reset UI page
 
   As an administrator
   I want user passwords to always contain a required number of special characters

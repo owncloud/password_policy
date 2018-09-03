@@ -1,5 +1,5 @@
 @webUI @mailhog
-Feature: password requirement combinations
+Feature: enforce combinations of password policies on the password reset UI page
 
   As an administrator
   I want user passwords to always have some combination of minimum length, lowercase, uppercase, numbers and special characters

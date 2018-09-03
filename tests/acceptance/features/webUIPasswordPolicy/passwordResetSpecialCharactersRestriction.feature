@@ -1,5 +1,5 @@
 @webUI @mailhog
-Feature: password special characters restriction
+Feature: enforce the restricted special characters in a password on the password reset UI page
 
   As an administrator
   I want user passwords to always contain some of a restricted list of special characters
