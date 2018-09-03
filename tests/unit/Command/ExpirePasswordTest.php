@@ -294,4 +294,19 @@ Ignoring missing group group3
 
 		self::assertContains("Cannot use this command because no expiration rule was configured", $output);
 	}
+
+	public function testInvalidArgument() {
+		$this->config
+			->method('getAppValue')
+			->will($this->returnValueMap([
+				['password_policy', 'spv_user_password_expiration_checked', false, 'on'],
+			]));
+
+		$this->commandTester->execute([
+			'existing-uid'
+		]);
+		$output = $this->commandTester->getDisplay();
+
+		$this->assertContains('Invalid argument given.', $output);
+	}
 }
