@@ -11,6 +11,7 @@ default:
         - WebUIPasswordPolicyContext:
         - WebUIGeneralContext:
         - WebUILoginContext:
+        - EmailContext:
         - FeatureContext: &common_feature_context_params
             baseUrl:  http://localhost:8080
             adminUsername: admin
