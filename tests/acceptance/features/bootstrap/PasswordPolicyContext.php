@@ -69,6 +69,24 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
+	 * @When /^the administrator sets the minimum characters required to "([^"]*)" using the occ commmand$/
+	 * @Given /^the administrator has set the minimum characters required to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsMinimumCharactersRequiredUsingOcc(
+		$value
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_min_chars_value',
+			$value
+		);
+	}
+
+	/**
 	 * @When /^the administrator (enables|disables) the lowercase letters password policy using the occ commmand$/
 	 * @Given /^the administrator has (enabled|disabled) the lowercase letters password policy$/
 	 *
@@ -83,6 +101,24 @@ class PasswordPolicyContext implements Context {
 		$this->setPasswordPolicySetting(
 			'spv_lowercase_checked',
 			$this->appSettingIsExpectedToBe($action)
+		);
+	}
+
+	/**
+	 * @When /^the administrator sets the lowercase letters required to "([^"]*)" using the occ commmand$/
+	 * @Given /^the administrator has set the lowercase letters required to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsLowercaseLettersRequiredUsingOcc(
+		$value
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_lowercase_value',
+			$value
 		);
 	}
 
@@ -105,6 +141,24 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
+	 * @When /^the administrator sets the uppercase letters required to "([^"]*)" using the occ commmand$/
+	 * @Given /^the administrator has set the uppercase letters required to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsUppercaseLettersRequiredUsingOcc(
+		$value
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_uppercase_value',
+			$value
+		);
+	}
+
+	/**
 	 * @When /^the administrator (enables|disables) the numbers password policy using the occ commmand$/
 	 * @Given /^the administrator has (enabled|disabled) the numbers password policy$/
 	 *
@@ -119,6 +173,24 @@ class PasswordPolicyContext implements Context {
 		$this->setPasswordPolicySetting(
 			'spv_numbers_checked',
 			$this->appSettingIsExpectedToBe($action)
+		);
+	}
+
+	/**
+	 * @When /^the administrator sets the numbers required to "([^"]*)" using the occ commmand$/
+	 * @Given /^the administrator has set the numbers required to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsNumbersRequiredUsingOcc(
+		$value
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_numbers_value',
+			$value
 		);
 	}
 
@@ -141,6 +213,24 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
+	 * @When /^the administrator sets the special characters required to "([^"]*)" using the occ commmand$/
+	 * @Given /^the administrator has set the special characters required to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsSpecialCharactersRequiredUsingOcc(
+		$value
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_special_chars_value',
+			$value
+		);
+	}
+
+	/**
 	 * @When /^the administrator (enables|disables) the restrict to these special characters password policy using the occ commmand$/
 	 * @Given /^the administrator has (enabled|disabled) the restrict to these special characters password policy$/
 	 *
@@ -155,6 +245,24 @@ class PasswordPolicyContext implements Context {
 		$this->setPasswordPolicySetting(
 			'spv_def_special_chars_checked',
 			$this->appSettingIsExpectedToBe($action)
+		);
+	}
+
+	/**
+	 * @When /^the administrator sets the restricted special characters required to "([^"]*)" using the occ commmand$/
+	 * @Given /^the administrator has set the restricted special characters required to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsRestrictSpecialCharactersUsingOcc(
+		$value
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_def_special_chars_value',
+			$value
 		);
 	}
 
