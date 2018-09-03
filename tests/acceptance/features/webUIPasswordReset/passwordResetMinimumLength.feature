@@ -1,5 +1,5 @@
 @webUI @mailhog
-Feature: password minimum length
+Feature: enforce the minimum length of a password on the password reset UI page
 
   As an administrator
   I want user passwords to always be a certain minimum length
@@ -8,7 +8,7 @@ Feature: password minimum length
   Background:
     Given the administrator has enabled the minimum characters password policy
     And the administrator has set the minimum characters required to "10"
-    And these users have been created but not initialized:
+    And these users have been created:
       | username | password   | displayname | email        |
       | user1    | 1234567890 | User One    | u1@oc.com.np |
     And the user has browsed to the login page

@@ -1,5 +1,5 @@
 @webUI @mailhog
-Feature: password special characters restriction
+Feature: enforce the restricted special characters in a password on the password reset UI page
 
   As an administrator
   I want user passwords to always contain some of a restricted list of special characters
@@ -10,7 +10,7 @@ Feature: password special characters restriction
     And the administrator has set the special characters required to "3"
     And the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
-    And these users have been created but not initialized:
+    And these users have been created:
       | username | password   | displayname | email        |
       | user1    | a$b%c^1234 | User One    | u1@oc.com.np |
     And the user has browsed to the login page
