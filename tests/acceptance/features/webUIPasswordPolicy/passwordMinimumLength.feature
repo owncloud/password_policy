@@ -1,4 +1,4 @@
-@webUI
+@webUI @mailhog
 Feature: password minimum length
 
   As an administrator

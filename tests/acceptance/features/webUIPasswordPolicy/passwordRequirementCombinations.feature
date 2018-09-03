@@ -1,4 +1,4 @@
-@webUI
+@webUI @mailhog
 Feature: password requirement combinations
 
   As an administrator

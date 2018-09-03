@@ -1,4 +1,4 @@
-@webUI
+@webUI @mailhog
 Feature: password numbers
 
   As an administrator

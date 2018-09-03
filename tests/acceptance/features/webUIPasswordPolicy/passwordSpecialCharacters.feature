@@ -1,4 +1,4 @@
-@webUI
+@webUI @mailhog
 Feature: password special characters
 
   As an administrator

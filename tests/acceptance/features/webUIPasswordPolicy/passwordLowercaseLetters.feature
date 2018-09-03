@@ -1,4 +1,4 @@
-@webUI
+@webUI @mailhog
 Feature: password lowercase letters
 
   As an administrator
