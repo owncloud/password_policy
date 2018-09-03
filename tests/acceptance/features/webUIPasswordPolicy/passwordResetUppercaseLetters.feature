@@ -8,7 +8,7 @@ Feature: enforce the required number of uppercase letters in a password on the p
   Background:
     Given the administrator has enabled the uppercase letters password policy
     And the administrator has set the uppercase letters required to "3"
-    And these users have been created but not initialized:
+    And these users have been created:
       | username | password   | displayname | email        |
       | user1    | abcABC1234 | User One    | u1@oc.com.np |
     And the user has browsed to the login page
