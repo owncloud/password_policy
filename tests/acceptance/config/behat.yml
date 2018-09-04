@@ -3,6 +3,18 @@ default:
      '': %paths.base%/../features/bootstrap
 
   suites:
+    apiPasswordPolicy:
+      paths:
+        - %paths.base%/../features/apiPasswordPolicy
+      contexts:
+        - PasswordPolicyContext:
+        - FeatureContext: &common_feature_context_params
+            baseUrl:  http://localhost:8080
+            adminUsername: admin
+            adminPassword: admin
+            regularUserPassword: 123456
+            ocPath: apps/testing/api/v1/occ
+
     webUIPasswordPolicySettings:
       paths:
         - %paths.base%/../features/webUIPasswordPolicySettings
@@ -11,12 +23,7 @@ default:
         - WebUIPasswordPolicyContext:
         - WebUIGeneralContext:
         - WebUILoginContext:
-        - FeatureContext: &common_feature_context_params
-            baseUrl:  http://localhost:8080
-            adminUsername: admin
-            adminPassword: admin
-            regularUserPassword: 123456
-            ocPath: apps/testing/api/v1/occ
+        - FeatureContext: *common_feature_context_params
 
     webUIPasswordReset:
       paths:
