@@ -1,4 +1,4 @@
-@webUI @mailhog
+@webUI
 Feature: enforce the required number of lowercase letters in a password on the password change UI page
 
   As an administrator

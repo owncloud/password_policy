@@ -1,4 +1,4 @@
-@webUI @mailhog
+@webUI
 Feature: enforce the minimum length of a password on the password change UI page
 
   As an administrator

@@ -285,7 +285,6 @@ matrix:
       DB_NAME: owncloud
       NEED_SERVER: true
       NEED_INSTALL_APP: true
-      USE_EMAIL: true
 
     - PHP_VERSION: 5.6
       OC_VERSION: daily-stable10-qa
@@ -305,7 +304,6 @@ matrix:
       DB_NAME: owncloud
       NEED_SERVER: true
       NEED_INSTALL_APP: true
-      USE_EMAIL: true
 
     #PHP 7.0 with core stable10
     - PHP_VERSION: 7.0
@@ -316,7 +314,6 @@ matrix:
       DB_NAME: owncloud
       NEED_SERVER: true
       NEED_INSTALL_APP: true
-      USE_EMAIL: true
 
     - PHP_VERSION: 7.0
       OC_VERSION: daily-stable10-qa
@@ -336,7 +333,6 @@ matrix:
       DB_NAME: owncloud
       NEED_SERVER: true
       NEED_INSTALL_APP: true
-      USE_EMAIL: true
 
     #PHP 7.1 with core stable10
     - PHP_VERSION: 7.1
@@ -347,7 +343,6 @@ matrix:
       DB_NAME: owncloud
       NEED_SERVER: true
       NEED_INSTALL_APP: true
-      USE_EMAIL: true
 
     - PHP_VERSION: 7.1
       OC_VERSION: daily-stable10-qa
@@ -367,7 +362,6 @@ matrix:
       DB_NAME: owncloud
       NEED_SERVER: true
       NEED_INSTALL_APP: true
-      USE_EMAIL: true
 
     #PHP 7.1 with core master
     - PHP_VERSION: 7.1
@@ -378,7 +372,6 @@ matrix:
       DB_NAME: owncloud
       NEED_SERVER: true
       NEED_INSTALL_APP: true
-      USE_EMAIL: true
 
     - PHP_VERSION: 7.1
       OC_VERSION: daily-master-qa
@@ -398,7 +391,6 @@ matrix:
       DB_NAME: owncloud
       NEED_SERVER: true
       NEED_INSTALL_APP: true
-      USE_EMAIL: true
 
     #PHP 7.2 with core master
     - PHP_VERSION: 7.2
@@ -409,7 +401,6 @@ matrix:
       DB_NAME: owncloud
       NEED_SERVER: true
       NEED_INSTALL_APP: true
-      USE_EMAIL: true
 
     - PHP_VERSION: 7.2
       OC_VERSION: daily-master-qa
@@ -429,4 +420,3 @@ matrix:
       DB_NAME: owncloud
       NEED_SERVER: true
       NEED_INSTALL_APP: true
-      USE_EMAIL: true
