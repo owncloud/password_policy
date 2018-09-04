@@ -76,7 +76,7 @@ Feature: enforce combinations of password policies when creating a user
   Scenario Outline: admin creates a user with a password that has invalid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
-    Given using OCS API version "<ocs-api-version>"
+    And using OCS API version "<ocs-api-version>"
     And user "brand-new-user" has been deleted
     When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
     Then the OCS status code should be "<ocs-status>"
