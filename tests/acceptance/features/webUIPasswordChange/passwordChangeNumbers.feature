@@ -1,4 +1,4 @@
-@webUI @mailhog
+@webUI
 Feature: enforce the required number of numbers in a password on the password change UI page
 
   As an administrator
