@@ -54,4 +54,4 @@ Feature: enforce the required number of restricted special characters in a passw
       | Only#Invalid!Special@Characters          | 1               | 403        | 200         |
       | Only#Invalid!Special@Characters          | 2               | 403        | 403         |
       | 1*2&3^4%5$6andInvalidSpecialCharacters#! | 1               | 403        | 200         |
-      | Only2$Special&Characters                 | 2               | 403        | 403         |
+      | 1*2&3^4%5$6andInvalidSpecialCharacters#! | 2               | 403        | 403         |
