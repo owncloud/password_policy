@@ -8,6 +8,7 @@ default:
         - %paths.base%/../features/apiPasswordPolicy
       contexts:
         - PasswordPolicyContext:
+        - OccContext:
         - FeatureContext: &common_feature_context_params
             baseUrl:  http://localhost:8080
             adminUsername: admin

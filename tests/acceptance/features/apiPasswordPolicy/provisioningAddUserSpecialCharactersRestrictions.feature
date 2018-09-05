@@ -51,4 +51,4 @@ Feature: enforce the restricted special characters in a password when creating a
       | Only#Invalid!Special@Characters          | 1               | 101        | 200         |
       | Only#Invalid!Special@Characters          | 2               | 400        | 400         |
       | 1*2&3^4%5$6andInvalidSpecialCharacters#! | 1               | 101        | 200         |
-      | Only2$Special&Characters                 | 2               | 400        | 400         |
+      | 1*2&3^4%5$6andInvalidSpecialCharacters#! | 2               | 400        | 400         |
