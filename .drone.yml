@@ -294,7 +294,16 @@ matrix:
     - PHP_VERSION: 5.6
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiPasswordPolicy
+      BEHAT_SUITE: apiPasswordAddUser
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 5.6
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
       NEED_SERVER: true
@@ -304,7 +313,16 @@ matrix:
     - PHP_VERSION: 7.0
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiPasswordPolicy
+      BEHAT_SUITE: apiPasswordAddUser
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
       NEED_SERVER: true
@@ -314,7 +332,16 @@ matrix:
     - PHP_VERSION: 7.1
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiPasswordPolicy
+      BEHAT_SUITE: apiPasswordAddUser
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
       NEED_SERVER: true
@@ -324,7 +351,16 @@ matrix:
     - PHP_VERSION: 7.1
       OC_VERSION: daily-master-qa
       TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiPasswordPolicy
+      BEHAT_SUITE: apiPasswordAddUser
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
       NEED_SERVER: true
@@ -334,7 +370,16 @@ matrix:
     - PHP_VERSION: 7.2
       OC_VERSION: daily-master-qa
       TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiPasswordPolicy
+      BEHAT_SUITE: apiPasswordAddUser
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.2
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
       NEED_SERVER: true

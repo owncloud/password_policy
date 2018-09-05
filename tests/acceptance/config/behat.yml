@@ -3,9 +3,9 @@ default:
      '': %paths.base%/../features/bootstrap
 
   suites:
-    apiPasswordPolicy:
+    apiPasswordAddUser:
       paths:
-        - %paths.base%/../features/apiPasswordPolicy
+        - %paths.base%/../features/apiPasswordAddUser
       contexts:
         - PasswordPolicyContext:
         - OccContext:
@@ -15,6 +15,14 @@ default:
             adminPassword: admin
             regularUserPassword: 123456
             ocPath: apps/testing/api/v1/occ
+
+    apiPasswordChange:
+      paths:
+        - %paths.base%/../features/apiPasswordChange
+      contexts:
+        - PasswordPolicyContext:
+        - OccContext:
+        - FeatureContext: *common_feature_context_params
 
     webUIPasswordPolicySettings:
       paths:
