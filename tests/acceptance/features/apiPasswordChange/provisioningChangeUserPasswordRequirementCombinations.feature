@@ -39,26 +39,28 @@ Feature: enforce combinations of password policies when changing a user password
     When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/user1" with body
       | key   | password   |
       | value | <password> |
-    Then the OCS status code should be "<ocs-status>"
-    And the HTTP status code should be "<http-status>"
+    Then the HTTP status code should be "<http-status>"
+    And the HTTP reason phrase should be "<http-reason-phrase>"
+    And the OCS status code should be "<ocs-status>"
+    And the OCS status message should be "<ocs-status-message>"
     Examples:
-      | password                       | ocs-api-version | ocs-status | http-status |
+      | password                       | ocs-api-version | ocs-status | http-status | http-reason-phrase | ocs-status-message                                                                            |
         # just one of the requirements is not met
-      | aA1!bB2#cC&d                   | 1               | 403        | 200         |
-      | aA1!bB2#cC&d                   | 2               | 403        | 403         |
-      | aA1!bB2#cNOT&ENOUGH#LOWERCASE  | 1               | 403        | 200         |
-      | aA1!bB2#cNOT&ENOUGH#LOWERCASE  | 2               | 403        | 403         |
-      | aA1!bB2#cnot&enough#uppercase  | 1               | 403        | 200         |
-      | aA1!bB2#cnot&enough#uppercase  | 2               | 403        | 403         |
-      | Not&Enough#Numbers=1           | 1               | 403        | 200         |
-      | Not&Enough#Numbers=1           | 2               | 403        | 403         |
-      | Not&Enough#Special8Characters2 | 1               | 403        | 200         |
-      | Not&Enough#Special8Characters2 | 2               | 403        | 403         |
+      | aA1!bB2#cC&d                   | 1               | 403        | 200         | OK                 | The password is too short. At least 15 characters are required.                               |
+      | aA1!bB2#cC&d                   | 2               | 403        | 403         | Forbidden          | The password is too short. At least 15 characters are required.                               |
+      | aA1!bB2#cNOT&ENOUGH#LOWERCASE  | 1               | 403        | 200         | OK                 | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
+      | aA1!bB2#cNOT&ENOUGH#LOWERCASE  | 2               | 403        | 403         | Forbidden          | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
+      | aA1!bB2#cnot&enough#uppercase  | 1               | 403        | 200         | OK                 | The password contains too few uppercase letters. At least 3 uppercase letters are required.   |
+      | aA1!bB2#cnot&enough#uppercase  | 2               | 403        | 403         | Forbidden          | The password contains too few uppercase letters. At least 3 uppercase letters are required.   |
+      | Not&Enough#Numbers=1           | 1               | 403        | 200         | OK                 | The password contains too few numbers. At least 2 numbers are required.                       |
+      | Not&Enough#Numbers=1           | 2               | 403        | 403         | Forbidden          | The password contains too few numbers. At least 2 numbers are required.                       |
+      | Not&Enough#Special8Characters2 | 1               | 403        | 200         | OK                 | The password contains too few special characters. At least 3 special characters are required. |
+      | Not&Enough#Special8Characters2 | 2               | 403        | 403         | Forbidden          | The password contains too few special characters. At least 3 special characters are required. |
         # multiple requirements are not met
-      | aA!1                           | 1               | 403        | 200         |
-      | aA!1                           | 2               | 403        | 403         |
-      | aA!123456789012345             | 1               | 403        | 200         |
-      | aA!123456789012345             | 2               | 403        | 403         |
+      | aA!1                           | 1               | 403        | 200         | OK                 | The password is too short. At least 15 characters are required.                               |
+      | aA!1                           | 2               | 403        | 403         | Forbidden          | The password is too short. At least 15 characters are required.                               |
+      | aA!123456789012345             | 1               | 403        | 200         | OK                 | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
+      | aA!123456789012345             | 2               | 403        | 403         | Forbidden          | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
 
   Scenario Outline: admin changes a user password to one that has valid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
@@ -83,14 +85,16 @@ Feature: enforce combinations of password policies when changing a user password
     When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/user1" with body
       | key   | password   |
       | value | <password> |
-    Then the OCS status code should be "<ocs-status>"
-    And the HTTP status code should be "<http-status>"
+    Then the HTTP status code should be "<http-status>"
+    And the HTTP reason phrase should be "<http-reason-phrase>"
+    And the OCS status code should be "<ocs-status>"
+    And the OCS status message should be "<ocs-status-message>"
     Examples:
-      | password        | ocs-api-version | ocs-status | http-status |
-      | 15#!!UPPloweZZZ | 1               | 403        | 200         |
-      | 15#!!UPPloweZZZ | 2               | 403        | 403         |
-      | 15&%!UPPloweZZZ | 1               | 403        | 200         |
-      | 15&%!UPPloweZZZ | 2               | 403        | 403         |
+      | password        | ocs-api-version | ocs-status | http-status | http-reason-phrase | ocs-status-message                                                                          |
+      | 15#!!UPPloweZZZ | 1               | 403        | 200         | OK                 | The password contains invalid special characters. Only $%^&* are allowed.                   |
+      | 15#!!UPPloweZZZ | 2               | 403        | 403         | Forbidden          | The password contains invalid special characters. Only $%^&* are allowed.                   |
+      | 15&%!UPPloweZZZ | 1               | 403        | 200         | OK                 | The password contains invalid special characters. Only $%^&* are allowed.                   |
+      | 15&%!UPPloweZZZ | 2               | 403        | 403         | Forbidden          | The password contains invalid special characters. Only $%^&* are allowed.                   |
         # multiple requirements are not met
-      | 15&%!UPPlowZZZZ | 1               | 403        | 200         |
-      | 15&%!UPPlowZZZZ | 2               | 403        | 403         |
+      | 15&%!UPPlowZZZZ | 1               | 403        | 200         | OK                 | The password contains too few lowercase letters. At least 4 lowercase letters are required. |
+      | 15&%!UPPlowZZZZ | 2               | 403        | 403         | Forbidden          | The password contains too few lowercase letters. At least 4 lowercase letters are required. |

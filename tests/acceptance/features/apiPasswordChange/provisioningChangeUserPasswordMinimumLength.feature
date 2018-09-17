@@ -31,11 +31,16 @@ Feature: enforce the minimum length of a password when changing a user password
     When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/user1" with body
       | key   | password   |
       | value | <password> |
-    Then the OCS status code should be "<ocs-status>"
-    And the HTTP status code should be "<http-status>"
+    Then the HTTP status code should be "<http-status>"
+    And the HTTP reason phrase should be "<http-reason-phrase>"
+    And the OCS status code should be "<ocs-status>"
+    And the OCS status message should be:
+      """
+      The password is too short. At least 10 characters are required.
+      """
     Examples:
-      | password  | ocs-api-version | ocs-status | http-status |
-      | A         | 1               | 403        | 200         |
-      | A         | 2               | 403        | 403         |
-      | 123456789 | 1               | 403        | 200         |
-      | 123456789 | 2               | 403        | 403         |
+      | password  | ocs-api-version | ocs-status | http-status | http-reason-phrase |
+      | A         | 1               | 403        | 200         | OK                 |
+      | A         | 2               | 403        | 403         | Forbidden          |
+      | 123456789 | 1               | 403        | 200         | OK                 |
+      | 123456789 | 2               | 403        | 403         | Forbidden          |

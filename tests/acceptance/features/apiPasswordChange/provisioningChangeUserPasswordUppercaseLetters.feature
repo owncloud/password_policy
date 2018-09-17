@@ -31,11 +31,16 @@ Feature: enforce the required number of uppercase letters in a password when cha
     When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/user1" with body
       | key   | password   |
       | value | <password> |
-    Then the OCS status code should be "<ocs-status>"
-    And the HTTP status code should be "<http-status>"
+    Then the HTTP status code should be "<http-status>"
+    And the HTTP reason phrase should be "<http-reason-phrase>"
+    And the OCS status code should be "<ocs-status>"
+    And the OCS status message should be:
+      """
+      The password contains too few uppercase letters. At least 3 uppercase letters are required.
+      """
     Examples:
-      | password       | ocs-api-version | ocs-status | http-status |
-      | 0uppercase     | 1               | 403        | 200         |
-      | 0uppercase     | 2               | 403        | 403         |
-      | Only2Uppercase | 1               | 403        | 200         |
-      | Only2Uppercase | 2               | 403        | 403         |
+      | password       | ocs-api-version | ocs-status | http-status | http-reason-phrase |
+      | 0uppercase     | 1               | 403        | 200         | OK                 |
+      | 0uppercase     | 2               | 403        | 403         | Forbidden          |
+      | Only2Uppercase | 1               | 403        | 200         | OK                 |
+      | Only2Uppercase | 2               | 403        | 403         | Forbidden          |

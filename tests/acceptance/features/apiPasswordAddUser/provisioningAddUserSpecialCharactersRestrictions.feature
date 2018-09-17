@@ -29,26 +29,36 @@ Feature: enforce the restricted special characters in a password when creating a
     Given using OCS API version "<ocs-api-version>"
     And user "brand-new-user" has been deleted
     When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
-    Then the OCS status code should be "<ocs-status>"
-    And the HTTP status code should be "<http-status>"
+    Then the HTTP status code should be "<http-status>"
+    And the HTTP reason phrase should be "<http-reason-phrase>"
+    And the OCS status code should be "<ocs-status>"
+    And the OCS status message should be:
+      """
+      The password contains too few special characters. At least 3 special characters ($%^&*) are required.
+      """
     And user "brand-new-user" should not exist
     Examples:
-      | password                 | ocs-api-version | ocs-status | http-status |
-      | NoSpecialCharacters123   | 1               | 101        | 200         |
-      | NoSpecialCharacters123   | 2               | 400        | 400         |
-      | Only2$Special&Characters | 1               | 101        | 200         |
-      | Only2$Special&Characters | 2               | 400        | 400         |
+      | password                 | ocs-api-version | ocs-status | http-status | http-reason-phrase |
+      | NoSpecialCharacters123   | 1               | 101        | 200         | OK                 |
+      | NoSpecialCharacters123   | 2               | 400        | 400         | Bad Request        |
+      | Only2$Special&Characters | 1               | 101        | 200         | OK                 |
+      | Only2$Special&Characters | 2               | 400        | 400         | Bad Request        |
 
   Scenario Outline: admin creates a user with a password that has invalid special characters
     Given using OCS API version "<ocs-api-version>"
     And user "brand-new-user" has been deleted
     When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
-    Then the OCS status code should be "<ocs-status>"
-    And the HTTP status code should be "<http-status>"
+    Then the HTTP status code should be "<http-status>"
+    And the HTTP reason phrase should be "<http-reason-phrase>"
+    And the OCS status code should be "<ocs-status>"
+    And the OCS status message should be:
+      """
+      The password contains invalid special characters. Only $%^&* are allowed.
+      """
     And user "brand-new-user" should not exist
     Examples:
-      | password                                 | ocs-api-version | ocs-status | http-status |
-      | Only#Invalid!Special@Characters          | 1               | 101        | 200         |
-      | Only#Invalid!Special@Characters          | 2               | 400        | 400         |
-      | 1*2&3^4%5$6andInvalidSpecialCharacters#! | 1               | 101        | 200         |
-      | 1*2&3^4%5$6andInvalidSpecialCharacters#! | 2               | 400        | 400         |
+      | password                                 | ocs-api-version | ocs-status | http-status | http-reason-phrase |
+      | Only#Invalid!Special@Characters          | 1               | 101        | 200         | OK                 |
+      | Only#Invalid!Special@Characters          | 2               | 400        | 400         | Bad Request        |
+      | 1*2&3^4%5$6andInvalidSpecialCharacters#! | 1               | 101        | 200         | OK                 |
+      | 1*2&3^4%5$6andInvalidSpecialCharacters#! | 2               | 400        | 400         | Bad Request        |

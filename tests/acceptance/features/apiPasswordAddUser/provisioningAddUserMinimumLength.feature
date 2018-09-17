@@ -27,12 +27,17 @@ Feature: enforce the minimum length of a password when creating a user
     Given using OCS API version "<ocs-api-version>"
     And user "brand-new-user" has been deleted
     When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
-    Then the OCS status code should be "<ocs-status>"
-    And the HTTP status code should be "<http-status>"
+    Then the HTTP status code should be "<http-status>"
+    And the HTTP reason phrase should be "<http-reason-phrase>"
+    And the OCS status code should be "<ocs-status>"
+    And the OCS status message should be:
+      """
+      The password is too short. At least 10 characters are required.
+      """
     And user "brand-new-user" should not exist
     Examples:
-      | password  | ocs-api-version | ocs-status | http-status |
-      | A         | 1               | 101        | 200         |
-      | A         | 2               | 400        | 400         |
-      | 123456789 | 1               | 101        | 200         |
-      | 123456789 | 2               | 400        | 400         |
+      | password  | ocs-api-version | ocs-status | http-status | http-reason-phrase |
+      | A         | 1               | 101        | 200         | OK                 |
+      | A         | 2               | 400        | 400         | Bad Request        |
+      | 123456789 | 1               | 101        | 200         | OK                 |
+      | 123456789 | 2               | 400        | 400         | Bad Request        |
