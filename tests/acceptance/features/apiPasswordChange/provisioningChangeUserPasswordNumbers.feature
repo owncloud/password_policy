@@ -31,11 +31,16 @@ Feature: enforce the required number of numbers in a password when changing a us
     When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/user1" with body
       | key   | password   |
       | value | <password> |
-    Then the OCS status code should be "<ocs-status>"
-    And the HTTP status code should be "<http-status>"
+    Then the HTTP status code should be "<http-status>"
+    And the HTTP reason phrase should be "<http-reason-phrase>"
+    And the OCS status code should be "<ocs-status>"
+    And the OCS status message should be:
+      """
+      The password contains too few numbers. At least 3 numbers are required.
+      """
     Examples:
-      | password      | ocs-api-version | ocs-status | http-status |
-      | NoNumbers     | 1               | 403        | 200         |
-      | NoNumbers     | 2               | 403        | 403         |
-      | Only22Numbers | 1               | 403        | 200         |
-      | Only22Numbers | 2               | 403        | 403         |
+      | password      | ocs-api-version | ocs-status | http-status | http-reason-phrase |
+      | NoNumbers     | 1               | 403        | 200         | OK                 |
+      | NoNumbers     | 2               | 403        | 403         | Forbidden          |
+      | Only22Numbers | 1               | 403        | 200         | OK                 |
+      | Only22Numbers | 2               | 403        | 403         | Forbidden          |

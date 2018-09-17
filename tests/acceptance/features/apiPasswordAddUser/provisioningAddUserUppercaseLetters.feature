@@ -27,12 +27,17 @@ Feature: enforce the required number of uppercase letters in a password when cre
     Given using OCS API version "<ocs-api-version>"
     And user "brand-new-user" has been deleted
     When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
-    Then the OCS status code should be "<ocs-status>"
-    And the HTTP status code should be "<http-status>"
+    Then the HTTP status code should be "<http-status>"
+    And the HTTP reason phrase should be "<http-reason-phrase>"
+    And the OCS status code should be "<ocs-status>"
+    And the OCS status message should be:
+      """
+      The password contains too few uppercase letters. At least 3 uppercase letters are required.
+      """
     And user "brand-new-user" should not exist
     Examples:
-      | password       | ocs-api-version | ocs-status | http-status |
-      | 0uppercase     | 1               | 101        | 200         |
-      | 0uppercase     | 2               | 400        | 400         |
-      | Only2Uppercase | 1               | 101        | 200         |
-      | Only2Uppercase | 2               | 400        | 400         |
+      | password       | ocs-api-version | ocs-status | http-status | http-reason-phrase |
+      | 0uppercase     | 1               | 101        | 200         | OK                 |
+      | 0uppercase     | 2               | 400        | 400         | Bad Request        |
+      | Only2Uppercase | 1               | 101        | 200         | OK                 |
+      | Only2Uppercase | 2               | 400        | 400         | Bad Request        |

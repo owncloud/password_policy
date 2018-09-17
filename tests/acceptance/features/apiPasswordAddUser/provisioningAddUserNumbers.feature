@@ -27,12 +27,17 @@ Feature: enforce the required number of numbers in a password when creating a us
     Given using OCS API version "<ocs-api-version>"
     And user "brand-new-user" has been deleted
     When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
-    Then the OCS status code should be "<ocs-status>"
-    And the HTTP status code should be "<http-status>"
+    Then the HTTP status code should be "<http-status>"
+    And the HTTP reason phrase should be "<http-reason-phrase>"
+    And the OCS status code should be "<ocs-status>"
+    And the OCS status message should be:
+      """
+      The password contains too few numbers. At least 3 numbers are required.
+      """
     And user "brand-new-user" should not exist
     Examples:
-      | password      | ocs-api-version | ocs-status | http-status |
-      | NoNumbers     | 1               | 101        | 200         |
-      | NoNumbers     | 2               | 400        | 400         |
-      | Only22Numbers | 1               | 101        | 200         |
-      | Only22Numbers | 2               | 400        | 400         |
+      | password      | ocs-api-version | ocs-status | http-status | http-reason-phrase |
+      | NoNumbers     | 1               | 101        | 200         | OK                 |
+      | NoNumbers     | 2               | 400        | 400         | Bad Request        |
+      | Only22Numbers | 1               | 101        | 200         | OK                 |
+      | Only22Numbers | 2               | 400        | 400         | Bad Request        |
