@@ -56,6 +56,19 @@ default:
         - WebUIPersonalGeneralSettingsContext:
         - FeatureContext: *common_feature_context_params
 
+    webUIEnforcePasswordPolicyOnPublicShare:
+      paths:
+        - %paths.base%/../features/webUIEnforcePasswordPolicyOnPublicShare
+      contexts:
+        - PasswordPolicyContext:
+        - WebUIPasswordPolicyContext:
+        - WebUIGeneralContext:
+        - WebUILoginContext:
+        - WebUISharingContext:
+        - WebUIFilesContext:
+        - WebUIPersonalGeneralSettingsContext:
+        - FeatureContext: *common_feature_context_params
+
   extensions:
       jarnaiz\JUnitFormatter\JUnitFormatterExtension:
           filename: report.xml
