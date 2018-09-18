@@ -285,6 +285,24 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
+	 * @When /^the administrator sets the number of last passwords that should not be used to "([^"]*)" using the occ commmand$/
+	 * @Given /^the administrator has set the number of last passwords that should not be used to "([^"]*)"$/
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsLastPasswordsUsingOcc(
+		$value
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_password_history_value',
+			$value
+		);
+	}
+
+	/**
 	 * @When /^the administrator (enables|disables) the days until user password expires user password policy using the occ commmand$/
 	 * @Given /^the administrator has (enabled|disabled) the days until user password expires user password policy$/
 	 *
