@@ -16,6 +16,7 @@ Feature: enforce the required number of uppercase letters in a password when cre
     Then the command should have been successful
     And the command output should contain the text 'The user "user1" was created successfully'
     And user "user1" should exist
+    And the content of file "textfile0.txt" for user "user1" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
     Examples:
       | password                  |
       | 3UpperCaseLetters         |

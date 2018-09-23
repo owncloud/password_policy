@@ -19,6 +19,8 @@ Feature: enforce the required number of numbers in a password when changing a us
       | value | <password> |
     Then the OCS status code should be "<ocs-status>"
     And the HTTP status code should be "200"
+    And the content of file "textfile0.txt" for user "user1" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
+    But user "user1" using password "abcABC1234" should not be able to download file "textfile0.txt"
     Examples:
       | password        | ocs-api-version | ocs-status |
       | 333Numbers      | 1               | 100        |
@@ -38,6 +40,8 @@ Feature: enforce the required number of numbers in a password when changing a us
       """
       The password contains too few numbers. At least 3 numbers are required.
       """
+    And the content of file "textfile0.txt" for user "user1" using password "abcABC1234" should be "ownCloud test text file 0" plus end-of-line
+    But user "user1" using password "<password>" should not be able to download file "textfile0.txt"
     Examples:
       | password      | ocs-api-version | ocs-status | http-status | http-reason-phrase |
       | NoNumbers     | 1               | 403        | 200         | OK                 |
