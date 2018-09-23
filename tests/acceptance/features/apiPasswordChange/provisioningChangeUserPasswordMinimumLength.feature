@@ -19,6 +19,8 @@ Feature: enforce the minimum length of a password when changing a user password
       | value | <password> |
     Then the OCS status code should be "<ocs-status>"
     And the HTTP status code should be "200"
+    And the content of file "textfile0.txt" for user "user1" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
+    But user "user1" using password "1234567890" should not be able to download file "textfile0.txt"
     Examples:
       | password             | ocs-api-version | ocs-status |
       | 10tenchars           | 1               | 100        |
@@ -38,6 +40,8 @@ Feature: enforce the minimum length of a password when changing a user password
       """
       The password is too short. At least 10 characters are required.
       """
+    And the content of file "textfile0.txt" for user "user1" using password "1234567890" should be "ownCloud test text file 0" plus end-of-line
+    But user "user1" using password "<password>" should not be able to download file "textfile0.txt"
     Examples:
       | password  | ocs-api-version | ocs-status | http-status | http-reason-phrase |
       | A         | 1               | 403        | 200         | OK                 |

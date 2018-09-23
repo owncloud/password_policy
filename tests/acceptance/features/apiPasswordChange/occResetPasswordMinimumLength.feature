@@ -16,6 +16,8 @@ Feature: enforce the minimum length of a password when resetting the password us
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have been successful
     And the command output should contain the text 'Successfully reset password for user1'
+    And the content of file "textfile0.txt" for user "user1" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
+    But user "user1" using password "1234567890" should not be able to download file "textfile0.txt"
     Examples:
       | password             |
       | 10tenchars           |
@@ -25,6 +27,8 @@ Feature: enforce the minimum length of a password when resetting the password us
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have failed with exit code 1
     And the command error output should contain the text 'The password is too short. At least 10 characters are required.'
+    And the content of file "textfile0.txt" for user "user1" using password "1234567890" should be "ownCloud test text file 0" plus end-of-line
+    But user "user1" using password "<password>" should not be able to download file "textfile0.txt"
     Examples:
       | password  |
       | A         |

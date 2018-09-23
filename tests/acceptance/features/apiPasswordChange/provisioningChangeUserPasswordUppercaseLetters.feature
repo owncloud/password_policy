@@ -19,6 +19,8 @@ Feature: enforce the required number of uppercase letters in a password when cha
       | value | <password> |
     Then the OCS status code should be "<ocs-status>"
     And the HTTP status code should be "200"
+    And the content of file "textfile0.txt" for user "user1" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
+    But user "user1" using password "abcABC1234" should not be able to download file "textfile0.txt"
     Examples:
       | password                  | ocs-api-version | ocs-status |
       | 3UpperCaseLetters         | 1               | 100        |
@@ -38,6 +40,8 @@ Feature: enforce the required number of uppercase letters in a password when cha
       """
       The password contains too few uppercase letters. At least 3 uppercase letters are required.
       """
+    And the content of file "textfile0.txt" for user "user1" using password "abcABC1234" should be "ownCloud test text file 0" plus end-of-line
+    But user "user1" using password "<password>" should not be able to download file "textfile0.txt"
     Examples:
       | password       | ocs-api-version | ocs-status | http-status | http-reason-phrase |
       | 0uppercase     | 1               | 403        | 200         | OK                 |

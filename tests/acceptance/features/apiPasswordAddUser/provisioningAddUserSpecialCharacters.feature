@@ -16,6 +16,7 @@ Feature: enforce the required number of special characters in a password when cr
     Then the OCS status code should be "<ocs-status>"
     And the HTTP status code should be "200"
     And user "brand-new-user" should exist
+    And the content of file "textfile0.txt" for user "brand-new-user" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
     Examples:
       | password              | ocs-api-version | ocs-status |
       | 3#Special$Characters! | 1               | 100        |

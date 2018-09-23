@@ -24,6 +24,8 @@ Feature: enforce combinations of password policies when resetting a user passwor
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have been successful
     And the command output should contain the text 'Successfully reset password for user1'
+    And the content of file "textfile0.txt" for user "user1" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
+    But user "user1" using password "aA1!bB2#cC&deee" should not be able to download file "textfile0.txt"
     Examples:
       | password                  |
       | 15***UPPloweZZZ           |
@@ -33,6 +35,8 @@ Feature: enforce combinations of password policies when resetting a user passwor
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have failed with exit code 1
     And the command error output should contain the text '<message>'
+    And the content of file "textfile0.txt" for user "user1" using password "aA1!bB2#cC&deee" should be "ownCloud test text file 0" plus end-of-line
+    But user "user1" using password "<password>" should not be able to download file "textfile0.txt"
     Examples:
       | password                       | message                                                                   |
         # where just one of the requirements is not met
@@ -51,7 +55,8 @@ Feature: enforce combinations of password policies when resetting a user passwor
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have been successful
     And the command output should contain the text 'Successfully reset password for user1'
-    And user "user1" should exist
+    And the content of file "textfile0.txt" for user "user1" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
+    But user "user1" using password "aA1!bB2#cC&deee" should not be able to download file "textfile0.txt"
     Examples:
       | password                  |
       | 15%&*UPPloweZZZ           |
@@ -63,6 +68,8 @@ Feature: enforce combinations of password policies when resetting a user passwor
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have failed with exit code 1
     And the command error output should contain the text '<message>'
+    And the content of file "textfile0.txt" for user "user1" using password "aA1!bB2#cC&deee" should be "ownCloud test text file 0" plus end-of-line
+    But user "user1" using password "<password>" should not be able to download file "textfile0.txt"
     Examples:
       | password        | message                                                                   |
       | 15#!!UPPloweZZZ | The password contains invalid special characters. Only $%^&* are allowed. |

@@ -16,6 +16,8 @@ Feature: enforce the required number of special characters in a password when re
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have been successful
     And the command output should contain the text 'Successfully reset password for user1'
+    And the content of file "textfile0.txt" for user "user1" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
+    But user "user1" using password "a!b@c#1234" should not be able to download file "textfile0.txt"
     Examples:
       | password              |
       | 3#Special$Characters! |
@@ -26,6 +28,8 @@ Feature: enforce the required number of special characters in a password when re
     Then the command should have failed with exit code 1
     # Long text output comes on multiple lines. Here we just check for enough that will fit on one of the lines.
     And the command error output should contain the text 'The password contains too few special characters. At least 3 special char'
+    And the content of file "textfile0.txt" for user "user1" using password "a!b@c#1234" should be "ownCloud test text file 0" plus end-of-line
+    But user "user1" using password "<password>" should not be able to download file "textfile0.txt"
     Examples:
       | password                 |
       | NoSpecialCharacters123   |

@@ -24,6 +24,7 @@ Feature: enforce combinations of password policies when creating a user
     Then the OCS status code should be "<ocs-status>"
     And the HTTP status code should be "200"
     And user "brand-new-user" should exist
+    And the content of file "textfile0.txt" for user "brand-new-user" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
     Examples:
       | password                  | ocs-api-version | ocs-status |
       | 15***UPPloweZZZ           | 1               | 100        |
@@ -68,6 +69,7 @@ Feature: enforce combinations of password policies when creating a user
     Then the OCS status code should be "<ocs-status>"
     And the HTTP status code should be "200"
     And user "brand-new-user" should exist
+    And the content of file "textfile0.txt" for user "brand-new-user" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
     Examples:
       | password                  | ocs-api-version | ocs-status |
       | 15%&*UPPloweZZZ           | 1               | 100        |
