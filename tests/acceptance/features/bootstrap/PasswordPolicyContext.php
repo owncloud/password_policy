@@ -926,6 +926,16 @@ class PasswordPolicyContext implements Context {
 			$this->featureContext->getOcPath()
 		);
 
+		if ($this->appParameterValues === null) {
+			// Get app config values
+			$this->appParameterValues =  AppConfigHelper::getAppConfigs(
+				$this->featureContext->getBaseUrl(),
+				$this->featureContext->getAdminUsername(),
+				$this->featureContext->getAdminPassword(),
+				'password_policy'
+			);
+		}
+
 		// Delete all app config settings so they are at their defaults
 		$configKeys = [
 			'spv_def_special_chars_checked',
@@ -961,13 +971,6 @@ class PasswordPolicyContext implements Context {
 			];
 		}
 
-		if ($this->appParameterValues === null) {
-			// Save app config settigns
-			$this->appParameterValues = AppConfigHelper::getAppConfigs(
-				$appConfigSettingsToDelete
-			);
-		}
-
 		AppConfigHelper::deleteAppConfigs(
 			$this->featureContext->getBaseUrl(),
 			$this->featureContext->getAdminUsername(),
@@ -977,7 +980,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * After Scenario.
+	 * After Scenario
 	 *
 	 * @AfterScenario @webUI
 	 *
