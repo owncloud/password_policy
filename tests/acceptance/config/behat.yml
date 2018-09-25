@@ -56,9 +56,9 @@ default:
         - WebUIPersonalGeneralSettingsContext:
         - FeatureContext: *common_feature_context_params
 
-    webUIEnforcePasswordPolicyOnPublicShare:
+    webUIPublicShareLink:
       paths:
-        - %paths.base%/../features/webUIEnforcePasswordPolicyOnPublicShare
+        - %paths.base%/../features/webUIPublicShareLink
       contexts:
         - PasswordPolicyContext:
         - WebUIPasswordPolicyContext:
