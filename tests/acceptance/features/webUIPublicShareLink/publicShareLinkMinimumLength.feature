@@ -14,7 +14,7 @@ Feature: enforce the minimum length of a password on public link share
     And the user has browsed to the login page
     And the user has logged in with username "user1" and password "1234567890" using the webUI
 
-  Scenario Outline:  user creates a public share link with enough letters
+  Scenario Outline: user creates a public share link with enough letters
     When the user creates a new public link for the folder "simple-folder" using the webUI with
       | password | <password> |
     And the public accesses the last created public link with password "<password>" using the webUI
