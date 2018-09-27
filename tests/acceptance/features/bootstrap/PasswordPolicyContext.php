@@ -21,6 +21,7 @@
  */
 
 use Behat\Behat\Context\Context;
+use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use TestHelpers\AppConfigHelper;
 use TestHelpers\SetupHelper;
@@ -36,6 +37,8 @@ class PasswordPolicyContext implements Context {
 	 * @var FeatureContext
 	 */
 	private $featureContext;
+
+	private $appParameterValues = null;
 
 	/**
 	 * @param string $enabledOrDisabled
@@ -923,10 +926,15 @@ class PasswordPolicyContext implements Context {
 			$this->featureContext->getOcPath()
 		);
 
-		// TODO: Think about if we care enough to remember the current settings
-		//       and put them back at the end of each scenario. That is not
-		//       necessary during CI runs. But it is nice to developers who
-		//       run test scenarios locally.
+		if ($this->appParameterValues === null) {
+			// Get app config values
+			$this->appParameterValues =  AppConfigHelper::getAppConfigs(
+				$this->featureContext->getBaseUrl(),
+				$this->featureContext->getAdminUsername(),
+				$this->featureContext->getAdminPassword(),
+				'password_policy'
+			);
+		}
 
 		// Delete all app config settings so they are at their defaults
 		$configKeys = [
@@ -968,6 +976,25 @@ class PasswordPolicyContext implements Context {
 			$this->featureContext->getAdminUsername(),
 			$this->featureContext->getAdminPassword(),
 			$appConfigSettingsToDelete
+		);
+	}
+
+	/**
+	 * After Scenario
+	 *
+	 * @AfterScenario @webUI
+	 *
+	 * @param AfterScenarioScope $afterScenarioScope
+	 *
+	 * @return void
+	 */
+	public function restoreScenario(AfterScenarioScope $afterScenarioScope) {
+		// Restore app config settings
+		AppConfigHelper::modifyAppConfigs(
+			$this->featureContext->getBaseUrl(),
+			$this->featureContext->getAdminUsername(),
+			$this->featureContext->getAdminPassword(),
+			$this->appParameterValues
 		);
 	}
 }
