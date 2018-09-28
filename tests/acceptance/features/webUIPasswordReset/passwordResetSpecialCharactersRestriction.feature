@@ -34,9 +34,9 @@ Feature: enforce the restricted special characters in a password on the password
       The password contains too few special characters. At least 3 special characters ($%^&*) are required.
       """
     Examples:
-      | password                               |
-      | NoSpecialCharacters123                 |
-      | Only2$Special&Characters               |
+      | password                 |
+      | NoSpecialCharacters123   |
+      | Only2$Special&Characters |
 
   Scenario Outline: user tries to reset their password to a string that has invalid special characters
     When the user resets the password to "<password>" using the webUI

@@ -9,8 +9,8 @@ Feature: enforce the number of last passwords that must not be used when resetti
     Given the administrator has enabled the last passwords user password policy
     And the administrator has set the number of last passwords that should not be used to "3"
     And these users have been created:
-      | username | password   | displayname | email        |
-      | user1    | Number1    | User One    | u1@oc.com.np |
+      | username | password | displayname | email        |
+      | user1    | Number1  | User One    | u1@oc.com.np |
 
   Scenario: admin resets the password of a user to the existing password
     When the administrator resets the password of user "user1" to "Number1" using the occ command
