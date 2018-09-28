@@ -156,7 +156,7 @@ class ExpirePassword extends Command {
 				}
 			});
 		} else {
-			if (\count($groups) >= 1) {
+			if (\count($groups) > 0) {
 				foreach ($groups as $group) {
 					if ($this->groupManager->groupExists($group) === true) {
 						foreach ($this->groupManager->findUsersInGroup($group) as $user) {
@@ -196,7 +196,9 @@ class ExpirePassword extends Command {
 						}
 					}
 				}
-			} else {
+			}
+
+			if (!(\count($groups) > 0) && !(\count($uids) > 0)) {
 				$output->writeln("<error>Invalid argument given.</error>");
 			}
 		}
