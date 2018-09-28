@@ -295,8 +295,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordAddUser
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -304,8 +304,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -314,8 +314,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordAddUser
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -323,8 +323,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -333,8 +333,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordAddUser
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -342,8 +342,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -352,8 +352,8 @@ matrix:
       OC_VERSION: daily-master-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordAddUser
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -361,8 +361,8 @@ matrix:
       OC_VERSION: daily-master-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -371,8 +371,8 @@ matrix:
       OC_VERSION: daily-master-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordAddUser
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -380,8 +380,8 @@ matrix:
       OC_VERSION: daily-master-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -391,8 +391,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordPolicySettings
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -400,8 +400,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordReset
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
@@ -410,8 +410,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -419,8 +419,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPublicShareLink
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -429,8 +429,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordPolicySettings
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -438,8 +438,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordReset
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
@@ -448,8 +448,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -457,8 +457,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPublicShareLink
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -467,8 +467,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordPolicySettings
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -476,8 +476,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordReset
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
@@ -486,8 +486,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -495,8 +495,8 @@ matrix:
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPublicShareLink
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -506,7 +506,7 @@ matrix:
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -514,8 +514,8 @@ matrix:
       OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordReset
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
@@ -524,8 +524,8 @@ matrix:
       OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -533,8 +533,8 @@ matrix:
       OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPublicShareLink
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -543,8 +543,8 @@ matrix:
       OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordPolicySettings
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -552,8 +552,8 @@ matrix:
       OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordReset
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
@@ -562,8 +562,8 @@ matrix:
       OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -571,7 +571,7 @@ matrix:
       OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPublicShareLink
-      DB_TYPE: mysql
-      DB_NAME: owncloud
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
