@@ -185,7 +185,8 @@ The password for user5 is set to expire on 2018-06-27 10:13:00 UTC.
 		$expectedOutput = "The password for user1 is set to expire on 2019-01-01 14:00:00 UTC.
 The password for user2 is set to expire on 2019-01-01 14:00:00 UTC.
 The password for user3 is set to expire on 2019-01-01 14:00:00 UTC.
-Ignoring missing group group3
+Unknown group: group3
+1 group was not known
 ";
 		$this->assertEquals($expectedOutput, $output);
 	}
@@ -308,5 +309,208 @@ Ignoring missing group group3
 		$output = $this->commandTester->getDisplay();
 
 		$this->assertContains('Invalid argument given.', $output);
+	}
+
+	public function testNonExistingGroups() {
+		$this->timeFactory
+			->method('getTime')
+			->willReturn(1530180780);
+
+		$this->config
+			->method('getAppValue')
+			->will($this->returnValueMap([
+				['password_policy', 'spv_user_password_expiration_checked', false, 'on'],
+				['password_policy', 'spv_user_password_expiration_value', 90, 10]
+			]));
+
+		$this->commandTester->execute([
+			'--group' => ['group1', 'group2']
+		]);
+		$output = $this->commandTester->getDisplay();
+		$expectedOutput = "Unknown group: group1
+Unknown group: group2
+2 groups were not known
+";
+		$this->assertEquals($expectedOutput, $output);
+	}
+
+	public function testNonExistingUsers() {
+		$this->timeFactory
+			->method('getTime')
+			->willReturn(1530180780);
+
+		$this->config
+			->method('getAppValue')
+			->will($this->returnValueMap([
+				['password_policy', 'spv_user_password_expiration_checked', false, 'on'],
+				['password_policy', 'spv_user_password_expiration_value', 90, 10]
+			]));
+
+		$this->commandTester->execute([
+			'--uid' => ['user1', 'user2']
+		]);
+		$output = $this->commandTester->getDisplay();
+		$expectedOutput = "Unknown user: user1
+Unknown user: user2
+2 users were not known
+";
+		$this->assertEquals($expectedOutput, $output);
+	}
+
+	public function testExistingUsersAndGroups() {
+		$this->timeFactory
+			->method('getTime')
+			->willReturn(1530180780);
+
+		$this->config
+			->method('getAppValue')
+			->will($this->returnValueMap([
+				['password_policy', 'spv_user_password_expiration_checked', false, 'on'],
+				['password_policy', 'spv_user_password_expiration_value', 90, 10]
+			]));
+
+		$user1 = $this->createMock(IUser::class);
+		$user1->method('getUID')
+			->willReturn('user1');
+		$user1->method('canChangePassword')
+			->willReturn(true);
+		$user2 = $this->createMock(IUser::class);
+		$user2->method('getUID')
+			->willReturn('user2');
+		$user2->method('canChangePassword')
+			->willReturn(true);
+		$user3 = $this->createMock(IUser::class);
+		$user3->method('getUID')
+			->willReturn('user3');
+		$user3->method('canChangePassword')
+			->willReturn(true);
+		$user4 = $this->createMock(IUser::class);
+		$user4->method('getUID')
+			->willReturn('user4');
+		$user4->method('canChangePassword')
+			->willReturn(true);
+		$group1Users = [$user1, $user2];
+		$group2Users = [$user3, $user4];
+
+		$this->groupManager
+			->method('groupExists')
+			->will($this->returnValueMap([
+				['group1', true],
+				['group2', true]
+			]));
+		$this->groupManager
+			->method('findUsersInGroup')
+			->willReturnOnConsecutiveCalls($group1Users, $group2Users);
+		$this->userManager
+			->method('get')
+			->willReturnOnConsecutiveCalls($user1, $user2, $user3, $user4);
+
+		$this->commandTester->execute([
+			'--uid' => ['user1', 'user2', 'user3', 'user4'],
+			'--group' => ['group1', 'group2']
+
+		]);
+		$output = $this->commandTester->getDisplay();
+		$expectedOutput = "The password for user1 is set to expire on 2018-06-27 10:13:00 UTC.
+The password for user2 is set to expire on 2018-06-27 10:13:00 UTC.
+The password for user3 is set to expire on 2018-06-27 10:13:00 UTC.
+The password for user4 is set to expire on 2018-06-27 10:13:00 UTC.
+";
+		$this->assertEquals($expectedOutput, $output);
+	}
+
+	public function testExistingUsersAndGroupsSomeDontExist() {
+		$this->timeFactory
+			->method('getTime')
+			->willReturn(1530180780);
+
+		$this->config
+			->method('getAppValue')
+			->will($this->returnValueMap([
+				['password_policy', 'spv_user_password_expiration_checked', false, 'on'],
+				['password_policy', 'spv_user_password_expiration_value', 90, 10]
+			]));
+
+		$user1 = $this->createMock(IUser::class);
+		$user1->method('getUID')
+			->willReturn('user1');
+		$user1->method('canChangePassword')
+			->willReturn(true);
+		$user2 = $this->createMock(IUser::class);
+		$user2->method('getUID')
+			->willReturn('user2');
+		$user2->method('canChangePassword')
+			->willReturn(true);
+		$user3 = $this->createMock(IUser::class);
+		$user3->method('getUID')
+			->willReturn('user3');
+		$user3->method('canChangePassword')
+			->willReturn(true);
+		$user4 = $this->createMock(IUser::class);
+		$user4->method('getUID')
+			->willReturn('user4');
+		$user4->method('canChangePassword')
+			->willReturn(true);
+		$user5 = $this->createMock(IUser::class);
+		$user5->method('getUID')
+			->willReturn('user5');
+		$user5->method('canChangePassword')
+			->willReturn(true);
+		$user6 = $this->createMock(IUser::class);
+		$user6->method('getUID')
+			->willReturn('user6');
+		$user6->method('canChangePassword')
+			->willReturn(true);
+		$user7 = $this->createMock(IUser::class);
+		$user7->method('getUID')
+			->willReturn('user7');
+		$user7->method('canChangePassword')
+			->willReturn(true);
+		$user8 = $this->createMock(IUser::class);
+		$user8->method('getUID')
+			->willReturn('user8');
+		$user8->method('canChangePassword')
+			->willReturn(true);
+
+		$group1Users = [$user1, $user2];
+		$group2Users = [$user3, $user4];
+		$group3Users = [$user5, $user6];
+		$group4Users = [$user7, $user8];
+
+		$this->groupManager
+			->method('groupExists')
+			->will($this->returnValueMap([
+				['group1', true],
+				['group2', true],
+				['group3', false],
+				['group4', false]
+			]));
+		$this->groupManager
+			->method('findUsersInGroup')
+			->willReturnOnConsecutiveCalls($group1Users, $group2Users, $group3Users, $group4Users);
+		$this->userManager
+			->method('get')
+			->willReturnOnConsecutiveCalls($user1, $user2, $user3, $user4);
+
+		$this->commandTester->execute([
+			'--uid' => ['user1', 'user2', 'user3', 'user4', 'user5', 'user6', 'user7', 'user8'],
+			'--group' => ['group1', 'group2', 'group3', 'group4']
+
+		]);
+		$output = $this->commandTester->getDisplay();
+		$expectedOutput = "The password for user1 is set to expire on 2018-06-27 10:13:00 UTC.
+The password for user2 is set to expire on 2018-06-27 10:13:00 UTC.
+The password for user3 is set to expire on 2018-06-27 10:13:00 UTC.
+The password for user4 is set to expire on 2018-06-27 10:13:00 UTC.
+Unknown group: group3
+Unknown group: group4
+Unknown user: user5
+Unknown user: user6
+Unknown user: user7
+Unknown user: user8
+2 groups were not known
+4 users were not known
+";
+		$this->assertEquals($expectedOutput, $output);
 	}
 }
