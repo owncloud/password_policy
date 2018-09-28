@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## 2.0.1 - 2018-09-28
+## [Unreleased]
+
+## [2.0.1] - 2018-09-28
 
 ### Added
 - Add options 'all' and 'group' to occ expire-password command - [#77](https://github.com/owncloud/password_policy/issues/77) [#122](https://github.com/owncloud/password_policy/issues/122) [#144](https://github.com/owncloud/password_policy/issues/144)
@@ -47,5 +49,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Translate save button - #102
 - Change headline and subheadlines - #92
 
-[Unreleased]: https://github.com/owncloud/password_policy/compare/v2.0.0..HEAD
+[Unreleased]: https://github.com/owncloud/password_policy/compare/v2.0.1..HEAD
+[v2.0.1]: https://github.com/owncloud/password_policy/compare/v2.0.0..v2.0.1
 
