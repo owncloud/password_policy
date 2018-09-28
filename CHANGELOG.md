@@ -6,13 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [2.0.1] - 2018-09-28
+
 ### Added
-- Add options 'all' and 'group' to occ expire-password command - [#77](https://github.com/owncloud/password_policy/issues/77)
+- Add options 'all' and 'group' to occ expire-password command - [#77](https://github.com/owncloud/password_policy/issues/77) [#122](https://github.com/owncloud/password_policy/issues/122) [#144](https://github.com/owncloud/password_policy/issues/144)
+- Support for PHP 7.2 - [#118](https://github.com/owncloud/password_policy/issues/118)
 
 ### Changed
 - More user-friendly message in first time login page - [#81](https://github.com/owncloud/password_policy/issues/81)
 
 ### Fixed
+- Disable occ user:expire-password if no expiration rule was configured - [#115](https://github.com/owncloud/password_policy/issues/115)
+- Password expiration now work with Oracle databases - [#114](https://github.com/owncloud/password_policy/issues/114)
 - Password history of user is now cleared when user is deleted - [#83](https://github.com/owncloud/password_policy/issues/83)
 - Improve config messages and field grouping in settings - [#80](https://github.com/owncloud/password_policy/issues/80)
 - Characters "<" and ">" can now be added in special chars rule - [#82](https://github.com/owncloud/password_policy/issues/82)
@@ -44,5 +49,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Translate save button - #102
 - Change headline and subheadlines - #92
 
-[Unreleased]: https://github.com/owncloud/password_policy/compare/v2.0.0..HEAD
+[Unreleased]: https://github.com/owncloud/password_policy/compare/v2.0.1..HEAD
+[v2.0.1]: https://github.com/owncloud/password_policy/compare/v2.0.0..v2.0.1
 
