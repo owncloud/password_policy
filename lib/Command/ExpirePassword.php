@@ -170,7 +170,6 @@ class ExpirePassword extends Command {
 						}
 					} else {
 						$output->writeln("Ignoring missing group $group");
-						return 1;
 					}
 				}
 			}
