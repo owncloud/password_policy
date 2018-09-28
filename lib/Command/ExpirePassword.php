@@ -156,6 +156,9 @@ class ExpirePassword extends Command {
 				}
 			});
 		} else {
+			$numGroupsMissing = 0;
+			$numUidsMissing = 0;
+
 			if (\count($groups) > 0) {
 				foreach ($groups as $group) {
 					if ($this->groupManager->groupExists($group) === true) {
@@ -169,7 +172,8 @@ class ExpirePassword extends Command {
 							}
 						}
 					} else {
-						$output->writeln("Ignoring missing group $group");
+						$output->writeln("<error>Unknown group: $group</error>");
+						$numGroupsMissing = $numGroupsMissing + 1;
 					}
 				}
 			}
@@ -181,7 +185,7 @@ class ExpirePassword extends Command {
 
 					if ($user === null) {
 						$output->writeln("<error>Unknown user: $uid</error>");
-						return 2;
+						$numUidsMissing = $numUidsMissing + 1;
 					} else {
 						if (isset($users[$user->getUID()])) {
 							continue;
@@ -199,6 +203,27 @@ class ExpirePassword extends Command {
 
 			if (!(\count($groups) > 0) && !(\count($uids) > 0)) {
 				$output->writeln("<error>Invalid argument given.</error>");
+				return 1;
+			}
+
+			if (($numGroupsMissing > 0) || ($numUidsMissing > 0)) {
+				if ($numGroupsMissing > 0) {
+					if ($numGroupsMissing > 1) {
+						$text = "$numGroupsMissing groups were not known";
+					} else {
+						$text = "1 group was not known";
+					}
+					$output->writeln("<error>$text</error>");
+				}
+				if ($numUidsMissing > 0) {
+					if ($numUidsMissing > 1) {
+						$text = "$numUidsMissing users were not known";
+					} else {
+						$text = "1 user was not known";
+					}
+					$output->writeln("<error>$text</error>");
+				}
+				return 2;
 			}
 		}
 	}
