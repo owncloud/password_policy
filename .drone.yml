@@ -84,8 +84,7 @@ pipeline:
     - PLATFORM=Linux
     - BEHAT_SUITE=${BEHAT_SUITE}
     commands:
-    - cd /var/www/owncloud/tests/acceptance/
-    - ./run.sh --remote --config /var/www/owncloud/apps/password_policy/tests/acceptance/config/behat.yml
+    - make test-acceptance-api
     when:
       matrix:
         TEST_SUITE: api-acceptance
@@ -102,8 +101,7 @@ pipeline:
       - BEHAT_SUITE=${BEHAT_SUITE}
       - MAILHOG_HOST=email
     commands:
-      - cd /var/www/owncloud/tests/acceptance/
-      - ./run.sh --remote --config /var/www/owncloud/apps/password_policy/tests/acceptance/config/behat.yml
+      - make test-acceptance-webui
     when:
       matrix:
         TEST_SUITE: web-acceptance
