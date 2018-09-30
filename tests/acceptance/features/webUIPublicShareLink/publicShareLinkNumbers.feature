@@ -18,6 +18,7 @@ Feature: enforce the required number of numbers in a password on public share li
     When the user creates a new public link for the folder "simple-folder" using the webUI with
       | password | <password> |
     And the public accesses the last created public link with password "<password>" using the webUI
+    Then the file "lorem.txt" should be listed on the webUI
     Examples:
       | password        |
       | 333Numbers      |
