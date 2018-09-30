@@ -2,7 +2,7 @@
 Feature: enforce the required number of special characters in a password on public share links
 
   As an administrator
-  I want public share links to always contain a required number of special characters
+  I want public share link passwords to always contain a required number of special characters
   So that users cannot set passwords that are too easy to guess
 
   Background:

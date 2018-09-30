@@ -2,7 +2,7 @@
 Feature: enforce the minimum length of a password on the public share link page
 
   As an administrator
-  I want user passwords to always be a certain minimum length
+  I want public share link passwords to always be a certain minimum length
   So that users cannot set passwords that are too short (easy to crack)
 
   Background:

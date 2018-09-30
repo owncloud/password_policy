@@ -1,8 +1,8 @@
 @api
-Feature: enforce the required number of uppercase letters in a password on share public links
+Feature: enforce the required number of uppercase letters in a password on public share links
 
   As an administrator
-  I want public share links to always contain a required number of uppercase letters
+  I want public share link passwords to always contain a required number of uppercase letters
   So that users cannot set passwords that are too easy to guess
 
   Background:

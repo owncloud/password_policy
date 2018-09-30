@@ -2,7 +2,7 @@
 Feature: enforce combinations of password policies on public share links
 
   As an administrator
-  I want public share links to always have some combination of minimum length, lowercase, uppercase, numbers and special characters
+  I want public share link passwords to always have some combination of minimum length, lowercase, uppercase, numbers and special characters
   So that users cannot set passwords that are too easy to guess
 
   Background:

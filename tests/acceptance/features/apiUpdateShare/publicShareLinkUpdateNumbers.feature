@@ -2,7 +2,7 @@
 Feature: enforce the required number of numbers in a password on public share links
 
   As an administrator
-  I want public share links to always contain a required number of numbers
+  I want public share link passwords to always contain a required number of numbers
   So that users cannot set passwords that are too easy to guess
 
   Background:
