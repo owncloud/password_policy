@@ -1,8 +1,8 @@
 @webUI
-Feature: enforce combinations of password policies on public link share
+Feature: enforce combinations of password policies on the public share link page
 
   As an administrator
-  I want public share link to always have some combination of minimum length, lowercase, uppercase, numbers and special characters
+  I want public share link passwords to always have some combination of minimum length, lowercase, uppercase, numbers and special characters
   So that users cannot set passwords that are too easy to guess
 
   Background:
@@ -61,7 +61,7 @@ Feature: enforce combinations of password policies on public link share
       | 15%&*UPPloweZZZ           |
       | More^Than$15&Characters*0 |
 
-  Scenario Outline: user tries to create a public link using invalid restricted special characters
+  Scenario Outline: user tries to create a public share link using invalid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
     When the user tries to create a new public link for the folder "simple-folder" using the webUI with

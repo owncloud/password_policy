@@ -1,8 +1,8 @@
 @api
-Feature: enforce combinations of password policies on the public share link
+Feature: enforce combinations of password policies on public share links
 
   As an administrator
-  I want public share link to always have some combination of minimum length, lowercase, uppercase, numbers and special characters
+  I want public share links to always have some combination of minimum length, lowercase, uppercase, numbers and special characters
   So that users cannot set passwords that are too easy to guess
 
   Background:
@@ -23,7 +23,7 @@ Feature: enforce combinations of password policies on the public share link
       | path     | welcome.txt     |
       | password | zA1@bB2#cC&deee |
 
-  Scenario Outline: user updates the public share link password to valid string
+  Scenario Outline: user updates the public share link password to a valid string
     When user "user1" updates the last share using the sharing API with
       | password | <password> |
     Then the OCS status code should be "100"

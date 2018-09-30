@@ -1,8 +1,8 @@
 @webUI
-Feature: enforce the required number of special characters in a public share link
+Feature: enforce the required number of special characters on the public share link page
 
   As an administrator
-  I want public share link password to always contain a required number of special characters
+  I want public share link passwords to always contain a required number of special characters
   So that users cannot set passwords that are too easy to guess
 
   Background:

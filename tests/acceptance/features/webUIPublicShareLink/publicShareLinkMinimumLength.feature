@@ -1,5 +1,5 @@
 @webUI
-Feature: enforce the minimum length of a password on public link share
+Feature: enforce the minimum length of a password on the public share link page
 
   As an administrator
   I want user passwords to always be a certain minimum length

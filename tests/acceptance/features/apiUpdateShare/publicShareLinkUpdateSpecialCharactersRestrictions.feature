@@ -1,8 +1,8 @@
 @api
-Feature: enforce the restricted special characters in a password on public share link
+Feature: enforce the restricted special characters in a password on public share links
 
   As an administrator
-  I want share public link to always contain some of a restricted list of special characters
+  I want share public links to always contain some of a restricted list of special characters
   So that users cannot set passwords that have unusual hard-to-type characters
 
   Background:

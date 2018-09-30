@@ -2,7 +2,7 @@
 Feature: enforce the required number of lowercase letters in a password on the public share link page
 
   As an administrator
-  I want user passwords to always contain a required number of lowercase letters
+  I want public share link passwords to always contain a required number of lowercase letters
   So that users cannot set passwords that are too easy to guess
 
   Background:
