@@ -29,8 +29,8 @@ Feature: enforce the restricted special characters in a password on the public s
   Scenario Outline: user tries to create a link with too few restricted special characters
     When the user tries to create a new public link for the folder "simple-folder" using the webUI with
       | password | <password> |
-    Then the user should see a error message on public dialog saying "The password contains too few special characters. At least 3 special characters ($%^&*) are required."
-    And public link should not be generated
+    Then the user should see an error message on the public link share dialog saying "The password contains too few special characters. At least 3 special characters ($%^&*) are required."
+    And the public link should not have been generated
     Examples:
       | password                 |
       | NoSpecialCharacters123   |
@@ -39,8 +39,8 @@ Feature: enforce the restricted special characters in a password on the public s
   Scenario Outline: user tries to create a public share link with invalid special characters
     When the user tries to create a new public link for the folder "simple-folder" using the webUI with
       | password | <password> |
-    Then the user should see a error message on public dialog saying "The password contains invalid special characters. Only $%^&* are allowed."
-    And public link should not be generated
+    Then the user should see an error message on the public link share dialog saying "The password contains invalid special characters. Only $%^&* are allowed."
+    And the public link should not have been generated
     Examples:
       | password                                 |
       | Only#Invalid!Special@Characters          |

@@ -35,8 +35,8 @@ Feature: enforce combinations of password policies on the public share link page
   Scenario Outline: user tries to create a public share link with invalid password
     When the user tries to create a new public link for the folder "simple-folder" using the webUI with
       | password | <password> |
-    Then the user should see a error message on public dialog saying "<message>"
-    And public link should not be generated
+    Then the user should see an error message on the public link share dialog saying "<message>"
+    And the public link should not have been generated
     Examples:
       | password                       | message                                                                                       |
       # where just one of the requirements is not met
@@ -66,8 +66,8 @@ Feature: enforce combinations of password policies on the public share link page
     And the administrator has set the restricted special characters required to "$%^&*"
     When the user tries to create a new public link for the folder "simple-folder" using the webUI with
       | password | <password> |
-    Then the user should see a error message on public dialog saying "<message>"
-    And public link should not be generated
+    Then the user should see an error message on the public link share dialog saying "<message>"
+    And the public link should not have been generated
     Examples:
       | password        | message                                                                                     |
       | 15#!!UPPloweZZZ | The password contains invalid special characters. Only $%^&* are allowed.                   |

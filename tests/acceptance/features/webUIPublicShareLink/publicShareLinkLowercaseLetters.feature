@@ -27,8 +27,8 @@ Feature: enforce the required number of lowercase letters in a password on the p
   Scenario Outline: user tries to create a public share link with too few lowercase letters
     When the user tries to create a new public link for the folder "simple-folder" using the webUI with
       | password | <password> |
-    Then the user should see a error message on public dialog saying "The password contains too few lowercase letters. At least 3 lowercase letters are required."
-    And public link should not be generated
+    Then the user should see an error message on the public link share dialog saying "The password contains too few lowercase letters. At least 3 lowercase letters are required."
+    And the public link should not have been generated
     Examples:
       | password   |
       | 0LOWERCASE |
