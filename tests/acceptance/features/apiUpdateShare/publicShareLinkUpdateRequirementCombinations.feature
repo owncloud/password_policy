@@ -1,5 +1,5 @@
-@webUI
-Feature: enforce combinations of password policies on the public share link page
+@api
+Feature: enforce combinations of password policies on public share links
 
   As an administrator
   I want public share link passwords to always have some combination of minimum length, lowercase, uppercase, numbers and special characters
@@ -19,24 +19,29 @@ Feature: enforce combinations of password policies on the public share link page
     And these users have been created:
       | username | password        | displayname | email        |
       | user1    | aA1!bB2#cC&deee | User One    | u1@oc.com.np |
-    And the user has browsed to the login page
-    And the user has logged in with username "user1" and password "aA1!bB2#cC&deee" using the webUI
+    And user "user1" has created a public link share with settings
+      | path     | welcome.txt     |
+      | password | zA1@bB2#cC&deee |
 
-  Scenario Outline: user creates a public share link with valid password
-    When the user creates a new public link for the folder "simple-folder" using the webUI with
+  Scenario Outline: user updates the public share link password to a valid string
+    When user "user1" updates the last share using the sharing API with
       | password | <password> |
-    And the public accesses the last created public link with password "<password>" using the webUI
-    Then the file "lorem.txt" should be listed on the webUI
+    Then the OCS status code should be "100"
+    And the HTTP status code should be "200"
+    And the last public shared file should be able to be downloaded with password "<password>"
+    And the last public shared file should not be able to be downloaded with password "zA1@bB2#cC&deee"
     Examples:
       | password                  |
       | 15***UPPloweZZZ           |
       | More%Than$15!Characters-0 |
 
-  Scenario Outline: user tries to create a public share link with invalid password
-    When the user tries to create a new public link for the folder "simple-folder" using the webUI with
+  Scenario Outline: user tries to update the public share link password to an invalid string
+    When user "user1" tries to update the last share using the sharing API with
       | password | <password> |
-    Then the user should see a error message on public dialog saying "<message>"
-    And public link should not be generated
+    Then the OCS status message should be "<message>"
+    And the OCS status code should be "400"
+    And the last public shared file should be able to be downloaded with password "zA1@bB2#cC&deee"
+    And the last public shared file should not be able to be downloaded with password "<password>"
     Examples:
       | password                       | message                                                                                       |
       # where just one of the requirements is not met
@@ -49,25 +54,29 @@ Feature: enforce combinations of password policies on the public share link page
       | aA!1                           | The password is too short. At least 15 characters are required.                               |
       | aA!123456789012345             | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
 
-  Scenario Outline: user creates a public share link using valid restricted special characters
+  Scenario Outline: user updates the public share link password to valid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
-    When the user creates a new public link for the folder "simple-folder" using the webUI with
+    When user "user1" updates the last share using the sharing API with
       | password | <password> |
-    And the public accesses the last created public link with password "<password>" using the webUI
-    Then the file "lorem.txt" should be listed on the webUI
+    Then the OCS status code should be "100"
+    And the HTTP status code should be "200"
+    And the last public shared file should be able to be downloaded with password "<password>"
+    And the last public shared file should not be able to be downloaded with password "zA1@bB2#cC&deee"
     Examples:
       | password                  |
       | 15%&*UPPloweZZZ           |
       | More^Than$15&Characters*0 |
 
-  Scenario Outline: user tries to create a public share link using invalid restricted special characters
+  Scenario Outline: user tries to update the public share link password to invalid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
-    When the user tries to create a new public link for the folder "simple-folder" using the webUI with
+    When user "user1" tries to update the last share using the sharing API with
       | password | <password> |
-    Then the user should see a error message on public dialog saying "<message>"
-    And public link should not be generated
+    Then the OCS status message should be "<message>"
+    And the OCS status code should be "400"
+    And the last public shared file should be able to be downloaded with password "zA1@bB2#cC&deee"
+    And the last public shared file should not be able to be downloaded with password "<password>"
     Examples:
       | password        | message                                                                                     |
       | 15#!!UPPloweZZZ | The password contains invalid special characters. Only $%^&* are allowed.                   |

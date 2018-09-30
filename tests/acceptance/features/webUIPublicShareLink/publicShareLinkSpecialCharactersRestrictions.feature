@@ -1,8 +1,8 @@
 @webUI
-Feature: enforce the restricted special characters in a password while creating public share link
+Feature: enforce the restricted special characters in a password on the public share link page
 
   As an administrator
-  I want user passwords to always contain some of a restricted list of special characters
+  I want public share link passwords to always contain some of a restricted list of special characters
   So that users cannot set passwords that have unusual hard-to-type characters
 
   Background:

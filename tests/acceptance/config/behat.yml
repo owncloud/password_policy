@@ -24,6 +24,14 @@ default:
         - OccContext:
         - FeatureContext: *common_feature_context_params
 
+    apiUpdateShare:
+      paths:
+        - %paths.base%/../features/apiUpdateShare
+      contexts:
+        - PasswordPolicyContext:
+        - OccContext:
+        - FeatureContext: *common_feature_context_params
+
     webUIPasswordPolicySettings:
       paths:
         - %paths.base%/../features/webUIPasswordPolicySettings
