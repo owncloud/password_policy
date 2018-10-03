@@ -133,7 +133,7 @@ test-php-phpstan: vendor-bin/phpstan/vendor
 	$(PHPSTAN) analyse --memory-limit=4G --configuration=./phpstan.neon --no-progress --level=5 appinfo lib
 
 .PHONY: test-acceptance-api
-test-acceptance-api:     ## Run API acceptance tests
+test-acceptance-api:       ## Run API acceptance tests
 test-acceptance-api: vendor/bin/phpunit
 	../../tests/acceptance/run.sh --config tests/acceptance/config/behat.yml --type api
 
