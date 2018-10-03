@@ -9,8 +9,8 @@ Feature: enforce the minimum length of a password on the password reset UI page
     Given the administrator has enabled the minimum characters password policy
     And the administrator has set the minimum characters required to "10"
     And these users have been created:
-      | username | password   | displayname | email        |
-      | user1    | 1234567890 | User One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | 1234567890 |
     And the user has browsed to the login page
     And the user logs in with username "user1" and invalid password "invalidpassword" using the webUI
     And the user has requested the password reset link using the webUI

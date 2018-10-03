@@ -11,8 +11,8 @@ Feature: enforce the minimum length of a password when creating a user
 
   Scenario Outline: admin creates a user with a password that has enough numbers
     When the administrator creates this user using the occ command:
-      | username | password   | displayname | email        |
-      | user1    | <password> | User-One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | <password> |
     Then the command should have been successful
     And the command output should contain the text 'The user "user1" was created successfully'
     And user "user1" should exist
@@ -24,8 +24,8 @@ Feature: enforce the minimum length of a password when creating a user
 
   Scenario Outline: admin creates a user with a password that does not have enough numbers
     When the administrator creates this user using the occ command:
-      | username | password   | displayname | email        |
-      | user1    | <password> | User-One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | <password> |
     Then the command should have failed with exit code 1
     And the command error output should contain the text 'The password is too short. At least 10 characters are required.'
     And user "user1" should not exist

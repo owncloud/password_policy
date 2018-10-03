@@ -17,8 +17,8 @@ Feature: enforce combinations of password policies on the password reset UI page
     And the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
     And these users have been created:
-      | username | password        | displayname | email        |
-      | user1    | aA1!bB2#cC&deee | User One    | u1@oc.com.np |
+      | username | password        |
+      | user1    | aA1!bB2#cC&deee |
     And the user has browsed to the login page
     And the user logs in with username "user1" and invalid password "invalidpassword" using the webUI
 

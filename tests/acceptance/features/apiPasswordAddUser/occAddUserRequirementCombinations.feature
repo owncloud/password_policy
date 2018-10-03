@@ -19,8 +19,8 @@ Feature: enforce combinations of password policies when creating a user
 
   Scenario Outline: admin creates a user with a password that meets the password policy
     When the administrator creates this user using the occ command:
-      | username | password   | displayname | email        |
-      | user1    | <password> | User-One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | <password> |
     Then the command should have been successful
     And the command output should contain the text 'The user "user1" was created successfully'
     And user "user1" should exist
@@ -32,8 +32,8 @@ Feature: enforce combinations of password policies when creating a user
 
   Scenario Outline: admin creates a user with a password that does not meet the password policy
     When the administrator creates this user using the occ command:
-      | username | password   | displayname | email        |
-      | user1    | <password> | User-One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | <password> |
     Then the command should have failed with exit code 1
     And the command error output should contain the text '<message>'
     And user "user1" should not exist
@@ -53,8 +53,8 @@ Feature: enforce combinations of password policies when creating a user
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
     When the administrator creates this user using the occ command:
-      | username | password   | displayname | email        |
-      | user1    | <password> | User-One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | <password> |
     Then the command should have been successful
     And the command output should contain the text 'The user "user1" was created successfully'
     And user "user1" should exist
@@ -67,8 +67,8 @@ Feature: enforce combinations of password policies when creating a user
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
     When the administrator creates this user using the occ command:
-      | username | password   | displayname | email        |
-      | user1    | <password> | User-One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | <password> |
     Then the command should have failed with exit code 1
     And the command error output should contain the text '<message>'
     And user "user1" should not exist

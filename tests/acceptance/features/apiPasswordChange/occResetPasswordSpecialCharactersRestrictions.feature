@@ -11,8 +11,8 @@ Feature: enforce the required number of restricted special characters in a passw
     And the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
     And these users have been created:
-      | username | password   | displayname | email        |
-      | user1    | a$b%c^1234 | User One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | a$b%c^1234 |
 
   Scenario Outline: admin resets the password of a user with a password that has enough restricted special characters
     When the administrator resets the password of user "user1" to "<password>" using the occ command

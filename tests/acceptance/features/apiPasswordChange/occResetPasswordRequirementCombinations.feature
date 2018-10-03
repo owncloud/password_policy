@@ -17,8 +17,8 @@ Feature: enforce combinations of password policies when resetting a user passwor
     And the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
     And these users have been created:
-      | username | password        | displayname | email        |
-      | user1    | aA1!bB2#cC&deee | User One    | u1@oc.com.np |
+      | username | password        |
+      | user1    | aA1!bB2#cC&deee |
 
   Scenario Outline: admin resets the password of a user with a password that meets the password policy
     When the administrator resets the password of user "user1" to "<password>" using the occ command

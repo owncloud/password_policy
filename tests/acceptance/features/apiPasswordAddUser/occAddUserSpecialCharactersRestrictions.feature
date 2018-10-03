@@ -13,8 +13,8 @@ Feature: enforce the restricted special characters in a password when creating a
 
   Scenario Outline: admin creates a user with a password that has enough restricted special characters
     When the administrator creates this user using the occ command:
-      | username | password   | displayname | email        |
-      | user1    | <password> | User-One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | <password> |
     Then the command should have been successful
     And the command output should contain the text 'The user "user1" was created successfully'
     And user "user1" should exist
@@ -26,8 +26,8 @@ Feature: enforce the restricted special characters in a password when creating a
 
   Scenario Outline: admin creates a user with a password that does not have enough restricted special characters
     When the administrator creates this user using the occ command:
-      | username | password   | displayname | email        |
-      | user1    | <password> | User-One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | <password> |
     Then the command should have failed with exit code 1
     # Long text output comes on multiple lines. Here we just check for enough that will fit on one of the lines.
     And the command error output should contain the text 'The password contains too few special characters. At least 3 special char'
@@ -39,8 +39,8 @@ Feature: enforce the restricted special characters in a password when creating a
 
   Scenario Outline: admin creates a user with a password that has invalid special characters
     When the administrator creates this user using the occ command:
-      | username | password   | displayname | email        |
-      | user1    | <password> | User-One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | <password> |
     Then the command should have failed with exit code 1
     # Long text output comes on multiple lines. Here we just check for enough that will fit on one of the lines.
     And the command error output should contain the text 'The password contains invalid special characters. Only $%^&* are allowed.'
