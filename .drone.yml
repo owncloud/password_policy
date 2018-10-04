@@ -372,6 +372,34 @@ matrix:
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
+    #PHP 7.1 with core stable10 and Oracle
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordAddUser
+      DB_TYPE: oci
+      DB_NAME: XE
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordChange
+      DB_TYPE: oci
+      DB_NAME: XE
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiUpdateShare
+      DB_TYPE: oci
+      DB_NAME: XE
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
     #PHP 7.1 with core master
     - PHP_VERSION: 7.1
       OC_VERSION: daily-master-qa
@@ -397,6 +425,34 @@ matrix:
       BEHAT_SUITE: apiUpdateShare
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    #PHP 7.1 with core master and Oracle
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordAddUser
+      DB_TYPE: oci
+      DB_NAME: XE
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordChange
+      DB_TYPE: oci
+      DB_NAME: XE
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiUpdateShare
+      DB_TYPE: oci
+      DB_NAME: XE
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
