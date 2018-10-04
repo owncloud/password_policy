@@ -9,8 +9,8 @@ Feature: enforce the required number of special characters in a password on publ
     Given the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
     And these users have been created:
-      | username | password   | displayname | email        |
-      | user1    | a!b@c#1234 | User One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | a!b@c#1234 |
     And user "user1" has created a public link share with settings
       | path     | welcome.txt |
       | password | g@b#c!1234  |

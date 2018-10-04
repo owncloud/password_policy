@@ -32,6 +32,17 @@ default:
         - OccContext:
         - FeatureContext: *common_feature_context_params
 
+    webUIPasswordChange:
+      paths:
+        - %paths.base%/../features/webUIPasswordChange
+      contexts:
+        - PasswordPolicyContext:
+        - WebUIPasswordPolicyContext:
+        - WebUIGeneralContext:
+        - WebUILoginContext:
+        - WebUIPersonalGeneralSettingsContext:
+        - FeatureContext: *common_feature_context_params
+
     webUIPasswordPolicySettings:
       paths:
         - %paths.base%/../features/webUIPasswordPolicySettings
@@ -51,17 +62,6 @@ default:
         - WebUIGeneralContext:
         - WebUILoginContext:
         - EmailContext:
-        - FeatureContext: *common_feature_context_params
-
-    webUIPasswordChange:
-      paths:
-        - %paths.base%/../features/webUIPasswordChange
-      contexts:
-        - PasswordPolicyContext:
-        - WebUIPasswordPolicyContext:
-        - WebUIGeneralContext:
-        - WebUILoginContext:
-        - WebUIPersonalGeneralSettingsContext:
         - FeatureContext: *common_feature_context_params
 
     webUIPublicShareLink:

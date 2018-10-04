@@ -9,8 +9,8 @@ Feature: enforce the required number of lowercase letters in a password when cha
     Given the administrator has enabled the lowercase letters password policy
     And the administrator has set the lowercase letters required to "3"
     And these users have been created:
-      | username | password   | displayname | email        |
-      | user1    | abcABC1234 | User One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | abcABC1234 |
 
   Scenario Outline: admin changes a user password to one that has enough lowercase letters
     Given using OCS API version "<ocs-api-version>"

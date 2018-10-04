@@ -17,8 +17,8 @@ Feature: enforce combinations of password policies when changing a user password
     And the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
     And these users have been created:
-      | username | password        | displayname | email        |
-      | user1    | aA1!bB2#cC&deee | User One    | u1@oc.com.np |
+      | username | password        |
+      | user1    | aA1!bB2#cC&deee |
 
   Scenario Outline: admin changes a user password to one that meets the password policy
     Given using OCS API version "<ocs-api-version>"

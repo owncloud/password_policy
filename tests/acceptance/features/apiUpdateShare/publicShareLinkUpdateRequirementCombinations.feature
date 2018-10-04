@@ -17,8 +17,8 @@ Feature: enforce combinations of password policies on public share links
     And the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
     And these users have been created:
-      | username | password        | displayname | email        |
-      | user1    | aA1!bB2#cC&deee | User One    | u1@oc.com.np |
+      | username | password        |
+      | user1    | aA1!bB2#cC&deee |
     And user "user1" has created a public link share with settings
       | path     | welcome.txt     |
       | password | zA1@bB2#cC&deee |

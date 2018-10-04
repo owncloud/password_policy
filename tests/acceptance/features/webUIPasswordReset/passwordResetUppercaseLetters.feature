@@ -9,12 +9,12 @@ Feature: enforce the required number of uppercase letters in a password on the p
     Given the administrator has enabled the uppercase letters password policy
     And the administrator has set the uppercase letters required to "3"
     And these users have been created:
-      | username | password   | displayname | email        |
-      | user1    | abcABC1234 | User One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | abcABC1234 |
     And the user has browsed to the login page
     And the user logs in with username "user1" and invalid password "invalidpassword" using the webUI
     And the user has requested the password reset link using the webUI
-    And the user has followed the password reset link from email address "u1@oc.com.np"
+    And the user has followed the password reset link from email address "user1@example.org"
 
   Scenario Outline: user resets their password to a string with enough uppercase letters
     When the user resets the password to "<password>" using the webUI

@@ -9,8 +9,8 @@ Feature: enforce the required number of special characters in a password when ch
     Given the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
     And these users have been created:
-      | username | password   | displayname | email        |
-      | user1    | a!b@c#1234 | User One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | a!b@c#1234 |
 
   Scenario Outline: admin changes a user password to one that has enough special characters
     Given using OCS API version "<ocs-api-version>"

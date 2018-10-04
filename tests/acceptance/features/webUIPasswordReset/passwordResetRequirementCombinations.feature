@@ -17,14 +17,14 @@ Feature: enforce combinations of password policies on the password reset UI page
     And the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
     And these users have been created:
-      | username | password        | displayname | email        |
-      | user1    | aA1!bB2#cC&deee | User One    | u1@oc.com.np |
+      | username | password        |
+      | user1    | aA1!bB2#cC&deee |
     And the user has browsed to the login page
     And the user logs in with username "user1" and invalid password "invalidpassword" using the webUI
 
   Scenario Outline: user resets their password to a valid string
     When the user requests the password reset link using the webUI
-    And the user follows the password reset link from email address "u1@oc.com.np"
+    And the user follows the password reset link from email address "user1@example.org"
     And the user resets the password to "<password>" using the webUI
     And the user logs in with username "user1" and password "<password>" using the webUI
     Then the user should be redirected to a webUI page with the title "Files - ownCloud"
@@ -35,7 +35,7 @@ Feature: enforce combinations of password policies on the password reset UI page
 
   Scenario Outline: user tries to reset their password to an invalid string
     When the user requests the password reset link using the webUI
-    And the user follows the password reset link from email address "u1@oc.com.np"
+    And the user follows the password reset link from email address "user1@example.org"
     And the user resets the password to "<password>" using the webUI
     Then a message with this text should be displayed on the webUI:
       """
@@ -57,7 +57,7 @@ Feature: enforce combinations of password policies on the password reset UI page
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
     When the user requests the password reset link using the webUI
-    And the user follows the password reset link from email address "u1@oc.com.np"
+    And the user follows the password reset link from email address "user1@example.org"
     And the user resets the password to "<password>" using the webUI
     And the user logs in with username "user1" and password "<password>" using the webUI
     Then the user should be redirected to a webUI page with the title "Files - ownCloud"
@@ -70,7 +70,7 @@ Feature: enforce combinations of password policies on the password reset UI page
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
     When the user requests the password reset link using the webUI
-    And the user follows the password reset link from email address "u1@oc.com.np"
+    And the user follows the password reset link from email address "user1@example.org"
     And the user resets the password to "<password>" using the webUI
     Then a message with this text should be displayed on the webUI:
       """

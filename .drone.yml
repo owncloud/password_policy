@@ -433,6 +433,15 @@ matrix:
     - PHP_VERSION: 5.6
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordChange
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 5.6
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
       DB_NAME: owncloud
@@ -448,15 +457,6 @@ matrix:
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
-
-    - PHP_VERSION: 5.6
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: web-acceptance
-      BEHAT_SUITE: webUIPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
 
     - PHP_VERSION: 5.6
       OC_VERSION: daily-stable10-qa
@@ -471,6 +471,15 @@ matrix:
     - PHP_VERSION: 7.0
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordChange
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
       DB_NAME: owncloud
@@ -486,15 +495,6 @@ matrix:
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
-
-    - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: web-acceptance
-      BEHAT_SUITE: webUIPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
       OC_VERSION: daily-stable10-qa
@@ -509,6 +509,15 @@ matrix:
     - PHP_VERSION: 7.1
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordChange
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
       DB_NAME: owncloud
@@ -524,15 +533,6 @@ matrix:
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: web-acceptance
-      BEHAT_SUITE: webUIPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
       OC_VERSION: daily-stable10-qa
@@ -547,6 +547,15 @@ matrix:
     - PHP_VERSION: 7.1
       OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordChange
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
       DB_NAME: owncloud
@@ -562,15 +571,6 @@ matrix:
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
-      TEST_SUITE: web-acceptance
-      BEHAT_SUITE: webUIPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
       OC_VERSION: daily-master-qa
@@ -585,6 +585,15 @@ matrix:
     - PHP_VERSION: 7.2
       OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordChange
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+
+    - PHP_VERSION: 7.2
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
       DB_NAME: owncloud
@@ -600,15 +609,6 @@ matrix:
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
-
-    - PHP_VERSION: 7.2
-      OC_VERSION: daily-master-qa
-      TEST_SUITE: web-acceptance
-      BEHAT_SUITE: webUIPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.2
       OC_VERSION: daily-master-qa

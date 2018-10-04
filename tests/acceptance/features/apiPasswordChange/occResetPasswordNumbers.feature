@@ -9,8 +9,8 @@ Feature: enforce the required number of numbers in a password when resetting the
     Given the administrator has enabled the numbers password policy
     And the administrator has set the numbers required to "3"
     And these users have been created:
-      | username | password   | displayname | email        |
-      | user1    | abcABC1234 | User One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | abcABC1234 |
 
   Scenario Outline: admin resets the password of a user with a password that has enough numbers
     When the administrator resets the password of user "user1" to "<password>" using the occ command

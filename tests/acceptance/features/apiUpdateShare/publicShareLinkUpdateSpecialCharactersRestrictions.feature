@@ -11,8 +11,8 @@ Feature: enforce the restricted special characters in a password on public share
     And the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
     And these users have been created:
-      | username | password   | displayname | email        |
-      | user1    | a$b%c^1234 | User One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | a$b%c^1234 |
     And user "user1" has created a public link share with settings
       | path     | welcome.txt   |
       | password | a324$b%c^1234 |

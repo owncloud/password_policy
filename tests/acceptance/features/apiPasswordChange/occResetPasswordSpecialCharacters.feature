@@ -9,8 +9,8 @@ Feature: enforce the required number of special characters in a password when re
     Given the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
     And these users have been created:
-      | username | password   | displayname | email        |
-      | user1    | a!b@c#1234 | User One    | u1@oc.com.np |
+      | username | password   |
+      | user1    | a!b@c#1234 |
 
   Scenario Outline: admin resets the password of a user with a password that has enough special characters
     When the administrator resets the password of user "user1" to "<password>" using the occ command
