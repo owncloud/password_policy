@@ -17,7 +17,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
     And the user has browsed to the login page
     And the user logs in with username "user1" and invalid password "invalidpassword" using the webUI
     And the user has requested the password reset link using the webUI
-    And the user has followed the password reset link from email address "u1@oc.com.np"
+    And the user has followed the password reset link from email address "user1@example.org"
 
   Scenario Outline: user resets their password to a string that is not one of their last 3 passwords
     When the user resets the password to "<password>" using the webUI
