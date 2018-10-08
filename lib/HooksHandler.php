@@ -34,6 +34,8 @@ use OCP\ISession;
 use OCP\IUser;
 use OCP\Security\IHasher;
 use OCP\Notification\IManager;
+use OCP\User\UserPasswordCreateEvent;
+use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
 class HooksHandler {
@@ -133,9 +135,13 @@ class HooksHandler {
 		return $configValues;
 	}
 
-	public function generatePassword(GenericEvent $event) {
+	/**
+	 * @param UserPasswordCreateEvent $event
+	 */
+	public function generatePassword(UserPasswordCreateEvent $event) {
 		$this->fixDI();
-		$event['password'] = $this->engine->generatePassword();
+		$password = $this->engine->generatePassword();
+		$event->setPassword($password);
 		$event->stopPropagation();
 	}
 
