@@ -135,12 +135,12 @@ test-php-phpstan: vendor-bin/phpstan/vendor
 .PHONY: test-acceptance-api
 test-acceptance-api:       ## Run API acceptance tests
 test-acceptance-api: vendor/bin/phpunit
-	../../tests/acceptance/run.sh --config tests/acceptance/config/behat.yml --type api
+	../../tests/acceptance/run.sh --type api
 
 .PHONY: test-acceptance-webui
 test-acceptance-webui:     ## Run webUI acceptance tests
 test-acceptance-webui: vendor/bin/phpunit
-	../../tests/acceptance/run.sh --config tests/acceptance/config/behat.yml --type webUI
+	../../tests/acceptance/run.sh --type webUI
 
 #
 # Dependency management
