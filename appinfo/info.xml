@@ -17,7 +17,7 @@ Administrators find the configuration options in the 'Security' section of the o
 		<admin>https://doc.owncloud.com/server/10.0/admin_manual/configuration/server/security/password_policy.html</admin>
 	</documentation>
 	<dependencies>
-		<owncloud min-version="10.0.9" max-version="10.1" />
+		<owncloud min-version="10.0.9" max-version="11.0.0.0" />
 	</dependencies>
 	<namespace>PasswordPolicy</namespace>
 	<settings>
