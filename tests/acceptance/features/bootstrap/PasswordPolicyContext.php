@@ -54,7 +54,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator (enables|disables) the minimum characters password policy using the occ commmand$/
+	 * @When /^the administrator (enables|disables) the minimum characters password policy using the occ command$/
 	 * @Given /^the administrator has (enabled|disabled) the minimum characters password policy$/
 	 *
 	 * @param string $action
@@ -72,7 +72,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator sets the minimum characters required to "([^"]*)" using the occ commmand$/
+	 * @When /^the administrator sets the minimum characters required to "([^"]*)" using the occ command$/
 	 * @Given /^the administrator has set the minimum characters required to "([^"]*)"$/
 	 *
 	 * @param string $value
@@ -90,7 +90,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator (enables|disables) the lowercase letters password policy using the occ commmand$/
+	 * @When /^the administrator (enables|disables) the lowercase letters password policy using the occ command$/
 	 * @Given /^the administrator has (enabled|disabled) the lowercase letters password policy$/
 	 *
 	 * @param string $action
@@ -108,7 +108,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator sets the lowercase letters required to "([^"]*)" using the occ commmand$/
+	 * @When /^the administrator sets the lowercase letters required to "([^"]*)" using the occ command$/
 	 * @Given /^the administrator has set the lowercase letters required to "([^"]*)"$/
 	 *
 	 * @param string $value
@@ -126,7 +126,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator (enables|disables) the uppercase letters password policy using the occ commmand$/
+	 * @When /^the administrator (enables|disables) the uppercase letters password policy using the occ command$/
 	 * @Given /^the administrator has (enabled|disabled) the uppercase letters password policy$/
 	 *
 	 * @param string $action
@@ -144,7 +144,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator sets the uppercase letters required to "([^"]*)" using the occ commmand$/
+	 * @When /^the administrator sets the uppercase letters required to "([^"]*)" using the occ command$/
 	 * @Given /^the administrator has set the uppercase letters required to "([^"]*)"$/
 	 *
 	 * @param string $value
@@ -162,7 +162,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator (enables|disables) the numbers password policy using the occ commmand$/
+	 * @When /^the administrator (enables|disables) the numbers password policy using the occ command$/
 	 * @Given /^the administrator has (enabled|disabled) the numbers password policy$/
 	 *
 	 * @param string $action
@@ -180,7 +180,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator sets the numbers required to "([^"]*)" using the occ commmand$/
+	 * @When /^the administrator sets the numbers required to "([^"]*)" using the occ command$/
 	 * @Given /^the administrator has set the numbers required to "([^"]*)"$/
 	 *
 	 * @param string $value
@@ -198,7 +198,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator (enables|disables) the special characters password policy using the occ commmand$/
+	 * @When /^the administrator (enables|disables) the special characters password policy using the occ command$/
 	 * @Given /^the administrator has (enabled|disabled) the special characters password policy$/
 	 *
 	 * @param string $action
@@ -216,7 +216,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator sets the special characters required to "([^"]*)" using the occ commmand$/
+	 * @When /^the administrator sets the special characters required to "([^"]*)" using the occ command$/
 	 * @Given /^the administrator has set the special characters required to "([^"]*)"$/
 	 *
 	 * @param string $value
@@ -234,7 +234,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator (enables|disables) the restrict to these special characters password policy using the occ commmand$/
+	 * @When /^the administrator (enables|disables) the restrict to these special characters password policy using the occ command$/
 	 * @Given /^the administrator has (enabled|disabled) the restrict to these special characters password policy$/
 	 *
 	 * @param string $action
@@ -252,7 +252,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator sets the restricted special characters required to "([^"]*)" using the occ commmand$/
+	 * @When /^the administrator sets the restricted special characters required to "([^"]*)" using the occ command$/
 	 * @Given /^the administrator has set the restricted special characters required to "([^"]*)"$/
 	 *
 	 * @param string $value
@@ -270,7 +270,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator (enables|disables) the last passwords user password policy using the occ commmand$/
+	 * @When /^the administrator (enables|disables) the last passwords user password policy using the occ command$/
 	 * @Given /^the administrator has (enabled|disabled) the last passwords user password policy$/
 	 *
 	 * @param string $action
@@ -288,7 +288,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator sets the number of last passwords that should not be used to "([^"]*)" using the occ commmand$/
+	 * @When /^the administrator sets the number of last passwords that should not be used to "([^"]*)" using the occ command$/
 	 * @Given /^the administrator has set the number of last passwords that should not be used to "([^"]*)"$/
 	 *
 	 * @param string $value
@@ -306,7 +306,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator (enables|disables) the days until user password expires user password policy using the occ commmand$/
+	 * @When /^the administrator (enables|disables) the days until user password expires user password policy using the occ command$/
 	 * @Given /^the administrator has (enabled|disabled) the days until user password expires user password policy$/
 	 *
 	 * @param string $action
@@ -324,7 +324,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator (enables|disables) the notification days before password expires user password policy using the occ commmand$/
+	 * @When /^the administrator (enables|disables) the notification days before password expires user password policy using the occ command$/
 	 * @Given /^the administrator has (enabled|disabled) the notification days before password expires user password policy$/
 	 *
 	 * @param string $action
@@ -342,7 +342,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator (enables|disables) the force password change on first login user password policy using the occ commmand$/
+	 * @When /^the administrator (enables|disables) the force password change on first login user password policy using the occ command$/
 	 * @Given /^the administrator has (enabled|disabled) the force password change on first login user password policy$/
 	 *
 	 * @param string $action
@@ -360,7 +360,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator (enables|disables) the days until link expires if password is set public link password policy using the occ commmand$/
+	 * @When /^the administrator (enables|disables) the days until link expires if password is set public link password policy using the occ command$/
 	 * @Given /^the administrator has (enabled|disabled) the days until link expires if password is set public link password policy$/
 	 *
 	 * @param string $action
@@ -378,7 +378,7 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @When /^the administrator (enables|disables) the days until link expires if password is not set public link password policy using the occ commmand$/
+	 * @When /^the administrator (enables|disables) the days until link expires if password is not set public link password policy using the occ command$/
 	 * @Given /^the administrator has (enabled|disabled) the days until link expires if password is not set public link password policy$/
 	 *
 	 * @param string $action
