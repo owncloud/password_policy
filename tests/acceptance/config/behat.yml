@@ -32,6 +32,22 @@ default:
         - OccContext:
         - FeatureContext: *common_feature_context_params
 
+    cliPasswordAddUser:
+      paths:
+        - %paths.base%/../features/cliPasswordAddUser
+      contexts:
+        - PasswordPolicyContext:
+        - OccContext:
+        - FeatureContext: *common_feature_context_params
+
+    cliPasswordChange:
+      paths:
+        - %paths.base%/../features/cliPasswordChange
+      contexts:
+        - PasswordPolicyContext:
+        - OccContext:
+        - FeatureContext: *common_feature_context_params
+
     webUIPasswordChange:
       paths:
         - %paths.base%/../features/webUIPasswordChange
