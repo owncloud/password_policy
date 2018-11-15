@@ -1,4 +1,4 @@
-@api
+@cli
 Feature: enforce the minimum length of a password when resetting the password using the occ command
 
   As an administrator

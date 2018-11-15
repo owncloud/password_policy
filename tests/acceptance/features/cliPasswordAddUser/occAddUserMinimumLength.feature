@@ -1,4 +1,4 @@
-@api
+@cli
 Feature: enforce the minimum length of a password when creating a user
 
   As an administrator

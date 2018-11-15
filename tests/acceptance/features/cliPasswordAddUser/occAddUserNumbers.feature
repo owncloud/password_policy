@@ -1,4 +1,4 @@
-@api
+@cli
 Feature: enforce the required number of numbers in a password when creating a user
 
   As an administrator

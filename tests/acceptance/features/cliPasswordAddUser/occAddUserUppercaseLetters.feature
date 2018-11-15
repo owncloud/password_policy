@@ -1,4 +1,4 @@
-@api
+@cli
 Feature: enforce the required number of uppercase letters in a password when creating a user
 
   As an administrator

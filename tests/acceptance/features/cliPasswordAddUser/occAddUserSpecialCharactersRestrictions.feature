@@ -1,4 +1,4 @@
-@api
+@cli
 Feature: enforce the restricted special characters in a password when creating a user
 
   As an administrator

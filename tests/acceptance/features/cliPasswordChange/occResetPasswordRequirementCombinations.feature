@@ -1,4 +1,4 @@
-@api
+@cli
 Feature: enforce combinations of password policies when resetting a user password using the occ command
 
   As an administrator

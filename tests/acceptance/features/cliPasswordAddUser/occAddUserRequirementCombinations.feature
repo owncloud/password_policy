@@ -1,4 +1,4 @@
-@api
+@cli
 Feature: enforce combinations of password policies when creating a user
 
   As an administrator

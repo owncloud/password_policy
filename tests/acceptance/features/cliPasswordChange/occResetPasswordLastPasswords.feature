@@ -1,4 +1,4 @@
-@api
+@cli
 Feature: enforce the number of last passwords that must not be used when resetting the password using the occ command
 
   As an administrator
