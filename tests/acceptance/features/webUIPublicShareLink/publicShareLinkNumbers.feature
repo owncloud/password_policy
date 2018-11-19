@@ -15,17 +15,17 @@ Feature: enforce the required number of numbers in a password on the public shar
     And the user has logged in with username "user1" and password "abcABC1234" using the webUI
 
   Scenario Outline: user creates a public share link with enough numbers
-    When the user creates a new public link for the folder "simple-folder" using the webUI with
+    When the user creates a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
     And the public accesses the last created public link with password "<password>" using the webUI
-    Then the file "lorem.txt" should be listed on the webUI
+    Then file "lorem.txt" should be listed on the webUI
     Examples:
       | password        |
       | 333Numbers      |
       | moreNumbers1234 |
 
   Scenario Outline: user tries to create a public share link that has too few numbers
-    When the user tries to create a new public link for the folder "simple-folder" using the webUI with
+    When the user tries to create a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
     Then the user should see an error message on the public link share dialog saying "The password contains too few numbers. At least 3 numbers are required."
     And the public link should not have been generated
