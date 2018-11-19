@@ -23,17 +23,17 @@ Feature: enforce combinations of password policies on the public share link page
     And the user has logged in with username "user1" and password "aA1!bB2#cC&deee" using the webUI
 
   Scenario Outline: user creates a public share link with valid password
-    When the user creates a new public link for the folder "simple-folder" using the webUI with
+    When the user creates a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
     And the public accesses the last created public link with password "<password>" using the webUI
-    Then the file "lorem.txt" should be listed on the webUI
+    Then file "lorem.txt" should be listed on the webUI
     Examples:
       | password                  |
       | 15***UPPloweZZZ           |
       | More%Than$15!Characters-0 |
 
   Scenario Outline: user tries to create a public share link with invalid password
-    When the user tries to create a new public link for the folder "simple-folder" using the webUI with
+    When the user tries to create a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
     Then the user should see an error message on the public link share dialog saying "<message>"
     And the public link should not have been generated
@@ -52,10 +52,10 @@ Feature: enforce combinations of password policies on the public share link page
   Scenario Outline: user creates a public share link using valid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
-    When the user creates a new public link for the folder "simple-folder" using the webUI with
+    When the user creates a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
     And the public accesses the last created public link with password "<password>" using the webUI
-    Then the file "lorem.txt" should be listed on the webUI
+    Then file "lorem.txt" should be listed on the webUI
     Examples:
       | password                  |
       | 15%&*UPPloweZZZ           |
@@ -64,7 +64,7 @@ Feature: enforce combinations of password policies on the public share link page
   Scenario Outline: user tries to create a public share link using invalid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
-    When the user tries to create a new public link for the folder "simple-folder" using the webUI with
+    When the user tries to create a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
     Then the user should see an error message on the public link share dialog saying "<message>"
     And the public link should not have been generated

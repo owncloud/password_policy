@@ -17,17 +17,17 @@ Feature: enforce the restricted special characters in a password on the public s
     And the user has logged in with username "user1" and password "a$b%c^1234" using the webUI
 
   Scenario Outline: user creates a public share link with enough restricted special characters
-    When the user creates a new public link for the folder "simple-folder" using the webUI with
+    When the user creates a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
     And the public accesses the last created public link with password "<password>" using the webUI
-    Then the file "lorem.txt" should be listed on the webUI
+    Then file "lorem.txt" should be listed on the webUI
     Examples:
       | password              |
       | 3$Special%Characters^ |
       | 1*2&3^4%5$6           |
 
   Scenario Outline: user tries to create a link with too few restricted special characters
-    When the user tries to create a new public link for the folder "simple-folder" using the webUI with
+    When the user tries to create a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
     Then the user should see an error message on the public link share dialog saying "The password contains too few special characters. At least 3 special characters ($%^&*) are required."
     And the public link should not have been generated
@@ -37,7 +37,7 @@ Feature: enforce the restricted special characters in a password on the public s
       | Only2$Special&Characters |
 
   Scenario Outline: user tries to create a public share link with invalid special characters
-    When the user tries to create a new public link for the folder "simple-folder" using the webUI with
+    When the user tries to create a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
     Then the user should see an error message on the public link share dialog saying "The password contains invalid special characters. Only $%^&* are allowed."
     And the public link should not have been generated
