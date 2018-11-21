@@ -629,6 +629,16 @@ matrix:
     - PHP_VERSION: 5.6
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordAddUser
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_EMAIL: true
+
+    - PHP_VERSION: 5.6
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
@@ -667,6 +677,16 @@ matrix:
     - PHP_VERSION: 7.0
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordAddUser
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_EMAIL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
@@ -702,6 +722,16 @@ matrix:
       NEED_INSTALL_APP: true
 
     #PHP 7.1 with core stable10
+    - PHP_VERSION: 7.1
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordAddUser
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_EMAIL: true
+
     - PHP_VERSION: 7.1
       OC_VERSION: daily-stable10-qa
       TEST_SUITE: web-acceptance
