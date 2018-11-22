@@ -8,7 +8,7 @@ Feature: enforce the minimum length of a password on public share links
   Background:
     Given the administrator has enabled the minimum characters password policy
     And the administrator has set the minimum characters required to "10"
-    And these users have been created:
+    And these users have been created with default attributes:
       | username | password   |
       | user1    | 1234567890 |
     And user "user1" has created a public link share with settings
