@@ -8,7 +8,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
   Background:
     Given the administrator has enabled the last passwords user password policy
     And the administrator has set the number of last passwords that should not be used to "3"
-    And these users have been created:
+    And these users have been created with default attributes:
       | username | password |
       | user1    | Number1  |
     And the administrator has reset the password of user "user1" to "Number2"

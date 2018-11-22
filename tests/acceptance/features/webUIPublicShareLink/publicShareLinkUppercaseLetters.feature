@@ -6,7 +6,7 @@ Feature: enforce the required number of uppercase letters in a password on the p
   So that users cannot set passwords that are too easy to guess
 
   Background:
-    Given these users have been created:
+    Given these users have been created with default attributes:
       | username | password |
       | user1    | abc123   |
     And the administrator has enabled the uppercase letters password policy
