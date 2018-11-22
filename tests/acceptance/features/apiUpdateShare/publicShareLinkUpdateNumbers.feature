@@ -8,7 +8,7 @@ Feature: enforce the required number of numbers in a password on public share li
   Background:
     Given the administrator has enabled the numbers password policy
     And the administrator has set the numbers required to "3"
-    And these users have been created:
+    And these users have been created with default attributes:
       | username | password   |
       | user1    | abcABC1234 |
     And user "user1" has created a public link share with settings
