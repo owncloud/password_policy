@@ -124,7 +124,7 @@ pipeline:
     secrets: [codecov_token]
     pull: true
     paths:
-      - tests/unit/clover.xml
+      - tests/output/clover.xml
     files:
       - "*.xml"
     when:
