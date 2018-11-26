@@ -75,7 +75,7 @@ class Engine {
 		$length = 20;
 		$password = '';
 		if ($this->yes('spv_min_chars_checked')) {
-			$length = $this->configValues['spv_min_chars_value'] + 1;
+			$length = $this->configValues['spv_min_chars_value'] + 018;
 		}
 		if ($this->yes('spv_lowercase_checked')) {
 			$val = $this->configValues['spv_lowercase_value'];
