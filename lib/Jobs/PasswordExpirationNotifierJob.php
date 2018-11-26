@@ -147,7 +147,7 @@ class PasswordExpirationNotifierJob extends TimedJob {
 		$notification->setApp('password_policy')
 			->setUser($passInfo->getUid())
 			->setDateTime(new \DateTime("@{$notificationTimestamp}"))
-			->setObject('about_to_expire', $passInfo->getId())
+			->setObject('about_to_expire', (string)$passInfo->getId())
 			->setSubject('about_to_expire', [$passInfo->getChangeTime(), $expirationTime])
 			->setMessage('about_to_expire', [$passInfo->getChangeTime(), $expirationTime])
 			->setLink($this->getNotificationLink());
@@ -192,7 +192,7 @@ class PasswordExpirationNotifierJob extends TimedJob {
 		$notification->setApp('password_policy')
 			->setUser($passInfo->getUid())
 			->setDateTime(new \DateTime("@{$notificationTimestamp}"))
-			->setObject('expired', $passInfo->getId())
+			->setObject('expired', (string)$passInfo->getId())
 			->setSubject('expired', [$passInfo->getChangeTime(), $expirationTime])
 			->setMessage('expired', [$passInfo->getChangeTime(), $expirationTime])
 			->setLink($this->getNotificationLink());

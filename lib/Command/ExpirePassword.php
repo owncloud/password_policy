@@ -34,7 +34,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use OCP\AppFramework\Utility\ITimeFactory;
-use OCA\PasswordPolicy\UserNotificationConfigHandler;
 
 class ExpirePassword extends Command {
 	/**

@@ -98,7 +98,12 @@ class UserNotificationConfigHandler {
 	 * to include the userid owning the password and an id for the password
 	 */
 	public function markAboutToExpireNotificationSentFor(OldPassword $passInfo) {
-		$this->config->setUserValue($passInfo->getUid(), 'password_policy', 'aboutToExpireSent', $passInfo->getId());
+		$this->config->setUserValue(
+			$passInfo->getUid(),
+			'password_policy',
+			'aboutToExpireSent',
+			(string)$passInfo->getId()
+		);
 	}
 
 	/**
@@ -108,7 +113,12 @@ class UserNotificationConfigHandler {
 	 * to include the userid owning the password and an id for the password
 	 */
 	public function markExpiredNotificationSentFor(OldPassword $passInfo) {
-		$this->config->setUserValue($passInfo->getUid(), 'password_policy', 'expiredSent', $passInfo->getId());
+		$this->config->setUserValue(
+			$passInfo->getUid(),
+			'password_policy',
+			'expiredSent',
+			(string)$passInfo->getId()
+		);
 	}
 
 	/**

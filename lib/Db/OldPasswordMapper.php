@@ -22,8 +22,8 @@
 
 namespace OCA\PasswordPolicy\Db;
 
+use Generator;
 use OCP\AppFramework\Db\Mapper;
-use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\IDBConnection;
 use Doctrine\DBAL\Platforms\OraclePlatform;
 
@@ -39,7 +39,7 @@ class OldPasswordMapper extends Mapper {
 	 * @return OldPassword[]
 	 */
 	public function getOldPasswords($uid, $length, $excludeForceExpired = true) {
-		/* @var IQueryBuilder $qb */
+		/* @var OCP\DB\QueryBuilder\IQueryBuilder $qb */
 		$qb = $this->db->getQueryBuilder();
 		$qb->select('*')
 			->from('user_password_history')
