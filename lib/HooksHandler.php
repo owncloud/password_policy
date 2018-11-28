@@ -324,8 +324,19 @@ class HooksHandler {
 		}
 		// If option is enabled in security settings check first login
 		if ($this->engine->yes('spv_user_password_force_change_on_first_login_checked')) {
-			// try to find user in account table, needs find to search additional search terms,
-			$this->forcePasswordChange(true, $user);
+			$last2PasswordOfUser = $this->oldPasswordMapper->getOldPasswords($user->getUID(), 2, true);
+
+			/**
+			 * Trigger password change on first login only if there is one entry
+			 * for the user in the table. There can be cases where other apps
+			 * allow user to set the password, say by email. Then the table would
+			 * have more than one entry for the same user. On such circumstances
+			 * we can ignore the password change for the user.
+			 */
+			if (\count($last2PasswordOfUser) <= 1) {
+				// try to find user in account table, needs find to search additional search terms,
+				$this->forcePasswordChange(true, $user);
+			}
 		}
 	}
 

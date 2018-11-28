@@ -420,6 +420,10 @@ class HooksHandlerTest extends TestCase {
 			->method('set')
 			->with('password_policy.forcePasswordChange', true);
 
+		$oldPassword = $this->createMock(OldPassword::class);
+		$this->oldPasswordMapper->method('getOldPasswords')
+			->willReturn([$oldPassword]);
+
 		$event = new GenericEvent($user);
 		$this->handler->checkForcePasswordChangeOnFirstLogin($event);
 	}
@@ -430,6 +434,29 @@ class HooksHandlerTest extends TestCase {
 	 */
 	public function testCheckForcePasswordChangeOnFirstLoginException() {
 		$event = new GenericEvent('foo');
+		$this->handler->checkForcePasswordChangeOnFirstLogin($event);
+	}
+
+	public function testForcePasswordChangeOnFirstLoginNotHappen() {
+		/** @var IUser | \PHPUnit_Framework_MockObject_MockObject $user */
+		$user = $this->createMock(IUser::class);
+		$this->engine->expects($this->once())
+			->method('yes')
+			->with('spv_user_password_force_change_on_first_login_checked')
+			->willReturn(true);
+
+		$this->session->expects($this->never())
+			->method('set');
+
+		$this->config->expects($this->never())
+			->method('setUserValue');
+
+		$oldPassword = $this->createMock(OldPassword::class);
+		$oldPassword1 = $this->createMock(OldPassword::class);
+		$this->oldPasswordMapper->method('getOldPasswords')
+			->willReturn([$oldPassword, $oldPassword1]);
+
+		$event = new GenericEvent($user);
 		$this->handler->checkForcePasswordChangeOnFirstLogin($event);
 	}
 
