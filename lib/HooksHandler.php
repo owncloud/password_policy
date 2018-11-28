@@ -334,8 +334,10 @@ class HooksHandler {
 			 * we can ignore the password change for the user.
 			 */
 			if (\count($last2PasswordOfUser) <= 1) {
-				// try to find user in account table, needs find to search additional search terms,
-				$this->forcePasswordChange(true, $user);
+				if ($user->getBackendClassName() === 'Database') {
+					// try to find user in account table, needs find to search additional search terms,
+					$this->forcePasswordChange(true, $user);
+				}
 			}
 		}
 	}
