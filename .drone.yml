@@ -5,7 +5,7 @@ workspace:
 branches: [master, release*, release/*]
 
 pipeline:
-  install-server:
+  install-core:
     image: owncloudci/core
     version: ${OC_VERSION}
     pull: true
@@ -16,7 +16,7 @@ pipeline:
     db_password: owncloud
     when:
       matrix:
-        NEED_SERVER: true
+        NEED_CORE: true
 
   install-app:
     image: owncloudci/php:${PHP_VERSION}
@@ -209,7 +209,7 @@ matrix:
       TEST_SUITE: phpunit
       DB_TYPE: sqlite
       DB_NAME: owncloud
-      NEED_SERVER: true
+      NEED_CORE: true
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
@@ -217,7 +217,7 @@ matrix:
       TEST_SUITE: phpunit
       DB_TYPE: mysql
       DB_NAME: owncloud
-      NEED_SERVER: true
+      NEED_CORE: true
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
@@ -225,7 +225,7 @@ matrix:
       TEST_SUITE: phpunit
       DB_TYPE: pgsql
       DB_NAME: owncloud
-      NEED_SERVER: true
+      NEED_CORE: true
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
@@ -233,7 +233,7 @@ matrix:
       TEST_SUITE: phpunit
       DB_TYPE: oci
       DB_NAME: XE
-      NEED_SERVER: true
+      NEED_CORE: true
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.2
@@ -241,7 +241,7 @@ matrix:
       TEST_SUITE: phpunit
       DB_TYPE: mysql
       DB_NAME: owncloud
-      NEED_SERVER: true
+      NEED_CORE: true
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 5.6
@@ -249,7 +249,7 @@ matrix:
       TEST_SUITE: phpunit
       DB_TYPE: sqlite
       DB_NAME: owncloud
-      NEED_SERVER: true
+      NEED_CORE: true
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 5.6
@@ -257,7 +257,7 @@ matrix:
       TEST_SUITE: phpunit
       DB_TYPE: mysql
       DB_NAME: owncloud
-      NEED_SERVER: true
+      NEED_CORE: true
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
@@ -265,7 +265,7 @@ matrix:
       TEST_SUITE: phpunit
       DB_TYPE: mysql
       DB_NAME: owncloud
-      NEED_SERVER: true
+      NEED_CORE: true
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
@@ -273,7 +273,7 @@ matrix:
       TEST_SUITE: phpunit
       DB_TYPE: pgsql
       DB_NAME: owncloud
-      NEED_SERVER: true
+      NEED_CORE: true
       NEED_INSTALL_APP: true
       COVERAGE: true
 
@@ -282,7 +282,7 @@ matrix:
       TEST_SUITE: phpunit
       DB_TYPE: oci
       DB_NAME: XE
-      NEED_SERVER: true
+      NEED_CORE: true
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
@@ -290,7 +290,7 @@ matrix:
       TEST_SUITE: phpunit
       DB_TYPE: mysql
       DB_NAME: owncloud
-      NEED_SERVER: true
+      NEED_CORE: true
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.2
@@ -298,7 +298,7 @@ matrix:
       TEST_SUITE: phpunit
       DB_TYPE: mysql
       DB_NAME: owncloud
-      NEED_SERVER: true
+      NEED_CORE: true
       NEED_INSTALL_APP: true
 
     #API acceptance tests
@@ -309,6 +309,7 @@ matrix:
       BEHAT_SUITE: apiPasswordAddUser
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -318,6 +319,7 @@ matrix:
       BEHAT_SUITE: apiPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -327,6 +329,7 @@ matrix:
       BEHAT_SUITE: apiUpdateShare
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -336,6 +339,7 @@ matrix:
       BEHAT_SUITE: cliPasswordAddUser
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -345,6 +349,7 @@ matrix:
       BEHAT_SUITE: cliPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -355,6 +360,7 @@ matrix:
       BEHAT_SUITE: apiPasswordAddUser
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -364,6 +370,7 @@ matrix:
       BEHAT_SUITE: apiPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -373,6 +380,7 @@ matrix:
       BEHAT_SUITE: apiUpdateShare
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -382,6 +390,7 @@ matrix:
       BEHAT_SUITE: cliPasswordAddUser
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -391,6 +400,7 @@ matrix:
       BEHAT_SUITE: cliPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -401,6 +411,7 @@ matrix:
       BEHAT_SUITE: apiPasswordAddUser
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -410,6 +421,7 @@ matrix:
       BEHAT_SUITE: apiPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -419,6 +431,7 @@ matrix:
       BEHAT_SUITE: apiUpdateShare
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -428,6 +441,7 @@ matrix:
       BEHAT_SUITE: cliPasswordAddUser
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -437,6 +451,7 @@ matrix:
       BEHAT_SUITE: cliPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -447,6 +462,7 @@ matrix:
       BEHAT_SUITE: apiPasswordAddUser
       DB_TYPE: oci
       DB_NAME: XE
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -456,6 +472,7 @@ matrix:
       BEHAT_SUITE: apiPasswordChange
       DB_TYPE: oci
       DB_NAME: XE
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -465,6 +482,7 @@ matrix:
       BEHAT_SUITE: apiUpdateShare
       DB_TYPE: oci
       DB_NAME: XE
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -474,6 +492,7 @@ matrix:
       BEHAT_SUITE: cliPasswordAddUser
       DB_TYPE: oci
       DB_NAME: XE
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -483,6 +502,7 @@ matrix:
       BEHAT_SUITE: cliPasswordChange
       DB_TYPE: oci
       DB_NAME: XE
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -493,6 +513,7 @@ matrix:
       BEHAT_SUITE: apiPasswordAddUser
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -502,6 +523,7 @@ matrix:
       BEHAT_SUITE: apiPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -511,6 +533,7 @@ matrix:
       BEHAT_SUITE: apiUpdateShare
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -520,6 +543,7 @@ matrix:
       BEHAT_SUITE: cliPasswordAddUser
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -529,6 +553,7 @@ matrix:
       BEHAT_SUITE: cliPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -539,6 +564,7 @@ matrix:
       BEHAT_SUITE: apiPasswordAddUser
       DB_TYPE: oci
       DB_NAME: XE
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -548,6 +574,7 @@ matrix:
       BEHAT_SUITE: apiPasswordChange
       DB_TYPE: oci
       DB_NAME: XE
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -557,6 +584,7 @@ matrix:
       BEHAT_SUITE: apiUpdateShare
       DB_TYPE: oci
       DB_NAME: XE
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -566,6 +594,7 @@ matrix:
       BEHAT_SUITE: cliPasswordAddUser
       DB_TYPE: oci
       DB_NAME: XE
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -575,6 +604,7 @@ matrix:
       BEHAT_SUITE: cliPasswordChange
       DB_TYPE: oci
       DB_NAME: XE
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -585,6 +615,7 @@ matrix:
       BEHAT_SUITE: apiPasswordAddUser
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -594,6 +625,7 @@ matrix:
       BEHAT_SUITE: apiPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -603,6 +635,7 @@ matrix:
       BEHAT_SUITE: apiUpdateShare
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -612,6 +645,7 @@ matrix:
       BEHAT_SUITE: cliPasswordAddUser
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -621,6 +655,7 @@ matrix:
       BEHAT_SUITE: cliPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -633,6 +668,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordAddUser
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
@@ -643,6 +679,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -652,6 +689,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -661,6 +699,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordReset
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
@@ -671,6 +710,7 @@ matrix:
       BEHAT_SUITE: webUIPublicShareLink
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -681,6 +721,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordAddUser
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
@@ -691,6 +732,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -700,6 +742,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -709,6 +752,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordReset
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
@@ -719,6 +763,7 @@ matrix:
       BEHAT_SUITE: webUIPublicShareLink
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -729,6 +774,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordAddUser
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
@@ -739,6 +785,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -748,6 +795,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -757,6 +805,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordReset
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
@@ -767,6 +816,7 @@ matrix:
       BEHAT_SUITE: webUIPublicShareLink
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -777,6 +827,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -786,6 +837,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -795,6 +847,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordReset
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
@@ -805,6 +858,7 @@ matrix:
       BEHAT_SUITE: webUIPublicShareLink
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -815,6 +869,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -824,6 +879,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
 
@@ -833,6 +889,7 @@ matrix:
       BEHAT_SUITE: webUIPasswordReset
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_EMAIL: true
@@ -843,5 +900,6 @@ matrix:
       BEHAT_SUITE: webUIPublicShareLink
       DB_TYPE: mysql
       DB_NAME: owncloud
+      NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
