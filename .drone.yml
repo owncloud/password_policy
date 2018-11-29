@@ -125,8 +125,6 @@ pipeline:
     pull: true
     paths:
       - tests/output/clover.xml
-    files:
-      - "*.xml"
     when:
       matrix:
         COVERAGE: true
