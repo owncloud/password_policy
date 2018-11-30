@@ -123,7 +123,7 @@ pipeline:
     secrets: [codecov_token]
     pull: true
     paths:
-      - tests/output/clover.xml
+      - tests/output/*.xml
     when:
       matrix:
         COVERAGE: true
