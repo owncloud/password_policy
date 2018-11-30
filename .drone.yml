@@ -122,7 +122,7 @@ pipeline:
     image: plugins/codecov:2
     secrets: [codecov_token]
     pull: true
-    paths:
+    files:
       - tests/output/clover.xml
     when:
       matrix:
