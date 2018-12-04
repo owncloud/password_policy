@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [2.0.2]
+## [Unreleased]
+
+## [2.0.2] - 2018-12-03
 
 ### Changed
 
@@ -69,6 +71,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Translate save button - #102
 - Change headline and subheadlines - #92
 
+[Unreleased]: https://github.com/owncloud/password_policy/compare/v2.0.2..master
 [2.0.2]: https://github.com/owncloud/password_policy/compare/v2.0.1..v2.0.2
 [2.0.1]: https://github.com/owncloud/password_policy/compare/v2.0.0..v2.0.1
 
