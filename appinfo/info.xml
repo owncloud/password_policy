@@ -12,12 +12,12 @@ The definition of certain password rules support administrators in the task of e
 Password history and expiration policies are supplements that allow IT to establish a level of password security that can comply with corporate guidelines of all sorts. The provided tools enable administrators to granularly choose their desired security level. At this point it is important to keep in mind that high levels of security might sacrifice usability and come at the expense of user experience. For this reason it is highly recommended to check [best practices](https://pages.nist.gov/800-63-3/sp800-63b.html) and decide carefully on the hurdles that are put upon users in order to maintain and optimize user adoption and satisfaction.
 
 Administrators find the configuration options in the 'Security' section of the ownCloud administration settings panel. The respective policies are designed for local user accounts created by administrators or via the [Guests](https://marketplace.owncloud.com/apps/guests) extension, not for user accounts imported from LDAP or other user backends as these provide their own mechanisms. For more information and recommendations when deploying policies in an existing ownCloud, please consult the [ownCloud Documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/security/password_policy.html).</description>
-	<version>2.0.2</version>
+	<version>2.0.1</version>
 	<documentation>
 		<admin>https://doc.owncloud.com/server/10.0/admin_manual/configuration/server/security/password_policy.html</admin>
 	</documentation>
 	<dependencies>
-		<owncloud min-version="10.0.9" max-version="10" />
+		<owncloud min-version="10.0.9" max-version="11.0.0.0" />
 	</dependencies>
 	<namespace>PasswordPolicy</namespace>
 	<settings>
