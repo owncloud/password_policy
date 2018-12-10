@@ -29,6 +29,7 @@ pipeline:
       - php occ a:l
       - php occ config:system:set trusted_domains 1 --value=owncloud
       - php occ log:manage --level 0
+      - ls -l /var/www/owncloud/apps/password_policy
     when:
       matrix:
         NEED_INSTALL_APP: true
