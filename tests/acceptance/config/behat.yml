@@ -116,6 +116,19 @@ default:
         - WebUIPersonalGeneralSettingsContext:
         - FeatureContext: *common_feature_context_params
 
+    webUIGuests:
+      paths:
+        - %paths.base%/../features/webUIGuests
+      contexts:
+        - PasswordPolicyContext:
+        - WebUIGeneralContext:
+        - WebUILoginContext:
+        - WebUIFilesContext:
+        - WebUIGuestsContext:
+        - EmailContext:
+        - GuestsContext:
+        - FeatureContext: *common_feature_context_params
+
   extensions:
       jarnaiz\JUnitFormatter\JUnitFormatterExtension:
           filename: report.xml
