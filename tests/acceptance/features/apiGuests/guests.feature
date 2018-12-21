@@ -38,3 +38,43 @@ Feature: Guests
       | 0LOWERCASE | 2               |
       | 2lOWERcASE | 1               |
       | 2lOWERcASE | 2               |
+
+  @mailhog
+  Scenario Outline: A guest user changes own password to a string that has enough lowercase letters
+    Given using OCS API version "<ocs-api-version>"
+    And the administrator has created guest user "guest" with email "guest@example.com"
+    And user "user0" has shared file "/textfile1.txt" with user "guest@example.com"
+    Given guest user "guest" has registered and set password to "enoughLowerCase"
+    When user "guest@example.com" resets the password of user "guest@example.com" to "<password>" using the provisioning API
+    Then user "guest" should be a guest user
+    And user "guest@example.com" should see the following elements
+      | /textfile1.txt |
+    Examples:
+      | password                  | ocs-api-version |
+      | 3LCase                    | 1               |
+      | 3LCase                    | 2               |
+      | moreThan3LowercaseLetters | 1               |
+      | moreThan3LowercaseLetters | 2               |
+
+  @mailhog
+  Scenario Outline: A guest user changes own password to a string that dos not have enough lowercase letters
+    Given using OCS API version "<ocs-api-version>"
+    And the administrator has created guest user "guest" with email "guest@example.com"
+    And user "user0" has shared file "/textfile1.txt" with user "guest@example.com"
+    Given guest user "guest" has registered and set password to "enoughLowerCase"
+    When user "guest@example.com" resets the password of user "guest@example.com" to "<password>" using the provisioning API
+    Then the HTTP status code should be "<http-status>"
+    And the HTTP reason phrase should be "<http-reason-phrase>"
+    And the OCS status code should be "<ocs-status>"
+    And the OCS status message should be:
+      """
+      The password contains too few lowercase letters. At least 3 lowercase letters are required.
+      """
+    And user "guest@example.com" should not see the following elements
+      | /textfile1.txt |
+    Examples:
+      | password   | ocs-api-version | ocs-status | http-status | http-reason-phrase |
+      | 0LOWERCASE | 1               | 403        | 200         | OK                 |
+      | 0LOWERCASE | 2               | 403        | 403         | Forbidden          |
+      | 2lOWERcASE | 1               | 403        | 200         | OK                 |
+      | 2lOWERcASE | 2               | 403        | 403         | Forbidden          |
