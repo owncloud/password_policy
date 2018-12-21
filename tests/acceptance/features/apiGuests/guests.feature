@@ -24,7 +24,7 @@ Feature: Guests
       | moreThan3LowercaseLetters | 2               |
 
   @mailhog
-  Scenario Outline: A guest user sets own password to a string that dos not have enough lowercase letters
+  Scenario Outline: A guest user sets own password to a string that does not have enough lowercase letters
     Given using OCS API version "<ocs-api-version>"
     And the administrator has created guest user "guest" with email "guest@example.com"
     And user "user0" has shared file "/textfile1.txt" with user "guest@example.com"
@@ -57,7 +57,7 @@ Feature: Guests
       | moreThan3LowercaseLetters | 2               |
 
   @mailhog
-  Scenario Outline: A guest user changes own password to a string that dos not have enough lowercase letters
+  Scenario Outline: A guest user changes own password to a string that does not have enough lowercase letters
     Given using OCS API version "<ocs-api-version>"
     And the administrator has created guest user "guest" with email "guest@example.com"
     And user "user0" has shared file "/textfile1.txt" with user "guest@example.com"
