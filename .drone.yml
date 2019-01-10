@@ -125,6 +125,18 @@ pipeline:
       matrix:
         TEST_SUITE: phan
 
+  phan-73:
+    # phan requires a recent php-ast extension
+    image: owncloudci/php:7.3
+    pull: true
+    environment:
+      - COMPOSER_HOME=/var/www/owncloud/apps/password_policy/.cache/composer
+    commands:
+      - make test-php-phan
+    when:
+      matrix:
+        TEST_SUITE: phan
+
   phpunit-tests:
     image: owncloudci/php:${PHP_VERSION}
     pull: true
