@@ -77,6 +77,66 @@ pipeline:
       matrix:
         TEST_SUITE: owncloud-coding-standard
 
+  phpstan:
+    # phpstan requires php7.1
+    image: owncloudci/php:7.1
+    pull: true
+    environment:
+      - COMPOSER_HOME=/var/www/owncloud/apps/password_policy/.cache/composer
+    commands:
+      - make test-php-phpstan
+    when:
+      matrix:
+        TEST_SUITE: phpstan
+
+  phan-70:
+    # phan requires a recent php-ast extension
+    image: owncloudci/php:7.0
+    pull: true
+    environment:
+      - COMPOSER_HOME=/var/www/owncloud/apps/password_policy/.cache/composer
+    commands:
+      - make test-php-phan
+    when:
+      matrix:
+        TEST_SUITE: phan-70
+
+  phan-71:
+    # phan requires a recent php-ast extension
+    image: owncloudci/php:7.1
+    pull: true
+    environment:
+      - COMPOSER_HOME=/var/www/owncloud/apps/password_policy/.cache/composer
+    commands:
+      - make test-php-phan
+    when:
+      matrix:
+        TEST_SUITE: phan
+
+  phan-72:
+    # phan requires a recent php-ast extension
+    image: owncloudci/php:7.2
+    pull: true
+    environment:
+      - COMPOSER_HOME=/var/www/owncloud/apps/password_policy/.cache/composer
+    commands:
+      - make test-php-phan
+    when:
+      matrix:
+        TEST_SUITE: phan
+
+  phan-73:
+    # phan requires a recent php-ast extension
+    image: owncloudci/php:7.3
+    pull: true
+    environment:
+      - COMPOSER_HOME=/var/www/owncloud/apps/password_policy/.cache/composer
+    commands:
+      - make test-php-phan
+    when:
+      matrix:
+        TEST_SUITE: phan
+
   phpunit-tests:
     image: owncloudci/php:${PHP_VERSION}
     pull: true
@@ -211,11 +271,23 @@ services:
 matrix:
   include:
     # owncloud-coding-standard
-    - PHP_VERSION: 7.2
-      TEST_SUITE: owncloud-coding-standard
-
     - PHP_VERSION: 5.6
       TEST_SUITE: owncloud-coding-standard
+
+    # phan
+    - PHP_VERSION: 7.0
+      OC_VERSION: daily-stable10-qa
+      TEST_SUITE: phan-70
+      DB_TYPE: sqlite
+      DB_NAME: owncloud
+      NEED_CORE: true
+
+    - PHP_VERSION: 7.2
+      OC_VERSION: daily-master-qa
+      TEST_SUITE: phan
+      DB_TYPE: sqlite
+      DB_NAME: owncloud
+      NEED_CORE: true
 
     # Unit Tests
     - PHP_VERSION: 7.1

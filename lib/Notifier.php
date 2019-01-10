@@ -21,7 +21,6 @@ namespace OCA\PasswordPolicy;
 
 use OCP\Notification\INotification;
 use OCP\Notification\INotifier;
-use OCP\Notification\IManager as INotificationManager;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\L10N\IFactory;
 use OCP\IL10N;
