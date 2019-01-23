@@ -1,11 +1,11 @@
 default:
   autoload:
-     '': %paths.base%/../features/bootstrap
+     '': '%paths.base%/../features/bootstrap'
 
   suites:
     apiPasswordAddUser:
       paths:
-        - %paths.base%/../features/apiPasswordAddUser
+        - '%paths.base%/../features/apiPasswordAddUser'
       contexts:
         - PasswordPolicyContext:
         - OccContext:
@@ -18,7 +18,7 @@ default:
 
     apiPasswordChange:
       paths:
-        - %paths.base%/../features/apiPasswordChange
+        - '%paths.base%/../features/apiPasswordChange'
       contexts:
         - PasswordPolicyContext:
         - OccContext:
@@ -26,7 +26,7 @@ default:
 
     apiUpdateShare:
       paths:
-        - %paths.base%/../features/apiUpdateShare
+        - '%paths.base%/../features/apiUpdateShare'
       contexts:
         - PasswordPolicyContext:
         - OccContext:
@@ -34,7 +34,7 @@ default:
 
     apiGuests:
       paths:
-        features: %paths.base%/../features/apiGuests
+        features: '%paths.base%/../features/apiGuests'
       contexts:
         - PasswordPolicyContext:
         - FeatureContext: *common_feature_context_params
@@ -43,7 +43,7 @@ default:
 
     cliPasswordAddUser:
       paths:
-        - %paths.base%/../features/cliPasswordAddUser
+        - '%paths.base%/../features/cliPasswordAddUser'
       contexts:
         - PasswordPolicyContext:
         - OccContext:
@@ -52,7 +52,7 @@ default:
 
     cliPasswordChange:
       paths:
-        - %paths.base%/../features/cliPasswordChange
+        - '%paths.base%/../features/cliPasswordChange'
       contexts:
         - PasswordPolicyContext:
         - OccContext:
@@ -61,7 +61,7 @@ default:
 
     webUIPasswordAddUser:
       paths:
-        - %paths.base%/../features/webUIPasswordAddUser
+        - '%paths.base%/../features/webUIPasswordAddUser'
       contexts:
         - PasswordPolicyContext:
         - WebUIPasswordPolicyContext:
@@ -75,7 +75,7 @@ default:
 
     webUIPasswordChange:
       paths:
-        - %paths.base%/../features/webUIPasswordChange
+        - '%paths.base%/../features/webUIPasswordChange'
       contexts:
         - PasswordPolicyContext:
         - WebUIPasswordPolicyContext:
@@ -86,7 +86,7 @@ default:
 
     webUIPasswordPolicySettings:
       paths:
-        - %paths.base%/../features/webUIPasswordPolicySettings
+        - '%paths.base%/../features/webUIPasswordPolicySettings'
       contexts:
         - PasswordPolicyContext:
         - WebUIPasswordPolicyContext:
@@ -96,7 +96,7 @@ default:
 
     webUIPasswordReset:
       paths:
-        - %paths.base%/../features/webUIPasswordReset
+        - '%paths.base%/../features/webUIPasswordReset'
       contexts:
         - PasswordPolicyContext:
         - WebUIPasswordPolicyContext:
@@ -107,7 +107,7 @@ default:
 
     webUIPublicShareLink:
       paths:
-        - %paths.base%/../features/webUIPublicShareLink
+        - '%paths.base%/../features/webUIPublicShareLink'
       contexts:
         - PasswordPolicyContext:
         - WebUIPasswordPolicyContext:
@@ -120,7 +120,7 @@ default:
 
     webUIGuests:
       paths:
-        - %paths.base%/../features/webUIGuests
+        - '%paths.base%/../features/webUIGuests'
       contexts:
         - PasswordPolicyContext:
         - WebUIGeneralContext:
@@ -134,4 +134,4 @@ default:
   extensions:
       jarnaiz\JUnitFormatter\JUnitFormatterExtension:
           filename: report.xml
-          outputDir: %paths.base%/../output/
+          outputDir: '%paths.base%/../output/'
