@@ -8,37 +8,37 @@ default:
         - '%paths.base%/../features/apiPasswordAddUser'
       contexts:
         - PasswordPolicyContext:
-        - OccContext:
         - FeatureContext: &common_feature_context_params
             baseUrl:  http://localhost:8080
             adminUsername: admin
             adminPassword: admin
             regularUserPassword: 123456
             ocPath: apps/testing/api/v1/occ
+        - OccContext:
 
     apiPasswordChange:
       paths:
         - '%paths.base%/../features/apiPasswordChange'
       contexts:
         - PasswordPolicyContext:
-        - OccContext:
         - FeatureContext: *common_feature_context_params
+        - OccContext:
 
     apiUpdateShare:
       paths:
         - '%paths.base%/../features/apiUpdateShare'
       contexts:
         - PasswordPolicyContext:
-        - OccContext:
         - FeatureContext: *common_feature_context_params
+        - OccContext:
 
     apiGuests:
       paths:
         features: '%paths.base%/../features/apiGuests'
       contexts:
         - PasswordPolicyContext:
-        - FeatureContext: *common_feature_context_params
         - EmailContext:
+        - FeatureContext: *common_feature_context_params
         - GuestsContext:
 
     cliPasswordAddUser:
@@ -46,89 +46,89 @@ default:
         - '%paths.base%/../features/cliPasswordAddUser'
       contexts:
         - PasswordPolicyContext:
+        - FeatureContext: *common_feature_context_params
         - OccContext:
         - OccUsersGroupsContext:
-        - FeatureContext: *common_feature_context_params
 
     cliPasswordChange:
       paths:
         - '%paths.base%/../features/cliPasswordChange'
       contexts:
         - PasswordPolicyContext:
+        - FeatureContext: *common_feature_context_params
         - OccContext:
         - OccUsersGroupsContext:
-        - FeatureContext: *common_feature_context_params
 
     webUIPasswordAddUser:
       paths:
         - '%paths.base%/../features/webUIPasswordAddUser'
       contexts:
         - PasswordPolicyContext:
-        - WebUIPasswordPolicyContext:
+        - EmailContext:
+        - FeatureContext: *common_feature_context_params
+        - WebUIFilesContext:
         - WebUIGeneralContext:
         - WebUILoginContext:
-        - EmailContext:
-        - WebUIFilesContext:
+        - WebUIPasswordPolicyContext:
         - WebUIPersonalGeneralSettingsContext:
-        - FeatureContext: *common_feature_context_params
 
     webUIPasswordChange:
       paths:
         - '%paths.base%/../features/webUIPasswordChange'
       contexts:
         - PasswordPolicyContext:
-        - WebUIPasswordPolicyContext:
+        - FeatureContext: *common_feature_context_params
         - WebUIGeneralContext:
         - WebUILoginContext:
+        - WebUIPasswordPolicyContext:
         - WebUIPersonalGeneralSettingsContext:
-        - FeatureContext: *common_feature_context_params
 
     webUIPasswordPolicySettings:
       paths:
         - '%paths.base%/../features/webUIPasswordPolicySettings'
       contexts:
         - PasswordPolicyContext:
-        - WebUIPasswordPolicyContext:
+        - FeatureContext: *common_feature_context_params
         - WebUIGeneralContext:
         - WebUILoginContext:
-        - FeatureContext: *common_feature_context_params
+        - WebUIPasswordPolicyContext:
 
     webUIPasswordReset:
       paths:
         - '%paths.base%/../features/webUIPasswordReset'
       contexts:
         - PasswordPolicyContext:
-        - WebUIPasswordPolicyContext:
-        - WebUIGeneralContext:
-        - WebUILoginContext:
         - EmailContext:
         - FeatureContext: *common_feature_context_params
+        - WebUIGeneralContext:
+        - WebUILoginContext:
+        - WebUIPasswordPolicyContext:
 
     webUIPublicShareLink:
       paths:
         - '%paths.base%/../features/webUIPublicShareLink'
       contexts:
         - PasswordPolicyContext:
-        - WebUIPasswordPolicyContext:
+        - FeatureContext: *common_feature_context_params
+        - WebUIFilesContext:
         - WebUIGeneralContext:
         - WebUILoginContext:
-        - WebUISharingContext:
-        - WebUIFilesContext:
+        - WebUIPasswordPolicyContext:
         - WebUIPersonalGeneralSettingsContext:
-        - FeatureContext: *common_feature_context_params
+        - WebUISharingContext:
 
     webUIGuests:
       paths:
         - '%paths.base%/../features/webUIGuests'
       contexts:
         - PasswordPolicyContext:
-        - WebUIGeneralContext:
-        - WebUILoginContext:
-        - WebUIFilesContext:
-        - WebUIGuestsContext:
         - EmailContext:
-        - GuestsContext:
         - FeatureContext: *common_feature_context_params
+        - GuestsContext:
+        - WebUIFilesContext:
+        - WebUIGeneralContext:
+        - WebUIGuestsContext:
+        - WebUILoginContext:
 
   extensions:
       jarnaiz\JUnitFormatter\JUnitFormatterExtension:
