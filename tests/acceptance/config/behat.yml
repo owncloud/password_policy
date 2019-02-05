@@ -70,7 +70,6 @@ default:
         - EmailContext:
         - WebUIFilesContext:
         - WebUIPersonalGeneralSettingsContext:
-        - WebUIUsersContext:
         - FeatureContext: *common_feature_context_params
 
     webUIPasswordChange:
