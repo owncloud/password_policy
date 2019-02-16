@@ -45,7 +45,7 @@ Feature: enforce the restricted special characters in a password on user creatio
     When the administrator creates a user with the name "user1" and the email "guiusr1@owncloud" without a password using the webUI
     And the administrator logs out of the webUI
     And the user follows the password set link received by "guiusr1@owncloud" using the webUI
-    And the user sets the password to "<password>" using the webUI
+    And the user sets the password to "<password>" and confirms with the same password using the webUI
     Then the email address "guiusr1@owncloud" should have received an email with the body containing
       """
       Password changed successfully
@@ -61,7 +61,7 @@ Feature: enforce the restricted special characters in a password on user creatio
     When the administrator creates a user with the name "user1" and the email "guiusr1@owncloud" without a password using the webUI
     And the administrator logs out of the webUI
     And the user follows the password set link received by "guiusr1@owncloud" using the webUI
-    And the user sets the password to "<password>" using the webUI
+    And the user sets the password to "<password>" and confirms with the same password using the webUI
     Then a set password error message with this text should be displayed on the webUI:
       """
       The password contains too few special characters. At least 3 special characters ($%^&*) are required.
@@ -75,7 +75,7 @@ Feature: enforce the restricted special characters in a password on user creatio
     When the administrator creates a user with the name "user1" and the email "guiusr1@owncloud" without a password using the webUI
     And the administrator logs out of the webUI
     And the user follows the password set link received by "guiusr1@owncloud" using the webUI
-    And the user sets the password to "<password>" using the webUI
+    And the user sets the password to "<password>" and confirms with the same password using the webUI
     Then a set password error message with this text should be displayed on the webUI:
       """
       The password contains invalid special characters. Only $%^&* are allowed.

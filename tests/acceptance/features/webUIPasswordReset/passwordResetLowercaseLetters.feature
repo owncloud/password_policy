@@ -17,7 +17,7 @@ Feature: enforce the required number of lowercase letters in a password on the p
     And the user has followed the password reset link from email address "user1@example.org"
 
   Scenario Outline: user resets their password to a string with enough lowercase letters
-    When the user resets the password to "<password>" using the webUI
+    When the user resets the password to "<password>" and confirms with the same password using the webUI
     And the user logs in with username "user1" and password "<password>" using the webUI
     Then the user should be redirected to a webUI page with the title "Files - ownCloud"
     Examples:
@@ -26,7 +26,7 @@ Feature: enforce the required number of lowercase letters in a password on the p
       | moreThan3LowercaseLetters |
 
   Scenario Outline: user tries to reset their password to a string that has too few lowercase letters
-    When the user resets the password to "<password>" using the webUI
+    When the user resets the password to "<password>" and confirms with the same password using the webUI
     Then a message with this text should be displayed on the webUI:
       """
       The password contains too few lowercase letters. At least 3 lowercase letters are required.

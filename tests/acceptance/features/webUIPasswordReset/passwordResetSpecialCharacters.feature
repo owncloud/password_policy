@@ -17,7 +17,7 @@ Feature: enforce the required number of special characters in a password on the 
     And the user has followed the password reset link from email address "user1@example.org"
 
   Scenario Outline: user resets their password to a string with enough special characters
-    When the user resets the password to "<password>" using the webUI
+    When the user resets the password to "<password>" and confirms with the same password using the webUI
     And the user logs in with username "user1" and password "<password>" using the webUI
     Then the user should be redirected to a webUI page with the title "Files - ownCloud"
     Examples:
@@ -26,7 +26,7 @@ Feature: enforce the required number of special characters in a password on the 
       | 1!2@3#4$5%6^7&8*      |
 
   Scenario Outline: user tries to reset their password to a string that has too few special characters
-    When the user resets the password to "<password>" using the webUI
+    When the user resets the password to "<password>" and confirms with the same password using the webUI
     Then a message with this text should be displayed on the webUI:
       """
       The password contains too few special characters. At least 3 special characters are required.
