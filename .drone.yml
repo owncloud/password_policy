@@ -73,6 +73,7 @@ pipeline:
     pull: true
     commands:
       - make test-php-style
+      - make test-acceptance-style
     when:
       matrix:
         TEST_SUITE: owncloud-coding-standard
