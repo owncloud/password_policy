@@ -1,4 +1,4 @@
-@webUI
+@webUI @insulated @disablePreviews
 Feature: enforce the minimum length of a password on the public share link page
 
   As an administrator

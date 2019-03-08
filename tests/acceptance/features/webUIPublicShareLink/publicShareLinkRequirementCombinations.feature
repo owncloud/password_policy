@@ -1,4 +1,4 @@
-@webUI
+@webUI @insulated @disablePreviews
 Feature: enforce combinations of password policies on the public share link page
 
   As an administrator

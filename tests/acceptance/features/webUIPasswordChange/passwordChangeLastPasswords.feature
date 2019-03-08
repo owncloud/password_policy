@@ -1,4 +1,4 @@
-@webUI
+@webUI @insulated @disablePreviews
 Feature: enforce the number of last passwords that must not be used when resetting the password on the password change UI page
 
   As an administrator

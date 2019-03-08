@@ -1,4 +1,4 @@
-@webUI
+@webUI @insulated @disablePreviews
 Feature: enforce combinations of password policies on the password change UI page
 
   As an administrator
