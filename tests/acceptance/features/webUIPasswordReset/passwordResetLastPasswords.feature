@@ -1,4 +1,4 @@
-@webUI @mailhog
+@webUI @insulated @disablePreviews @mailhog
 Feature: enforce the number of last passwords that must not be used when resetting the password on the password reset UI page
 
   As an administrator

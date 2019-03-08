@@ -1,4 +1,4 @@
-@webUI @mailhog
+@webUI @insulated @disablePreviews @mailhog
 Feature: enforce the required number of uppercase letters in a password on the password reset UI page
 
   As an administrator

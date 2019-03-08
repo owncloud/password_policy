@@ -1,4 +1,4 @@
-@webUI
+@webUI @insulated @disablePreviews
 Feature: enforce the required number of uppercase letters in a password on the public share link page
 
   As an administrator

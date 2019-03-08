@@ -1,4 +1,4 @@
-@webUI
+@webUI @insulated @disablePreviews
 Feature: enforce the restricted special characters in a password on the password change UI page
 
   As an administrator

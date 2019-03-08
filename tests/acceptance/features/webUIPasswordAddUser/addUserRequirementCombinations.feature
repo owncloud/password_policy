@@ -1,4 +1,4 @@
-@webUI @mailhog
+@webUI @insulated @disablePreviews @mailhog
 Feature: enforce combinations of password policies on user creation
 
   As an administrator

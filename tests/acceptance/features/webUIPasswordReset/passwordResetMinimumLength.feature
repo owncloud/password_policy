@@ -1,4 +1,4 @@
-@webUI @mailhog
+@webUI @insulated @disablePreviews @mailhog
 Feature: enforce the minimum length of a password on the password reset UI page
 
   As an administrator

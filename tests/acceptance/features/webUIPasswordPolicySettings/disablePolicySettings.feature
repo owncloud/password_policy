@@ -1,4 +1,4 @@
-@webUI
+@webUI @insulated @disablePreviews
 Feature: disable password policy settings
 
   As an administrator
