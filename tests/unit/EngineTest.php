@@ -96,7 +96,7 @@ class EngineTest extends TestCase {
 	 */
 	public function testPolicyPasses(array $config, $password) {
 		$engine = $this->createEngine($config);
-		$engine->verifyPassword($password);
+		$this->assertNull($engine->verifyPassword($password));
 	}
 
 	/**
@@ -134,7 +134,7 @@ class EngineTest extends TestCase {
 	 */
 	public function testPolicyPassesEmptyPasswordTypePublic() {
 		$engine = $this->createEngine(['spv_min_chars_checked' => true]);
-		$engine->verifyPassword('', null, 'public');
+		$this->assertNull($engine->verifyPassword('', null, 'public'));
 	}
 
 	/**
@@ -155,7 +155,7 @@ class EngineTest extends TestCase {
 	public function testPasswordGeneration(array $config) {
 		$engine = $this->createEngine($config);
 		$password = $engine->generatePassword();
-		$engine->verifyPassword($password);
+		$this->assertNull($engine->verifyPassword($password));
 	}
 
 	public function providesTestData() {

@@ -58,7 +58,7 @@ class LengthTest extends TestCase {
 	 * @throws PolicyException
 	 */
 	public function testOkay() {
-		$this->r->verify('1234567890', 6);
+		$this->assertNull($this->r->verify('1234567890', 6));
 	}
 
 	/**
@@ -73,6 +73,6 @@ class LengthTest extends TestCase {
 	 * @throws PolicyException
 	 */
 	public function testSpecialCharsOkay() {
-		$this->r->verify('çççççç', 5);
+		$this->assertNull($this->r->verify('çççççç', 5));
 	}
 }

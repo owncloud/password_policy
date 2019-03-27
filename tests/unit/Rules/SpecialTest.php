@@ -70,7 +70,7 @@ class SpecialTest extends \PHPUnit\Framework\TestCase {
 	 * @throws PolicyException
 	 */
 	public function testOkay($password, $val, $allowedSpecialChars) {
-		$this->r->verify($password, $val, $allowedSpecialChars);
+		$this->assertNull($this->r->verify($password, $val, $allowedSpecialChars));
 	}
 
 	/**
