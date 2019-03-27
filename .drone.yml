@@ -7,7 +7,7 @@ branches: [master, release*, release/*]
 pipeline:
   install-core:
     image: owncloudci/core
-    version: ${OC_VERSION}
+    git_reference: ${GIT_REFERENCE}
     pull: true
     db_type: ${DB_TYPE}
     db_name: ${DB_NAME}
@@ -277,14 +277,14 @@ matrix:
 
     # phan
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: phan-70
       DB_TYPE: sqlite
       DB_NAME: owncloud
       NEED_CORE: true
 
     - PHP_VERSION: 7.2
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: phan
       DB_TYPE: sqlite
       DB_NAME: owncloud
@@ -292,7 +292,7 @@ matrix:
 
     # Unit Tests
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: phpunit
       DB_TYPE: sqlite
       DB_NAME: owncloud
@@ -300,7 +300,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: phpunit
       DB_TYPE: mysql
       DB_NAME: owncloud
@@ -308,7 +308,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: phpunit
       DB_TYPE: pgsql
       DB_NAME: owncloud
@@ -316,7 +316,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: phpunit
       DB_TYPE: oci
       DB_NAME: XE
@@ -324,7 +324,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.2
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: phpunit
       DB_TYPE: mysql
       DB_NAME: owncloud
@@ -332,7 +332,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: phpunit
       DB_TYPE: sqlite
       DB_NAME: owncloud
@@ -340,7 +340,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: phpunit
       DB_TYPE: mysql
       DB_NAME: owncloud
@@ -348,7 +348,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: phpunit
       DB_TYPE: pgsql
       DB_NAME: owncloud
@@ -357,7 +357,7 @@ matrix:
       COVERAGE: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: phpunit
       DB_TYPE: oci
       DB_NAME: XE
@@ -365,7 +365,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: phpunit
       DB_TYPE: mysql
       DB_NAME: owncloud
@@ -373,7 +373,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.2
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: phpunit
       DB_TYPE: mysql
       DB_NAME: owncloud
@@ -383,7 +383,7 @@ matrix:
     #API acceptance tests
     #PHP 7.0 with core stable10
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordAddUser
       DB_TYPE: mysql
@@ -393,7 +393,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordChange
       DB_TYPE: mysql
@@ -403,7 +403,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiUpdateShare
       DB_TYPE: mysql
@@ -413,7 +413,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiGuests
       DB_TYPE: mysql
@@ -425,7 +425,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: cli-acceptance
       BEHAT_SUITE: cliPasswordAddUser
       DB_TYPE: mysql
@@ -435,7 +435,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: cli-acceptance
       BEHAT_SUITE: cliPasswordChange
       DB_TYPE: mysql
@@ -446,7 +446,7 @@ matrix:
 
     #PHP 7.1 with core stable10
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordAddUser
       DB_TYPE: mysql
@@ -456,7 +456,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordChange
       DB_TYPE: mysql
@@ -466,7 +466,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiUpdateShare
       DB_TYPE: mysql
@@ -476,7 +476,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiGuests
       DB_TYPE: mysql
@@ -488,7 +488,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: cli-acceptance
       BEHAT_SUITE: cliPasswordAddUser
       DB_TYPE: mysql
@@ -498,7 +498,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: cli-acceptance
       BEHAT_SUITE: cliPasswordChange
       DB_TYPE: mysql
@@ -509,7 +509,7 @@ matrix:
 
     #PHP 7.1 with core stable10 and Oracle
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordAddUser
       DB_TYPE: oci
@@ -519,7 +519,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordChange
       DB_TYPE: oci
@@ -529,7 +529,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiUpdateShare
       DB_TYPE: oci
@@ -539,7 +539,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiGuests
       DB_TYPE: oci
@@ -551,7 +551,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: cli-acceptance
       BEHAT_SUITE: cliPasswordAddUser
       DB_TYPE: oci
@@ -561,7 +561,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: cli-acceptance
       BEHAT_SUITE: cliPasswordChange
       DB_TYPE: oci
@@ -572,7 +572,7 @@ matrix:
 
     #PHP 7.1 with core master
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordAddUser
       DB_TYPE: mysql
@@ -582,7 +582,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordChange
       DB_TYPE: mysql
@@ -592,7 +592,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiUpdateShare
       DB_TYPE: mysql
@@ -602,7 +602,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiGuests
       DB_TYPE: mysql
@@ -614,7 +614,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: cli-acceptance
       BEHAT_SUITE: cliPasswordAddUser
       DB_TYPE: mysql
@@ -624,7 +624,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: cli-acceptance
       BEHAT_SUITE: cliPasswordChange
       DB_TYPE: mysql
@@ -635,7 +635,7 @@ matrix:
 
     #PHP 7.1 with core master and Oracle
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordAddUser
       DB_TYPE: oci
@@ -645,7 +645,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordChange
       DB_TYPE: oci
@@ -655,7 +655,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiUpdateShare
       DB_TYPE: oci
@@ -665,7 +665,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiGuests
       DB_TYPE: oci
@@ -677,7 +677,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: cli-acceptance
       BEHAT_SUITE: cliPasswordAddUser
       DB_TYPE: oci
@@ -687,7 +687,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: cli-acceptance
       BEHAT_SUITE: cliPasswordChange
       DB_TYPE: oci
@@ -698,7 +698,7 @@ matrix:
 
     #PHP 7.2 with core master
     - PHP_VERSION: 7.2
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordAddUser
       DB_TYPE: mysql
@@ -708,7 +708,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.2
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordChange
       DB_TYPE: mysql
@@ -718,7 +718,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.2
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiUpdateShare
       DB_TYPE: mysql
@@ -728,7 +728,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.2
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiGuests
       DB_TYPE: mysql
@@ -740,7 +740,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.2
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: cli-acceptance
       BEHAT_SUITE: cliPasswordAddUser
       DB_TYPE: mysql
@@ -750,7 +750,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.2
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: cli-acceptance
       BEHAT_SUITE: cliPasswordChange
       DB_TYPE: mysql
@@ -763,7 +763,7 @@ matrix:
     #webUI acceptance tests
     #PHP 7.0 with core stable10
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordAddUser
       DB_TYPE: mysql
@@ -774,7 +774,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordChange
       DB_TYPE: mysql
@@ -784,7 +784,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
@@ -794,7 +794,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordReset
       DB_TYPE: mysql
@@ -805,7 +805,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPublicShareLink
       DB_TYPE: mysql
@@ -815,7 +815,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIGuests
       DB_TYPE: mysql
@@ -828,7 +828,7 @@ matrix:
 
     #PHP 7.1 with core stable10
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordAddUser
       DB_TYPE: mysql
@@ -839,7 +839,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordChange
       DB_TYPE: mysql
@@ -849,7 +849,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
@@ -859,7 +859,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordReset
       DB_TYPE: mysql
@@ -870,7 +870,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPublicShareLink
       DB_TYPE: mysql
@@ -880,7 +880,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      GIT_REFERENCE: stable10-bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIGuests
       DB_TYPE: mysql
@@ -893,7 +893,7 @@ matrix:
 
     #PHP 7.1 with core master
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordChange
       DB_TYPE: mysql
@@ -903,7 +903,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
@@ -913,7 +913,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordReset
       DB_TYPE: mysql
@@ -924,7 +924,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPublicShareLink
       DB_TYPE: mysql
@@ -934,7 +934,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.1
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIGuests
       DB_TYPE: mysql
@@ -947,7 +947,7 @@ matrix:
 
     #PHP 7.2 with core master
     - PHP_VERSION: 7.2
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordChange
       DB_TYPE: mysql
@@ -957,7 +957,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.2
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
@@ -967,7 +967,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.2
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordReset
       DB_TYPE: mysql
@@ -978,7 +978,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.2
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPublicShareLink
       DB_TYPE: mysql
@@ -988,7 +988,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.2
-      OC_VERSION: daily-master-qa
+      GIT_REFERENCE: bump-phpunit-6
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIGuests
       DB_TYPE: mysql
