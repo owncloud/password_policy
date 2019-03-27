@@ -35,14 +35,14 @@ use OCP\AppFramework\Utility\ITimeFactory;
 
 class ExpirePasswordTest extends TestCase {
 
-	/** @var IConfig | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IConfig | \PHPUnit\Framework\MockObject\MockObject */
 	protected $config;
-	/** @var IUserManager | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IUserManager | \PHPUnit\Framework\MockObject\MockObject */
 	protected $userManager;
 	protected $groupManager;
-	/** @var ITimeFactory | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var ITimeFactory | \PHPUnit\Framework\MockObject\MockObject */
 	private $timeFactory;
-	/** @var OldPasswordMapper | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var OldPasswordMapper | \PHPUnit\Framework\MockObject\MockObject */
 	private $mapper;
 	/** @var CommandTester */
 	private $commandTester;

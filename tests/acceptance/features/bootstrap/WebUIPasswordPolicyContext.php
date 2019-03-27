@@ -504,7 +504,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theMinimumCharactersCheckboxShouldBeOnTheWebui(
 		$checkedOrUnchecked
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
 				'minimumCharacters'
@@ -523,7 +523,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theMinimumCharactersShouldBeSetToOnTheWebui(
 		$value
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
 				'minimumCharacters'
@@ -542,7 +542,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theLowercaseLettersCheckboxShouldBeOnTheWebui(
 		$checkedOrUnchecked
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
 				'lowercaseLetters'
@@ -561,7 +561,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theLowercaseLettersShouldBeSetToOnTheWebui(
 		$value
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
 				'lowercaseLetters'
@@ -580,7 +580,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theUppercaseLettersCheckboxShouldBeOnTheWebui(
 		$checkedOrUnchecked
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
 				'uppercaseLetters'
@@ -599,7 +599,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theUppercaseLettersShouldBeSetToOnTheWebui(
 		$value
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
 				'uppercaseLetters'
@@ -616,7 +616,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theNumbersCheckboxShouldBeOnTheWebui($checkedOrUnchecked) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
 				'numbers'
@@ -635,7 +635,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theNumbersShouldBeSetToOnTheWebui(
 		$value
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
 				'numbers'
@@ -654,7 +654,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theSpecialCharactersCheckboxShouldBeOnTheWebui(
 		$checkedOrUnchecked
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
 				'specialCharacters'
@@ -673,7 +673,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theSpecialCharactersShouldBeSetToOnTheWebui(
 		$value
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
 				'specialCharacters'
@@ -692,7 +692,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theRestrictSpecialCharactersCheckboxShouldBeOnTheWebui(
 		$checkedOrUnchecked
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
 				'restrictToTheseSpecialCharacters'
@@ -711,7 +711,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function restrictSpecialCharactersShouldBeSetToOnTheWebui(
 		$value
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
 				'restrictToTheseSpecialCharacters'
@@ -730,7 +730,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theLastPasswordsCheckboxShouldBeOnTheWebui(
 		$checkedOrUnchecked
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
 				'lastPasswords'
@@ -749,7 +749,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function lastPasswordsShouldBeSetToOnTheWebui(
 		$value
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
 				'lastPasswords'
@@ -768,7 +768,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theDaysUntilUserPasswordExpiresCheckboxShouldBeOnTheWebui(
 		$checkedOrUnchecked
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
 				'daysUntilUserPasswordExpires'
@@ -787,7 +787,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theDaysUntilUserPasswordExpiresShouldBeSetToOnTheWebui(
 		$value
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
 				'daysUntilUserPasswordExpires'
@@ -806,7 +806,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theNotificationDaysBeforeUserPasswordExpiresCheckboxShouldBeOnTheWebui(
 		$checkedOrUnchecked
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
 				'notificationDaysBeforeUserPasswordExpires'
@@ -825,7 +825,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theNotificationDaysBeforeUserPasswordExpiresShouldBeSetToOnTheWebui(
 		$value
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
 				'notificationDaysBeforeUserPasswordExpires'
@@ -844,7 +844,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theForcePasswordChangeOnFirstLoginCheckboxShouldBeOnTheWebui(
 		$checkedOrUnchecked
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
 				'forcePasswordChangeOnFirstLogin'
@@ -863,7 +863,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theDaysUntilLinkExpiresWithPasswordCheckboxShouldBeOnTheWebui(
 		$checkedOrUnchecked
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
 				'daysUntilLinkExpiresWithPassword'
@@ -882,7 +882,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theDaysUntilLinkExpiresWithPasswordShouldBeSetToOnTheWebui(
 		$value
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
 				'daysUntilLinkExpiresWithPassword'
@@ -901,7 +901,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theDaysUntilLinkExpiresWithoutPasswordCheckboxShouldBeOnTheWebui(
 		$checkedOrUnchecked
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
 				'daysUntilLinkExpiresWithoutPassword'
@@ -920,7 +920,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	public function theDaysUntilLinkExpiresWithoutPasswordShouldBeSetToOnTheWebui(
 		$value
 	) {
-		PHPUnit_Framework_Assert::assertEquals(
+		PHPUnit\Framework\Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
 				'daysUntilLinkExpiresWithoutPassword'

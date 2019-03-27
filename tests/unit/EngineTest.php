@@ -48,13 +48,13 @@ class EngineTest extends TestCase {
 		'spv_password_history_value' => 3,
 	];
 
-	/** @var IL10N | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IL10N | \PHPUnit\Framework\MockObject\MockObject */
 	protected $l10n;
-	/** @var ISecureRandom | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var ISecureRandom | \PHPUnit\Framework\MockObject\MockObject */
 	protected $random;
-	/** @var IDBConnection | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IDBConnection | \PHPUnit\Framework\MockObject\MockObject */
 	protected $db;
-	/** @var IHasher | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IHasher | \PHPUnit\Framework\MockObject\MockObject */
 	protected $hasher;
 
 	protected function setUp() {
