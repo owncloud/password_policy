@@ -90,6 +90,6 @@ class PasswordHistoryTest extends \PHPUnit\Framework\TestCase {
 	 * @throws \OCA\PasswordPolicy\Rules\PolicyException
 	 */
 	public function testSuccess() {
-		$this->r->verify('testpass3', 2, 'testuser');
+		$this->assertNull($this->r->verify('testpass3', 2, 'testuser'));
 	}
 }

@@ -74,7 +74,7 @@ class UppercaseTest extends TestCase {
 	 * @throws \OCA\PasswordPolicy\Rules\PolicyException
 	 */
 	public function testOkay() {
-		$this->r->verify('ABCFWA12345', 6);
+		$this->assertNull($this->r->verify('ABCFWA12345', 6));
 	}
 
 	/**
@@ -89,7 +89,7 @@ class UppercaseTest extends TestCase {
 	 * @throws \OCA\PasswordPolicy\Rules\PolicyException
 	 */
 	public function testSpecialUpperCaseOkay() {
-		$this->r->verify('ÑñÑñÑñÑñÑñ', 5);
+		$this->assertNull($this->r->verify('ÑñÑñÑñÑñÑñ', 5));
 	}
 
 	/**

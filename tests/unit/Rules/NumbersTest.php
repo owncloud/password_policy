@@ -73,6 +73,6 @@ class NumbersTest extends \Test\TestCase {
 	 * @throws \OCA\PasswordPolicy\Rules\PolicyException
 	 */
 	public function testOkay() {
-		$this->r->verify('1234567890', 6);
+		$this->assertNull($this->r->verify('1234567890', 6));
 	}
 }
