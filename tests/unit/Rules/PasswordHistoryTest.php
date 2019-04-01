@@ -27,7 +27,7 @@ use OCA\PasswordPolicy\Db\OldPasswordMapper;
 use OCA\PasswordPolicy\Db\OldPassword;
 use OCP\IL10N;
 
-class PasswordHistoryTest extends \PHPUnit_Framework_TestCase {
+class PasswordHistoryTest extends \PHPUnit\Framework\TestCase {
 
 	/** @var PasswordHistory */
 	private $r;
@@ -35,7 +35,7 @@ class PasswordHistoryTest extends \PHPUnit_Framework_TestCase {
 	public function setUp() {
 		parent::setUp();
 
-		/** @var IL10N | \PHPUnit_Framework_MockObject_MockObject $l10n */
+		/** @var IL10N | \PHPUnit\Framework\MockObject\MockObject $l10n */
 		$l10n = $this->createMock(IL10N::class);
 		$l10n
 			->method('t')
@@ -43,13 +43,13 @@ class PasswordHistoryTest extends \PHPUnit_Framework_TestCase {
 				return \vsprintf($text, $parameters);
 			}));
 
-		/** @var \OCA\PasswordPolicy\Db\OldPasswordMapper | \PHPUnit_Framework_MockObject_MockObject $mapper */
+		/** @var \OCA\PasswordPolicy\Db\OldPasswordMapper | \PHPUnit\Framework\MockObject\MockObject $mapper */
 		$mapper = $this->getMockBuilder(OldPasswordMapper::class)
 			->disableOriginalConstructor()->getMock();
-		/** @var \OCA\PasswordPolicy\Db\OldPassword | \PHPUnit_Framework_MockObject_MockObject $entity1 */
+		/** @var \OCA\PasswordPolicy\Db\OldPassword | \PHPUnit\Framework\MockObject\MockObject $entity1 */
 		$entity1 = $this->getMockBuilder(OldPassword::class)
 			->disableOriginalConstructor()->getMock();
-		/** @var \OCA\PasswordPolicy\Db\OldPassword | \PHPUnit_Framework_MockObject_MockObject $entity2 */
+		/** @var \OCA\PasswordPolicy\Db\OldPassword | \PHPUnit\Framework\MockObject\MockObject $entity2 */
 		$entity2 = $this->getMockBuilder(OldPassword::class)
 			->disableOriginalConstructor()->getMock();
 
@@ -90,6 +90,6 @@ class PasswordHistoryTest extends \PHPUnit_Framework_TestCase {
 	 * @throws \OCA\PasswordPolicy\Rules\PolicyException
 	 */
 	public function testSuccess() {
-		$this->r->verify('testpass3', 2, 'testuser');
+		$this->assertNull($this->r->verify('testpass3', 2, 'testuser'));
 	}
 }

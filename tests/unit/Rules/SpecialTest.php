@@ -26,7 +26,7 @@ use OCA\PasswordPolicy\Rules\PolicyException;
 use OCA\PasswordPolicy\Rules\Special;
 use OCP\IL10N;
 
-class SpecialTest extends \PHPUnit_Framework_TestCase {
+class SpecialTest extends \PHPUnit\Framework\TestCase {
 
 	/** @var Special */
 	private $r;
@@ -34,7 +34,7 @@ class SpecialTest extends \PHPUnit_Framework_TestCase {
 	public function setUp() {
 		parent::setUp();
 
-		/** @var IL10N | \PHPUnit_Framework_MockObject_MockObject $l10n */
+		/** @var IL10N | \PHPUnit\Framework\MockObject\MockObject $l10n */
 		$l10n = $this->createMock(IL10N::class);
 		$l10n
 			->method('t')
@@ -70,7 +70,7 @@ class SpecialTest extends \PHPUnit_Framework_TestCase {
 	 * @throws PolicyException
 	 */
 	public function testOkay($password, $val, $allowedSpecialChars) {
-		$this->r->verify($password, $val, $allowedSpecialChars);
+		$this->assertNull($this->r->verify($password, $val, $allowedSpecialChars));
 	}
 
 	/**

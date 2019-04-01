@@ -39,21 +39,21 @@ use Test\TestCase;
 
 class PasswordControllerTest extends TestCase {
 
-	/** @var IRequest | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IRequest | \PHPUnit\Framework\MockObject\MockObject */
 	protected $request;
-	/** @var IUserSession | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IUserSession | \PHPUnit\Framework\MockObject\MockObject */
 	protected $userSession;
-	/** @var IUserManager | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IUserManager | \PHPUnit\Framework\MockObject\MockObject */
 	protected $userManager;
-	/** @var IConfig | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IConfig | \PHPUnit\Framework\MockObject\MockObject */
 	protected $config;
-	/** @var ISession | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var ISession | \PHPUnit\Framework\MockObject\MockObject */
 	protected $session;
-	/** @var IURLGenerator | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IURLGenerator | \PHPUnit\Framework\MockObject\MockObject */
 	protected $urlGenerator;
-	/** @var IL10N | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IL10N | \PHPUnit\Framework\MockObject\MockObject */
 	protected $l10n;
-	/** @var PasswordController | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var PasswordController | \PHPUnit\Framework\MockObject\MockObject */
 	private $c;
 
 	public function setUp() {

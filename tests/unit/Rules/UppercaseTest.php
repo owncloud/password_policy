@@ -34,7 +34,7 @@ class UppercaseTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
 
-		/** @var IL10N | \PHPUnit_Framework_MockObject_MockObject $l10n */
+		/** @var IL10N | \PHPUnit\Framework\MockObject\MockObject $l10n */
 		$l10n = $this->createMock(IL10N::class);
 		$l10n
 			->method('t')
@@ -74,7 +74,7 @@ class UppercaseTest extends TestCase {
 	 * @throws \OCA\PasswordPolicy\Rules\PolicyException
 	 */
 	public function testOkay() {
-		$this->r->verify('ABCFWA12345', 6);
+		$this->assertNull($this->r->verify('ABCFWA12345', 6));
 	}
 
 	/**
@@ -89,7 +89,7 @@ class UppercaseTest extends TestCase {
 	 * @throws \OCA\PasswordPolicy\Rules\PolicyException
 	 */
 	public function testSpecialUpperCaseOkay() {
-		$this->r->verify('ÑñÑñÑñÑñÑñ', 5);
+		$this->assertNull($this->r->verify('ÑñÑñÑñÑñÑñ', 5));
 	}
 
 	/**

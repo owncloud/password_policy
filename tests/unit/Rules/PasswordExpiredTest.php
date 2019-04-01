@@ -33,13 +33,13 @@ use Test\TestCase;
 
 class PasswordExpiredTest extends TestCase {
 
-	/** @var ILogger | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var ILogger | \PHPUnit\Framework\MockObject\MockObject */
 	protected $logger;
-	/** @var OldPasswordMapper | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var OldPasswordMapper | \PHPUnit\Framework\MockObject\MockObject */
 	protected $mapper;
-	/** @var IHasher | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IHasher | \PHPUnit\Framework\MockObject\MockObject */
 	protected $hasher;
-	/** @var ITimeFactory | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var ITimeFactory | \PHPUnit\Framework\MockObject\MockObject */
 	protected $timeFactory;
 	/** @var PasswordExpired */
 	private $r;
@@ -47,7 +47,7 @@ class PasswordExpiredTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
 
-		/** @var IL10N | \PHPUnit_Framework_MockObject_MockObject $l10n */
+		/** @var IL10N | \PHPUnit\Framework\MockObject\MockObject $l10n */
 		$l10n = $this->createMock(IL10N::class);
 		$l10n
 			->method('t')

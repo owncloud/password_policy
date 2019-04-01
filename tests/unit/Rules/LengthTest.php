@@ -35,7 +35,7 @@ class LengthTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
 
-		/** @var IL10N | \PHPUnit_Framework_MockObject_MockObject $l10n */
+		/** @var IL10N | \PHPUnit\Framework\MockObject\MockObject $l10n */
 		$l10n = $this->createMock(IL10N::class);
 		$l10n
 			->method('t')
@@ -58,7 +58,7 @@ class LengthTest extends TestCase {
 	 * @throws PolicyException
 	 */
 	public function testOkay() {
-		$this->r->verify('1234567890', 6);
+		$this->assertNull($this->r->verify('1234567890', 6));
 	}
 
 	/**
@@ -73,6 +73,6 @@ class LengthTest extends TestCase {
 	 * @throws PolicyException
 	 */
 	public function testSpecialCharsOkay() {
-		$this->r->verify('çççççç', 5);
+		$this->assertNull($this->r->verify('çççççç', 5));
 	}
 }

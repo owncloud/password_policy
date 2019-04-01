@@ -48,13 +48,13 @@ class EngineTest extends TestCase {
 		'spv_password_history_value' => 3,
 	];
 
-	/** @var IL10N | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IL10N | \PHPUnit\Framework\MockObject\MockObject */
 	protected $l10n;
-	/** @var ISecureRandom | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var ISecureRandom | \PHPUnit\Framework\MockObject\MockObject */
 	protected $random;
-	/** @var IDBConnection | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IDBConnection | \PHPUnit\Framework\MockObject\MockObject */
 	protected $db;
-	/** @var IHasher | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IHasher | \PHPUnit\Framework\MockObject\MockObject */
 	protected $hasher;
 
 	protected function setUp() {
@@ -96,7 +96,7 @@ class EngineTest extends TestCase {
 	 */
 	public function testPolicyPasses(array $config, $password) {
 		$engine = $this->createEngine($config);
-		$engine->verifyPassword($password);
+		$this->assertNull($engine->verifyPassword($password));
 	}
 
 	/**
@@ -134,7 +134,7 @@ class EngineTest extends TestCase {
 	 */
 	public function testPolicyPassesEmptyPasswordTypePublic() {
 		$engine = $this->createEngine(['spv_min_chars_checked' => true]);
-		$engine->verifyPassword('', null, 'public');
+		$this->assertNull($engine->verifyPassword('', null, 'public'));
 	}
 
 	/**
@@ -155,7 +155,7 @@ class EngineTest extends TestCase {
 	public function testPasswordGeneration(array $config) {
 		$engine = $this->createEngine($config);
 		$password = $engine->generatePassword();
-		$engine->verifyPassword($password);
+		$this->assertNull($engine->verifyPassword($password));
 	}
 
 	public function providesTestData() {

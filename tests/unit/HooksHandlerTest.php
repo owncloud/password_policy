@@ -42,27 +42,27 @@ use Test\TestCase;
 
 class HooksHandlerTest extends TestCase {
 
-	/** @var IConfig | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IConfig | \PHPUnit\Framework\MockObject\MockObject */
 	protected $config;
-	/** @var Engine | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var Engine | \PHPUnit\Framework\MockObject\MockObject */
 	protected $engine;
-	/** @var IHasher | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IHasher | \PHPUnit\Framework\MockObject\MockObject */
 	protected $hasher;
-	/** @var ITimeFactory | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var ITimeFactory | \PHPUnit\Framework\MockObject\MockObject */
 	protected $timeFactory;
-	/** @var IL10N | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IL10N | \PHPUnit\Framework\MockObject\MockObject */
 	protected $l10n;
-	/** @var PasswordExpired | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var PasswordExpired | \PHPUnit\Framework\MockObject\MockObject */
 	protected $passwordExpiredRule;
-	/** @var OldPasswordMapper | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var OldPasswordMapper | \PHPUnit\Framework\MockObject\MockObject */
 	protected $oldPasswordMapper;
-	/** @var ISession | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var ISession | \PHPUnit\Framework\MockObject\MockObject */
 	protected $session;
-	/** @var HooksHandler | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var HooksHandler | \PHPUnit\Framework\MockObject\MockObject */
 	protected $handler;
-	/** @var UserNotificationConfigHandler | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var UserNotificationConfigHandler | \PHPUnit\Framework\MockObject\MockObject */
 	protected $unConfigHandler;
-	/** @var IManager | \PHPUnit_Framework_MockObject_MockObject */
+	/** @var IManager | \PHPUnit\Framework\MockObject\MockObject */
 	protected $manager;
 
 	protected function setUp() {
@@ -212,7 +212,7 @@ class HooksHandlerTest extends TestCase {
 	}
 
 	public function testSaveOldPassword() {
-		/** @var IUser | \PHPUnit_Framework_MockObject_MockObject $user */
+		/** @var IUser | \PHPUnit\Framework\MockObject\MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$user->method('getUID')->willReturn('testuid');
 
@@ -269,7 +269,7 @@ class HooksHandlerTest extends TestCase {
 	}
 
 	public function testSaveOldPasswordClearingNotifications() {
-		/** @var IUser | \PHPUnit_Framework_MockObject_MockObject $user */
+		/** @var IUser | \PHPUnit\Framework\MockObject\MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$user->method('getUID')->willReturn('testuid');
 
@@ -338,7 +338,7 @@ class HooksHandlerTest extends TestCase {
 	}
 
 	public function testCheckPasswordExpired() {
-		/** @var IUser | \PHPUnit_Framework_MockObject_MockObject $user */
+		/** @var IUser | \PHPUnit\Framework\MockObject\MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$user->method('getUID')->willReturn('testuid');
 		$this->engine->expects($this->once())
@@ -378,7 +378,7 @@ class HooksHandlerTest extends TestCase {
 	 * @param $time
 	 */
 	public function testCheckAdminRequestedPasswordChange($expired, $time) {
-		/** @var IUser | \PHPUnit_Framework_MockObject_MockObject $user */
+		/** @var IUser | \PHPUnit\Framework\MockObject\MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$user->method('getUID')->willReturn('testuid');
 		$this->config->expects($this->once())
@@ -409,7 +409,7 @@ class HooksHandlerTest extends TestCase {
 	}
 
 	public function testCheckForcePasswordChangeOnFirstLogin() {
-		/** @var IUser | \PHPUnit_Framework_MockObject_MockObject $user */
+		/** @var IUser | \PHPUnit\Framework\MockObject\MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$user->method('getBackendClassName')
 			->willReturn('Database');
@@ -432,7 +432,7 @@ class HooksHandlerTest extends TestCase {
 	}
 
 	public function testCheckLDAPUserForcePasswordChangeOnFirstLogin() {
-		/** @var IUser | \PHPUnit_Framework_MockObject_MockObject $user */
+		/** @var IUser | \PHPUnit\Framework\MockObject\MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$user->method('getBackendClassName')
 			->willReturn('LDAP');
@@ -465,7 +465,7 @@ class HooksHandlerTest extends TestCase {
 	}
 
 	public function testForcePasswordChangeOnFirstLoginNotHappen() {
-		/** @var IUser | \PHPUnit_Framework_MockObject_MockObject $user */
+		/** @var IUser | \PHPUnit\Framework\MockObject\MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$this->engine->expects($this->once())
 			->method('yes')
