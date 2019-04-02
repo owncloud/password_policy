@@ -23,7 +23,6 @@
 namespace OCA\PasswordPolicy\Tests;
 
 use OCA\PasswordPolicy\Engine;
-use OCA\PasswordPolicy\Rules\PolicyException;
 use OCP\IDBConnection;
 use OCP\IL10N;
 use OCP\Security\IHasher;

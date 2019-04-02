@@ -26,7 +26,6 @@ use OCA\PasswordPolicy\Db\OldPassword;
 use OCA\PasswordPolicy\Db\OldPasswordMapper;
 use OCA\PasswordPolicy\Rules\PasswordExpired;
 use OCA\PasswordPolicy\Rules\PolicyException;
-use OCA\PasswordPolicy\UserNotificationConfigHandler;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\IConfig;
 use OCP\IL10N;
