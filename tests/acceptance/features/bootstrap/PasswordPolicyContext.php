@@ -23,6 +23,7 @@
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use PHPUnit\Framework\Assert;
 use TestHelpers\AppConfigHelper;
 use TestHelpers\SetupHelper;
 
@@ -406,7 +407,7 @@ class PasswordPolicyContext implements Context {
 	public function theMinimumCharactersPasswordPolicyShouldBe(
 		$enabledOrDisabled
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_min_chars_checked'
@@ -425,7 +426,7 @@ class PasswordPolicyContext implements Context {
 	public function theMinimumCharactersShouldBeSetTo(
 		$value
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
 				'spv_min_chars_value'
@@ -444,7 +445,7 @@ class PasswordPolicyContext implements Context {
 	public function theLowercaseLettersPasswordPolicyShouldBe(
 		$enabledOrDisabled
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_lowercase_checked'
@@ -463,7 +464,7 @@ class PasswordPolicyContext implements Context {
 	public function theLowercaseLettersShouldBeSetTo(
 		$value
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
 				'spv_lowercase_value'
@@ -482,7 +483,7 @@ class PasswordPolicyContext implements Context {
 	public function theUppercaseLettersPasswordPolicyShouldBe(
 		$enabledOrDisabled
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_uppercase_checked'
@@ -501,7 +502,7 @@ class PasswordPolicyContext implements Context {
 	public function theUppercaseLettersShouldBeSetTo(
 		$value
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
 				'spv_uppercase_value'
@@ -520,7 +521,7 @@ class PasswordPolicyContext implements Context {
 	public function theNumbersPasswordPolicyShouldBe(
 		$enabledOrDisabled
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_numbers_checked'
@@ -539,7 +540,7 @@ class PasswordPolicyContext implements Context {
 	public function theNumbersShouldBeSetTo(
 		$value
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
 				'spv_numbers_value'
@@ -558,7 +559,7 @@ class PasswordPolicyContext implements Context {
 	public function theSpecialCharactersPasswordPolicyShouldBe(
 		$enabledOrDisabled
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_special_chars_checked'
@@ -577,7 +578,7 @@ class PasswordPolicyContext implements Context {
 	public function theSpecialCharactersShouldBeSetTo(
 		$value
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
 				'spv_special_chars_value'
@@ -596,7 +597,7 @@ class PasswordPolicyContext implements Context {
 	public function theRestrictSpecialCharactersPasswordPolicyShouldBe(
 		$enabledOrDisabled
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_def_special_chars_checked'
@@ -615,7 +616,7 @@ class PasswordPolicyContext implements Context {
 	public function restrictSpecialCharactersShouldBeSetTo(
 		$value
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
 				'spv_def_special_chars_value'
@@ -634,7 +635,7 @@ class PasswordPolicyContext implements Context {
 	public function theLastPasswordsPasswordPolicyShouldBe(
 		$enabledOrDisabled
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_password_history_checked'
@@ -653,7 +654,7 @@ class PasswordPolicyContext implements Context {
 	public function theLastPasswordsShouldBeSetTo(
 		$value
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
 				'spv_password_history_value'
@@ -672,7 +673,7 @@ class PasswordPolicyContext implements Context {
 	public function theDaysUntilUserPasswordExpiresPasswordPolicyShouldBe(
 		$enabledOrDisabled
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_user_password_expiration_checked'
@@ -691,7 +692,7 @@ class PasswordPolicyContext implements Context {
 	public function theDaysUntilUserPasswordExpiresShouldBeSetTo(
 		$value
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
 				'spv_user_password_expiration_value'
@@ -710,7 +711,7 @@ class PasswordPolicyContext implements Context {
 	public function theNotificationDaysBeforeUserPasswordExpiresPasswordPolicyShouldBe(
 		$enabledOrDisabled
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_user_password_expiration_notification_checked'
@@ -729,7 +730,7 @@ class PasswordPolicyContext implements Context {
 	public function theNotificationSecondsBeforeUserPasswordExpiresShouldBeSetTo(
 		$value
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
 				'spv_user_password_expiration_notification_value'
@@ -748,7 +749,7 @@ class PasswordPolicyContext implements Context {
 	public function theForcePasswordChangeOnFirstLoginPasswordPolicyShouldBe(
 		$enabledOrDisabled
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_user_password_force_change_on_first_login_checked'
@@ -767,7 +768,7 @@ class PasswordPolicyContext implements Context {
 	public function theDaysUntilLinkExpiresWithPasswordPasswordPolicyShouldBe(
 		$enabledOrDisabled
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_expiration_password_checked'
@@ -786,7 +787,7 @@ class PasswordPolicyContext implements Context {
 	public function theDaysUntilLinkExpiresWithPasswordShouldBeSetTo(
 		$value
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
 				'spv_expiration_password_value'
@@ -805,7 +806,7 @@ class PasswordPolicyContext implements Context {
 	public function theDaysUntilLinkExpiresWithoutPasswordPasswordPolicyShouldBe(
 		$enabledOrDisabled
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
 				'spv_expiration_nopassword_checked'
@@ -824,7 +825,7 @@ class PasswordPolicyContext implements Context {
 	public function theDaysUntilLinkExpiresWithoutPasswordShouldBeSetTo(
 		$value
 	) {
-		PHPUnit\Framework\Assert::assertEquals(
+		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
 				'spv_expiration_nopassword_value'
