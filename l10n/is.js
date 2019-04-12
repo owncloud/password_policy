@@ -14,6 +14,7 @@ OC.L10N.register(
     "You have %1$s days to change your password" : "Þú hefur %1$s til að breyta lykilorðinu þínu",
     "Change Password" : "Breyta lykilorði",
     "Your password has expired" : "Lykilorðið þitt er útrunnið",
+    "The password is too short. At least %d characters are required." : "Lykilorð er of stutt. Lykilorð verður að hafa minnst %s stafi.",
     "The password is older than %d days." : "Lykilorðið er eldra en %d daga gamalt.",
     "The password must be different than your previous %d passwords." : "Lykilorðið ætti að vera öðruvísi en fyrri %d lykilorð.",
     "The password contains invalid special characters. Only %s are allowed." : "Lykilorðið inniheldur ógilda sérstafi. Aðeins %s eru leyfilegir.",
