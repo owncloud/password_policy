@@ -71,8 +71,12 @@ class Notifier implements INotifier {
 		$messageParams = $notification->getMessageParameters();
 		$currentTime = $this->timeFactory->getTime();
 		$currentDateTime = new \DateTime("@{$currentTime}");
-		$passwordTime = $messageParams[0];
-		$expirationTime = $messageParams[1];
+		// getMessageParameters() returns strings. In this case the strings are
+		// decimal integers representing the time (in seconds) when the password
+		// was last set, and the number of seconds after which the password expires.
+		// Add them as integers.
+		$passwordTime = (int) $messageParams[0];
+		$expirationTime = (int) $messageParams[1];
 		$targetExpirationTime = $passwordTime + $expirationTime;
 		$expirationDateTime = new \DateTime("@{$targetExpirationTime}");
 		$interval = $currentDateTime->diff($expirationDateTime);
