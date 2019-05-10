@@ -35,7 +35,8 @@ Feature: enforce the minimum length of a password on user creation
     And the administrator logs out of the webUI
     And the user follows the password set link received by "guiusr1@owncloud" using the webUI
     And the user sets the password to "<password>" and confirms with the same password using the webUI
-    Then the email address "guiusr1@owncloud" should have received an email with the body containing
+    Then the user should be redirected to the login page
+    And the email address "guiusr1@owncloud" should have received an email with the body containing
       """
       Password changed successfully
       """
