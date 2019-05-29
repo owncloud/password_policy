@@ -16,9 +16,25 @@ default:
             regularUserPassword: 123456
             ocPath: apps/testing/api/v1/occ
 
+    apiPasswordAddUserSpecial:
+      paths:
+        - '%paths.base%/../features/apiPasswordAddUserSpecial'
+      contexts:
+        - PasswordPolicyContext:
+        - OccContext:
+        - FeatureContext: *common_feature_context_params
+
     apiPasswordChange:
       paths:
         - '%paths.base%/../features/apiPasswordChange'
+      contexts:
+        - PasswordPolicyContext:
+        - OccContext:
+        - FeatureContext: *common_feature_context_params
+
+    apiPasswordChangeSpecial:
+      paths:
+        - '%paths.base%/../features/apiPasswordChangeSpecial'
       contexts:
         - PasswordPolicyContext:
         - OccContext:
@@ -73,9 +89,34 @@ default:
         - WebUIUsersContext:
         - FeatureContext: *common_feature_context_params
 
+    webUIPasswordAddUserSpecial:
+      paths:
+        - '%paths.base%/../features/webUIPasswordAddUserSpecial'
+      contexts:
+        - PasswordPolicyContext:
+        - WebUIPasswordPolicyContext:
+        - WebUIGeneralContext:
+        - WebUILoginContext:
+        - EmailContext:
+        - WebUIFilesContext:
+        - WebUIPersonalGeneralSettingsContext:
+        - WebUIUsersContext:
+        - FeatureContext: *common_feature_context_params
+
     webUIPasswordChange:
       paths:
         - '%paths.base%/../features/webUIPasswordChange'
+      contexts:
+        - PasswordPolicyContext:
+        - WebUIPasswordPolicyContext:
+        - WebUIGeneralContext:
+        - WebUILoginContext:
+        - WebUIPersonalGeneralSettingsContext:
+        - FeatureContext: *common_feature_context_params
+
+    webUIPasswordChangeSpecial:
+      paths:
+        - '%paths.base%/../features/webUIPasswordChangeSpecial'
       contexts:
         - PasswordPolicyContext:
         - WebUIPasswordPolicyContext:
