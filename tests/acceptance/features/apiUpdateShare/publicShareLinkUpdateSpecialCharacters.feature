@@ -8,7 +8,7 @@ Feature: enforce the required number of special characters in a password on publ
   Background:
     Given the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
-    And these users have been created with default attributes:
+    And these users have been created with default attributes and skeleton files:
       | username | password   |
       | user1    | a!b@c#1234 |
     And user "user1" has created a public link share with settings

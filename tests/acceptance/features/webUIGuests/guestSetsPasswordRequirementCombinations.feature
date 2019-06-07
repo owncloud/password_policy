@@ -2,7 +2,7 @@
 Feature: enforce combinations of password policies when a guest user sets its own password
 
   Background:
-    Given user "user0" has been created with default attributes
+    Given user "user0" has been created with default attributes and skeleton files
     And the administrator has enabled the minimum characters password policy
     And the administrator has set the minimum characters required to "15"
     And the administrator has enabled the lowercase letters password policy
