@@ -2,7 +2,7 @@
 Feature: Guests
 
   Background:
-    Given user "user0" has been created with default attributes
+    Given user "user0" has been created with default attributes and skeleton files
     And the administrator has enabled the lowercase letters password policy
     And the administrator has set the lowercase letters required to "3"
 

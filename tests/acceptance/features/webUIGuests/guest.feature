@@ -2,7 +2,7 @@
 Feature: 
 
   Background:
-    Given user "user0" has been created with default attributes
+    Given user "user0" has been created with default attributes and skeleton files
     And the administrator has created guest user "guest" with email "guest@example.com"
     And user "user0" has shared folder "/simple-folder" with user "guest@example.com"
 

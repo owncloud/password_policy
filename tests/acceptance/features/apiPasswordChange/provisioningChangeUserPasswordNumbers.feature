@@ -8,7 +8,7 @@ Feature: enforce the required number of numbers in a password when changing a us
   Background:
     Given the administrator has enabled the numbers password policy
     And the administrator has set the numbers required to "3"
-    And these users have been created with default attributes:
+    And these users have been created with default attributes and skeleton files:
       | username | password   |
       | user1    | abcABC1234 |
 

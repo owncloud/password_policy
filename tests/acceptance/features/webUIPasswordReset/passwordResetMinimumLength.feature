@@ -8,7 +8,7 @@ Feature: enforce the minimum length of a password on the password reset UI page
   Background:
     Given the administrator has enabled the minimum characters password policy
     And the administrator has set the minimum characters required to "10"
-    And these users have been created with default attributes:
+    And these users have been created with default attributes and skeleton files:
       | username | password   |
       | user1    | 1234567890 |
     And the user has browsed to the login page
