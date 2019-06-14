@@ -112,14 +112,14 @@ script('password_policy', 'ajax');
 				<label>
 					<input type="checkbox" name="spv_expiration_password_checked" <?php if ($_['spv_expiration_password_checked']): ?> checked="checked"<?php endif; ?>>
 					<input type="number" name="spv_expiration_password_value"  min="0" max="255" value="<?php p($_['spv_expiration_password_value']) ?>" placeholder="7">
-					<span><?php p($l->t('days until link expires if password is set'));?></span>
+					<span><?php p($l->t('days maximum until link expires if password is set'));?></span>
 				</label>
 			</li>
 			<li>
 				<label>
 					<input type="checkbox" name="spv_expiration_nopassword_checked" <?php if ($_['spv_expiration_nopassword_checked']): ?> checked="checked"<?php endif; ?>>
 					<input type="number" name="spv_expiration_nopassword_value"  min="0" max="255" value="<?php p($_['spv_expiration_nopassword_value']) ?>" placeholder="7">
-					<span><?php p($l->t('days until link expires if password is not set'));?></span>
+					<span><?php p($l->t('days maximum until link expires if password is not set'));?></span>
 				</label>
 			</li>
 		</ul>
