@@ -36,8 +36,6 @@
     "days before password expires, users will receive a reminder notification" : "dias antes da expiração da senha, os usuários receberão uma notificação de lembrete",
     "Force users to change their password on first login" : "Forçar usuários a alterar sua senha no primeiro login",
     "Public link expiration policies:" : "Políticas de expiração de links públicos:",
-    "days until link expires if password is set" : "dias até o linque expirar se a senha estiver configurada",
-    "days until link expires if password is not set" : "dias até o linque expirar se a senha não estiver definida",
     "Save" : "Salvar",
     "Please set a new password" : "Por favor configure uma nova senha",
     "Your password has expired." : "Sua senha expirou.",

@@ -36,8 +36,6 @@
     "days before password expires, users will receive a reminder notification" : "дена пред истекувањето на лозинката, корисниците ќе добијат известување за потсетување",
     "Force users to change their password on first login" : "Принудете ги корисниците да ја сменат лозинката при првото најавување",
     "Public link expiration policies:" : "Политика за истекување на јавни линкови:",
-    "days until link expires if password is set" : "денови додека врската не истече ако е поставена лозинка",
-    "days until link expires if password is not set" : "денови додека врската не истече ако не е поставена лозинка",
     "Save" : "Сними",
     "Please set a new password" : "Ве молиме поставете нова лозинка",
     "Your password has expired." : "Вашата лозинка е истечена.",

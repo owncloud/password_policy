@@ -30,8 +30,6 @@
     "days before password expires, users will receive a reminder notification" : "dagar þar til lykilorð rennur út, notendur fá tilkynningu í tölvupósti",
     "Force users to change their password on first login" : "Þvinga notanda að stilla lykilorð við fyrstu innskráningu",
     "Public link expiration policies:" : "Stefna varðandi gildistíma opinberra tengla:",
-    "days until link expires if password is set" : "dagar þar til tengill rennur út ef lykilorð er stillt",
-    "days until link expires if password is not set" : "dagar þar til tengill rennur út ef lykilorð er ekki stillt",
     "Save" : "Vista",
     "Please set a new password" : "Stilltu nýtt lykilorð",
     "Your password has expired." : "Lykilorðið þitt er útrunnið.",

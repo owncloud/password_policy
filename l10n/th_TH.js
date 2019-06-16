@@ -38,8 +38,6 @@ OC.L10N.register(
     "days before password expires, users will receive a reminder notification" : "วันก่อนรหัสผ่านหมดอายุ ผู้ใช้จะได้รับการแจ้งเตือน",
     "Force users to change their password on first login" : "บังคับให้ผู้ใช้เปลี่ยนรหัสผ่านในการเข้าสู่ระบบครั้งแรก",
     "Public link expiration policies:" : "นโยบายการหมดอายุของลิงก์สาธารณะ:",
-    "days until link expires if password is set" : "วันจนกว่าลิงก์จะหมดอายุหากตั้งรหัสผ่านแล้ว",
-    "days until link expires if password is not set" : "วันจนกว่าลิงก์จะหมดอายุหากไม่ได้ตั้งรหัสผ่าน",
     "Save" : "บันทึก",
     "Please set a new password" : "โปรดตั้งรหัสผ่านใหม่",
     "Your password has expired." : "รหัสผ่านของคุณหมดอายุแล้ว",

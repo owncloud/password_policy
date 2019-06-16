@@ -36,8 +36,6 @@
     "days before password expires, users will receive a reminder notification" : "días antes de que la contraseña caduque, los usuarios recibirán una notificación de recordatorio",
     "Force users to change their password on first login" : "Obligar a los usuarios a cambiar la contraseña en el primer inicio de sesión",
     "Public link expiration policies:" : "Normas de caducidad de enlaces públicos:",
-    "days until link expires if password is set" : "días hasta que el enlace caduque si se define una contraseña",
-    "days until link expires if password is not set" : "días hasta que el enlace caduque si no se define una contraseña",
     "Save" : "Guardar",
     "Please set a new password" : "Por favor establezca una nueva contraseña",
     "Your password has expired." : "La contraseña ha caducado.",

@@ -36,8 +36,6 @@
     "days before password expires, users will receive a reminder notification" : "días antes de que caduque o contrasinal, os usuarios recibirán unha notificación de recordatorio",
     "Force users to change their password on first login" : "Obrigar aos usuarios a cambiar o contrasinal no primeiro acceso",
     "Public link expiration policies:" : "Políticas de caducidade das ligazóns públicas:",
-    "days until link expires if password is set" : "días ata que caduca a ligazón se se estabelece un contrasinal",
-    "days until link expires if password is not set" : "días ata que caduca a ligazón se non se estabelece un contrasinal",
     "Save" : "Gardar",
     "Please set a new password" : "Estabeleza un novo contrasinal",
     "Your password has expired." : "O seu contrasinal caducou",

@@ -36,8 +36,6 @@
     "days before password expires, users will receive a reminder notification" : "ימים לפני שפג תוקף הסיסמא, המשתמשים יקבלו הודעת תזכורת",
     "Force users to change their password on first login" : "מחייב משתמשים להחליף את הסיסמא בהתחברות הראשונה",
     "Public link expiration policies:" : "מדיניות תפוגה של קישור ציבורי:",
-    "days until link expires if password is set" : "ימים עד לפקיעת הקישור אם מוגדרת ססמה",
-    "days until link expires if password is not set" : "ימים עד לפקיעת הקישור אם לא מוגדרת ססמה",
     "Save" : "שמירה",
     "Please set a new password" : "יש להגדיר סיסמא חדשה",
     "Your password has expired." : "פג תוקף הסיסמא שלך.",
