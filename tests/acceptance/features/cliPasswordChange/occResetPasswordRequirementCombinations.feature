@@ -34,7 +34,7 @@ Feature: enforce combinations of password policies when resetting a user passwor
   Scenario Outline: admin resets the password of a user with a password that does not meet the password policy
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have failed with exit code 1
-    And the command error output should contain the text '<message>'
+    And the command output should contain the text '<message>'
     And the content of file "textfile0.txt" for user "user1" using password "aA1!bB2#cC&deee" should be "ownCloud test text file 0" plus end-of-line
     But user "user1" using password "<password>" should not be able to download file "textfile0.txt"
     Examples:
@@ -67,7 +67,7 @@ Feature: enforce combinations of password policies when resetting a user passwor
     And the administrator has set the restricted special characters required to "$%^&*"
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have failed with exit code 1
-    And the command error output should contain the text '<message>'
+    And the command output should contain the text '<message>'
     And the content of file "textfile0.txt" for user "user1" using password "aA1!bB2#cC&deee" should be "ownCloud test text file 0" plus end-of-line
     But user "user1" using password "<password>" should not be able to download file "textfile0.txt"
     Examples:

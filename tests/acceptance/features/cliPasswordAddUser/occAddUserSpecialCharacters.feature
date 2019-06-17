@@ -28,7 +28,7 @@ Feature: enforce the required number of special characters in a password when cr
       | user1    | <password> |
     Then the command should have failed with exit code 1
     # Long text output comes on multiple lines. Here we just check for enough that will fit on one of the lines.
-    And the command error output should contain the text 'The password contains too few special characters. At least 3 special char'
+    And the command output should contain the text 'The password contains too few special characters. At least 3 special char'
     And user "user1" should not exist
     Examples:
       | password                 |
