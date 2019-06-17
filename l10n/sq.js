@@ -38,6 +38,8 @@ OC.L10N.register(
     "days before password expires, users will receive a reminder notification" : "ditë para se fjalëkalimi të skadojë,përdoruesit do të marrin një njoftim rikujtimi",
     "Force users to change their password on first login" : "Detyroji përdoruesit të ndryshojnë fjalëkalimin e tyre pas hyrjes së parë",
     "Public link expiration policies:" : "Rregulla skadimi lidhjeje publike:",
+    "days maximum until link expires if password is set" : "maksimum ditësh deri sa lidhja skadon, nëse është caktuar fjalëkalim",
+    "days maximum until link expires if password is not set" : "maksimum ditësh deri sa lidhja skadon, nëse s’është caktuar fjalëkalim",
     "Save" : "Ruaje",
     "Please set a new password" : "Ju lutemi, caktoni një fjalëkalim të ri",
     "Your password has expired." : "Fjalëkalimi juaj ka skaduar.",

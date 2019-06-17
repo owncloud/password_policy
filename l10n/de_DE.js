@@ -38,6 +38,8 @@ OC.L10N.register(
     "days before password expires, users will receive a reminder notification" : "Tage bevor Passwörter ablaufen, erhalten Benutzer eine Erinnerung",
     "Force users to change their password on first login" : "Änderung des Passworts beim ersten Login erzwingen",
     "Public link expiration policies:" : "Richtlinien für das Ablaufdatum von öffentlichen Links",
+    "days maximum until link expires if password is set" : "Maximale Anzahl Tage bis zum Ablaufen von Links, falls ein Passwort gesetzt ist",
+    "days maximum until link expires if password is not set" : "Maximale Anzahl Tage bis zum Ablaufen von Links, falls kein Passwort gesetzt ist",
     "Save" : "Speichern",
     "Please set a new password" : "Bitte setzen Sie ein neues Passwort",
     "Your password has expired." : "Ihr Passwort ist abgelaufen.",

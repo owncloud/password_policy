@@ -38,6 +38,8 @@ OC.L10N.register(
     "days before password expires, users will receive a reminder notification" : "ימים לפני שפג תוקף הסיסמא, המשתמשים יקבלו הודעת תזכורת",
     "Force users to change their password on first login" : "מחייב משתמשים להחליף את הסיסמא בהתחברות הראשונה",
     "Public link expiration policies:" : "מדיניות תפוגה של קישור ציבורי:",
+    "days maximum until link expires if password is set" : "ימים בלבד עד שתפוג התפוגה של הקישור אם סיסמא מוגדרת",
+    "days maximum until link expires if password is not set" : "ימים בלבד עד שתפוג התפוגה של הקישור אם סיסמא אינה מוגדרת",
     "Save" : "שמירה",
     "Please set a new password" : "יש להגדיר סיסמא חדשה",
     "Your password has expired." : "פג תוקף הסיסמא שלך.",
