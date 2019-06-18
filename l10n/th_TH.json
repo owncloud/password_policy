@@ -36,6 +36,8 @@
     "days before password expires, users will receive a reminder notification" : "วันก่อนรหัสผ่านหมดอายุ ผู้ใช้จะได้รับการแจ้งเตือน",
     "Force users to change their password on first login" : "บังคับให้ผู้ใช้เปลี่ยนรหัสผ่านในการเข้าสู่ระบบครั้งแรก",
     "Public link expiration policies:" : "นโยบายการหมดอายุของลิงก์สาธารณะ:",
+    "days maximum until link expires if password is set" : "วันสูงสุดจนกว่าลิงก์จะหมดอายุหากมีการตั้งรหัสผ่าน",
+    "days maximum until link expires if password is not set" : "วันสูงสุดจนกว่าลิงก์จะหมดอายุหากไม่มีการตั้งรหัสผ่าน",
     "Save" : "บันทึก",
     "Please set a new password" : "โปรดตั้งรหัสผ่านใหม่",
     "Your password has expired." : "รหัสผ่านของคุณหมดอายุแล้ว",
