@@ -38,6 +38,8 @@ OC.L10N.register(
     "days before password expires, users will receive a reminder notification" : "дней до устаревания пароля пользователь получит уведомление",
     "Force users to change their password on first login" : "Принудить пользователя к смене пароля при первом входе",
     "Public link expiration policies:" : "Политика истечения срока действия общедоступных ссылок:",
+    "days maximum until link expires if password is set" : "максимальный срок устаревания ссылки в днях, если установлен пароль",
+    "days maximum until link expires if password is not set" : "максимальный срок устаревания ссылки в днях, если пароль не установлен",
     "Save" : "Сохранить",
     "Please set a new password" : "Пожалуйста, установите новый пароль",
     "Your password has expired." : "Ваш пароль устарел.",

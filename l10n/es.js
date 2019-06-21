@@ -38,6 +38,8 @@ OC.L10N.register(
     "days before password expires, users will receive a reminder notification" : "días antes de que la contraseña caduque, los usuarios recibirán una notificación de recordatorio",
     "Force users to change their password on first login" : "Obligar a los usuarios a cambiar la contraseña en el primer inicio de sesión",
     "Public link expiration policies:" : "Normas de caducidad de enlaces públicos:",
+    "days maximum until link expires if password is set" : "máximo de días hasta que el vínculo expire si la contraseña se establece",
+    "days maximum until link expires if password is not set" : "máximo de días hasta el enlace caduca si la contraseña no es específicada.",
     "Save" : "Guardar",
     "Please set a new password" : "Por favor establezca una nueva contraseña",
     "Your password has expired." : "La contraseña ha caducado.",
