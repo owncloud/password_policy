@@ -19,7 +19,7 @@
  */
 
 #password-policy input[type='number'] {
-	width: 30px;
+	width: 40px;
 }
 
 #password_policy .indented {
