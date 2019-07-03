@@ -17,6 +17,19 @@ pipeline:
       matrix:
         NEED_CORE: true
 
+  install-testrunner:
+    image: owncloudci/php:${PHP_VERSION}
+    pull: true
+    commands:
+      - git clone -b stable10 --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
+      - cp -r /var/www/owncloud/apps/password_policy /var/www/owncloud/testrunner/apps/
+      - cd /var/www/owncloud/testrunner
+      - make install-composer-deps
+      - make vendor-bin-deps
+    when:
+      matrix:
+        USE_RELEASE_TARBALL: true
+
   install-app:
     image: owncloudci/php:${PHP_VERSION}
     pull: true
@@ -37,9 +50,12 @@ pipeline:
     image: owncloudci/php:${PHP_VERSION}
     pull: true
     commands:
-      - cd /var/www/owncloud/apps
-      - git clone https://github.com/owncloud/guests.git
-      - cd /var/www/owncloud
+      - git clone https://github.com/owncloud/guests.git /var/www/owncloud/apps/guests
+      - if [ "${USE_RELEASE_TARBALL}" = "true" ];
+        then
+        cp -r /var/www/owncloud/apps/guests /var/www/owncloud/testrunner/apps/;
+        fi
+      - cd /var/www/owncloud/
       - php occ a:l
       - php occ a:e guests
       - php occ a:l
@@ -52,8 +68,14 @@ pipeline:
     pull: true
     commands:
       - chown www-data /var/www/owncloud -R
-      - chmod 777 /var/www/owncloud/tests/acceptance/filesForUpload -R
-      - chmod +x /var/www/owncloud/tests/acceptance/run.sh
+      - if [ "${USE_RELEASE_TARBALL}" = "true" ];
+        then
+        chmod 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload -R;
+        chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh;
+        else
+        chmod 777 /var/www/owncloud/tests/acceptance/filesForUpload -R;
+        chmod +x /var/www/owncloud/tests/acceptance/run.sh;
+        fi
     when:
       matrix:
         NEED_SERVER: true
@@ -158,6 +180,7 @@ pipeline:
       - MAILHOG_HOST=email
       - BEHAT_SUITE=${BEHAT_SUITE}
     commands:
+      - if [ "${USE_RELEASE_TARBALL}" = "true" ]; then cd /var/www/owncloud/testrunner/apps/password_policy; fi
       - make test-acceptance-api
     when:
       matrix:
@@ -171,6 +194,7 @@ pipeline:
       - PLATFORM=Linux
       - BEHAT_SUITE=${BEHAT_SUITE}
     commands:
+      - if [ "${USE_RELEASE_TARBALL}" = "true" ]; then cd /var/www/owncloud/testrunner/apps/password_policy; fi
       - make test-acceptance-cli
     when:
       matrix:
@@ -188,6 +212,7 @@ pipeline:
       - BEHAT_SUITE=${BEHAT_SUITE}
       - MAILHOG_HOST=email
     commands:
+      - if [ "${USE_RELEASE_TARBALL}" = "true" ]; then cd /var/www/owncloud/testrunner/apps/password_policy; fi
       - make test-acceptance-webui
     when:
       matrix:
@@ -1179,3 +1204,187 @@ matrix:
       NEED_INSTALL_APP: true
       NEED_GUESTS_APP: true
       USE_EMAIL: true
+
+    # Acceptance test against release tarball
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiGuests
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      NEED_GUESTS_APP: true
+      USE_RELEASE_TARBALL: true
+      USE_EMAIL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordAddUser
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordAddUserSpecial
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordChange
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordChangeSpecial
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiUpdateShare
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: cli-acceptance
+      BEHAT_SUITE: cliPasswordAddUser
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: cli-acceptance
+      BEHAT_SUITE: cliPasswordChange
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIGuests
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      NEED_GUESTS_APP: true
+      USE_RELEASE_TARBALL: true
+      USE_EMAIL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordAddUser
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_EMAIL: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordAddUserSpecial
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_EMAIL: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordChange
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordChangeSpecial
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordPolicySettings
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordReset
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_EMAIL: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPublicShareLink
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true

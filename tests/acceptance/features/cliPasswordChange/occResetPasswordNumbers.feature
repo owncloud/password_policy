@@ -23,6 +23,7 @@ Feature: enforce the required number of numbers in a password when resetting the
       | 333Numbers      |
       | moreNumbers1234 |
 
+  @skipOnOcV10.2
   Scenario Outline: admin resets the password of a user with a password that does not have enough numbers
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have failed with exit code 1

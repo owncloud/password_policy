@@ -22,6 +22,7 @@ Feature: enforce the minimum length of a password when creating a user
       | 10tenchars           |
       | morethan10characters |
 
+  @skipOnOcV10.2
   Scenario Outline: admin creates a user with a password that does not have enough numbers
     When the administrator creates this user using the occ command:
       | username | password   |

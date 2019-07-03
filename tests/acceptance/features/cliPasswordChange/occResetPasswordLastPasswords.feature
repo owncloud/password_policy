@@ -12,12 +12,14 @@ Feature: enforce the number of last passwords that must not be used when resetti
       | username | password |
       | user1    | Number1  |
 
+  @skipOnOcV10.2
   Scenario: admin resets the password of a user to the existing password
     When the administrator resets the password of user "user1" to "Number1" using the occ command
     Then the command should have failed with exit code 1
     And the command output should contain the text 'The password must be different than your previous 3 passwords.'
     And the content of file "textfile0.txt" for user "user1" using password "Number1" should be "ownCloud test text file 0" plus end-of-line
 
+  @skipOnOcV10.2
   Scenario: admin resets the password of a user to the 1st of 2 passwords
     Given the administrator has reset the password of user "user1" to "Number2"
     When the administrator resets the password of user "user1" to "Number1" using the occ command
@@ -26,6 +28,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
     And the content of file "textfile0.txt" for user "user1" using password "Number2" should be "ownCloud test text file 0" plus end-of-line
     But user "user1" using password "Number1" should not be able to download file "textfile0.txt"
 
+  @skipOnOcV10.2
   Scenario: admin resets the password of a user to the 2nd of 2 passwords
     Given the administrator has reset the password of user "user1" to "Number2"
     When the administrator resets the password of user "user1" to "Number2" using the occ command
@@ -34,6 +37,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
     And the content of file "textfile0.txt" for user "user1" using password "Number2" should be "ownCloud test text file 0" plus end-of-line
     But user "user1" using password "Number1" should not be able to download file "textfile0.txt"
 
+  @skipOnOcV10.2
   Scenario: admin resets the password of a user to the 2nd of 3 passwords
     Given the administrator has reset the password of user "user1" to "Number2"
     And the administrator has reset the password of user "user1" to "Number3"
@@ -43,6 +47,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
     And the content of file "textfile0.txt" for user "user1" using password "Number3" should be "ownCloud test text file 0" plus end-of-line
     But user "user1" using password "Number2" should not be able to download file "textfile0.txt"
 
+  @skipOnOcV10.2
   Scenario: admin resets the password of a user to the 2nd of 4 passwords
     Given the administrator has reset the password of user "user1" to "Number2"
     And the administrator has reset the password of user "user1" to "Number3"
