@@ -22,6 +22,13 @@ $(document).ready(function() {
 		event.preventDefault();
 		OC.msg.startSaving('#password_policy .msg');
 
+		if (($("input[name=spv_def_special_chars_checked]").is(':checked') === true) &&
+			($("input[name=spv_def_special_chars_value]").val() === "")) {
+			OC.Notification.showTemporary(t('password_policy', 'Error: The special characters cannot be empty.'));
+			OC.msg.finishedSaving('#password_policy .msg', {status: "failed", data: {message: t('password_policy', 'Failed to save!')} });
+			return;
+		}
+
 		// Load the new token
 		$.ajax({
 			type: "POST",
