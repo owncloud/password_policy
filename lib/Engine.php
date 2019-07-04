@@ -92,6 +92,9 @@ class Engine {
 		if ($this->yes('spv_special_chars_checked')) {
 			$val = $this->configValues['spv_special_chars_value'];
 			$chars = $this->configValues['spv_def_special_chars_value'];
+			if ($chars == '') {
+				$chars = ISecureRandom::CHAR_SYMBOLS;
+			}
 			$password .= $this->random->generate($val + 1, $chars);
 		}
 
