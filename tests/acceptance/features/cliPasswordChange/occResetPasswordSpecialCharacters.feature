@@ -23,6 +23,7 @@ Feature: enforce the required number of special characters in a password when re
       | 3#Special$Characters! |
       | 1!2@3#4$5%6^7&8*      |
 
+  @skipOnOcV10.2
   Scenario Outline: admin resets the password of a user with a password that does not have enough special characters
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have failed with exit code 1

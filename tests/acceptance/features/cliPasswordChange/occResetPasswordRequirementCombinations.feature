@@ -31,6 +31,7 @@ Feature: enforce combinations of password policies when resetting a user passwor
       | 15***UPPloweZZZ           |
       | More%Than$15!Characters-0 |
 
+  @skipOnOcV10.2
   Scenario Outline: admin resets the password of a user with a password that does not meet the password policy
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have failed with exit code 1
@@ -62,6 +63,7 @@ Feature: enforce combinations of password policies when resetting a user passwor
       | 15%&*UPPloweZZZ           |
       | More^Than$15&Characters*0 |
 
+  @skipOnOcV10.2
   Scenario Outline: admin resets the password of a user with a password that has invalid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
