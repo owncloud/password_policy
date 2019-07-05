@@ -166,6 +166,7 @@ class EngineTest extends TestCase {
 			[['spv_uppercase_checked' => true], 'A234567890'],
 			[['spv_numbers_checked' => true], '1234567890'],
 			[['spv_special_chars_checked' => true], '#234567890'],
+			[['spv_special_chars_checked' => true, 'spv_def_special_chars_checked' => true, 'spv_def_special_chars_value' => ''], '#234567890'],
 		];
 	}
 
