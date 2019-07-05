@@ -68,6 +68,15 @@ Feature: set password policy settings
     And restrict to these special characters should be set to "!@#$%^&*"
     And the restrict to these special characters password policy should be enabled
 
+  Scenario: set "restrict to these special characters" empty receives user notification and the change is not saved
+    When the administrator enables the restrict to these special characters password policy using the webUI
+    And the administrator sets the restricted list of special characters to "" using the webUI
+    And the administrator saves the password policy settings using the webUI
+    Then notifications should be displayed on the webUI with the text
+      | Error: The special characters cannot be empty. |
+    And the administrator reloads the admin security settings page
+    And restrict to these special characters should be set to "#!" on the webUI
+
   Scenario: set number of last passwords that should not be used
     When the administrator enables the last passwords user password policy using the webUI
     And the administrator sets the number of last passwords that should not be used to "12" using the webUI
