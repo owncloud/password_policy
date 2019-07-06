@@ -1,8 +1,8 @@
 OC.L10N.register(
     "password_policy",
     {
-    "Saved" : "Vistað",
     "Failed to save!" : "Mistókst að vista!",
+    "Saved" : "Vistað",
     "Password Policy" : "Stefna varðandi lykilorð",
     "Old password is wrong." : "Gamla lykilorðið er rangt.",
     "Password confirmation does not match the password." : "Lykilorð og staðfesting passa ekki saman.",

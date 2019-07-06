@@ -1,8 +1,8 @@
 OC.L10N.register(
     "password_policy",
     {
-    "Saved" : "נשמר",
     "Failed to save!" : "השמירה נכשלה!",
+    "Saved" : "נשמר",
     "Password Policy" : "מדיניות סיסמאות",
     "Old password is wrong." : "הסיסמא הישנה שגויה.",
     "Password confirmation does not match the password." : "סיסמת האימות אינה תואמת את הסיסמא.",

@@ -1,8 +1,8 @@
 OC.L10N.register(
     "password_policy",
     {
-    "Saved" : "Guardado",
     "Failed to save!" : "¡No se pudo guardar!",
+    "Saved" : "Guardado",
     "Password Policy" : "Normas de la contraseña",
     "Old password is wrong." : "La contraseña antigua no es correcta.",
     "Password confirmation does not match the password." : "La confirmación de contraseña no es igual a la contraseña.",

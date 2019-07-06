@@ -1,8 +1,8 @@
 OC.L10N.register(
     "password_policy",
     {
-    "Saved" : "Gardado",
     "Failed to save!" : "Produciuse un fallo ao gardar o ficheiro",
+    "Saved" : "Gardado",
     "Password Policy" : "Política de contrasinais",
     "Old password is wrong." : "O contrasinal antigo é incorrecto.",
     "Password confirmation does not match the password." : "A confirmación do contrasinal non coincide co contrasinal. ",

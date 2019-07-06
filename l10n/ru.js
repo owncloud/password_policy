@@ -1,8 +1,8 @@
 OC.L10N.register(
     "password_policy",
     {
-    "Saved" : "Сохранено",
     "Failed to save!" : "Ошибка сохранения!",
+    "Saved" : "Сохранено",
     "Password Policy" : "Политика пароля",
     "Old password is wrong." : "Старый пароль неверен.",
     "Password confirmation does not match the password." : "Подтверждение пароля не соответствует паролю.",

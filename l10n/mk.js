@@ -1,8 +1,8 @@
 OC.L10N.register(
     "password_policy",
     {
-    "Saved" : "Снимено",
     "Failed to save!" : "Неуспешно снимање!",
+    "Saved" : "Снимено",
     "Password Policy" : "Политика на лозинки",
     "Old password is wrong." : "Старата лозинка е грешна.",
     "Password confirmation does not match the password." : "Лозинката и потврдната лозинка не се совпаѓаат.",

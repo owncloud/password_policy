@@ -1,8 +1,8 @@
 OC.L10N.register(
     "password_policy",
     {
-    "Saved" : "U ruajt",
     "Failed to save!" : "Ruajtja dështoi!",
+    "Saved" : "U ruajt",
     "Password Policy" : "Rregulla Fjalëkalimesh",
     "Old password is wrong." : "Fjalëkalimi i vjetër është i gabuar.",
     "Password confirmation does not match the password." : "Fjalëkalimi i ripohuar s’përputhet me fjalëkalimin.",

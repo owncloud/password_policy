@@ -1,8 +1,8 @@
 OC.L10N.register(
     "password_policy",
     {
-    "Saved" : "บันทึกแล้ว",
     "Failed to save!" : "ไม่สามารถบันทึก!",
+    "Saved" : "บันทึกแล้ว",
     "Password Policy" : "นโยบายรหัสผ่าน",
     "Old password is wrong." : "รหัสผ่านเก่าไม่ถูกต้อง",
     "Password confirmation does not match the password." : "รหัสผ่านที่ใช้ยืนยันไม่ถูกต้อง",
