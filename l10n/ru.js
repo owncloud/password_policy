@@ -1,6 +1,7 @@
 OC.L10N.register(
     "password_policy",
     {
+    "Error: The special characters cannot be empty." : "Ошибка: Спецсимволы не могут быть пустыми.",
     "Failed to save!" : "Ошибка сохранения!",
     "Saved" : "Сохранено",
     "Password Policy" : "Политика пароля",

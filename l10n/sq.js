@@ -1,6 +1,7 @@
 OC.L10N.register(
     "password_policy",
     {
+    "Error: The special characters cannot be empty." : "Gabim: Shenjat speciale s’mund të jenë të zbrazëta.",
     "Failed to save!" : "Ruajtja dështoi!",
     "Saved" : "U ruajt",
     "Password Policy" : "Rregulla Fjalëkalimesh",
