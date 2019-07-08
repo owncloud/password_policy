@@ -1,6 +1,7 @@
 OC.L10N.register(
     "password_policy",
     {
+    "Error: The special characters cannot be empty." : "שגיאה: התווים המיוחדים אינם יכולים להיות ריקים.",
     "Failed to save!" : "השמירה נכשלה!",
     "Saved" : "נשמר",
     "Password Policy" : "מדיניות סיסמאות",
