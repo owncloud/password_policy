@@ -1,4 +1,5 @@
 { "translations": {
+    "Error: The special characters cannot be empty." : "Erro: os caracteres especiais non poden estar baleiros.",
     "Failed to save!" : "Produciuse un fallo ao gardar o ficheiro",
     "Saved" : "Gardado",
     "Password Policy" : "Política de contrasinais",

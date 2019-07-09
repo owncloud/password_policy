@@ -1,6 +1,7 @@
 OC.L10N.register(
     "password_policy",
     {
+    "Error: The special characters cannot be empty." : "Erro: os caracteres especiais não podem estar vazios.",
     "Failed to save!" : "Falha ao salvar!",
     "Saved" : "Salvo",
     "Password Policy" : "Política de Senha",
