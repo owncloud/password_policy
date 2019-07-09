@@ -1,6 +1,7 @@
 OC.L10N.register(
     "password_policy",
     {
+    "Error: The special characters cannot be empty." : "Error: los caracteres especiales no pueden estar vacíos",
     "Failed to save!" : "¡No se pudo guardar!",
     "Saved" : "Guardado",
     "Password Policy" : "Normas de la contraseña",
@@ -23,7 +24,7 @@ OC.L10N.register(
     "The password contains invalid special characters. Only %s are allowed." : "La contraseña contiene caracteres especiales inválidos. Solo se permiten %s.",
     "_The password contains too few special characters. At least one special character (%s) is required._::_The password contains too few special characters. At least %n special characters (%s) are required._" : ["La contraseña tiene pocos caracteres especiales. Se requiere al menos un carácter especial (%s).","La contraseña tiene pocos caracteres especiales. Se requieren al menos %n caracteres especiales (%s)."],
     "_The password contains too few special characters. At least one special character is required._::_The password contains too few special characters. At least %n special characters are required._" : ["La contraseña tiene pocos caracteres especiales. Se requiere al menos un carácter especiales.","La contraseña tiene pocos caracteres especiales. Se requieren al menos %n caracteres especiales."],
-    "_The password contains too few uppercase letters. At least one uppercase letter is required._::_The password contains too few uppercase letters. At least %n uppercase letters are required._" : ["La contraseña tiene pocos caracteres en mayúscula. Se requiere al menos un carácter en mayúscula.","La contraseña tiene pocos caracteres en mayúscula. Se requieren al menos %n caracteres e mayúscula."],
+    "_The password contains too few uppercase letters. At least one uppercase letter is required._::_The password contains too few uppercase letters. At least %n uppercase letters are required._" : ["La contraseña tiene pocos caracteres en mayúscula. Se requiere al menos un carácter en mayúscula.","La contraseña tiene pocos caracteres en mayúscula. Se requieren al menos %n caracteres en mayúscula."],
     "Password and public link expiration policies" : "Normativas de caducidad de contraseñas y enlaces públicos",
     "Minimum password requirements for user accounts and public links:" : "Requisitos mínimos de contraseña para cuentas de usuario y enlaces públicos:",
     "minimum characters" : "mínimo de caracteres",
@@ -39,7 +40,7 @@ OC.L10N.register(
     "Force users to change their password on first login" : "Obligar a los usuarios a cambiar la contraseña en el primer inicio de sesión",
     "Public link expiration policies:" : "Normas de caducidad de enlaces públicos:",
     "days maximum until link expires if password is set" : "máximo de días hasta que el vínculo expire si la contraseña se establece",
-    "days maximum until link expires if password is not set" : "máximo de días hasta el enlace caduca si la contraseña no es específicada.",
+    "days maximum until link expires if password is not set" : "máximo de días hasta que el vínculo expire si la contraseña no se establece",
     "Save" : "Guardar",
     "Please set a new password" : "Por favor establezca una nueva contraseña",
     "Your password has expired." : "La contraseña ha caducado.",
