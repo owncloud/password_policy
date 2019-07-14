@@ -1,6 +1,7 @@
 OC.L10N.register(
     "password_policy",
     {
+    "Error: The special characters cannot be empty." : "ข้อผิดพลาด: จำเป็นต้องมีอักขระพิเศษ",
     "Failed to save!" : "ไม่สามารถบันทึก!",
     "Saved" : "บันทึกแล้ว",
     "Password Policy" : "นโยบายรหัสผ่าน",
