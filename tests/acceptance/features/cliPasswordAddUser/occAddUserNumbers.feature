@@ -28,7 +28,7 @@ Feature: enforce the required number of numbers in a password when creating a us
       | username | password   |
       | user1    | <password> |
     Then the command should have failed with exit code 1
-    And the command output should contain the text 'The password contains too few numbers. At least 3 numbers are required.'
+    And the command error output should contain the text 'The password contains too few numbers. At least 3 numbers are required.'
     And user "user1" should not exist
     Examples:
       | password      |
