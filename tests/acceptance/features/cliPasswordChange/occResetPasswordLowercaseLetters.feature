@@ -28,7 +28,7 @@ Feature: enforce the required number of lowercase letters in a password when res
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have failed with exit code 1
     # Long text output comes on multiple lines. Here we just check for enough that will fit on one of the lines.
-    And the command output should contain the text 'The password contains too few lowercase letters. At least 3 lowercase'
+    And the command error output should contain the text 'The password contains too few lowercase letters. At least 3 lowercase'
     And the content of file "textfile0.txt" for user "user1" using password "abcABC1234" should be "ownCloud test text file 0" plus end-of-line
     But user "user1" using password "<password>" should not be able to download file "textfile0.txt"
     Examples:
