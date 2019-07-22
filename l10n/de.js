@@ -1,6 +1,7 @@
 OC.L10N.register(
     "password_policy",
     {
+    "Error: The special characters cannot be empty." : "Fehler: Die Sonderzeichen dürfen nicht leer sein.",
     "Failed to save!" : "Speichern fehlgeschlagen!",
     "Saved" : "Gespeichert",
     "Password Policy" : "Passwortrichtlinie",
