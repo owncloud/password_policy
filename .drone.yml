@@ -21,7 +21,7 @@ pipeline:
     image: owncloudci/php:${PHP_VERSION}
     pull: true
     commands:
-      - git clone -b stable10 --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
+      - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
       - cp -r /var/www/owncloud/apps/password_policy /var/www/owncloud/testrunner/apps/
       - cd /var/www/owncloud/testrunner
       - make install-composer-deps
@@ -301,7 +301,7 @@ matrix:
 
     # phan
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: phan-70
       DB_TYPE: sqlite
       DB_NAME: owncloud
@@ -356,48 +356,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: phpunit
-      DB_TYPE: sqlite
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: phpunit
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: phpunit
-      DB_TYPE: pgsql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_INSTALL_APP: true
-      COVERAGE: true
-
-    - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: phpunit
-      DB_TYPE: oci
-      DB_NAME: XE
-      NEED_CORE: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: phpunit
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.2
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: phpunit
       DB_TYPE: mysql
       DB_NAME: owncloud
@@ -405,9 +364,9 @@ matrix:
       NEED_INSTALL_APP: true
 
     #API acceptance tests
-    #PHP 7.0 with core stable10
+    #PHP 7.0 with core master
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordAddUser
       DB_TYPE: mysql
@@ -417,7 +376,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordAddUserSpecial
       DB_TYPE: mysql
@@ -427,7 +386,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordChange
       DB_TYPE: mysql
@@ -437,7 +396,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiPasswordChangeSpecial
       DB_TYPE: mysql
@@ -447,7 +406,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiUpdateShare
       DB_TYPE: mysql
@@ -457,7 +416,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: api-acceptance
       BEHAT_SUITE: apiGuests
       DB_TYPE: mysql
@@ -469,7 +428,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: cli-acceptance
       BEHAT_SUITE: cliPasswordAddUser
       DB_TYPE: mysql
@@ -479,177 +438,11 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: cli-acceptance
       BEHAT_SUITE: cliPasswordChange
       DB_TYPE: mysql
       DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    #PHP 7.1 with core stable10
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiPasswordAddUser
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiPasswordAddUserSpecial
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiPasswordChangeSpecial
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiUpdateShare
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiGuests
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-      NEED_GUESTS_APP: true
-      USE_EMAIL: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: cli-acceptance
-      BEHAT_SUITE: cliPasswordAddUser
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: cli-acceptance
-      BEHAT_SUITE: cliPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    #PHP 7.1 with core stable10 and Oracle
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiPasswordAddUser
-      DB_TYPE: oci
-      DB_NAME: XE
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiPasswordAddUserSpecial
-      DB_TYPE: oci
-      DB_NAME: XE
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiPasswordChange
-      DB_TYPE: oci
-      DB_NAME: XE
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiPasswordChangeSpecial
-      DB_TYPE: oci
-      DB_NAME: XE
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiUpdateShare
-      DB_TYPE: oci
-      DB_NAME: XE
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiGuests
-      DB_TYPE: oci
-      DB_NAME: XE
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-      NEED_GUESTS_APP: true
-      USE_EMAIL: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: cli-acceptance
-      BEHAT_SUITE: cliPasswordAddUser
-      DB_TYPE: oci
-      DB_NAME: XE
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: cli-acceptance
-      BEHAT_SUITE: cliPasswordChange
-      DB_TYPE: oci
-      DB_NAME: XE
       NEED_CORE: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
@@ -905,9 +698,9 @@ matrix:
 
 
     #webUI acceptance tests
-    #PHP 7.0 with core stable10
+    #PHP 7.0 with core master
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordAddUser
       DB_TYPE: mysql
@@ -918,7 +711,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordAddUserSpecial
       DB_TYPE: mysql
@@ -929,7 +722,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordChange
       DB_TYPE: mysql
@@ -939,7 +732,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordChangeSpecial
       DB_TYPE: mysql
@@ -949,7 +742,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordPolicySettings
       DB_TYPE: mysql
@@ -959,7 +752,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordReset
       DB_TYPE: mysql
@@ -970,7 +763,7 @@ matrix:
       USE_EMAIL: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPublicShareLink
       DB_TYPE: mysql
@@ -980,93 +773,7 @@ matrix:
       NEED_INSTALL_APP: true
 
     - PHP_VERSION: 7.0
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: web-acceptance
-      BEHAT_SUITE: webUIGuests
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-      NEED_GUESTS_APP: true
-      USE_EMAIL: true
-
-    #PHP 7.1 with core stable10
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: web-acceptance
-      BEHAT_SUITE: webUIPasswordAddUser
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-      USE_EMAIL: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: web-acceptance
-      BEHAT_SUITE: webUIPasswordAddUserSpecial
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-      USE_EMAIL: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: web-acceptance
-      BEHAT_SUITE: webUIPasswordChange
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: web-acceptance
-      BEHAT_SUITE: webUIPasswordChangeSpecial
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: web-acceptance
-      BEHAT_SUITE: webUIPasswordPolicySettings
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: web-acceptance
-      BEHAT_SUITE: webUIPasswordReset
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-      USE_EMAIL: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
-      TEST_SUITE: web-acceptance
-      BEHAT_SUITE: webUIPublicShareLink
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-
-    - PHP_VERSION: 7.1
-      OC_VERSION: daily-stable10-qa
+      OC_VERSION: daily-master-qa
       TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIGuests
       DB_TYPE: mysql
