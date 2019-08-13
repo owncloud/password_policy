@@ -28,7 +28,7 @@ Feature: enforce the minimum length of a password when creating a user
       | username | password   |
       | user1    | <password> |
     Then the command should have failed with exit code 1
-    And the command error output should contain the text 'The password is too short. At least 10 characters are required.'
+    And the command output should contain the text 'The password is too short. At least 10 characters are required.'
     And user "user1" should not exist
     Examples:
       | password  |
