@@ -24,6 +24,29 @@ Feature: enforce the required number of lowercase letters in a password when cre
       | moreThan3LowercaseLetters | 1               | 100        |
       | moreThan3LowercaseLetters | 2               | 200        |
 
+  @skipOnOcV10.2
+  # This has the new full OCS status message from core 10.3 onwards
+  Scenario Outline: admin creates a user with a password that does not have enough lowercase letters
+    Given using OCS API version "<ocs-api-version>"
+    And user "brand-new-user" has been deleted
+    When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
+    Then the HTTP status code should be "<http-status>"
+    And the HTTP reason phrase should be "<http-reason-phrase>"
+    And the OCS status code should be "<ocs-status>"
+    And the OCS status message should be:
+      """
+      Unable to create user due to exception: The password contains too few lowercase letters. At least 3 lowercase letters are required.
+      """
+    And user "brand-new-user" should not exist
+    Examples:
+      | password   | ocs-api-version | ocs-status | http-status | http-reason-phrase |
+      | 0LOWERCASE | 1               | 101        | 200         | OK                 |
+      | 0LOWERCASE | 2               | 400        | 400         | Bad Request        |
+      | 2lOWERcASE | 1               | 101        | 200         | OK                 |
+      | 2lOWERcASE | 2               | 400        | 400         | Bad Request        |
+
+  @skipOnOcV10.3
+  # This has the OCS status message as it was with core 10.2.*
   Scenario Outline: admin creates a user with a password that does not have enough lowercase letters
     Given using OCS API version "<ocs-api-version>"
     And user "brand-new-user" has been deleted

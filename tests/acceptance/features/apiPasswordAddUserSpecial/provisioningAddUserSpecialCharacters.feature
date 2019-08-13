@@ -24,6 +24,29 @@ Feature: enforce the required number of special characters in a password when cr
       | 1!2@3#4$5%6^7&8*      | 1               | 100        |
       | 1!2@3#4$5%6^7&8*      | 2               | 200        |
 
+  @skipOnOcV10.2
+  # This has the new full OCS status message from core 10.3 onwards
+  Scenario Outline: admin creates a user with a password that does not have enough special characters
+    Given using OCS API version "<ocs-api-version>"
+    And user "brand-new-user" has been deleted
+    When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
+    Then the HTTP status code should be "<http-status>"
+    And the HTTP reason phrase should be "<http-reason-phrase>"
+    And the OCS status code should be "<ocs-status>"
+    And the OCS status message should be:
+      """
+      Unable to create user due to exception: The password contains too few special characters. At least 3 special characters are required.
+      """
+    And user "brand-new-user" should not exist
+    Examples:
+      | password                 | ocs-api-version | ocs-status | http-status | http-reason-phrase |
+      | NoSpecialCharacters123   | 1               | 101        | 200         | OK                 |
+      | NoSpecialCharacters123   | 2               | 400        | 400         | Bad Request        |
+      | Only2$Special!Characters | 1               | 101        | 200         | OK                 |
+      | Only2$Special!Characters | 2               | 400        | 400         | Bad Request        |
+
+  @skipOnOcV10.3
+  # This has the OCS status message as it was with core 10.2.*
   Scenario Outline: admin creates a user with a password that does not have enough special characters
     Given using OCS API version "<ocs-api-version>"
     And user "brand-new-user" has been deleted
