@@ -25,6 +25,7 @@ Feature: enforce the restricted special characters in a password when creating a
       | 1*2&3^4%5$6           |
 
   @skipOnOcV10.2
+  # The command output for errors is coming on stdout from core 10.3 onwards
   Scenario Outline: admin creates a user with a password that does not have enough restricted special characters
     When the administrator creates this user using the occ command:
       | username | password   |
@@ -38,7 +39,23 @@ Feature: enforce the restricted special characters in a password when creating a
       | NoSpecialCharacters123   |
       | Only2$Special&Characters |
 
+  @skipOnOcV10.3
+  # The command output for errors comes on stderr in core 10.2
+  Scenario Outline: admin creates a user with a password that does not have enough restricted special characters
+    When the administrator creates this user using the occ command:
+      | username | password   |
+      | user1    | <password> |
+    Then the command should have failed with exit code 1
+    # Long text output comes on multiple lines. Here we just check for enough that will fit on one of the lines.
+    And the command error output should contain the text 'The password contains too few special characters. At least 3 special char'
+    And user "user1" should not exist
+    Examples:
+      | password                 |
+      | NoSpecialCharacters123   |
+      | Only2$Special&Characters |
+
   @skipOnOcV10.2
+  # The command output for errors is coming on stdout from core 10.3 onwards
   Scenario Outline: admin creates a user with a password that has invalid special characters
     When the administrator creates this user using the occ command:
       | username | password   |
@@ -46,6 +63,21 @@ Feature: enforce the restricted special characters in a password when creating a
     Then the command should have failed with exit code 1
     # Long text output comes on multiple lines. Here we just check for enough that will fit on one of the lines.
     And the command output should contain the text 'The password contains invalid special characters. Only $%^&* are allowed.'
+    And user "user1" should not exist
+    Examples:
+      | password                                 |
+      | Only#Invalid!Special@Characters          |
+      | 1*2&3^4%5$6andInvalidSpecialCharacters#! |
+
+  @skipOnOcV10.3
+  # The command output for errors comes on stderr in core 10.2
+  Scenario Outline: admin creates a user with a password that has invalid special characters
+    When the administrator creates this user using the occ command:
+      | username | password   |
+      | user1    | <password> |
+    Then the command should have failed with exit code 1
+    # Long text output comes on multiple lines. Here we just check for enough that will fit on one of the lines.
+    And the command error output should contain the text 'The password contains invalid special characters. Only $%^&* are allowed.'
     And user "user1" should not exist
     Examples:
       | password                                 |

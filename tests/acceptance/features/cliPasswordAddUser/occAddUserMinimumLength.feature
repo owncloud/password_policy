@@ -9,7 +9,7 @@ Feature: enforce the minimum length of a password when creating a user
     Given the administrator has enabled the minimum characters password policy
     And the administrator has set the minimum characters required to "10"
 
-  Scenario Outline: admin creates a user with a password that has enough numbers
+  Scenario Outline: admin creates a user with a password that is long enough
     When the administrator creates this user using the occ command:
       | username | password   |
       | user1    | <password> |
@@ -23,12 +23,27 @@ Feature: enforce the minimum length of a password when creating a user
       | morethan10characters |
 
   @skipOnOcV10.2
-  Scenario Outline: admin creates a user with a password that does not have enough numbers
+  # The command output for errors is coming on stdout from core 10.3 onwards
+  Scenario Outline: admin creates a user with a password that is not long enough
     When the administrator creates this user using the occ command:
       | username | password   |
       | user1    | <password> |
     Then the command should have failed with exit code 1
     And the command output should contain the text 'The password is too short. At least 10 characters are required.'
+    And user "user1" should not exist
+    Examples:
+      | password  |
+      | A         |
+      | 123456789 |
+
+  @skipOnOcV10.3
+  # The command output for errors comes on stderr in core 10.2
+  Scenario Outline: admin creates a user with a password that is not long enough
+    When the administrator creates this user using the occ command:
+      | username | password   |
+      | user1    | <password> |
+    Then the command should have failed with exit code 1
+    And the command error output should contain the text 'The password is too short. At least 10 characters are required.'
     And user "user1" should not exist
     Examples:
       | password  |

@@ -25,7 +25,6 @@ Feature: enforce the required number of restricted special characters in a passw
       | 3$Special%Characters^ |
       | 1*2&3^4%5$6           |
 
-  @skipOnOcV10.2
   Scenario Outline: admin resets the password of a user with a password that does not have enough restricted special characters
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have failed with exit code 1
@@ -38,7 +37,6 @@ Feature: enforce the required number of restricted special characters in a passw
       | NoSpecialCharacters123   |
       | Only2$Special&Characters |
 
-  @skipOnOcV10.2
   Scenario Outline: admin resets the password of a user with a password that has invalid special characters
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have failed with exit code 1

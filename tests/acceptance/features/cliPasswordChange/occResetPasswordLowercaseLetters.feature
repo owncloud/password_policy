@@ -23,7 +23,6 @@ Feature: enforce the required number of lowercase letters in a password when res
       | 3LCase                    |
       | moreThan3LowercaseLetters |
 
-  @skipOnOcV10.2
   Scenario Outline: admin resets the password of a user with a password that does not have enough lowercase letters
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have failed with exit code 1

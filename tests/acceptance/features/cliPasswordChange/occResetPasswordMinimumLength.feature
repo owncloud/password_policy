@@ -23,7 +23,6 @@ Feature: enforce the minimum length of a password when resetting the password us
       | 10tenchars           |
       | morethan10characters |
 
-  @skipOnOcV10.2
   Scenario Outline: admin resets the password of a user to one that is not long enough
     When the administrator resets the password of user "user1" to "<password>" using the occ command
     Then the command should have failed with exit code 1
