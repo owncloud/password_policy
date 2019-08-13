@@ -22,6 +22,8 @@ Feature: enforce the required number of lowercase letters in a password when cre
       | 3LCase                    |
       | moreThan3LowercaseLetters |
 
+  @skipOnOcV10.2
+  # The command output for errors is coming on stdout from core 10.3 onwards
   Scenario Outline: admin creates a user with a password that does not have enough lowercase letters
     When the administrator creates this user using the occ command:
       | username | password   |
@@ -29,6 +31,21 @@ Feature: enforce the required number of lowercase letters in a password when cre
     Then the command should have failed with exit code 1
     # Long text output comes on multiple lines. Here we just check for enough that will fit on one of the lines.
     And the command output should contain the text 'The password contains too few lowercase letters. At least 3 lowercase'
+    And user "user1" should not exist
+    Examples:
+      | password   |
+      | 0LOWERCASE |
+      | 2lOWERcASE |
+
+  @skipOnOcV10.3
+  # The command output for errors comes on stderr in core 10.2
+  Scenario Outline: admin creates a user with a password that does not have enough lowercase letters
+    When the administrator creates this user using the occ command:
+      | username | password   |
+      | user1    | <password> |
+    Then the command should have failed with exit code 1
+    # Long text output comes on multiple lines. Here we just check for enough that will fit on one of the lines.
+    And the command error output should contain the text 'The password contains too few lowercase letters. At least 3 lowercase'
     And user "user1" should not exist
     Examples:
       | password   |
