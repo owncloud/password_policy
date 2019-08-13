@@ -22,7 +22,6 @@ Feature: enforce the required number of numbers in a password when creating a us
       | 333Numbers      |
       | moreNumbers1234 |
 
-  @skipOnOcV10.2
   Scenario Outline: admin creates a user with a password that does not have enough numbers
     When the administrator creates this user using the occ command:
       | username | password   |

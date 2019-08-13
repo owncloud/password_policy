@@ -22,7 +22,6 @@ Feature: enforce the required number of uppercase letters in a password when cre
       | 3UpperCaseLetters         |
       | MoreThan3UpperCaseLetters |
 
-  @skipOnOcV10.2
   Scenario Outline: admin creates a user with a password that does not have enough uppercase letters
     When the administrator creates this user using the occ command:
       | username | password   |

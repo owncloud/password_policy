@@ -22,7 +22,6 @@ Feature: enforce the required number of special characters in a password when cr
       | 3#Special$Characters! |
       | 1!2@3#4$5%6^7&8*      |
 
-  @skipOnOcV10.2
   Scenario Outline: admin creates a user with a password that does not have enough special characters
     When the administrator creates this user using the occ command:
       | username | password   |

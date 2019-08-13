@@ -24,7 +24,6 @@ Feature: enforce the restricted special characters in a password when creating a
       | 3$Special%Characters^ |
       | 1*2&3^4%5$6           |
 
-  @skipOnOcV10.2
   Scenario Outline: admin creates a user with a password that does not have enough restricted special characters
     When the administrator creates this user using the occ command:
       | username | password   |
@@ -38,7 +37,6 @@ Feature: enforce the restricted special characters in a password when creating a
       | NoSpecialCharacters123   |
       | Only2$Special&Characters |
 
-  @skipOnOcV10.2
   Scenario Outline: admin creates a user with a password that has invalid special characters
     When the administrator creates this user using the occ command:
       | username | password   |

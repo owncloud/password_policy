@@ -30,7 +30,6 @@ Feature: enforce combinations of password policies when creating a user
       | 15***UPPloweZZZ           |
       | More%Than$15!Characters-0 |
 
-  @skipOnOcV10.2
   Scenario Outline: admin creates a user with a password that does not meet the password policy
     When the administrator creates this user using the occ command:
       | username | password   |
@@ -64,7 +63,6 @@ Feature: enforce combinations of password policies when creating a user
       | 15%&*UPPloweZZZ           |
       | More^Than$15&Characters*0 |
 
-  @skipOnOcV10.2
   Scenario Outline: admin creates a user with a password that has invalid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
