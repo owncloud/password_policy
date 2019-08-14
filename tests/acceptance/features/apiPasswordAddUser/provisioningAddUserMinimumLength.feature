@@ -35,7 +35,7 @@ Feature: enforce the minimum length of a password when creating a user
     And the OCS status code should be "<ocs-status>"
     And the OCS status message should be:
       """
-      Unable to create user due to exception: The password is too short. At least 10 characters are required.
+      Unable to create user: The password is too short. At least 10 characters are required.
       """
     And user "brand-new-user" should not exist
     Examples:

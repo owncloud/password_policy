@@ -41,7 +41,7 @@ Feature: enforce combinations of password policies when creating a user
     Then the HTTP status code should be "<http-status>"
     And the HTTP reason phrase should be "<http-reason-phrase>"
     And the OCS status code should be "<ocs-status>"
-    And the OCS status message should be "Unable to create user due to exception: <ocs-status-message>"
+    And the OCS status message should be "Unable to create user: <ocs-status-message>"
     And user "brand-new-user" should not exist
     Examples:
       | password                       | ocs-api-version | ocs-status | http-status | http-reason-phrase | ocs-status-message                                                                            |
@@ -120,7 +120,7 @@ Feature: enforce combinations of password policies when creating a user
     Then the HTTP status code should be "<http-status>"
     And the HTTP reason phrase should be "<http-reason-phrase>"
     And the OCS status code should be "<ocs-status>"
-    And the OCS status message should be "Unable to create user due to exception: <ocs-status-message>"
+    And the OCS status message should be "Unable to create user: <ocs-status-message>"
     And user "brand-new-user" should not exist
     Examples:
       | password        | ocs-api-version | ocs-status | http-status | http-reason-phrase | ocs-status-message                                                                          |

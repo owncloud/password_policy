@@ -35,7 +35,7 @@ Feature: enforce the required number of uppercase letters in a password when cre
     And the OCS status code should be "<ocs-status>"
     And the OCS status message should be:
       """
-      Unable to create user due to exception: The password contains too few uppercase letters. At least 3 uppercase letters are required.
+      Unable to create user: The password contains too few uppercase letters. At least 3 uppercase letters are required.
       """
     And user "brand-new-user" should not exist
     Examples:
