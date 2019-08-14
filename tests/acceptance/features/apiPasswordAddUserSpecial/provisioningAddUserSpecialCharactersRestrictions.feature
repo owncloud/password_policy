@@ -37,7 +37,7 @@ Feature: enforce the restricted special characters in a password when creating a
     And the OCS status code should be "<ocs-status>"
     And the OCS status message should be:
       """
-      Unable to create user due to exception: The password contains too few special characters. At least 3 special characters ($%^&*) are required.
+      Unable to create user: The password contains too few special characters. At least 3 special characters ($%^&*) are required.
       """
     And user "brand-new-user" should not exist
     Examples:
@@ -79,7 +79,7 @@ Feature: enforce the restricted special characters in a password when creating a
     And the OCS status code should be "<ocs-status>"
     And the OCS status message should be:
       """
-      Unable to create user due to exception: The password contains invalid special characters. Only $%^&* are allowed.
+      Unable to create user: The password contains invalid special characters. Only $%^&* are allowed.
       """
     And user "brand-new-user" should not exist
     Examples:

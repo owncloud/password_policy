@@ -35,7 +35,7 @@ Feature: enforce the required number of numbers in a password when creating a us
     And the OCS status code should be "<ocs-status>"
     And the OCS status message should be:
       """
-      Unable to create user due to exception: The password contains too few numbers. At least 3 numbers are required.
+      Unable to create user: The password contains too few numbers. At least 3 numbers are required.
       """
     And user "brand-new-user" should not exist
     Examples:
