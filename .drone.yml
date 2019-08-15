@@ -17,6 +17,19 @@ pipeline:
       matrix:
         NEED_CORE: true
 
+  install-from-url:
+    image: owncloudci/core
+    download_url: ${DOWNLOAD_URL}
+    pull: true
+    db_type: ${DB_TYPE}
+    db_name: ${DB_NAME}
+    db_host: ${DB_TYPE}
+    db_username: autotest
+    db_password: owncloud
+    when:
+      matrix:
+        CORE_FROM_URL: true
+
   install-testrunner:
     image: owncloudci/php:${PHP_VERSION}
     pull: true
@@ -920,20 +933,7 @@ matrix:
       NEED_GUESTS_APP: true
       USE_EMAIL: true
 
-    # Acceptance test against release tarball
-    - PHP_VERSION: 7.0
-      OC_VERSION: 10.2.1
-      TEST_SUITE: api-acceptance
-      BEHAT_SUITE: apiGuests
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-      NEED_GUESTS_APP: true
-      USE_RELEASE_TARBALL: true
-      USE_EMAIL: true
-
+    # Acceptance test against release 10.2.1 tarball
     - PHP_VERSION: 7.0
       OC_VERSION: 10.2.1
       TEST_SUITE: api-acceptance
@@ -1014,19 +1014,6 @@ matrix:
     - PHP_VERSION: 7.0
       OC_VERSION: 10.2.1
       TEST_SUITE: web-acceptance
-      BEHAT_SUITE: webUIGuests
-      DB_TYPE: mysql
-      DB_NAME: owncloud
-      NEED_CORE: true
-      NEED_SERVER: true
-      NEED_INSTALL_APP: true
-      NEED_GUESTS_APP: true
-      USE_RELEASE_TARBALL: true
-      USE_EMAIL: true
-
-    - PHP_VERSION: 7.0
-      OC_VERSION: 10.2.1
-      TEST_SUITE: web-acceptance
       BEHAT_SUITE: webUIPasswordAddUser
       DB_TYPE: mysql
       DB_NAME: owncloud
@@ -1100,6 +1087,190 @@ matrix:
       DB_TYPE: mysql
       DB_NAME: owncloud
       NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    # Acceptance test against 10.3.0alpha tarball
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiGuests
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      NEED_GUESTS_APP: true
+      USE_RELEASE_TARBALL: true
+      USE_EMAIL: true
+
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordAddUser
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordAddUserSpecial
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordChange
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiPasswordChangeSpecial
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiUpdateShare
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: cli-acceptance
+      BEHAT_SUITE: cliPasswordAddUser
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: cli-acceptance
+      BEHAT_SUITE: cliPasswordChange
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIGuests
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      NEED_GUESTS_APP: true
+      USE_RELEASE_TARBALL: true
+      USE_EMAIL: true
+
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordAddUser
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_EMAIL: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordAddUserSpecial
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_EMAIL: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordChange
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordChangeSpecial
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordPolicySettings
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPasswordReset
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      USE_EMAIL: true
+      USE_RELEASE_TARBALL: true
+
+    - PHP_VERSION: 7.0
+      DOWNLOAD_URL: https://download.owncloud.org/community/testing/owncloud-10.3.0alpha.tar.bz2
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIPublicShareLink
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      CORE_FROM_URL: true
       NEED_SERVER: true
       NEED_INSTALL_APP: true
       USE_RELEASE_TARBALL: true
