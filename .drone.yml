@@ -921,20 +921,18 @@ matrix:
       USE_EMAIL: true
 
     # Acceptance test against release tarball
-# guests app 0.8.2 requires core 10.3
-# enable again when a 10.3.0 tarball is available
-#    - PHP_VERSION: 7.0
-#      OC_VERSION: 10.2.1
-#      TEST_SUITE: api-acceptance
-#      BEHAT_SUITE: apiGuests
-#      DB_TYPE: mysql
-#      DB_NAME: owncloud
-#      NEED_CORE: true
-#      NEED_SERVER: true
-#      NEED_INSTALL_APP: true
-#      NEED_GUESTS_APP: true
-#      USE_RELEASE_TARBALL: true
-#      USE_EMAIL: true
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: api-acceptance
+      BEHAT_SUITE: apiGuests
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      NEED_GUESTS_APP: true
+      USE_RELEASE_TARBALL: true
+      USE_EMAIL: true
 
     - PHP_VERSION: 7.0
       OC_VERSION: 10.2.1
@@ -1013,20 +1011,18 @@ matrix:
       NEED_INSTALL_APP: true
       USE_RELEASE_TARBALL: true
 
-# guests app 0.8.2 requires core 10.3
-# enable again when a 10.3.0 tarball is available
-#    - PHP_VERSION: 7.0
-#      OC_VERSION: 10.2.1
-#      TEST_SUITE: web-acceptance
-#      BEHAT_SUITE: webUIGuests
-#      DB_TYPE: mysql
-#      DB_NAME: owncloud
-#      NEED_CORE: true
-#      NEED_SERVER: true
-#      NEED_INSTALL_APP: true
-#      NEED_GUESTS_APP: true
-#      USE_RELEASE_TARBALL: true
-#      USE_EMAIL: true
+    - PHP_VERSION: 7.0
+      OC_VERSION: 10.2.1
+      TEST_SUITE: web-acceptance
+      BEHAT_SUITE: webUIGuests
+      DB_TYPE: mysql
+      DB_NAME: owncloud
+      NEED_CORE: true
+      NEED_SERVER: true
+      NEED_INSTALL_APP: true
+      NEED_GUESTS_APP: true
+      USE_RELEASE_TARBALL: true
+      USE_EMAIL: true
 
     - PHP_VERSION: 7.0
       OC_VERSION: 10.2.1
