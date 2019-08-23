@@ -11,17 +11,20 @@ Feature: enforce the minimum length of a password on public share links
     And these users have been created with default attributes and skeleton files:
       | username | password   |
       | user1    | 1234567890 |
+    And user "user1" has uploaded file with content "user1 file" to "/randomfile.txt"
     And user "user1" has created a public link share with settings
-      | path     | welcome.txt |
-      | password | ABCabc1234  |
+      | path     | randomfile.txt |
+      | password | ABCabc1234     |
 
   Scenario Outline: user updates the public share link password a long-enough string
     When user "user1" updates the last share using the sharing API with
       | password | <password> |
     Then the OCS status code should be "100"
     And the HTTP status code should be "200"
-    And the last public shared file should be able to be downloaded with password "<password>"
-    And the last public shared file should not be able to be downloaded with password "ABCabc1234"
+    And the public should be able to download the last publicly shared file using the old public WebDAV API with password "<password>" and the content should be "user1 file"
+    And the public should be able to download the last publicly shared file using the new public WebDAV API with password "<password>" and the content should be "user1 file"
+    And the public download of the last publicly shared file using the old public WebDAV API with password "ABCabc1234" should fail with HTTP status code "401"
+    And the public download of the last publicly shared file using the new public WebDAV API with password "ABCabc1234" should fail with HTTP status code "401"
     Examples:
       | password             |
       | 10tenchars           |
@@ -32,8 +35,10 @@ Feature: enforce the minimum length of a password on public share links
       | password | <password> |
     Then the OCS status message should be "The password is too short. At least 10 characters are required."
     And the OCS status code should be "400"
-    And the last public shared file should be able to be downloaded with password "ABCabc1234"
-    And the last public shared file should not be able to be downloaded with password "<password>"
+    And the public should be able to download the last publicly shared file using the old public WebDAV API with password "ABCabc1234" and the content should be "user1 file"
+    And the public should be able to download the last publicly shared file using the new public WebDAV API with password "ABCabc1234" and the content should be "user1 file"
+    And the public download of the last publicly shared file using the old public WebDAV API with password "<password>" should fail with HTTP status code "401"
+    And the public download of the last publicly shared file using the new public WebDAV API with password "<password>" should fail with HTTP status code "401"
     Examples:
       | password  |
       | A         |

@@ -13,17 +13,20 @@ Feature: enforce the restricted special characters in a password on public share
     And these users have been created with default attributes and skeleton files:
       | username | password   |
       | user1    | a$b%c^1234 |
+    And user "user1" has uploaded file with content "user1 file" to "/randomfile.txt"
     And user "user1" has created a public link share with settings
-      | path     | welcome.txt   |
-      | password | a324$b%c^1234 |
+      | path     | randomfile.txt |
+      | password | a324$b%c^1234  |
 
   Scenario Outline: user updates the public share link password to a string with enough restricted special characters
     When user "user1" updates the last share using the sharing API with
       | password | <password> |
     Then the OCS status code should be "100"
     And the HTTP status code should be "200"
-    And the last public shared file should be able to be downloaded with password "<password>"
-    And the last public shared file should not be able to be downloaded with password "a324$b%c^1234"
+    And the public should be able to download the last publicly shared file using the old public WebDAV API with password "<password>" and the content should be "user1 file"
+    And the public should be able to download the last publicly shared file using the new public WebDAV API with password "<password>" and the content should be "user1 file"
+    And the public download of the last publicly shared file using the old public WebDAV API with password "a324$b%c^1234" should fail with HTTP status code "401"
+    And the public download of the last publicly shared file using the new public WebDAV API with password "a324$b%c^1234" should fail with HTTP status code "401"
     Examples:
       | password              |
       | 3$Special%Characters^ |
@@ -34,8 +37,10 @@ Feature: enforce the restricted special characters in a password on public share
       | password | <password> |
     Then the OCS status message should be "The password contains too few special characters. At least 3 special characters ($%^&*) are required."
     And the OCS status code should be "400"
-    And the last public shared file should be able to be downloaded with password "a324$b%c^1234"
-    And the last public shared file should not be able to be downloaded with password "<password>"
+    And the public should be able to download the last publicly shared file using the old public WebDAV API with password "a324$b%c^1234" and the content should be "user1 file"
+    And the public should be able to download the last publicly shared file using the new public WebDAV API with password "a324$b%c^1234" and the content should be "user1 file"
+    And the public download of the last publicly shared file using the old public WebDAV API with password "<password>" should fail with HTTP status code "401"
+    And the public download of the last publicly shared file using the new public WebDAV API with password "<password>" should fail with HTTP status code "401"
     Examples:
       | password                 |
       | NoSpecialCharacters123   |
@@ -46,8 +51,10 @@ Feature: enforce the restricted special characters in a password on public share
       | password | <password> |
     Then the OCS status message should be "The password contains invalid special characters. Only $%^&* are allowed."
     And the OCS status code should be "400"
-    And the last public shared file should be able to be downloaded with password "a324$b%c^1234"
-    And the last public shared file should not be able to be downloaded with password "<password>"
+    And the public should be able to download the last publicly shared file using the old public WebDAV API with password "a324$b%c^1234" and the content should be "user1 file"
+    And the public should be able to download the last publicly shared file using the new public WebDAV API with password "a324$b%c^1234" and the content should be "user1 file"
+    And the public download of the last publicly shared file using the old public WebDAV API with password "<password>" should fail with HTTP status code "401"
+    And the public download of the last publicly shared file using the new public WebDAV API with password "<password>" should fail with HTTP status code "401"
     Examples:
       | password                                 |
       | Only#Invalid!Special@Characters          |

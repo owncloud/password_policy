@@ -19,8 +19,9 @@ Feature: enforce combinations of password policies on public share links
     And these users have been created with default attributes and skeleton files:
       | username | password        |
       | user1    | aA1!bB2#cC&deee |
+    And user "user1" has uploaded file with content "user1 file" to "/randomfile.txt"
     And user "user1" has created a public link share with settings
-      | path     | welcome.txt     |
+      | path     | randomfile.txt  |
       | password | zA1@bB2#cC&deee |
 
   Scenario Outline: user updates the public share link password to a valid string
@@ -28,8 +29,10 @@ Feature: enforce combinations of password policies on public share links
       | password | <password> |
     Then the OCS status code should be "100"
     And the HTTP status code should be "200"
-    And the last public shared file should be able to be downloaded with password "<password>"
-    And the last public shared file should not be able to be downloaded with password "zA1@bB2#cC&deee"
+    And the public should be able to download the last publicly shared file using the old public WebDAV API with password "<password>" and the content should be "user1 file"
+    And the public should be able to download the last publicly shared file using the new public WebDAV API with password "<password>" and the content should be "user1 file"
+    And the public download of the last publicly shared file using the old public WebDAV API with password "zA1@bB2#cC&deee" should fail with HTTP status code "401"
+    And the public download of the last publicly shared file using the new public WebDAV API with password "zA1@bB2#cC&deee" should fail with HTTP status code "401"
     Examples:
       | password                  |
       | 15***UPPloweZZZ           |
@@ -40,8 +43,10 @@ Feature: enforce combinations of password policies on public share links
       | password | <password> |
     Then the OCS status message should be "<message>"
     And the OCS status code should be "400"
-    And the last public shared file should be able to be downloaded with password "zA1@bB2#cC&deee"
-    And the last public shared file should not be able to be downloaded with password "<password>"
+    And the public should be able to download the last publicly shared file using the old public WebDAV API with password "zA1@bB2#cC&deee" and the content should be "user1 file"
+    And the public should be able to download the last publicly shared file using the new public WebDAV API with password "zA1@bB2#cC&deee" and the content should be "user1 file"
+    And the public download of the last publicly shared file using the old public WebDAV API with password "<password>" should fail with HTTP status code "401"
+    And the public download of the last publicly shared file using the new public WebDAV API with password "<password>" should fail with HTTP status code "401"
     Examples:
       | password                       | message                                                                                       |
       # where just one of the requirements is not met
@@ -61,8 +66,10 @@ Feature: enforce combinations of password policies on public share links
       | password | <password> |
     Then the OCS status code should be "100"
     And the HTTP status code should be "200"
-    And the last public shared file should be able to be downloaded with password "<password>"
-    And the last public shared file should not be able to be downloaded with password "zA1@bB2#cC&deee"
+    And the public should be able to download the last publicly shared file using the old public WebDAV API with password "<password>" and the content should be "user1 file"
+    And the public should be able to download the last publicly shared file using the new public WebDAV API with password "<password>" and the content should be "user1 file"
+    And the public download of the last publicly shared file using the old public WebDAV API with password "zA1@bB2#cC&deee" should fail with HTTP status code "401"
+    And the public download of the last publicly shared file using the new public WebDAV API with password "zA1@bB2#cC&deee" should fail with HTTP status code "401"
     Examples:
       | password                  |
       | 15%&*UPPloweZZZ           |
@@ -75,8 +82,10 @@ Feature: enforce combinations of password policies on public share links
       | password | <password> |
     Then the OCS status message should be "<message>"
     And the OCS status code should be "400"
-    And the last public shared file should be able to be downloaded with password "zA1@bB2#cC&deee"
-    And the last public shared file should not be able to be downloaded with password "<password>"
+    And the public should be able to download the last publicly shared file using the old public WebDAV API with password "zA1@bB2#cC&deee" and the content should be "user1 file"
+    And the public should be able to download the last publicly shared file using the new public WebDAV API with password "zA1@bB2#cC&deee" and the content should be "user1 file"
+    And the public download of the last publicly shared file using the old public WebDAV API with password "<password>" should fail with HTTP status code "401"
+    And the public download of the last publicly shared file using the new public WebDAV API with password "<password>" should fail with HTTP status code "401"
     Examples:
       | password        | message                                                                                     |
       | 15#!!UPPloweZZZ | The password contains invalid special characters. Only $%^&* are allowed.                   |

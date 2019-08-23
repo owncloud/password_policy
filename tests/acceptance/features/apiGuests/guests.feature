@@ -83,15 +83,18 @@ Feature: Guests
   Scenario Outline: A guest user creates a public link share with a password that has enough lowercase letters
     Given using OCS API version "<ocs-api-version>"
     And the administrator has created guest user "guest" with email "guest@example.com"
-    And user "user0" has shared file "/textfile1.txt" with user "guest@example.com"
-    Given guest user "guest" has registered and set password to "enoughLowerCase"
+    And user "user0" has uploaded file with content "user0 file" to "/randomfile.txt"
+    And user "user0" has shared file "/randomfile.txt" with user "guest@example.com"
+    And guest user "guest" has registered and set password to "enoughLowerCase"
     When user "guest@example.com" creates a public link share using the sharing API with settings
-      | path     | textfile1.txt |
-      | password | <password>    |
+      | path     | randomfile.txt |
+      | password | <password>     |
     Then the OCS status code should be "<ocs-status>"
     And the HTTP status code should be "200"
-    And the last public shared file should be able to be downloaded with password "<password>"
-    And the last public shared file should not be able to be downloaded with password "ABCabc1234"
+    And the public should be able to download the last publicly shared file using the old public WebDAV API with password "<password>" and the content should be "user0 file"
+    And the public should be able to download the last publicly shared file using the new public WebDAV API with password "<password>" and the content should be "user0 file"
+    And the public download of the last publicly shared file using the old public WebDAV API with password "%regular%" should fail with HTTP status code "401"
+    And the public download of the last publicly shared file using the new public WebDAV API with password "%regular%" should fail with HTTP status code "401"
     Examples:
       | password                  | ocs-api-version | ocs-status |
       | 3LCase                    | 1               | 100        |
@@ -115,7 +118,8 @@ Feature: Guests
       """
       The password contains too few lowercase letters. At least 3 lowercase letters are required.
       """
-    And the last public shared file should not be able to be downloaded with password "<password>"
+    And the public download of the last publicly shared file using the old public WebDAV API with password "<password>" should fail with HTTP status code "401"
+    And the public download of the last publicly shared file using the new public WebDAV API with password "<password>" should fail with HTTP status code "401"
     Examples:
        | password   | ocs-api-version | ocs-status | http-status | http-reason-phrase |
        | 0LOWERCASE | 1               | 403        | 200         | OK                 |
