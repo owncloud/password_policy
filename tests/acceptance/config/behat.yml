@@ -47,6 +47,7 @@ default:
         - PasswordPolicyContext:
         - OccContext:
         - FeatureContext: *common_feature_context_params
+        - PublicWebDavContext:
 
     apiGuests:
       paths:
@@ -56,6 +57,7 @@ default:
         - FeatureContext: *common_feature_context_params
         - EmailContext:
         - GuestsContext:
+        - PublicWebDavContext:
 
     cliPasswordAddUser:
       paths:
