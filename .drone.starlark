@@ -617,6 +617,13 @@ def acceptance():
 								environment['SELENIUM_PORT'] = '4444'
 								environment['BROWSER'] = browser
 								environment['PLATFORM'] = 'Linux'
+								makeParameter = 'test-acceptance-webui'
+
+							if isAPI:
+								makeParameter = 'test-acceptance-api'
+
+							if isCLI:
+								makeParameter = 'test-acceptance-cli'
 
 							if emailNeeded:
 								environment['MAILHOG_HOST'] = 'email'
@@ -671,29 +678,9 @@ def acceptance():
 											'touch /var/www/owncloud/saved-settings.sh',
 											'. /var/www/owncloud/saved-settings.sh',
 											'cd /var/www/owncloud/testrunner/apps/%s' % config['app'],
-											'make test-acceptance-webui'
+											'make %s' % makeParameter
 										]
-									} if isWebUI else None),
-									({
-										'name': 'acceptance-tests',
-										'image': 'owncloudci/php:%s' % phpVersion,
-										'pull': 'always',
-										'environment': environment,
-										'commands': [
-											'cd /var/www/owncloud/testrunner/apps/%s' % config['app'],
-											'make test-acceptance-api'
-										]
-									} if isAPI else None),
-									({
-										'name': 'acceptance-tests',
-										'image': 'owncloudci/php:%s' % phpVersion,
-										'pull': 'always',
-										'environment': environment,
-										'commands': [
-											'cd /var/www/owncloud/testrunner/apps/%s' % config['app'],
-											'make test-acceptance-cli'
-										]
-									} if isCLI else None),
+									}),
 								],
 								'services': databaseService(db)
 									+ browserService(browser)

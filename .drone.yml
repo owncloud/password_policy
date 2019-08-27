@@ -4832,6 +4832,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -4949,6 +4951,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -5066,6 +5070,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -5183,6 +5189,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -5289,6 +5297,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -5390,6 +5400,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -5491,6 +5503,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -5592,6 +5606,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -5693,6 +5709,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -5794,6 +5812,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -5895,6 +5915,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -5996,6 +6018,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -6097,6 +6121,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -6198,6 +6224,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -6299,6 +6327,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -6400,6 +6430,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -6501,6 +6533,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -6602,6 +6636,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -6703,6 +6739,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -6804,6 +6842,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -6905,6 +6945,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -7006,6 +7048,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -7107,6 +7151,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -7208,6 +7254,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
@@ -7309,6 +7357,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-cli
   environment:
@@ -7410,6 +7460,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-cli
   environment:
@@ -7511,6 +7563,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-cli
   environment:
@@ -7612,6 +7666,8 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
+  - touch /var/www/owncloud/saved-settings.sh
+  - . /var/www/owncloud/saved-settings.sh
   - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-cli
   environment:
