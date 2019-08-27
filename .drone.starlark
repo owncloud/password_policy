@@ -606,23 +606,17 @@ def acceptance():
 									print("Error: generated stage name of length", nameLength, "is not supported. The maximum length is " + str(maxLength) + ".", name)
 									errorFound = True
 
-							if isWebUI:
-								environment = {
-									'TEST_SERVER_URL': 'http://server',
-									'BEHAT_FILTER_TAGS': filterTags,
-									'BEHAT_SUITE': suite,
-									'SELENIUM_HOST': 'selenium',
-									'SELENIUM_PORT': '4444',
-									'BROWSER': browser,
-									'PLATFORM': 'Linux',
-								}
+							environment = {
+								'TEST_SERVER_URL': 'http://server',
+								'BEHAT_FILTER_TAGS': filterTags,
+								'BEHAT_SUITE': suite,
+							}
 
-							if isAPI or isCLI:
-								environment = {
-									'TEST_SERVER_URL': 'http://server',
-									'BEHAT_FILTER_TAGS': filterTags,
-									'BEHAT_SUITE': suite,
-								}
+							if isWebUI:
+								environment['SELENIUM_HOST'] = 'selenium'
+								environment['SELENIUM_PORT'] = '4444'
+								environment['BROWSER'] = browser
+								environment['PLATFORM'] = 'Linux'
 
 							if emailNeeded:
 								environment['MAILHOG_HOST'] = 'email'
