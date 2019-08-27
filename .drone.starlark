@@ -218,12 +218,15 @@ def phpstan():
 
 	default = {
 		'phpVersions': ['7.2'],
+		'logLevel': '2',
 	}
 
 	if 'defaults' in config:
 		if 'phpstan' in config['defaults']:
 			if 'phpVersions' in config['defaults']['phpstan']:
 				default['phpVersions'] = config['defaults']['phpstan']['phpVersions']
+			if 'logLevel' in config['defaults']['phpstan']:
+				default['logLevel'] = config['defaults']['phpstan']['logLevel']
 
 	phpstanConfig = config['phpstan']
 
@@ -240,6 +243,7 @@ def phpstan():
 
 	for category, matrix in phpstanConfig.items():
 		phpVersions = matrix['phpVersions'] if 'phpVersions' in matrix else default['phpVersions']
+		logLevel = matrix['logLevel'] if 'logLevel' in matrix else default['logLevel']
 
 		for phpVersion in phpVersions:
 			name = 'phpstan-php%s' % phpVersion
@@ -254,7 +258,7 @@ def phpstan():
 				},
 				'steps': [
 					installCore('daily-master-qa', 'sqlite'),
-					setupServerAndApp(phpVersion),
+					setupServerAndApp(phpVersion, logLevel),
 					{
 						'name': 'phpstan',
 						'image': 'owncloudci/php:%s' % phpVersion,
@@ -350,13 +354,30 @@ def phan():
 	return pipelines
 
 def javascript():
-	if 'javascript' in config:
-		doJavascript = config['javascript']
-	else:
-		doJavascript = False
+	pipelines = []
 
-	if doJavascript == False:
-		return []
+	if 'javascript' not in config:
+		return pipelines
+
+	default = {
+		'logLevel': '2',
+	}
+
+	if 'defaults' in config:
+		if 'javascript' in config['defaults']:
+			if 'logLevel' in config['defaults']['javascript']:
+				default['logLevel'] = config['defaults']['javascript']['logLevel']
+
+	javascriptConfig = config['javascript']
+
+	if type(javascriptConfig) == "bool":
+		if javascriptConfig:
+			# the config has 'javascript' true, so specify an empty dict that will get the defaults
+			javascriptConfig = {}
+		else:
+			return pipelines
+
+	logLevel = javascriptConfig['logLevel'] if 'logLevel' in javascriptConfig else default['logLevel']
 
 	result = {
 		'kind': 'pipeline',
@@ -368,7 +389,7 @@ def javascript():
 		},
 		'steps': [
 			installCore('daily-master-qa', 'sqlite'),
-			setupServerAndApp('7.0'),
+			setupServerAndApp('7.0', logLevel),
 			{
 				'name': 'javascript-tests',
 				'image': 'owncloudci/php:7.0',
@@ -404,6 +425,7 @@ def phpunit():
 			'sqlite', 'mariadb:10.2', 'mysql:5.5', 'mysql:5.7', 'postgres:9.4', 'oracle'
 		],
 		'coverage': True,
+		'logLevel': '2',
 	}
 
 	if 'defaults' in config:
@@ -412,6 +434,8 @@ def phpunit():
 				default['databases'] = config['defaults']['phpunit']['databases']
 			if 'coverage' in config['defaults']['phpunit']:
 				default['databases'] = config['defaults']['phpunit']['coverage']
+			if 'logLevel' in config['defaults']['phpunit']:
+				default['logLevel'] = config['defaults']['phpunit']['logLevel']
 
 	phpunitConfig = config['phpunit']
 
@@ -429,6 +453,7 @@ def phpunit():
 	for category, matrix in phpunitConfig.items():
 		databases = matrix['databases'] if 'databases' in matrix else default['databases']
 		coverage = matrix['coverage'] if 'coverage' in matrix else default['coverage']
+		logLevel = matrix['logLevel'] if 'logLevel' in matrix else default['logLevel']
 		phpVersions = matrix['phpVersions'] if 'phpVersions' in matrix else default['phpVersions']
 
 		for phpVersion in phpVersions:
@@ -449,7 +474,7 @@ def phpunit():
 					},
 					'steps': [
 						installCore('daily-master-qa', db),
-						setupServerAndApp(phpVersion),
+						setupServerAndApp(phpVersion, logLevel),
 						{
 							'name': 'phpunit-tests',
 							'image': 'owncloudci/php:%s' % phpVersion,
@@ -506,6 +531,7 @@ def acceptance():
 		'databases': ['mariadb:10.2'],
 		'federatedServerNeeded': False,
 		'filterTags': '',
+		'logLevel': '2',
 		'emailNeeded': False,
 		'extraSetup': None,
 		'extraServices': [],
@@ -515,17 +541,19 @@ def acceptance():
 	if 'defaults' in config:
 		if 'acceptance' in config['defaults']:
 			if 'servers' in config['defaults']['acceptance']:
-				default['databases'] = config['defaults']['acceptance']['servers']
+				default['servers'] = config['defaults']['acceptance']['servers']
 			if 'browsers' in config['defaults']['acceptance']:
-				default['databases'] = config['defaults']['acceptance']['browsers']
+				default['browsers'] = config['defaults']['acceptance']['browsers']
 			if 'phpVersions' in config['defaults']['acceptance']:
-				default['databases'] = config['defaults']['acceptance']['phpVersions']
+				default['phpVersions'] = config['defaults']['acceptance']['phpVersions']
 			if 'databases' in config['defaults']['acceptance']:
 				default['databases'] = config['defaults']['acceptance']['databases']
 			if 'federatedServerNeeded' in config['defaults']['acceptance']:
-				default['databases'] = config['defaults']['acceptance']['federatedServerNeeded']
+				default['federatedServerNeeded'] = config['defaults']['acceptance']['federatedServerNeeded']
 			if 'filterTags' in config['defaults']['acceptance']:
-				default['databases'] = config['defaults']['acceptance']['filterTags']
+				default['filterTags'] = config['defaults']['acceptance']['filterTags']
+			if 'logLevel' in config['defaults']['acceptance']:
+				default['logLevel'] = config['defaults']['acceptance']['logLevel']
 			if 'emailNeeded' in config['defaults']['acceptance']:
 				default['emailNeeded'] = config['defaults']['acceptance']['emailNeeded']
 			if 'extraSetup' in config['defaults']['acceptance']:
@@ -557,6 +585,7 @@ def acceptance():
 			databases = matrix['databases'] if 'databases' in matrix else default['databases']
 			federatedServerNeeded = matrix['federatedServerNeeded'] if 'federatedServerNeeded' in matrix else default['federatedServerNeeded']
 			filterTags = matrix['filterTags'] if 'filterTags' in matrix else default['filterTags']
+			logLevel = matrix['logLevel'] if 'logLevel' in matrix else default['logLevel']
 			emailNeeded = matrix['emailNeeded'] if 'emailNeeded' in matrix else default['emailNeeded']
 			extraSetup = matrix['extraSetup'] if 'extraSetup' in matrix else default['extraSetup']
 			extraServices = matrix['extraServices'] if 'extraServices' in matrix else default['extraServices']
@@ -635,7 +664,7 @@ def acceptance():
 										]
 									}
 								] if federatedServerNeeded else []) + [
-									setupServerAndApp(phpVersion),
+									setupServerAndApp(phpVersion, logLevel),
 									installExtraApps(phpVersion, extraApps),
 									extraSetup,
 									fixPermissions(phpVersion),
@@ -915,7 +944,7 @@ def installExtraApps(phpVersion, extraApps):
 		'commands': commandArray
 	}
 
-def setupServerAndApp(phpVersion):
+def setupServerAndApp(phpVersion, logLevel):
 	return {
 		'name': 'setup-server-%s' % config['app'],
 		'image': 'owncloudci/php:%s' % phpVersion,
@@ -928,7 +957,7 @@ def setupServerAndApp(phpVersion):
 			'php occ a:e testing',
 			'php occ a:l',
 			'php occ config:system:set trusted_domains 1 --value=server',
-			'php occ log:manage --level 0',
+			'php occ log:manage --level %s' % logLevel,
 		]
 	}
 
