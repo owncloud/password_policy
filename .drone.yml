@@ -48,6 +48,7 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: phan
@@ -86,6 +87,7 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: phan
@@ -124,6 +126,7 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: phan
@@ -162,6 +165,7 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: phan
@@ -200,6 +204,7 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
@@ -267,6 +272,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
@@ -344,6 +350,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
@@ -421,6 +428,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
@@ -498,6 +506,7 @@ steps:
     db_password: owncloud
     db_type: pgsql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
@@ -574,6 +583,7 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
@@ -651,6 +661,7 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
@@ -709,6 +720,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
@@ -777,6 +789,7 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
@@ -835,6 +848,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
@@ -903,6 +917,7 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
@@ -961,6 +976,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
@@ -1029,6 +1045,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -1147,6 +1164,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -1266,6 +1284,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -1384,6 +1403,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -1503,6 +1523,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -1621,6 +1642,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -1740,6 +1762,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -1858,6 +1881,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -1977,6 +2001,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -2095,6 +2120,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -2214,6 +2240,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -2332,6 +2359,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -2451,6 +2479,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -2580,6 +2609,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -2710,6 +2740,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.3.0alpha
 
 - name: install-testrunner
@@ -2839,6 +2870,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.3.0alpha
 
 - name: install-testrunner
@@ -2969,6 +3001,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -3082,6 +3115,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -3196,6 +3230,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -3309,6 +3344,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -3423,6 +3459,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -3536,6 +3573,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -3650,6 +3688,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -3763,6 +3802,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -3877,6 +3917,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -3990,6 +4031,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -4104,6 +4146,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -4217,6 +4260,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -4331,6 +4375,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -4444,6 +4489,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -4558,6 +4604,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -4671,6 +4718,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -4785,6 +4833,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -4904,6 +4953,7 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -5023,6 +5073,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.3.0alpha
 
 - name: install-testrunner
@@ -5142,6 +5193,7 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: 10.3.0alpha
 
 - name: install-testrunner
@@ -5261,6 +5313,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -5364,6 +5417,7 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -5467,6 +5521,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -5570,6 +5625,7 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -5673,6 +5729,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -5776,6 +5833,7 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -5879,6 +5937,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -5982,6 +6041,7 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -6085,6 +6145,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -6188,6 +6249,7 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -6291,6 +6353,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -6394,6 +6457,7 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -6497,6 +6561,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -6600,6 +6665,7 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -6703,6 +6769,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -6806,6 +6873,7 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -6909,6 +6977,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -7012,6 +7081,7 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -7115,6 +7185,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -7218,6 +7289,7 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -7321,6 +7393,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -7424,6 +7497,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
@@ -7527,6 +7601,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
@@ -7630,6 +7705,7 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner

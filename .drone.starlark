@@ -899,6 +899,7 @@ def installCore(version, db):
 		'settings': {
 			'version': version,
 			'core_path': '/var/www/owncloud/server',
+			'exclude': 'apps/%s' % config['app'],
 			'db_type': dbType,
 			'db_name': database,
 			'db_host': host,
