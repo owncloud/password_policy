@@ -48,6 +48,7 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: phan
@@ -86,6 +87,7 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: phan
@@ -124,6 +126,7 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: phan
@@ -162,6 +165,7 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: phan
@@ -200,13 +204,13 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -267,13 +271,13 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -344,13 +348,13 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -421,13 +425,13 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -498,13 +502,13 @@ steps:
     db_password: owncloud
     db_type: pgsql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -574,13 +578,13 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -651,13 +655,13 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.1
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -709,13 +713,13 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.1
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -777,13 +781,13 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.2
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -835,13 +839,13 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.2
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -903,13 +907,13 @@ steps:
     db_password: owncloud
     db_type: sqlite
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.3
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -961,13 +965,13 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.3
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -1016,7 +1020,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -1029,14 +1033,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -1044,7 +1051,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -1053,13 +1059,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -1067,7 +1078,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordAddUser
@@ -1134,7 +1144,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -1147,14 +1157,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -1162,7 +1175,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -1171,13 +1183,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -1185,7 +1202,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordAddUser
@@ -1253,7 +1269,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -1266,14 +1282,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -1281,7 +1300,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -1290,13 +1308,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -1304,7 +1327,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordAddUser
@@ -1371,7 +1393,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -1384,14 +1406,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -1399,7 +1424,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -1408,13 +1432,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -1422,7 +1451,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordAddUser
@@ -1490,7 +1518,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -1503,14 +1531,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -1518,7 +1549,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -1527,13 +1557,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -1541,7 +1576,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordAddUserSpecial
@@ -1608,7 +1642,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -1621,14 +1655,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -1636,7 +1673,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -1645,13 +1681,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -1659,7 +1700,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordAddUserSpecial
@@ -1727,7 +1767,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -1740,14 +1780,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -1755,7 +1798,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -1764,13 +1806,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -1778,7 +1825,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordAddUserSpecial
@@ -1845,7 +1891,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -1858,14 +1904,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -1873,7 +1922,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -1882,13 +1930,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -1896,7 +1949,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordAddUserSpecial
@@ -1964,7 +2016,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -1977,14 +2029,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -1992,7 +2047,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -2001,13 +2055,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -2015,7 +2074,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordReset
@@ -2082,7 +2140,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -2095,14 +2153,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -2110,7 +2171,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -2119,13 +2179,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -2133,7 +2198,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordReset
@@ -2201,7 +2265,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -2214,14 +2278,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -2229,7 +2296,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -2238,13 +2304,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -2252,7 +2323,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordReset
@@ -2319,7 +2389,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -2332,14 +2402,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -2347,7 +2420,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -2356,13 +2428,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -2370,7 +2447,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordReset
@@ -2438,7 +2514,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -2451,14 +2527,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -2466,7 +2545,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -2475,12 +2553,19 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: install-extra-apps
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/server/apps/guests
-  - cp -r /var/www/owncloud/server/apps/guests /var/www/owncloud/testrunner/apps/
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e guests
@@ -2490,9 +2575,7 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -2500,7 +2583,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIGuests
@@ -2567,7 +2649,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -2580,14 +2662,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -2595,7 +2680,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -2604,12 +2688,19 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: install-extra-apps
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/server/apps/guests
-  - cp -r /var/www/owncloud/server/apps/guests /var/www/owncloud/testrunner/apps/
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e guests
@@ -2619,9 +2710,7 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -2629,7 +2718,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIGuests
@@ -2697,7 +2785,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -2710,14 +2798,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.3.0alpha
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -2725,7 +2816,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -2734,12 +2824,19 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: install-extra-apps
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/server/apps/guests
-  - cp -r /var/www/owncloud/server/apps/guests /var/www/owncloud/testrunner/apps/
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e guests
@@ -2749,9 +2846,7 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -2759,7 +2854,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIGuests
@@ -2826,7 +2920,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -2839,14 +2933,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.3.0alpha
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -2854,7 +2951,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -2863,12 +2959,19 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: install-extra-apps
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/server/apps/guests
-  - cp -r /var/www/owncloud/server/apps/guests /var/www/owncloud/testrunner/apps/
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e guests
@@ -2878,9 +2981,7 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -2888,7 +2989,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIGuests
@@ -2956,7 +3056,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -2969,14 +3069,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -2984,7 +3087,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -2993,13 +3095,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -3007,7 +3114,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordChange
@@ -3069,7 +3175,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -3082,14 +3188,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -3097,7 +3206,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -3106,13 +3214,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -3120,7 +3233,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordChange
@@ -3183,7 +3295,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -3196,14 +3308,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -3211,7 +3326,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -3220,13 +3334,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -3234,7 +3353,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordChange
@@ -3296,7 +3414,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -3309,14 +3427,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -3324,7 +3445,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -3333,13 +3453,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -3347,7 +3472,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordChange
@@ -3410,7 +3534,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -3423,14 +3547,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -3438,7 +3565,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -3447,13 +3573,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -3461,7 +3592,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordChangeSpecial
@@ -3523,7 +3653,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -3536,14 +3666,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -3551,7 +3684,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -3560,13 +3692,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -3574,7 +3711,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordChangeSpecial
@@ -3637,7 +3773,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -3650,14 +3786,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -3665,7 +3804,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -3674,13 +3812,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -3688,7 +3831,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordChangeSpecial
@@ -3750,7 +3892,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -3763,14 +3905,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -3778,7 +3923,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -3787,13 +3931,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -3801,7 +3950,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordChangeSpecial
@@ -3864,7 +4012,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -3877,14 +4025,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -3892,7 +4043,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -3901,13 +4051,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -3915,7 +4070,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordPolicySettings
@@ -3977,7 +4131,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -3990,14 +4144,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -4005,7 +4162,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -4014,13 +4170,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -4028,7 +4189,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordPolicySettings
@@ -4091,7 +4251,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -4104,14 +4264,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -4119,7 +4282,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -4128,13 +4290,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -4142,7 +4309,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordPolicySettings
@@ -4204,7 +4370,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -4217,14 +4383,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -4232,7 +4401,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -4241,13 +4409,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -4255,7 +4428,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPasswordPolicySettings
@@ -4318,7 +4490,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -4331,14 +4503,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -4346,7 +4521,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -4355,13 +4529,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -4369,7 +4548,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPublicShareLink
@@ -4431,7 +4609,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -4444,14 +4622,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -4459,7 +4640,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -4468,13 +4648,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -4482,7 +4667,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPublicShareLink
@@ -4545,7 +4729,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -4558,14 +4742,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -4573,7 +4760,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -4582,13 +4768,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -4596,7 +4787,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPublicShareLink
@@ -4658,7 +4848,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -4671,14 +4861,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -4686,7 +4879,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -4695,13 +4887,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -4709,7 +4906,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-webui
   environment:
     BEHAT_SUITE: webUIPublicShareLink
@@ -4772,7 +4968,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -4785,14 +4981,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -4800,7 +4999,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -4809,12 +5007,19 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: install-extra-apps
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/server/apps/guests
-  - cp -r /var/www/owncloud/server/apps/guests /var/www/owncloud/testrunner/apps/
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e guests
@@ -4824,9 +5029,7 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -4834,7 +5037,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiGuests
@@ -4891,7 +5093,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -4904,14 +5106,17 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -4919,7 +5124,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -4928,12 +5132,19 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: install-extra-apps
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/server/apps/guests
-  - cp -r /var/www/owncloud/server/apps/guests /var/www/owncloud/testrunner/apps/
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e guests
@@ -4943,9 +5154,7 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -4953,7 +5162,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiGuests
@@ -5010,7 +5218,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -5023,14 +5231,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.3.0alpha
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -5038,7 +5249,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -5047,12 +5257,19 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: install-extra-apps
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/server/apps/guests
-  - cp -r /var/www/owncloud/server/apps/guests /var/www/owncloud/testrunner/apps/
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e guests
@@ -5062,9 +5279,7 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -5072,7 +5287,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiGuests
@@ -5129,7 +5343,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -5142,14 +5356,17 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: 10.3.0alpha
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -5157,7 +5374,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -5166,12 +5382,19 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: install-extra-apps
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/server/apps/guests
-  - cp -r /var/www/owncloud/server/apps/guests /var/www/owncloud/testrunner/apps/
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e guests
@@ -5181,9 +5404,7 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -5191,7 +5412,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiGuests
@@ -5248,7 +5468,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -5261,14 +5481,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -5276,7 +5499,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -5285,13 +5507,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -5299,7 +5526,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordAddUser
@@ -5351,7 +5577,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -5364,14 +5590,17 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -5379,7 +5608,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -5388,13 +5616,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -5402,7 +5635,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordAddUser
@@ -5454,7 +5686,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -5467,14 +5699,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -5482,7 +5717,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -5491,13 +5725,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -5505,7 +5744,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordAddUser
@@ -5557,7 +5795,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -5570,14 +5808,17 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -5585,7 +5826,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -5594,13 +5834,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -5608,7 +5853,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordAddUser
@@ -5660,7 +5904,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -5673,14 +5917,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -5688,7 +5935,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -5697,13 +5943,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -5711,7 +5962,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordAddUserSpecial
@@ -5763,7 +6013,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -5776,14 +6026,17 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -5791,7 +6044,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -5800,13 +6052,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -5814,7 +6071,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordAddUserSpecial
@@ -5866,7 +6122,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -5879,14 +6135,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -5894,7 +6153,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -5903,13 +6161,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -5917,7 +6180,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordAddUserSpecial
@@ -5969,7 +6231,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -5982,14 +6244,17 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -5997,7 +6262,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -6006,13 +6270,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -6020,7 +6289,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordAddUserSpecial
@@ -6072,7 +6340,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -6085,14 +6353,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -6100,7 +6371,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -6109,13 +6379,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -6123,7 +6398,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordChange
@@ -6175,7 +6449,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -6188,14 +6462,17 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -6203,7 +6480,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -6212,13 +6488,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -6226,7 +6507,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordChange
@@ -6278,7 +6558,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -6291,14 +6571,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -6306,7 +6589,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -6315,13 +6597,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -6329,7 +6616,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordChange
@@ -6381,7 +6667,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -6394,14 +6680,17 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -6409,7 +6698,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -6418,13 +6706,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -6432,7 +6725,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordChange
@@ -6484,7 +6776,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -6497,14 +6789,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -6512,7 +6807,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -6521,13 +6815,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -6535,7 +6834,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordChangeSpecial
@@ -6587,7 +6885,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -6600,14 +6898,17 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -6615,7 +6916,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -6624,13 +6924,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -6638,7 +6943,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordChangeSpecial
@@ -6690,7 +6994,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -6703,14 +7007,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -6718,7 +7025,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -6727,13 +7033,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -6741,7 +7052,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordChangeSpecial
@@ -6793,7 +7103,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -6806,14 +7116,17 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -6821,7 +7134,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -6830,13 +7142,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -6844,7 +7161,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiPasswordChangeSpecial
@@ -6896,7 +7212,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -6909,14 +7225,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -6924,7 +7243,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -6933,13 +7251,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -6947,7 +7270,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiUpdateShare
@@ -6999,7 +7321,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -7012,14 +7334,17 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -7027,7 +7352,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -7036,13 +7360,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -7050,7 +7379,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiUpdateShare
@@ -7102,7 +7430,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -7115,14 +7443,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -7130,7 +7461,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -7139,13 +7469,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -7153,7 +7488,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiUpdateShare
@@ -7205,7 +7539,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -7218,14 +7552,17 @@ steps:
     db_password: oracle
     db_type: oci
     db_username: system
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -7233,7 +7570,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -7242,13 +7578,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -7256,7 +7597,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-api
   environment:
     BEHAT_SUITE: apiUpdateShare
@@ -7308,7 +7648,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -7321,14 +7661,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -7336,7 +7679,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -7345,13 +7687,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -7359,7 +7706,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-cli
   environment:
     BEHAT_SUITE: cliPasswordAddUser
@@ -7411,7 +7757,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -7424,14 +7770,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -7439,7 +7788,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -7448,13 +7796,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -7462,7 +7815,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-cli
   environment:
     BEHAT_SUITE: cliPasswordAddUser
@@ -7514,7 +7866,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -7527,14 +7879,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: daily-master-qa
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -7542,7 +7897,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -7551,13 +7905,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -7565,7 +7924,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-cli
   environment:
     BEHAT_SUITE: cliPasswordChange
@@ -7617,7 +7975,7 @@ platform:
 
 workspace:
   base: /var/www/owncloud
-  path: server/apps/password_policy
+  path: testrunner/apps/password_policy
 
 steps:
 - name: install-core
@@ -7630,14 +7988,17 @@ steps:
     db_password: owncloud
     db_type: mysql
     db_username: owncloud
+    exclude: apps/password_policy
     version: 10.2.1
 
 - name: install-testrunner
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - git clone -b master --depth=1 https://github.com/owncloud/core.git /var/www/owncloud/testrunner
-  - cp -r /var/www/owncloud/server/apps/password_policy /var/www/owncloud/testrunner/apps/
+  - mkdir /tmp/testrunner
+  - git clone -b master --depth=1 https://github.com/owncloud/core.git /tmp/testrunner
+  - rsync -aIX /tmp/testrunner /var/www/owncloud
+  - cp -r /var/www/owncloud/testrunner/apps/password_policy /var/www/owncloud/server/apps/
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
@@ -7645,7 +8006,6 @@ steps:
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - ":"
   - cd /var/www/owncloud/server
   - php occ a:l
   - php occ a:e password_policy
@@ -7654,13 +8014,18 @@ steps:
   - php occ config:system:set trusted_domains 1 --value=server
   - php occ log:manage --level 2
 
+- name: owncloud-log-server
+  pull: always
+  image: owncloud/ubuntu:18.04
+  detach: true
+  commands:
+  - tail -f /var/www/owncloud/server/data/owncloud.log
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.0
   commands:
-  - chown -R www-data /var/www/owncloud
-  - chmod -R 777 /var/www/owncloud/testrunner/tests/acceptance/filesForUpload
-  - chmod +x /var/www/owncloud/testrunner/tests/acceptance/run.sh
+  - chown -R www-data /var/www/owncloud/server
 
 - name: acceptance-tests
   pull: always
@@ -7668,7 +8033,6 @@ steps:
   commands:
   - touch /var/www/owncloud/saved-settings.sh
   - . /var/www/owncloud/saved-settings.sh
-  - cd /var/www/owncloud/testrunner/apps/password_policy
   - make test-acceptance-cli
   environment:
     BEHAT_SUITE: cliPasswordChange
