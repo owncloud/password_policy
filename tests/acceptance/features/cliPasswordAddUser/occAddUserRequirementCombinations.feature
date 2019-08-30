@@ -37,7 +37,7 @@ Feature: enforce combinations of password policies when creating a user
       | username | password   |
       | user1    | <password> |
     Then the command should have failed with exit code 1
-    And the command output should contain the text '<message>'
+    And the command error output should contain the text '<message>'
     And user "user1" should not exist
     Examples:
       | password                       | message                                                                   |
@@ -95,7 +95,7 @@ Feature: enforce combinations of password policies when creating a user
       | username | password   |
       | user1    | <password> |
     Then the command should have failed with exit code 1
-    And the command output should contain the text '<message>'
+    And the command error output should contain the text '<message>'
     And user "user1" should not exist
     Examples:
       | password        | message                                                                   |
