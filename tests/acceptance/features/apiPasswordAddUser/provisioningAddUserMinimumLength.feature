@@ -24,29 +24,6 @@ Feature: enforce the minimum length of a password when creating a user
       | morethan10characters | 1               | 100        |
       | morethan10characters | 2               | 200        |
 
-  @skipOnOcV10.2
-  # This has the new full OCS status message from core 10.3 onwards
-  Scenario Outline: admin creates a user with a password that is not long enough
-    Given using OCS API version "<ocs-api-version>"
-    And user "brand-new-user" has been deleted
-    When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
-    Then the HTTP status code should be "<http-status>"
-    And the HTTP reason phrase should be "<http-reason-phrase>"
-    And the OCS status code should be "<ocs-status>"
-    And the OCS status message should be:
-      """
-      Unable to create user: The password is too short. At least 10 characters are required.
-      """
-    And user "brand-new-user" should not exist
-    Examples:
-      | password  | ocs-api-version | ocs-status | http-status | http-reason-phrase |
-      | A         | 1               | 101        | 200         | OK                 |
-      | A         | 2               | 400        | 400         | Bad Request        |
-      | 123456789 | 1               | 101        | 200         | OK                 |
-      | 123456789 | 2               | 400        | 400         | Bad Request        |
-
-  @skipOnOcV10.3
-  # This has the OCS status message as it was with core 10.2.*
   Scenario Outline: admin creates a user with a password that is not long enough
     Given using OCS API version "<ocs-api-version>"
     And user "brand-new-user" has been deleted

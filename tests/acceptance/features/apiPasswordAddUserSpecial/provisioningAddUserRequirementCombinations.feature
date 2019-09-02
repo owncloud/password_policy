@@ -32,38 +32,6 @@ Feature: enforce combinations of password policies when creating a user
       | More%Than$15!Characters-0 | 1               | 100        |
       | More%Than$15!Characters-0 | 2               | 200        |
 
-  @skipOnOcV10.2
-  # This has the new full OCS status message from core 10.3 onwards
-  Scenario Outline: admin creates a user with a password that does not meet the password policy
-    Given using OCS API version "<ocs-api-version>"
-    And user "brand-new-user" has been deleted
-    When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
-    Then the HTTP status code should be "<http-status>"
-    And the HTTP reason phrase should be "<http-reason-phrase>"
-    And the OCS status code should be "<ocs-status>"
-    And the OCS status message should be "Unable to create user: <ocs-status-message>"
-    And user "brand-new-user" should not exist
-    Examples:
-      | password                       | ocs-api-version | ocs-status | http-status | http-reason-phrase | ocs-status-message                                                                            |
-        # just one of the requirements is not met
-      | aA1!bB2#cC&d                   | 1               | 101        | 200         | OK                 | The password is too short. At least 15 characters are required.                               |
-      | aA1!bB2#cC&d                   | 2               | 400        | 400         | Bad Request        | The password is too short. At least 15 characters are required.                               |
-      | aA1!bB2#cNOT&ENOUGH#LOWERCASE  | 1               | 101        | 200         | OK                 | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
-      | aA1!bB2#cNOT&ENOUGH#LOWERCASE  | 2               | 400        | 400         | Bad Request        | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
-      | aA1!bB2#cnot&enough#uppercase  | 1               | 101        | 200         | OK                 | The password contains too few uppercase letters. At least 3 uppercase letters are required.   |
-      | aA1!bB2#cnot&enough#uppercase  | 2               | 400        | 400         | Bad Request        | The password contains too few uppercase letters. At least 3 uppercase letters are required.   |
-      | Not&Enough#Numbers=1           | 1               | 101        | 200         | OK                 | The password contains too few numbers. At least 2 numbers are required.                       |
-      | Not&Enough#Numbers=1           | 2               | 400        | 400         | Bad Request        | The password contains too few numbers. At least 2 numbers are required.                       |
-      | Not&Enough#Special8Characters2 | 1               | 101        | 200         | OK                 | The password contains too few special characters. At least 3 special characters are required. |
-      | Not&Enough#Special8Characters2 | 2               | 400        | 400         | Bad Request        | The password contains too few special characters. At least 3 special characters are required. |
-        # multiple requirements are not met
-      | aA!1                           | 1               | 101        | 200         | OK                 | The password is too short. At least 15 characters are required.                               |
-      | aA!1                           | 2               | 400        | 400         | Bad Request        | The password is too short. At least 15 characters are required.                               |
-      | aA!123456789012345             | 1               | 101        | 200         | OK                 | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
-      | aA!123456789012345             | 2               | 400        | 400         | Bad Request        | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
-
-  @skipOnOcV10.3
-  # This has the OCS status message as it was with core 10.2.*
   Scenario Outline: admin creates a user with a password that does not meet the password policy
     Given using OCS API version "<ocs-api-version>"
     And user "brand-new-user" has been deleted
@@ -109,31 +77,6 @@ Feature: enforce combinations of password policies when creating a user
       | More^Than$15&Characters*0 | 1               | 100        |
       | More^Than$15&Characters*0 | 2               | 200        |
 
-  @skipOnOcV10.2
-  # This has the new full OCS status message from core 10.3 onwards
-  Scenario Outline: admin creates a user with a password that has invalid restricted special characters
-    Given the administrator has enabled the restrict to these special characters password policy
-    And the administrator has set the restricted special characters required to "$%^&*"
-    And using OCS API version "<ocs-api-version>"
-    And user "brand-new-user" has been deleted
-    When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
-    Then the HTTP status code should be "<http-status>"
-    And the HTTP reason phrase should be "<http-reason-phrase>"
-    And the OCS status code should be "<ocs-status>"
-    And the OCS status message should be "Unable to create user: <ocs-status-message>"
-    And user "brand-new-user" should not exist
-    Examples:
-      | password        | ocs-api-version | ocs-status | http-status | http-reason-phrase | ocs-status-message                                                                          |
-      | 15#!!UPPloweZZZ | 1               | 101        | 200         | OK                 | The password contains invalid special characters. Only $%^&* are allowed.                   |
-      | 15#!!UPPloweZZZ | 2               | 400        | 400         | Bad Request        | The password contains invalid special characters. Only $%^&* are allowed.                   |
-      | 15&%!UPPloweZZZ | 1               | 101        | 200         | OK                 | The password contains invalid special characters. Only $%^&* are allowed.                   |
-      | 15&%!UPPloweZZZ | 2               | 400        | 400         | Bad Request        | The password contains invalid special characters. Only $%^&* are allowed.                   |
-        # multiple requirements are not met
-      | 15&%!UPPlowZZZZ | 1               | 101        | 200         | OK                 | The password contains too few lowercase letters. At least 4 lowercase letters are required. |
-      | 15&%!UPPlowZZZZ | 2               | 400        | 400         | Bad Request        | The password contains too few lowercase letters. At least 4 lowercase letters are required. |
-
-  @skipOnOcV10.3
-  # This has the OCS status message as it was with core 10.2.*
   Scenario Outline: admin creates a user with a password that has invalid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
