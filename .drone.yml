@@ -1261,7 +1261,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIPwdAddUser-10.2.1-chrome-mariadb10.2-php7.0
+name: webUIPwdAddUser-latest-chrome-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -1283,7 +1283,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -1385,7 +1385,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIPwdAddUser-10.2.1-firefox-mariadb10.2-php7.0
+name: webUIPwdAddUser-latest-firefox-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -1407,7 +1407,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -1759,7 +1759,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIPwdAddUsSp-10.2.1-chrome-mariadb10.2-php7.0
+name: webUIPwdAddUsSp-latest-chrome-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -1781,7 +1781,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -1883,7 +1883,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIPwdAddUsSp-10.2.1-firefox-mariadb10.2-php7.0
+name: webUIPwdAddUsSp-latest-firefox-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -1905,7 +1905,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -2257,7 +2257,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIPwdReset-10.2.1-chrome-mariadb10.2-php7.0
+name: webUIPwdReset-latest-chrome-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -2279,7 +2279,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -2381,7 +2381,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIPwdReset-10.2.1-firefox-mariadb10.2-php7.0
+name: webUIPwdReset-latest-firefox-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -2403,7 +2403,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -2541,6 +2541,17 @@ steps:
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
+- name: install-extra-apps
+  pull: always
+  image: owncloudci/php:7.0
+  commands:
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
+  - cd /var/www/owncloud/server
+  - php occ a:l
+  - php occ a:e guests
+  - php occ a:l
+
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.0
@@ -2559,17 +2570,6 @@ steps:
   detach: true
   commands:
   - tail -f /var/www/owncloud/server/data/owncloud.log
-
-- name: install-extra-apps
-  pull: always
-  image: owncloudci/php:7.0
-  commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
-  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
-  - cd /var/www/owncloud/server
-  - php occ a:l
-  - php occ a:e guests
-  - php occ a:l
 
 - name: fix-permissions
   pull: always
@@ -2676,6 +2676,17 @@ steps:
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
+- name: install-extra-apps
+  pull: always
+  image: owncloudci/php:7.0
+  commands:
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
+  - cd /var/www/owncloud/server
+  - php occ a:l
+  - php occ a:e guests
+  - php occ a:l
+
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.0
@@ -2694,17 +2705,6 @@ steps:
   detach: true
   commands:
   - tail -f /var/www/owncloud/server/data/owncloud.log
-
-- name: install-extra-apps
-  pull: always
-  image: owncloudci/php:7.0
-  commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
-  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
-  - cd /var/www/owncloud/server
-  - php occ a:l
-  - php occ a:e guests
-  - php occ a:l
 
 - name: fix-permissions
   pull: always
@@ -2812,6 +2812,17 @@ steps:
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
+- name: install-extra-apps
+  pull: always
+  image: owncloudci/php:7.0
+  commands:
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
+  - cd /var/www/owncloud/server
+  - php occ a:l
+  - php occ a:e guests
+  - php occ a:l
+
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.0
@@ -2830,17 +2841,6 @@ steps:
   detach: true
   commands:
   - tail -f /var/www/owncloud/server/data/owncloud.log
-
-- name: install-extra-apps
-  pull: always
-  image: owncloudci/php:7.0
-  commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
-  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
-  - cd /var/www/owncloud/server
-  - php occ a:l
-  - php occ a:e guests
-  - php occ a:l
 
 - name: fix-permissions
   pull: always
@@ -2947,6 +2947,17 @@ steps:
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
+- name: install-extra-apps
+  pull: always
+  image: owncloudci/php:7.0
+  commands:
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
+  - cd /var/www/owncloud/server
+  - php occ a:l
+  - php occ a:e guests
+  - php occ a:l
+
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.0
@@ -2965,17 +2976,6 @@ steps:
   detach: true
   commands:
   - tail -f /var/www/owncloud/server/data/owncloud.log
-
-- name: install-extra-apps
-  pull: always
-  image: owncloudci/php:7.0
-  commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
-  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
-  - cd /var/www/owncloud/server
-  - php occ a:l
-  - php occ a:e guests
-  - php occ a:l
 
 - name: fix-permissions
   pull: always
@@ -3287,7 +3287,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIPwdChange-10.2.1-chrome-mariadb10.2-php7.0
+name: webUIPwdChange-latest-chrome-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -3309,7 +3309,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -3406,7 +3406,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIPwdChange-10.2.1-firefox-mariadb10.2-php7.0
+name: webUIPwdChange-latest-firefox-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -3428,7 +3428,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -3765,7 +3765,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIPwdChangeSp-10.2.1-chrome-mariadb10.2-php7.0
+name: webUIPwdChangeSp-latest-chrome-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -3787,7 +3787,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -3884,7 +3884,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIPwdChangeSp-10.2.1-firefox-mariadb10.2-php7.0
+name: webUIPwdChangeSp-latest-firefox-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -3906,7 +3906,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -4243,7 +4243,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIPwdPolSet-10.2.1-chrome-mariadb10.2-php7.0
+name: webUIPwdPolSet-latest-chrome-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -4265,7 +4265,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -4362,7 +4362,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIPwdPolSet-10.2.1-firefox-mariadb10.2-php7.0
+name: webUIPwdPolSet-latest-firefox-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -4384,7 +4384,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -4721,7 +4721,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIPublicShare-10.2.1-chrome-mariadb10.2-php7.0
+name: webUIPublicShare-latest-chrome-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -4743,7 +4743,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -4840,7 +4840,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIPublicShare-10.2.1-firefox-mariadb10.2-php7.0
+name: webUIPublicShare-latest-firefox-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -4862,7 +4862,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -4995,6 +4995,17 @@ steps:
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
+- name: install-extra-apps
+  pull: always
+  image: owncloudci/php:7.0
+  commands:
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
+  - cd /var/www/owncloud/server
+  - php occ a:l
+  - php occ a:e guests
+  - php occ a:l
+
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.0
@@ -5013,17 +5024,6 @@ steps:
   detach: true
   commands:
   - tail -f /var/www/owncloud/server/data/owncloud.log
-
-- name: install-extra-apps
-  pull: always
-  image: owncloudci/php:7.0
-  commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
-  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
-  - cd /var/www/owncloud/server
-  - php occ a:l
-  - php occ a:e guests
-  - php occ a:l
 
 - name: fix-permissions
   pull: always
@@ -5120,6 +5120,17 @@ steps:
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
+- name: install-extra-apps
+  pull: always
+  image: owncloudci/php:7.0
+  commands:
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
+  - cd /var/www/owncloud/server
+  - php occ a:l
+  - php occ a:e guests
+  - php occ a:l
+
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.0
@@ -5138,17 +5149,6 @@ steps:
   detach: true
   commands:
   - tail -f /var/www/owncloud/server/data/owncloud.log
-
-- name: install-extra-apps
-  pull: always
-  image: owncloudci/php:7.0
-  commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
-  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
-  - cd /var/www/owncloud/server
-  - php occ a:l
-  - php occ a:e guests
-  - php occ a:l
 
 - name: fix-permissions
   pull: always
@@ -5245,6 +5245,17 @@ steps:
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
+- name: install-extra-apps
+  pull: always
+  image: owncloudci/php:7.0
+  commands:
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
+  - cd /var/www/owncloud/server
+  - php occ a:l
+  - php occ a:e guests
+  - php occ a:l
+
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.0
@@ -5263,17 +5274,6 @@ steps:
   detach: true
   commands:
   - tail -f /var/www/owncloud/server/data/owncloud.log
-
-- name: install-extra-apps
-  pull: always
-  image: owncloudci/php:7.0
-  commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
-  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
-  - cd /var/www/owncloud/server
-  - php occ a:l
-  - php occ a:e guests
-  - php occ a:l
 
 - name: fix-permissions
   pull: always
@@ -5370,6 +5370,17 @@ steps:
   - cd /var/www/owncloud/testrunner
   - make install-composer-deps vendor-bin-deps
 
+- name: install-extra-apps
+  pull: always
+  image: owncloudci/php:7.0
+  commands:
+  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
+  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
+  - cd /var/www/owncloud/server
+  - php occ a:l
+  - php occ a:e guests
+  - php occ a:l
+
 - name: setup-server-password_policy
   pull: always
   image: owncloudci/php:7.0
@@ -5388,17 +5399,6 @@ steps:
   detach: true
   commands:
   - tail -f /var/www/owncloud/server/data/owncloud.log
-
-- name: install-extra-apps
-  pull: always
-  image: owncloudci/php:7.0
-  commands:
-  - git clone https://github.com/owncloud/guests.git /var/www/owncloud/testrunner/apps/guests
-  - cp -r /var/www/owncloud/testrunner/apps/guests /var/www/owncloud/server/apps/
-  - cd /var/www/owncloud/server
-  - php occ a:l
-  - php occ a:e guests
-  - php occ a:l
 
 - name: fix-permissions
   pull: always
@@ -5678,7 +5678,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: apiPwdAddUser-10.2.1-mariadb10.2-php7.0
+name: apiPwdAddUser-latest-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -5700,7 +5700,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -5787,7 +5787,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: apiPwdAddUser-10.2.1-oracle-php7.0
+name: apiPwdAddUser-latest-oracle-php7.0
 
 platform:
   os: linux
@@ -5809,7 +5809,7 @@ steps:
     db_type: oci
     db_username: system
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -6114,7 +6114,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: apiPwdAddUserSpecial-10.2.1-mariadb10.2-php7.0
+name: apiPwdAddUserSpecial-latest-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -6136,7 +6136,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -6223,7 +6223,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: apiPwdAddUserSpecial-10.2.1-oracle-php7.0
+name: apiPwdAddUserSpecial-latest-oracle-php7.0
 
 platform:
   os: linux
@@ -6245,7 +6245,7 @@ steps:
     db_type: oci
     db_username: system
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -6550,7 +6550,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: apiPwdChange-10.2.1-mariadb10.2-php7.0
+name: apiPwdChange-latest-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -6572,7 +6572,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -6659,7 +6659,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: apiPwdChange-10.2.1-oracle-php7.0
+name: apiPwdChange-latest-oracle-php7.0
 
 platform:
   os: linux
@@ -6681,7 +6681,7 @@ steps:
     db_type: oci
     db_username: system
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -6986,7 +6986,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: apiPwdChangeSpecial-10.2.1-mariadb10.2-php7.0
+name: apiPwdChangeSpecial-latest-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -7008,7 +7008,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -7095,7 +7095,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: apiPwdChangeSpecial-10.2.1-oracle-php7.0
+name: apiPwdChangeSpecial-latest-oracle-php7.0
 
 platform:
   os: linux
@@ -7117,7 +7117,7 @@ steps:
     db_type: oci
     db_username: system
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -7422,7 +7422,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: apiUpdateShare-10.2.1-mariadb10.2-php7.0
+name: apiUpdateShare-latest-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -7444,7 +7444,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -7531,7 +7531,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: apiUpdateShare-10.2.1-oracle-php7.0
+name: apiUpdateShare-latest-oracle-php7.0
 
 platform:
   os: linux
@@ -7553,7 +7553,7 @@ steps:
     db_type: oci
     db_username: system
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -7749,7 +7749,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: cliPasswordAddUser-10.2.1-mariadb10.2-php7.0
+name: cliPasswordAddUser-latest-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -7771,7 +7771,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -7967,7 +7967,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: cliPasswordChange-10.2.1-mariadb10.2-php7.0
+name: cliPasswordChange-latest-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -7989,7 +7989,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.2.1
+    version: latest
 
 - name: install-testrunner
   pull: always
@@ -8114,63 +8114,63 @@ depends_on:
 - phpunit-php7.3-mariadb10.2
 - webUIPwdAddUser-master-chrome-mariadb10.2-php7.0
 - webUIPwdAddUser-master-firefox-mariadb10.2-php7.0
-- webUIPwdAddUser-10.2.1-chrome-mariadb10.2-php7.0
-- webUIPwdAddUser-10.2.1-firefox-mariadb10.2-php7.0
+- webUIPwdAddUser-latest-chrome-mariadb10.2-php7.0
+- webUIPwdAddUser-latest-firefox-mariadb10.2-php7.0
 - webUIPwdAddUsSp-master-chrome-mariadb10.2-php7.0
 - webUIPwdAddUsSp-master-firefox-mariadb10.2-php7.0
-- webUIPwdAddUsSp-10.2.1-chrome-mariadb10.2-php7.0
-- webUIPwdAddUsSp-10.2.1-firefox-mariadb10.2-php7.0
+- webUIPwdAddUsSp-latest-chrome-mariadb10.2-php7.0
+- webUIPwdAddUsSp-latest-firefox-mariadb10.2-php7.0
 - webUIPwdReset-master-chrome-mariadb10.2-php7.0
 - webUIPwdReset-master-firefox-mariadb10.2-php7.0
-- webUIPwdReset-10.2.1-chrome-mariadb10.2-php7.0
-- webUIPwdReset-10.2.1-firefox-mariadb10.2-php7.0
+- webUIPwdReset-latest-chrome-mariadb10.2-php7.0
+- webUIPwdReset-latest-firefox-mariadb10.2-php7.0
 - webUIGuests-master-chrome-mariadb10.2-php7.0
 - webUIGuests-master-firefox-mariadb10.2-php7.0
 - webUIGuests-10.3.0alpha-chrome-mariadb10.2-php7.0
 - webUIGuests-10.3.0alpha-firefox-mariadb10.2-php7.0
 - webUIPwdChange-master-chrome-mariadb10.2-php7.0
 - webUIPwdChange-master-firefox-mariadb10.2-php7.0
-- webUIPwdChange-10.2.1-chrome-mariadb10.2-php7.0
-- webUIPwdChange-10.2.1-firefox-mariadb10.2-php7.0
+- webUIPwdChange-latest-chrome-mariadb10.2-php7.0
+- webUIPwdChange-latest-firefox-mariadb10.2-php7.0
 - webUIPwdChangeSp-master-chrome-mariadb10.2-php7.0
 - webUIPwdChangeSp-master-firefox-mariadb10.2-php7.0
-- webUIPwdChangeSp-10.2.1-chrome-mariadb10.2-php7.0
-- webUIPwdChangeSp-10.2.1-firefox-mariadb10.2-php7.0
+- webUIPwdChangeSp-latest-chrome-mariadb10.2-php7.0
+- webUIPwdChangeSp-latest-firefox-mariadb10.2-php7.0
 - webUIPwdPolSet-master-chrome-mariadb10.2-php7.0
 - webUIPwdPolSet-master-firefox-mariadb10.2-php7.0
-- webUIPwdPolSet-10.2.1-chrome-mariadb10.2-php7.0
-- webUIPwdPolSet-10.2.1-firefox-mariadb10.2-php7.0
+- webUIPwdPolSet-latest-chrome-mariadb10.2-php7.0
+- webUIPwdPolSet-latest-firefox-mariadb10.2-php7.0
 - webUIPublicShare-master-chrome-mariadb10.2-php7.0
 - webUIPublicShare-master-firefox-mariadb10.2-php7.0
-- webUIPublicShare-10.2.1-chrome-mariadb10.2-php7.0
-- webUIPublicShare-10.2.1-firefox-mariadb10.2-php7.0
+- webUIPublicShare-latest-chrome-mariadb10.2-php7.0
+- webUIPublicShare-latest-firefox-mariadb10.2-php7.0
 - apiGuests-master-mariadb10.2-php7.0
 - apiGuests-master-oracle-php7.0
 - apiGuests-10.3.0alpha-mariadb10.2-php7.0
 - apiGuests-10.3.0alpha-oracle-php7.0
 - apiPwdAddUser-master-mariadb10.2-php7.0
 - apiPwdAddUser-master-oracle-php7.0
-- apiPwdAddUser-10.2.1-mariadb10.2-php7.0
-- apiPwdAddUser-10.2.1-oracle-php7.0
+- apiPwdAddUser-latest-mariadb10.2-php7.0
+- apiPwdAddUser-latest-oracle-php7.0
 - apiPwdAddUserSpecial-master-mariadb10.2-php7.0
 - apiPwdAddUserSpecial-master-oracle-php7.0
-- apiPwdAddUserSpecial-10.2.1-mariadb10.2-php7.0
-- apiPwdAddUserSpecial-10.2.1-oracle-php7.0
+- apiPwdAddUserSpecial-latest-mariadb10.2-php7.0
+- apiPwdAddUserSpecial-latest-oracle-php7.0
 - apiPwdChange-master-mariadb10.2-php7.0
 - apiPwdChange-master-oracle-php7.0
-- apiPwdChange-10.2.1-mariadb10.2-php7.0
-- apiPwdChange-10.2.1-oracle-php7.0
+- apiPwdChange-latest-mariadb10.2-php7.0
+- apiPwdChange-latest-oracle-php7.0
 - apiPwdChangeSpecial-master-mariadb10.2-php7.0
 - apiPwdChangeSpecial-master-oracle-php7.0
-- apiPwdChangeSpecial-10.2.1-mariadb10.2-php7.0
-- apiPwdChangeSpecial-10.2.1-oracle-php7.0
+- apiPwdChangeSpecial-latest-mariadb10.2-php7.0
+- apiPwdChangeSpecial-latest-oracle-php7.0
 - apiUpdateShare-master-mariadb10.2-php7.0
 - apiUpdateShare-master-oracle-php7.0
-- apiUpdateShare-10.2.1-mariadb10.2-php7.0
-- apiUpdateShare-10.2.1-oracle-php7.0
+- apiUpdateShare-latest-mariadb10.2-php7.0
+- apiUpdateShare-latest-oracle-php7.0
 - cliPasswordAddUser-master-mariadb10.2-php7.0
-- cliPasswordAddUser-10.2.1-mariadb10.2-php7.0
+- cliPasswordAddUser-latest-mariadb10.2-php7.0
 - cliPasswordChange-master-mariadb10.2-php7.0
-- cliPasswordChange-10.2.1-mariadb10.2-php7.0
+- cliPasswordChange-latest-mariadb10.2-php7.0
 
 ...
