@@ -2777,7 +2777,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIGuests-10.3.0alpha-chrome-mariadb10.2-php7.0
+name: webUIGuests-10.3.0RC1-chrome-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -2799,7 +2799,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.3.0alpha
+    version: 10.3.0RC1
 
 - name: install-testrunner
   pull: always
@@ -2912,7 +2912,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: webUIGuests-10.3.0alpha-firefox-mariadb10.2-php7.0
+name: webUIGuests-10.3.0RC1-firefox-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -2934,7 +2934,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.3.0alpha
+    version: 10.3.0RC1
 
 - name: install-testrunner
   pull: always
@@ -5210,7 +5210,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: apiGuests-10.3.0alpha-mariadb10.2-php7.0
+name: apiGuests-10.3.0RC1-mariadb10.2-php7.0
 
 platform:
   os: linux
@@ -5232,7 +5232,7 @@ steps:
     db_type: mysql
     db_username: owncloud
     exclude: apps/password_policy
-    version: 10.3.0alpha
+    version: 10.3.0RC1
 
 - name: install-testrunner
   pull: always
@@ -5335,7 +5335,7 @@ depends_on:
 ---
 kind: pipeline
 type: docker
-name: apiGuests-10.3.0alpha-oracle-php7.0
+name: apiGuests-10.3.0RC1-oracle-php7.0
 
 platform:
   os: linux
@@ -5357,7 +5357,7 @@ steps:
     db_type: oci
     db_username: system
     exclude: apps/password_policy
-    version: 10.3.0alpha
+    version: 10.3.0RC1
 
 - name: install-testrunner
   pull: always
@@ -8126,8 +8126,8 @@ depends_on:
 - webUIPwdReset-latest-firefox-mariadb10.2-php7.0
 - webUIGuests-master-chrome-mariadb10.2-php7.0
 - webUIGuests-master-firefox-mariadb10.2-php7.0
-- webUIGuests-10.3.0alpha-chrome-mariadb10.2-php7.0
-- webUIGuests-10.3.0alpha-firefox-mariadb10.2-php7.0
+- webUIGuests-10.3.0RC1-chrome-mariadb10.2-php7.0
+- webUIGuests-10.3.0RC1-firefox-mariadb10.2-php7.0
 - webUIPwdChange-master-chrome-mariadb10.2-php7.0
 - webUIPwdChange-master-firefox-mariadb10.2-php7.0
 - webUIPwdChange-latest-chrome-mariadb10.2-php7.0
@@ -8146,8 +8146,8 @@ depends_on:
 - webUIPublicShare-latest-firefox-mariadb10.2-php7.0
 - apiGuests-master-mariadb10.2-php7.0
 - apiGuests-master-oracle-php7.0
-- apiGuests-10.3.0alpha-mariadb10.2-php7.0
-- apiGuests-10.3.0alpha-oracle-php7.0
+- apiGuests-10.3.0RC1-mariadb10.2-php7.0
+- apiGuests-10.3.0RC1-oracle-php7.0
 - apiPwdAddUser-master-mariadb10.2-php7.0
 - apiPwdAddUser-master-oracle-php7.0
 - apiPwdAddUser-latest-mariadb10.2-php7.0
