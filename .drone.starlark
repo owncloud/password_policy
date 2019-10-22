@@ -54,7 +54,7 @@ config = {
 			},
 			'servers': [
 				'daily-master-qa',
-				'10.3.0'
+				'latest'
 			],
 			'browsers': [
 				'chrome',
@@ -83,7 +83,7 @@ config = {
 			],
 			'servers': [
 				'daily-master-qa',
-				'10.3.0'
+				'latest'
 			],
 			'databases': [
 				'mariadb:10.2', 'oracle'
