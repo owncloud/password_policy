@@ -1,6 +1,7 @@
 OC.L10N.register(
     "password_policy",
     {
+    "Error: The special characters cannot be empty." : "Error: The special characters cannot be empty.",
     "Failed to save!" : "Failed to save!",
     "Saved" : "Saved",
     "Password Policy" : "Password Policy",
@@ -38,6 +39,8 @@ OC.L10N.register(
     "days before password expires, users will receive a reminder notification" : "days before password expires, users will receive a reminder notification",
     "Force users to change their password on first login" : "Force users to change their password on first login",
     "Public link expiration policies:" : "Public link expiration policies:",
+    "days maximum until link expires if password is set" : "days maximum until link expires if password is set",
+    "days maximum until link expires if password is not set" : "days maximum until link expires if password is not set",
     "Save" : "Save",
     "Please set a new password" : "Please set a new password",
     "Your password has expired." : "Your password has expired.",
