@@ -4,14 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [2.1.0] - 2019-12-04
+## [2.1.0] - 2019-12-06
 
 ### Changed
 
-- Drop PHP 7.0  - [#267](https://github.com/owncloud/password_policy/issues/267)
-- Adjust 'Unable to create user:' expected message text - [#243](https://github.com/owncloud/password_policy/issues/243)
+- Drop PHP 7.0 Support  - [#267](https://github.com/owncloud/password_policy/issues/267)
 - Use CHAR_SYMBOLS to generate password when no special chars are specified - [#233](https://github.com/owncloud/password_policy/issues/233)
-- Drop PHP 5.6 - [#211](https://github.com/owncloud/password_policy/issues/211)
+- Drop PHP 5.6 Support - [#211](https://github.com/owncloud/password_policy/issues/211)
 - Implement phpstan and phan - [#169](https://github.com/owncloud/password_policy/issues/169)
 
 ### Fixed
@@ -19,7 +18,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Special characters provided shouldn't be empty - [#234](https://github.com/owncloud/password_policy/issues/234)
 - Increase width of numeric fields to display 3 digits - [#231](https://github.com/owncloud/password_policy/issues/231)
 - Adjust link expiry UI text adding 'maximum' - [#226](https://github.com/owncloud/password_policy/issues/226)
-- Cast times to int (phan warning) - [#217](https://github.com/owncloud/password_policy/issues/217)
 
 ## [2.0.2] - 2018-12-03
 
