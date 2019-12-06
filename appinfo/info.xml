@@ -14,7 +14,7 @@ Password history and expiration policies are supplements that allow IT to establ
 Administrators find the configuration options in the 'Security' section of the ownCloud administration settings panel. The respective policies are designed for local user accounts created by administrators or via the [Guests](https://marketplace.owncloud.com/apps/guests) extension, not for user accounts imported from LDAP or other user backends as these provide their own mechanisms. For more information and recommendations when deploying policies in an existing ownCloud, please consult the [ownCloud Documentation](https://doc.owncloud.com/server/latest/admin_manual/configuration/server/security/password_policy.html).</description>
 	<version>2.1.0</version>
 	<documentation>
-		<admin>https://doc.owncloud.com/server/10.0/admin_manual/configuration/server/security/password_policy.html</admin>
+		<admin>https://doc.owncloud.com/server/latest/admin_manual/configuration/server/security/password_policy.html</admin>
 	</documentation>
 	<dependencies>
 		<owncloud min-version="10.2" max-version="10" />
