@@ -68,7 +68,7 @@ class EngineTest extends TestCase {
 		$this->db = $this->createMock(IDBConnection::class);
 		$this->hasher = $this->createMock(IHasher::class);
 
-		return parent::setUp();
+		parent::setUp();
 	}
 
 	/**
