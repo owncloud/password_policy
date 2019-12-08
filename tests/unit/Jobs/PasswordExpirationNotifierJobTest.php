@@ -65,7 +65,7 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 	/** @var PasswordExpirationNotifierJob */
 	private $job;
 
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->mapper = $this->getMockBuilder(OldPasswordMapper::class)
 			->disableOriginalConstructor()

@@ -47,14 +47,14 @@ class OldPasswordMapperTest extends TestCase {
 			->where($qb->expr()->in('uid', $qb->createNamedParameter($this->testUIDs, IQueryBuilder::PARAM_STR_ARRAY)));
 		$qb->execute();
 	}
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->db = \OC::$server->getDatabaseConnection();
 		$this->mapper = new OldPasswordMapper($this->db);
 		$this->resetDB();
 	}
 
-	protected function tearDown() {
+	protected function tearDown(): void {
 		parent::tearDown();
 		$this->resetDB();
 	}

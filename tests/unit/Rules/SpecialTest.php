@@ -31,7 +31,7 @@ class SpecialTest extends \PHPUnit\Framework\TestCase {
 	/** @var Special */
 	private $r;
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		/** @var IL10N | \PHPUnit\Framework\MockObject\MockObject $l10n */

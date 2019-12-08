@@ -40,7 +40,7 @@ class NotifierTest extends TestCase {
 	/** @var Notifier */
 	private $notifier;
 
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->factory = $this->getMockBuilder(IFactory::class)
 			->disableOriginalConstructor()
