@@ -65,7 +65,7 @@ class HooksHandlerTest extends TestCase {
 	/** @var IManager | \PHPUnit\Framework\MockObject\MockObject */
 	protected $manager;
 
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->config = $this->createMock(IConfig::class);

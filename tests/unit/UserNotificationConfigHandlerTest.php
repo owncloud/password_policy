@@ -34,7 +34,7 @@ class UserNotificationConfigHandlerTest extends TestCase {
 	/** @var UserNotificationConfigHandler */
 	private $unConfigHandler;
 
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->config = $this->getMockBuilder(IConfig::class)
 			->disableOriginalConstructor()

@@ -56,7 +56,7 @@ class EngineTest extends TestCase {
 	/** @var IHasher | \PHPUnit\Framework\MockObject\MockObject */
 	protected $hasher;
 
-	protected function setUp() {
+	protected function setUp(): void {
 		$this->l10n = $this->createMock(IL10N::class);
 		$this->l10n
 			->method('t')

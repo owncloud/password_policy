@@ -56,7 +56,7 @@ class PasswordControllerTest extends TestCase {
 	/** @var PasswordController | \PHPUnit\Framework\MockObject\MockObject */
 	private $c;
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->request = $this->createMock(IRequest::class);
