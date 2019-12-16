@@ -102,9 +102,10 @@ class EngineTest extends TestCase {
 	 * @dataProvider providesFailTestData
 	 * @param array $config
 	 * @param $password
-	 * @expectedException OCA\PasswordPolicy\Rules\PolicyException
 	 */
 	public function testPolicyFails(array $config, $password) {
+		$this->expectException(\OCA\PasswordPolicy\Rules\PolicyException::class);
+
 		$engine = $this->createEngine($config);
 		$engine->verifyPassword($password);
 	}
@@ -112,18 +113,20 @@ class EngineTest extends TestCase {
 	/**
 	 * @dataProvider providesTypes
 	 * @param string $type
-	 * @expectedException OCA\PasswordPolicy\Rules\PolicyException
 	 */
 	public function testPolicyFailsWithTypes($type) {
+		$this->expectException(\OCA\PasswordPolicy\Rules\PolicyException::class);
+
 		$engine = $this->createEngine(['spv_min_chars_checked' => true]);
 		$engine->verifyPassword('ab', null, $type);
 	}
 
 	/**
 	 * @dataProvider providesTypes
-	 * @expectedException OCA\PasswordPolicy\Rules\PolicyException
 	 */
 	public function testPolicyFailsEmptyPassword() {
+		$this->expectException(\OCA\PasswordPolicy\Rules\PolicyException::class);
+
 		$engine = $this->createEngine(['spv_min_chars_checked' => true]);
 		$engine->verifyPassword('', null, 'user');
 	}
@@ -140,9 +143,10 @@ class EngineTest extends TestCase {
 	 * @dataProvider providesFailTestData
 	 * @param array $config
 	 * @param $password
-	 * @expectedException OCA\PasswordPolicy\Rules\PolicyException
 	 */
 	public function testPolicyFailsWithUserType(array $config, $password) {
+		$this->expectException(\OCA\PasswordPolicy\Rules\PolicyException::class);
+
 		$engine = $this->createEngine($config);
 		$engine->verifyPassword($password, null, 'user');
 	}

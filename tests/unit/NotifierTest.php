@@ -63,9 +63,10 @@ class NotifierTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testPrepareInvalidApp() {
+		$this->expectException(\InvalidArgumentException::class);
+
 		$notification = $this->createMock(INotification::class);
 		$notification->method('getApp')->willReturn('another');
 		$notification->method('getObjectType')->willReturn('local_share');
@@ -73,9 +74,10 @@ class NotifierTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testPrepareInvalidUnknownObjectType() {
+		$this->expectException(\InvalidArgumentException::class);
+
 		$notification = $this->createMock(INotification::class);
 		$notification->method('getApp')->willReturn('password_policy');
 		$notification->method('getObjectType')->willReturn('local_share');

@@ -55,18 +55,20 @@ class LowercaseTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
-	 * @expectedExceptionMessage The password contains too few lowercase letters. At least one lowercase letter is required.
 	 */
 	public function testNoLowercase() {
+		$this->expectException(\OCA\PasswordPolicy\Rules\PolicyException::class);
+		$this->expectExceptionMessage('The password contains too few lowercase letters. At least one lowercase letter is required.');
+
 		$this->r->verify('AB', 1);
 	}
 
 	/**
-	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
-	 * @expectedExceptionMessage The password contains too few lowercase letters. At least 4 lowercase letters are required.
 	 */
 	public function testTooShort() {
+		$this->expectException(\OCA\PasswordPolicy\Rules\PolicyException::class);
+		$this->expectExceptionMessage('The password contains too few lowercase letters. At least 4 lowercase letters are required.');
+
 		$this->r->verify('ab', 4);
 	}
 
@@ -78,10 +80,11 @@ class LowercaseTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
-	 * @expectedExceptionMessage The password contains too few lowercase letters. At least 5 lowercase letters are required.
 	 */
 	public function testSpecialLowerCaseTooShort() {
+		$this->expectException(\OCA\PasswordPolicy\Rules\PolicyException::class);
+		$this->expectExceptionMessage('The password contains too few lowercase letters. At least 5 lowercase letters are required.');
+
 		$this->r->verify('ÑÑÑÑÑÑÑÑÑñ', 5);
 	}
 
@@ -93,18 +96,20 @@ class LowercaseTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
-	 * @expectedExceptionMessage The password contains too few lowercase letters. At least 5 lowercase letters are required.
 	 */
 	public function testNumericOnlyTooShort() {
+		$this->expectException(\OCA\PasswordPolicy\Rules\PolicyException::class);
+		$this->expectExceptionMessage('The password contains too few lowercase letters. At least 5 lowercase letters are required.');
+
 		$this->r->verify('11111111', 5);
 	}
 
 	/**
-	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
-	 * @expectedExceptionMessage The password contains too few lowercase letters. At least 5 lowercase letters are required.
 	 */
 	public function testSpecialOnlyTooShort() {
+		$this->expectException(\OCA\PasswordPolicy\Rules\PolicyException::class);
+		$this->expectExceptionMessage('The password contains too few lowercase letters. At least 5 lowercase letters are required.');
+
 		$this->r->verify('#+?@#+?@', 5);
 	}
 }

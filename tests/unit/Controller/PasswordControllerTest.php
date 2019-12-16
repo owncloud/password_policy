@@ -276,10 +276,11 @@ class PasswordControllerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \UnexpectedValueException
-	 * @expectedExceptionMessage Unable to update the user's password.
 	 */
 	public function testUpdateSetPasswordFails() {
+		$this->expectException(\UnexpectedValueException::class);
+		$this->expectExceptionMessage('Unable to update the user\'s password.');
+
 		$user = $this->createMock(IUser::class);
 		$user
 			->method('getUID')

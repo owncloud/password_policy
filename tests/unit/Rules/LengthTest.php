@@ -47,10 +47,11 @@ class LengthTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
-	 * @expectedExceptionMessage The password is too short. At least 25 characters are required.
 	 */
 	public function testTooShort() {
+		$this->expectException(\OCA\PasswordPolicy\Rules\PolicyException::class);
+		$this->expectExceptionMessage('The password is too short. At least 25 characters are required.');
+
 		$this->r->verify('1234567890', 25);
 	}
 
@@ -62,10 +63,11 @@ class LengthTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
-	 * @expectedExceptionMessage The password is too short. At least 5 characters are required.
 	 */
 	public function testSpecialCharsTooShort() {
+		$this->expectException(\OCA\PasswordPolicy\Rules\PolicyException::class);
+		$this->expectExceptionMessage('The password is too short. At least 5 characters are required.');
+
 		$this->r->verify('ççç', 5);
 	}
 
