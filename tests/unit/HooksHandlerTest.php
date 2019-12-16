@@ -327,9 +327,10 @@ class HooksHandlerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \UnexpectedValueException
 	 */
 	public function testGetUser() {
+		$this->expectException(\UnexpectedValueException::class);
+
 		$event = new GenericEvent(null, [
 			'user' => null, // missing user should throw exception
 			'password' => 'secret'
@@ -456,10 +457,11 @@ class HooksHandlerTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \UnexpectedValueException
-	 * @expectedExceptionMessage 'foo' is not an instance of IUser.
 	 */
 	public function testCheckForcePasswordChangeOnFirstLoginException() {
+		$this->expectException(\UnexpectedValueException::class);
+		$this->expectExceptionMessage('\'foo\' is not an instance of IUser.');
+
 		$event = new GenericEvent('foo');
 		$this->handler->checkForcePasswordChangeOnFirstLogin($event);
 	}

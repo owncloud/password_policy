@@ -157,10 +157,11 @@ class PasswordExpiredTest extends TestCase {
 	}
 
 	/**
-	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
-	 * @expectedExceptionMessage The password is older than 2 days.
 	 */
 	public function testFail() {
+		$this->expectException(\OCA\PasswordPolicy\Rules\PolicyException::class);
+		$this->expectExceptionMessage('The password is older than 2 days.');
+
 		$password = new OldPassword();
 		$password->setChangeTime(1);
 		$this->mapper

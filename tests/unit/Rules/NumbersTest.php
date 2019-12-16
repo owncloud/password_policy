@@ -54,18 +54,20 @@ class NumbersTest extends \Test\TestCase {
 	}
 
 	/**
-	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
-	 * @expectedExceptionMessage The password contains too few numbers. At least one number is required.
 	 */
 	public function testNoNumbers() {
+		$this->expectException(\OCA\PasswordPolicy\Rules\PolicyException::class);
+		$this->expectExceptionMessage('The password contains too few numbers. At least one number is required.');
+
 		$this->r->verify('ab', 1);
 	}
 
 	/**
-	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
-	 * @expectedExceptionMessage The password contains too few numbers. At least 4 numbers are required.
 	 */
 	public function testTooShort() {
+		$this->expectException(\OCA\PasswordPolicy\Rules\PolicyException::class);
+		$this->expectExceptionMessage('The password contains too few numbers. At least 4 numbers are required.');
+
 		$this->r->verify('ab123', 4);
 	}
 

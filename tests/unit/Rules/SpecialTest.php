@@ -55,10 +55,11 @@ class SpecialTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @expectedException \OCA\PasswordPolicy\Rules\PolicyException
-	 * @expectedExceptionMessage The password contains too few special characters. At least 4 special characters are required.
 	 */
 	public function testTooShort() {
+		$this->expectException(\OCA\PasswordPolicy\Rules\PolicyException::class);
+		$this->expectExceptionMessage('The password contains too few special characters. At least 4 special characters are required.');
+
 		$this->r->verify('', 4, []);
 	}
 
