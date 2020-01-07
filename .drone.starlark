@@ -70,6 +70,9 @@ config = {
 				'webUIPasswordChangeSpecial': 'webUIPwdChangeSp',
 				'webUIPasswordPolicySettings': 'webUIPwdPolSet',
 				'webUIPublicShareLink': 'webUIPublicShare',
+				'webUIPasswordChangeUsersPage': 'webUIPwdChgUP',
+				'webUIPasswordChangeUsersPageSpecial': 'webUIPwdChgUPSp',
+
 			},
 			'browsers': [
 				'chrome',
