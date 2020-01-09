@@ -129,6 +129,30 @@ default:
         - WebUIPersonalGeneralSettingsContext:
         - FeatureContext: *common_feature_context_params
 
+    webUIPasswordChangeUsersPage:
+      paths:
+        - '%paths.base%/../features/webUIPasswordChangeUsersPage'
+      contexts:
+        - PasswordPolicyContext:
+        - WebUIPasswordPolicyContext:
+        - WebUIGeneralContext:
+        - WebUIUsersContext:
+        - WebUILoginContext:
+        - WebUIPersonalGeneralSettingsContext:
+        - FeatureContext: *common_feature_context_params
+
+    webUIPasswordChangeUsersPageSpecial:
+      paths:
+        - '%paths.base%/../features/webUIPasswordChangeUsersPageSpecial'
+      contexts:
+        - PasswordPolicyContext:
+        - WebUIPasswordPolicyContext:
+        - WebUIGeneralContext:
+        - WebUIUsersContext:
+        - WebUILoginContext:
+        - WebUIPersonalGeneralSettingsContext:
+        - FeatureContext: *common_feature_context_params
+
     webUIPasswordPolicySettings:
       paths:
         - '%paths.base%/../features/webUIPasswordPolicySettings'
