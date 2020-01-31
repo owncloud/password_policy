@@ -313,6 +313,10 @@ class HooksHandler {
 				$this->forcePasswordChange();
 			}
 		}
+		/* if this flag still exists, force to password change */
+		if ($this->config->getUserValue($user->getUID(), 'password_policy', 'firstLoginPasswordChange')) {
+			$this->forcePasswordChange();
+		}
 	}
 
 	public function checkForcePasswordChangeOnFirstLogin(GenericEvent $event) {
