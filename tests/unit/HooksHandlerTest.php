@@ -370,6 +370,7 @@ class HooksHandlerTest extends TestCase {
 		return [
 			[false, 1530180780],
 			[true, 1530180781],
+			[false, 1530180780, '1']
 		];
 	}
 
@@ -377,21 +378,26 @@ class HooksHandlerTest extends TestCase {
 	 * @dataProvider checkAdminRequestedPasswordChangeProvider
 	 * @param $expired
 	 * @param $time
+	 * @param $firstLoginPasswordChange
 	 */
-	public function testCheckAdminRequestedPasswordChange($expired, $time) {
+	public function testCheckAdminRequestedPasswordChange($expired, $time, $firstLoginPasswordChange = '') {
 		/** @var IUser | \PHPUnit\Framework\MockObject\MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$user->method('getUID')->willReturn('testuid');
-		$this->config->expects($this->once())
+		$this->config->expects($this->at(0))
 			->method('getUserValue')
 			->with('testuid', 'password_policy', 'forcePasswordChange', '')
 			->willReturn('2018-06-28T10:13:00Z'); // = 1530180780
+		$this->config->expects($this->at(1))
+			->method('getUserValue')
+			->with('testuid', 'password_policy', 'firstLoginPasswordChange')
+			->willReturn($firstLoginPasswordChange); // = 1530180780
 
 		$this->timeFactory->expects($this->once())
 			->method('getTime')
 			->willReturn($time);
 
-		if ($expired) {
+		if ($expired || $firstLoginPasswordChange) {
 			$this->session
 				->expects($this->once())
 				->method('set')
