@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [2.1.1] - 2020-02-04
+
+### Fixed
+
+- Check if first time password change is necessary in postLogin - [#275](https://github.com/owncloud/password_policy/issues/275)
 
 ## [2.1.0] - 2019-12-06
 
@@ -59,7 +63,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- Password history rule - [#10](https://github.com/owncloud/password_policy/pull/10) [#34](https://github.com/owncloud/password_policy/issues/34) 
+- Password history rule - [#10](https://github.com/owncloud/password_policy/pull/10) [#34](https://github.com/owncloud/password_policy/issues/34)
 - Password expiration - [#15](https://github.com/owncloud/password_policy/pull/15) [#27](https://github.com/owncloud/password_policy/issues/27) [#31](https://github.com/owncloud/password_policy/issues/31) [#51](https://github.com/owncloud/password_policy/issues/51) [#56](https://github.com/owncloud/password_policy/issues/56)
 
 ### Changed
@@ -86,7 +90,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Translate save button - #102
 - Change headline and subheadlines - #92
 
-[Unreleased]: https://github.com/owncloud/password_policy/compare/v2.1.0...master
+[2.1.1]: https://github.com/owncloud/password_policy/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/owncloud/password_policy/compare/v2.0.2...v2.1.0
 [2.0.2]: https://github.com/owncloud/password_policy/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/owncloud/password_policy/compare/v2.0.0...v2.0.1
