@@ -135,6 +135,8 @@ class HooksHandler {
 	public function generatePassword(GenericEvent $event) {
 		$this->fixDI();
 		$event['password'] = $this->engine->generatePassword();
+		/* ToDo: issue 278 - deprecated since Symfony 4.3, use "Symfony\Contracts\EventDispatcher\Event" instead */
+		/* @phan-suppress-next-line PhanDeprecatedFunction */
 		$event->stopPropagation();
 	}
 

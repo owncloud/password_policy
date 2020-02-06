@@ -366,7 +366,7 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 				'passwordExpireInSeconds' => 180]);
 		$this->eventDispatcher->expects($this->once())
 			->method('dispatch')
-			->with('user.passwordAboutToExpire', $aboutToExpireEvent);
+			->with($aboutToExpireEvent, 'user.passwordAboutToExpire');
 
 		$this->invokePrivate($this->job, 'run', [[]]);
 	}
@@ -411,7 +411,7 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 				'passwordExpireInSeconds' => 180]);
 		$this->eventDispatcher->expects($this->once())
 			->method('dispatch')
-			->with('user.passwordExpired', $aboutToExpireEvent);
+			->with($aboutToExpireEvent, 'user.passwordExpired');
 
 		$this->invokePrivate($this->job, 'run', [[]]);
 	}
