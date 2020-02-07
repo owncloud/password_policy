@@ -167,7 +167,7 @@ class PasswordExpirationNotifierJob extends TimedJob {
 				'user' => $this->userManager->get($passInfo->getUid()),
 				'passwordExpireInSeconds' => $expirationTime
 			]);
-		$this->eventDispatcher->dispatch('user.passwordAboutToExpire', $aboutToExpireEvent);
+		$this->eventDispatcher->dispatch($aboutToExpireEvent, 'user.passwordAboutToExpire');
 	}
 
 	/**
@@ -212,7 +212,7 @@ class PasswordExpirationNotifierJob extends TimedJob {
 				'user' => $this->userManager->get($passInfo->getUid()),
 				'passwordExpireInSeconds' => $expirationTime
 			]);
-		$this->eventDispatcher->dispatch('user.passwordExpired', $expiredEvent);
+		$this->eventDispatcher->dispatch($expiredEvent, 'user.passwordExpired');
 	}
 
 	private function getNotificationLink() {
