@@ -397,6 +397,42 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
+	 * @When the administrator sets the value for the maximum days until link expires if password is set to :value
+	 * @Given the administrator has set the value for the maximum days until link expires if password is set to :value
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsMaxDaysUntilLinkExpiresWithPasswordPublicLinkPasswordPolicyUsingOcc(
+		$value
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_expiration_password_value',
+			$value
+		);
+	}
+
+	/**
+	 * @When the administrator sets the value for the maximum days until link expires if password is not set to :value
+	 * @Given the administrator has set the value for the maximum days until link expires if password is not set to :value
+	 *
+	 * @param string $value
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdminSetsMaxDaysUntilLinkExpiresWithoutPasswordPublicLinkPasswordPolicyUsingOcc(
+		$value
+	) {
+		$this->setPasswordPolicySetting(
+			'spv_expiration_nopassword_value',
+			$value
+		);
+	}
+
+	/**
 	 * @Then /^the minimum characters password policy should be (enabled|disabled)$/
 	 *
 	 * @param string $enabledOrDisabled
