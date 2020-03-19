@@ -33,6 +33,7 @@ use OCP\ISession;
 use OCP\IUser;
 use OCP\Security\IHasher;
 use OCP\Notification\IManager;
+use OCP\Share;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
 class HooksHandler {
@@ -174,6 +175,10 @@ class HooksHandler {
 	public function updateLinkExpiry($params) {
 		$this->fixDI();
 		$configValues = $this->engine->getConfigValues();
+		if (!isset($params['shareType'])) {
+			// shareType parameter added after OC 10.4.0
+			$params['shareType'] = Share::SHARE_TYPE_LINK;
+		}
 
 		$days = null;
 
@@ -192,13 +197,13 @@ class HooksHandler {
 			$date->setTime(0, 0, 0);
 			$date->add(new \DateInterval('P'.$days.'D'));
 
-			if ($params['expirationDate'] === null) {
+			if ($params['expirationDate'] === null && $params['shareType'] === Share::SHARE_TYPE_LINK) {
 				$params['accepted'] = false;
 				$params['message'] = (string) $this->l10n->t('An expiration date is required.');
 			}
 
 			// $date is the max expiration date
-			if ($date < $params['expirationDate']) {
+			if ($date < $params['expirationDate'] && $params['shareType'] === Share::SHARE_TYPE_LINK) {
 				$params['accepted'] = false;
 				$params['message'] = (string) $this->l10n->n('The expiration date cannot exceed %n day.', 'The expiration date cannot exceed %n days.', $days);
 			}

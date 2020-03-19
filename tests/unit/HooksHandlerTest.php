@@ -37,32 +37,34 @@ use OCP\IUser;
 use OCP\Security\IHasher;
 use OCP\Notification\IManager;
 use OCP\Notification\INotification;
+use OCP\Share;
+use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Test\TestCase;
 
 class HooksHandlerTest extends TestCase {
 
-	/** @var IConfig | \PHPUnit\Framework\MockObject\MockObject */
+	/** @var IConfig | MockObject */
 	protected $config;
-	/** @var Engine | \PHPUnit\Framework\MockObject\MockObject */
+	/** @var Engine | MockObject */
 	protected $engine;
-	/** @var IHasher | \PHPUnit\Framework\MockObject\MockObject */
+	/** @var IHasher | MockObject */
 	protected $hasher;
-	/** @var ITimeFactory | \PHPUnit\Framework\MockObject\MockObject */
+	/** @var ITimeFactory | MockObject */
 	protected $timeFactory;
-	/** @var IL10N | \PHPUnit\Framework\MockObject\MockObject */
+	/** @var IL10N | MockObject */
 	protected $l10n;
-	/** @var PasswordExpired | \PHPUnit\Framework\MockObject\MockObject */
+	/** @var PasswordExpired | MockObject */
 	protected $passwordExpiredRule;
-	/** @var OldPasswordMapper | \PHPUnit\Framework\MockObject\MockObject */
+	/** @var OldPasswordMapper | MockObject */
 	protected $oldPasswordMapper;
-	/** @var ISession | \PHPUnit\Framework\MockObject\MockObject */
+	/** @var ISession | MockObject */
 	protected $session;
-	/** @var HooksHandler | \PHPUnit\Framework\MockObject\MockObject */
+	/** @var HooksHandler | MockObject */
 	protected $handler;
-	/** @var UserNotificationConfigHandler | \PHPUnit\Framework\MockObject\MockObject */
+	/** @var UserNotificationConfigHandler | MockObject */
 	protected $unConfigHandler;
-	/** @var IManager | \PHPUnit\Framework\MockObject\MockObject */
+	/** @var IManager | MockObject */
 	protected $manager;
 
 	protected function setUp(): void {
@@ -184,11 +186,33 @@ class HooksHandlerTest extends TestCase {
 
 		$accepted = true; // needs to be reset on every test set
 		return [
+			// Fallback when there is no explicit share type specified
 			[['checked' => false, 'passwordSet' => true, 'expirationDate' => null, 'accepted' => &$accepted], true],
 			[['checked' => false, 'passwordSet' => false, 'expirationDate' => null, 'accepted' => &$accepted], true],
 			[['checked' => 'on', 'passwordSet' => true, 'expirationDate' => null, 'accepted' => &$accepted], false],
 			[['checked' => 'on', 'passwordSet' => true, 'expirationDate' => $tomorrow, 'accepted' => &$accepted], true],
 			[['checked' => 'on', 'passwordSet' => true, 'expirationDate' => $in5days, 'accepted' => &$accepted], false],
+
+			// Public Link
+			[['shareType' => Share::SHARE_TYPE_LINK, 'checked' => false, 'passwordSet' => true, 'expirationDate' => null, 'accepted' => &$accepted], true],
+			[['shareType' => Share::SHARE_TYPE_LINK, 'checked' => false, 'passwordSet' => false, 'expirationDate' => null, 'accepted' => &$accepted], true],
+			[['shareType' => Share::SHARE_TYPE_LINK, 'checked' => 'on', 'passwordSet' => true, 'expirationDate' => null, 'accepted' => &$accepted], false],
+			[['shareType' => Share::SHARE_TYPE_LINK, 'checked' => 'on', 'passwordSet' => true, 'expirationDate' => $tomorrow, 'accepted' => &$accepted], true],
+			[['shareType' => Share::SHARE_TYPE_LINK, 'checked' => 'on', 'passwordSet' => true, 'expirationDate' => $in5days, 'accepted' => &$accepted], false],
+
+			// User share - always passing
+			[['shareType' => Share::SHARE_TYPE_USER, 'checked' => false, 'passwordSet' => true, 'expirationDate' => null, 'accepted' => &$accepted], true],
+			[['shareType' => Share::SHARE_TYPE_USER, 'checked' => false, 'passwordSet' => false, 'expirationDate' => null, 'accepted' => &$accepted], true],
+			[['shareType' => Share::SHARE_TYPE_USER, 'checked' => 'on', 'passwordSet' => true, 'expirationDate' => null, 'accepted' => &$accepted], true],
+			[['shareType' => Share::SHARE_TYPE_USER, 'checked' => 'on', 'passwordSet' => true, 'expirationDate' => $tomorrow, 'accepted' => &$accepted], true],
+			[['shareType' => Share::SHARE_TYPE_USER, 'checked' => 'on', 'passwordSet' => true, 'expirationDate' => $in5days, 'accepted' => &$accepted], true],
+
+			// Group share - always passing
+			[['shareType' => Share::SHARE_TYPE_GROUP, 'checked' => false, 'passwordSet' => true, 'expirationDate' => null, 'accepted' => &$accepted], true],
+			[['shareType' => Share::SHARE_TYPE_GROUP, 'checked' => false, 'passwordSet' => false, 'expirationDate' => null, 'accepted' => &$accepted], true],
+			[['shareType' => Share::SHARE_TYPE_GROUP, 'checked' => 'on', 'passwordSet' => true, 'expirationDate' => null, 'accepted' => &$accepted], true],
+			[['shareType' => Share::SHARE_TYPE_GROUP, 'checked' => 'on', 'passwordSet' => true, 'expirationDate' => $tomorrow, 'accepted' => &$accepted], true],
+			[['shareType' => Share::SHARE_TYPE_GROUP, 'checked' => 'on', 'passwordSet' => true, 'expirationDate' => $in5days, 'accepted' => &$accepted], true],
 		];
 	}
 
@@ -212,7 +236,7 @@ class HooksHandlerTest extends TestCase {
 	}
 
 	public function testSaveOldPassword() {
-		/** @var IUser | \PHPUnit\Framework\MockObject\MockObject $user */
+		/** @var IUser | MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$user->method('getUID')->willReturn('testuid');
 
@@ -269,7 +293,7 @@ class HooksHandlerTest extends TestCase {
 	}
 
 	public function testSaveOldPasswordClearingNotifications() {
-		/** @var IUser | \PHPUnit\Framework\MockObject\MockObject $user */
+		/** @var IUser | MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$user->method('getUID')->willReturn('testuid');
 
@@ -339,7 +363,7 @@ class HooksHandlerTest extends TestCase {
 	}
 
 	public function testCheckPasswordExpired() {
-		/** @var IUser | \PHPUnit\Framework\MockObject\MockObject $user */
+		/** @var IUser | MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$user->method('getUID')->willReturn('testuid');
 		$this->engine->expects($this->once())
@@ -381,7 +405,7 @@ class HooksHandlerTest extends TestCase {
 	 * @param $firstLoginPasswordChange
 	 */
 	public function testCheckAdminRequestedPasswordChange($expired, $time, $firstLoginPasswordChange = '') {
-		/** @var IUser | \PHPUnit\Framework\MockObject\MockObject $user */
+		/** @var IUser | MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$user->method('getUID')->willReturn('testuid');
 		$this->config->expects($this->at(0))
@@ -416,7 +440,7 @@ class HooksHandlerTest extends TestCase {
 	}
 
 	public function testCheckForcePasswordChangeOnFirstLogin() {
-		/** @var IUser | \PHPUnit\Framework\MockObject\MockObject $user */
+		/** @var IUser | MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$user->method('getBackendClassName')
 			->willReturn('Database');
@@ -439,7 +463,7 @@ class HooksHandlerTest extends TestCase {
 	}
 
 	public function testCheckLDAPUserForcePasswordChangeOnFirstLogin() {
-		/** @var IUser | \PHPUnit\Framework\MockObject\MockObject $user */
+		/** @var IUser | MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$user->method('getBackendClassName')
 			->willReturn('LDAP');
@@ -473,7 +497,7 @@ class HooksHandlerTest extends TestCase {
 	}
 
 	public function testForcePasswordChangeOnFirstLoginNotHappen() {
-		/** @var IUser | \PHPUnit\Framework\MockObject\MockObject $user */
+		/** @var IUser | MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$this->engine->expects($this->once())
 			->method('yes')
