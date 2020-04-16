@@ -55,7 +55,7 @@ class PasswordController extends Controller implements IAccountModuleController 
 	/**
 	 * PasswordController constructor.
 	 *
-	 * @param $appName
+	 * @param string $appName
 	 * @param IRequest $request
 	 * @param IUserSession $userSession
 	 * @param IUserManager $userManager

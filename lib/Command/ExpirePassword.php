@@ -179,7 +179,7 @@ class ExpirePassword extends Command {
 
 			if (\count($uids) > 0) {
 				foreach ($uids as $uid) {
-					/** @var $user \OCP\IUser */
+					/** @var \OCP\IUser|null $user */
 					$user = $this->userManager->get($uid);
 
 					if ($user === null) {
@@ -225,13 +225,14 @@ class ExpirePassword extends Command {
 				return 2;
 			}
 		}
+		return 0;
 	}
 
 	/**
 	 * @param \DateTime $expireDate
 	 * @param \DateTime $oldDate
 	 * @param \DateTimeZone $timeZone
-	 * @param $inputExpireDate
+	 * @param mixed $inputExpireDate
 	 * @param IUser $user
 	 */
 	protected function setPasswordExpiry(\DateTime $expireDate, \DateTime $oldDate, \DateTimeZone $timeZone, $inputExpireDate, IUser $user) {

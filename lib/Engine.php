@@ -106,7 +106,7 @@ class Engine {
 	}
 
 	/**
-	 * @param string $password
+	 * @param string|null $password
 	 * @param string $uid
 	 * @param string $type
 	 * @throws PolicyException
