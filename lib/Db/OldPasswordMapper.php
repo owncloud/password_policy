@@ -65,7 +65,7 @@ class OldPasswordMapper extends Mapper {
 
 	/**
 	 * @param string $uid
-	 * @return OldPassword
+	 * @return OldPassword|null
 	 */
 	public function getLatestPassword($uid) {
 		$passwords = $this->getOldPasswords($uid, 1, false);

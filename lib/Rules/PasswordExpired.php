@@ -95,6 +95,7 @@ class PasswordExpired extends Base {
 			return;
 		}
 
+		/** @var int|null $changed */
 		$changed = $latestPassword->getChangeTime();
 		if ($changed === null) {
 			$this->logger->warning(

@@ -38,7 +38,7 @@ class PasswordExpirationNotifierJob extends TimedJob {
 	/** @var OldPasswordMapper */
 	private $mapper;
 
-	/** @var $manager */
+	/** @var IManager $manager */
 	private $manager;
 
 	/** @var UserNotificationConfigHandler */
