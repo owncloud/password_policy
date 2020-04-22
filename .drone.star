@@ -44,6 +44,9 @@ config = {
 				'chrome',
 				'firefox'
 			],
+			'phpVersions': [
+				'7.4',
+			],
 			'emailNeeded': True
 		},
 		'webUIGuests': {
@@ -61,6 +64,9 @@ config = {
 			'extraApps': {
 				'guests': ''
 			},
+			'phpVersions': [
+				'7.4',
+			],
 			'emailNeeded': True
 		},
 		'webUIOther': {
@@ -73,6 +79,9 @@ config = {
 				'webUIPasswordChangeUsersPageSpecial': 'webUIPwdChgUPSp',
 
 			},
+			'phpVersions': [
+				'7.4',
+			],
 			'browsers': [
 				'chrome',
 				'firefox'
@@ -85,6 +94,9 @@ config = {
 			'servers': [
 				'daily-master-qa',
 				'latest'
+			],
+			'phpVersions': [
+				'7.4',
 			],
 			'databases': [
 				'mariadb:10.2', 'oracle'
@@ -105,11 +117,17 @@ config = {
 			'databases': [
 				'mariadb:10.2', 'oracle'
 			],
+			'phpVersions': [
+				'7.4',
+			],
 		},
 		'cli': {
 			'suites': [
 				'cliPasswordAddUser',
 				'cliPasswordChange',
+			],
+			'phpVersions': [
+				'7.4',
 			],
 		},
 	},
@@ -1235,7 +1253,7 @@ def installCore(version, db, useBundledApp):
 		'image': 'owncloudci/core',
 		'pull': 'always',
 		'settings': {
-			'version': version,
+			'git_reference': 'php7.4-20200310',
 			'core_path': '/var/www/owncloud/server',
 			'db_type': dbType,
 			'db_name': database,
