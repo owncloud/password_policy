@@ -83,7 +83,7 @@ class ExpirePasswordTest extends TestCase {
 		]);
 		$output = $this->commandTester->getDisplay();
 
-		self::assertContains('Unknown user: not-existing-uid', $output);
+		self::assertStringContainsString('Unknown user: not-existing-uid', $output);
 	}
 
 	private function getAllUsers($numberOfUsers, $groupName = null) {
@@ -244,7 +244,7 @@ Unknown group: group3
 		]);
 
 		$output = $this->commandTester->getDisplay();
-		$this->assertContains("The password for existing-uid is set to expire on $expectedReportedTimestamp.", $output);
+		$this->assertStringContainsString("The password for existing-uid is set to expire on $expectedReportedTimestamp.", $output);
 
 		$this->assertEquals('existing-uid', $oldPassword->getUid());
 		$this->assertEquals(OldPassword::EXPIRED, $oldPassword->getPassword());
@@ -277,7 +277,7 @@ Unknown group: group3
 		]);
 		$output = $this->commandTester->getDisplay();
 
-		self::assertContains("The user's backend doesn't support password changes. The password cannot be expired for user: existing-uid", $output);
+		self::assertStringContainsString("The user's backend doesn't support password changes. The password cannot be expired for user: existing-uid", $output);
 	}
 
 	public function testNoRulesSetup() {
@@ -293,7 +293,7 @@ Unknown group: group3
 		]);
 		$output = $this->commandTester->getDisplay();
 
-		self::assertContains("Cannot use this command because no expiration rule was configured", $output);
+		self::assertStringContainsString("Cannot use this command because no expiration rule was configured", $output);
 	}
 
 	public function testInvalidArgument() {
@@ -308,7 +308,7 @@ Unknown group: group3
 		]);
 		$output = $this->commandTester->getDisplay();
 
-		$this->assertContains('Invalid argument given.', $output);
+		$this->assertStringContainsString('Invalid argument given.', $output);
 	}
 
 	public function testNonExistingGroups() {
