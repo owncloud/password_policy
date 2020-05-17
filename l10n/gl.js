@@ -4,7 +4,7 @@ OC.L10N.register(
     "Error: The special characters cannot be empty." : "Erro: os caracteres especiais non poden estar baleiros.",
     "Failed to save!" : "Produciuse un fallo ao gardar o ficheiro",
     "Saved" : "Gardado",
-    "Password Policy" : "Política de contrasinais",
+    "Password Policy" : "Directiva de contrasinais",
     "Old password is wrong." : "O contrasinal antigo é incorrecto.",
     "Password confirmation does not match the password." : "A confirmación do contrasinal non coincide co contrasinal. ",
     "Password must be different than the old password." : "O novo contrasinal debe ser diferente do antigo contrasinal",
