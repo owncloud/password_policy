@@ -10,9 +10,9 @@ Feature: enforce the minimum length of a password on the public share link page
     And the administrator has set the minimum characters required to "10"
     And these users have been created with default attributes and skeleton files:
       | username | password   |
-      | user1    | 1234567890 |
+      | Alice    | 1234567890 |
     And the user has browsed to the login page
-    And the user has logged in with username "user1" and password "1234567890" using the webUI
+    And the user has logged in with username "Alice" and password "1234567890" using the webUI
 
   Scenario Outline: user creates a public share link with enough letters
     When the user creates a new public link for folder "simple-folder" using the webUI with

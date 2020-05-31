@@ -2,11 +2,11 @@
 Feature: enforce the required number of uppercase letters in a password when a guest user sets its own password
 
   Background:
-    Given user "user0" has been created with default attributes and skeleton files
+    Given user "Alice" has been created with default attributes and skeleton files
     And the administrator has enabled the uppercase letters password policy
     And the administrator has set the uppercase letters required to "3"
     And the administrator has created guest user "guest" with email "guest@example.com"
-    And user "user0" has shared folder "/simple-folder" with user "guest@example.com"
+    And user "Alice" has shared folder "/simple-folder" with user "guest@example.com"
 
   Scenario Outline: A guest user sets own password to a string with enough uppercase letters
     When guest user "guest" registers and sets password to "<password>" using the webUI

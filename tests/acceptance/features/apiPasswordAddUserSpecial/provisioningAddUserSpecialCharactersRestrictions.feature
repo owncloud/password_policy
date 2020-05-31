@@ -13,12 +13,12 @@ Feature: enforce the restricted special characters in a password when creating a
 
   Scenario Outline: admin creates a user with a password that has enough restricted special characters
     Given using OCS API version "<ocs-api-version>"
-    And user "brand-new-user" has been deleted
-    When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
+    And user "Alice" has been deleted
+    When the administrator sends a user creation request for user "Alice" password "<password>" using the provisioning API
     Then the OCS status code should be "<ocs-status>"
     And the HTTP status code should be "200"
-    And user "brand-new-user" should exist
-    And the content of file "textfile0.txt" for user "brand-new-user" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
+    And user "Alice" should exist
+    And the content of file "textfile0.txt" for user "Alice" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
     Examples:
       | password              | ocs-api-version | ocs-status |
       | 3$Special%Characters^ | 1               | 100        |
@@ -28,8 +28,8 @@ Feature: enforce the restricted special characters in a password when creating a
 
   Scenario Outline: admin creates a user with a password that does not have enough restricted special characters
     Given using OCS API version "<ocs-api-version>"
-    And user "brand-new-user" has been deleted
-    When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
+    And user "Alice" has been deleted
+    When the administrator sends a user creation request for user "Alice" password "<password>" using the provisioning API
     Then the HTTP status code should be "<http-status>"
     And the HTTP reason phrase should be "<http-reason-phrase>"
     And the OCS status code should be "<ocs-status>"
@@ -37,7 +37,7 @@ Feature: enforce the restricted special characters in a password when creating a
       """
       The password contains too few special characters. At least 3 special characters ($%^&*) are required.
       """
-    And user "brand-new-user" should not exist
+    And user "Alice" should not exist
     Examples:
       | password                 | ocs-api-version | ocs-status | http-status | http-reason-phrase |
       | NoSpecialCharacters123   | 1               | 101        | 200         | OK                 |
@@ -47,8 +47,8 @@ Feature: enforce the restricted special characters in a password when creating a
 
   Scenario Outline: admin creates a user with a password that has invalid special characters
     Given using OCS API version "<ocs-api-version>"
-    And user "brand-new-user" has been deleted
-    When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
+    And user "Alice" has been deleted
+    When the administrator sends a user creation request for user "Alice" password "<password>" using the provisioning API
     Then the HTTP status code should be "<http-status>"
     And the HTTP reason phrase should be "<http-reason-phrase>"
     And the OCS status code should be "<ocs-status>"
@@ -56,7 +56,7 @@ Feature: enforce the restricted special characters in a password when creating a
       """
       The password contains invalid special characters. Only $%^&* are allowed.
       """
-    And user "brand-new-user" should not exist
+    And user "Alice" should not exist
     Examples:
       | password                                 | ocs-api-version | ocs-status | http-status | http-reason-phrase |
       | Only#Invalid!Special@Characters          | 1               | 101        | 200         | OK                 |

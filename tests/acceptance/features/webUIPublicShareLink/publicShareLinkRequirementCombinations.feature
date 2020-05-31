@@ -18,9 +18,9 @@ Feature: enforce combinations of password policies on the public share link page
     And the administrator has set the special characters required to "3"
     And these users have been created with default attributes and skeleton files:
       | username | password        |
-      | user1    | aA1!bB2#cC&deee |
+      | Alice    | aA1!bB2#cC&deee |
     And the user has browsed to the login page
-    And the user has logged in with username "user1" and password "aA1!bB2#cC&deee" using the webUI
+    And the user has logged in with username "Alice" and password "aA1!bB2#cC&deee" using the webUI
 
   Scenario Outline: user creates a public share link with valid password
     When the user creates a new public link for folder "simple-folder" using the webUI with

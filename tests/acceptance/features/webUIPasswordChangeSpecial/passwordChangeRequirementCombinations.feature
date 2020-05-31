@@ -18,14 +18,14 @@ Feature: enforce combinations of password policies on the password change UI pag
     And the administrator has set the special characters required to "3"
     And these users have been created with default attributes and skeleton files:
       | username | password        |
-      | user1    | aA1!bB2#cC&deee |
+      | Alice    | aA1!bB2#cC&deee |
     And the user has browsed to the login page
-    And the user has logged in with username "user1" and password "aA1!bB2#cC&deee" using the webUI
+    And the user has logged in with username "Alice" and password "aA1!bB2#cC&deee" using the webUI
     And the user has browsed to the personal general settings page
 
   Scenario Outline: user changes their password to a valid string
     When the user changes the password to "<password>" using the webUI
-    And the user re-logs in with username "user1" and password "<password>" using the webUI
+    And the user re-logs in with username "Alice" and password "<password>" using the webUI
     Then the user should be redirected to a webUI page with the title "Files - ownCloud"
     Examples:
       | password                  |
@@ -51,7 +51,7 @@ Feature: enforce combinations of password policies on the password change UI pag
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
     When the user changes the password to "<password>" using the webUI
-    And the user re-logs in with username "user1" and password "<password>" using the webUI
+    And the user re-logs in with username "Alice" and password "<password>" using the webUI
     Then the user should be redirected to a webUI page with the title "Files - ownCloud"
     Examples:
       | password                  |

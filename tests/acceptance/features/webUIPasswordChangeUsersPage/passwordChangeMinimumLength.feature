@@ -10,14 +10,14 @@ Feature: enforce the minimum length of a password on the password change from us
     And the administrator has set the minimum characters required to "10"
     And these users have been created with default attributes and skeleton files:
       | username | password   |
-      | user1    | 1234567890 |
+      | Alice    | 1234567890 |
     And the user has browsed to the login page
     And user admin has logged in using the webUI
     And the user has browsed to the users page
 
   Scenario Outline: Admin changes user's their password to a long-enough string
-    When the administrator changes the password of user "user1" to "<password>" using the webUI
-    And the user re-logs in with username "user1" and password "<password>" using the webUI
+    When the administrator changes the password of user "Alice" to "<password>" using the webUI
+    And the user re-logs in with username "Alice" and password "<password>" using the webUI
     Then the user should be redirected to a webUI page with the title "Files - ownCloud"
     Examples:
       | password             |
@@ -25,7 +25,7 @@ Feature: enforce the minimum length of a password on the password change from us
       | morethan10characters |
 
   Scenario Outline: Admin tries to change user's password to a string that is too short
-    When the administrator changes the password of user "user1" to "<password>" using the webUI
+    When the administrator changes the password of user "Alice" to "<password>" using the webUI
     Then notifications should be displayed on the webUI with the text
       | The password is too short. At least 10 characters are required. |
     Examples:

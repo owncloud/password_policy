@@ -10,17 +10,17 @@ Feature: enforce the number of last passwords that must not be used when resetti
     And the administrator has set the number of last passwords that should not be used to "3"
     And these users have been created with default attributes and skeleton files:
       | username | password |
-      | user1    | Number1  |
-    And the administrator has reset the password of user "user1" to "Number2"
-    And the administrator has reset the password of user "user1" to "Number3"
-    And the administrator has reset the password of user "user1" to "Number4"
+      | Alice    | Number1  |
+    And the administrator has reset the password of user "Alice" to "Number2"
+    And the administrator has reset the password of user "Alice" to "Number3"
+    And the administrator has reset the password of user "Alice" to "Number4"
     And the user has browsed to the login page
     And user admin has logged in using the webUI
     And the user has browsed to the users page
 
   Scenario Outline: Admin changes user's password to a string that is not one of their last 3 passwords
-    When the administrator changes the password of user "user1" to "<password>" using the webUI
-    And the user re-logs in with username "user1" and password "<password>" using the webUI
+    When the administrator changes the password of user "Alice" to "<password>" using the webUI
+    And the user re-logs in with username "Alice" and password "<password>" using the webUI
     Then the user should be redirected to a webUI page with the title "Files - ownCloud"
     Examples:
       | password     |
@@ -28,7 +28,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
       | AnotherValue |
 
   Scenario Outline: Admin tries to change user's password to one of their last 3 passwords
-    When the administrator changes the password of user "user1" to "<password>" using the webUI
+    When the administrator changes the password of user "Alice" to "<password>" using the webUI
     Then notifications should be displayed on the webUI with the text
       | <error-message> |
     Examples:

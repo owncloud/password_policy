@@ -18,14 +18,14 @@ Feature: enforce combinations of password policies on the password change from u
     And the administrator has set the special characters required to "3"
     And these users have been created with default attributes and skeleton files:
       | username | password        |
-      | user1    | aA1!bB2#cC&deee |
+      | Alice    | aA1!bB2#cC&deee |
     And the user has browsed to the login page
     And user admin has logged in using the webUI
     And the user has browsed to the users page
 
   Scenario Outline: Admin changes user's password to a valid string
-    When the administrator changes the password of user "user1" to "<password>" using the webUI
-    And the user re-logs in with username "user1" and password "<password>" using the webUI
+    When the administrator changes the password of user "Alice" to "<password>" using the webUI
+    And the user re-logs in with username "Alice" and password "<password>" using the webUI
     Then the user should be redirected to a webUI page with the title "Files - ownCloud"
     Examples:
       | password                  |
@@ -33,7 +33,7 @@ Feature: enforce combinations of password policies on the password change from u
       | More%Than$15!Characters-0 |
 
   Scenario Outline: Admin tries to change user's password to an invalid string
-    When the administrator changes the password of user "user1" to "<password>" using the webUI
+    When the administrator changes the password of user "Alice" to "<password>" using the webUI
     Then notifications should be displayed on the webUI with the text
       | <message> |
     Examples:
@@ -51,8 +51,8 @@ Feature: enforce combinations of password policies on the password change from u
   Scenario Outline: Admin changes user's password using valid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
-    When the administrator changes the password of user "user1" to "<password>" using the webUI
-    And the user re-logs in with username "user1" and password "<password>" using the webUI
+    When the administrator changes the password of user "Alice" to "<password>" using the webUI
+    And the user re-logs in with username "Alice" and password "<password>" using the webUI
     Then the user should be redirected to a webUI page with the title "Files - ownCloud"
     Examples:
       | password                  |
@@ -62,7 +62,7 @@ Feature: enforce combinations of password policies on the password change from u
   Scenario Outline: Admin tries to change user's password using invalid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
-    When the administrator changes the password of user "user1" to "<password>" using the webUI
+    When the administrator changes the password of user "Alice" to "<password>" using the webUI
     Then notifications should be displayed on the webUI with the text
       | <message> |
     Examples:

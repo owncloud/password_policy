@@ -11,12 +11,12 @@ Feature: enforce the required number of uppercase letters in a password when cre
 
   Scenario Outline: admin creates a user with a password that has enough uppercase letters
     Given using OCS API version "<ocs-api-version>"
-    And user "brand-new-user" has been deleted
-    When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
+    And user "Alice" has been deleted
+    When the administrator sends a user creation request for user "Alice" password "<password>" using the provisioning API
     Then the OCS status code should be "<ocs-status>"
     And the HTTP status code should be "200"
-    And user "brand-new-user" should exist
-    And the content of file "textfile0.txt" for user "brand-new-user" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
+    And user "Alice" should exist
+    And the content of file "textfile0.txt" for user "Alice" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
     Examples:
       | password                  | ocs-api-version | ocs-status |
       | 3UpperCaseLetters         | 1               | 100        |
@@ -26,8 +26,8 @@ Feature: enforce the required number of uppercase letters in a password when cre
 
   Scenario Outline: admin creates a user with a password that does not have enough uppercase letters
     Given using OCS API version "<ocs-api-version>"
-    And user "brand-new-user" has been deleted
-    When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
+    And user "Alice" has been deleted
+    When the administrator sends a user creation request for user "Alice" password "<password>" using the provisioning API
     Then the HTTP status code should be "<http-status>"
     And the HTTP reason phrase should be "<http-reason-phrase>"
     And the OCS status code should be "<ocs-status>"
@@ -35,7 +35,7 @@ Feature: enforce the required number of uppercase letters in a password when cre
       """
       The password contains too few uppercase letters. At least 3 uppercase letters are required.
       """
-    And user "brand-new-user" should not exist
+    And user "Alice" should not exist
     Examples:
       | password       | ocs-api-version | ocs-status | http-status | http-reason-phrase |
       | 0uppercase     | 1               | 101        | 200         | OK                 |

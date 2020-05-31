@@ -31,7 +31,7 @@ Feature: enforce the required number of numbers in a password on user creation
       | Only22Numbers |
 
   Scenario Outline: user sets their password to a string with enough numbers after being created with an Email address only
-    When the administrator creates a user with the name "user1" and the email "guiusr1@owncloud" without a password using the webUI
+    When the administrator creates a user with the name "Alice" and the email "guiusr1@owncloud" without a password using the webUI
     And the administrator logs out of the webUI
     And the user follows the password set link received by "guiusr1@owncloud" using the webUI
     And the user sets the password to "<password>" and confirms with the same password using the webUI
@@ -40,7 +40,7 @@ Feature: enforce the required number of numbers in a password on user creation
       """
       Password changed successfully
       """
-    When the user logs in with username "user1" and password "<password>" using the webUI
+    When the user logs in with username "Alice" and password "<password>" using the webUI
     Then the user should be redirected to a webUI page with the title "Files - %productname%"
     Examples:
       | password        |
@@ -48,7 +48,7 @@ Feature: enforce the required number of numbers in a password on user creation
       | moreNumbers1234 |
 
   Scenario Outline: user tries to set their password to a string that has too few numbers after being created with an Email address only
-    When the administrator creates a user with the name "user1" and the email "guiusr1@owncloud" without a password using the webUI
+    When the administrator creates a user with the name "Alice" and the email "guiusr1@owncloud" without a password using the webUI
     And the administrator logs out of the webUI
     And the user follows the password set link received by "guiusr1@owncloud" using the webUI
     And the user sets the password to "<password>" and confirms with the same password using the webUI

@@ -10,14 +10,14 @@ Feature: enforce the required number of uppercase letters in a password on the p
     And the administrator has set the uppercase letters required to "3"
     And these users have been created with default attributes and skeleton files:
       | username | password   |
-      | user1    | abcABC1234 |
+      | Alice    | abcABC1234 |
     And the user has browsed to the login page
-    And the user has logged in with username "user1" and password "abcABC1234" using the webUI
+    And the user has logged in with username "Alice" and password "abcABC1234" using the webUI
     And the user has browsed to the personal general settings page
 
   Scenario Outline: user changes their password to a string with enough uppercase letters
     When the user changes the password to "<password>" using the webUI
-    And the user re-logs in with username "user1" and password "<password>" using the webUI
+    And the user re-logs in with username "Alice" and password "<password>" using the webUI
     Then the user should be redirected to a webUI page with the title "Files - ownCloud"
     Examples:
       | password                  |
