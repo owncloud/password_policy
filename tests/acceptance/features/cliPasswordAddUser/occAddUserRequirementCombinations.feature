@@ -20,11 +20,11 @@ Feature: enforce combinations of password policies when creating a user
   Scenario Outline: admin creates a user with a password that meets the password policy
     When the administrator creates this user using the occ command:
       | username | password   |
-      | user1    | <password> |
+      | Alice    | <password> |
     Then the command should have been successful
-    And the command output should contain the text 'The user "user1" was created successfully'
-    And user "user1" should exist
-    And the content of file "textfile0.txt" for user "user1" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
+    And the command output should contain the text 'The user "Alice" was created successfully'
+    And user "Alice" should exist
+    And the content of file "textfile0.txt" for user "Alice" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
     Examples:
       | password                  |
       | 15***UPPloweZZZ           |
@@ -35,10 +35,10 @@ Feature: enforce combinations of password policies when creating a user
   Scenario Outline: admin creates a user with a password that does not meet the password policy
     When the administrator creates this user using the occ command:
       | username | password   |
-      | user1    | <password> |
+      | Alice    | <password> |
     Then the command should have failed with exit code 1
     And the command error output should contain the text '<message>'
-    And user "user1" should not exist
+    And user "Alice" should not exist
     Examples:
       | password                       | message                                                                   |
         # where just one of the requirements is not met
@@ -56,10 +56,10 @@ Feature: enforce combinations of password policies when creating a user
   Scenario Outline: admin creates a user with a password that does not meet the password policy
     When the administrator creates this user using the occ command:
       | username | password   |
-      | user1    | <password> |
+      | Alice    | <password> |
     Then the command should have failed with exit code 1
     And the command error output should contain the text '<message>'
-    And user "user1" should not exist
+    And user "Alice" should not exist
     Examples:
       | password                       | message                                                                   |
         # where just one of the requirements is not met
@@ -77,10 +77,10 @@ Feature: enforce combinations of password policies when creating a user
     And the administrator has set the restricted special characters required to "$%^&*"
     When the administrator creates this user using the occ command:
       | username | password   |
-      | user1    | <password> |
+      | Alice    | <password> |
     Then the command should have been successful
-    And the command output should contain the text 'The user "user1" was created successfully'
-    And user "user1" should exist
+    And the command output should contain the text 'The user "Alice" was created successfully'
+    And user "Alice" should exist
     Examples:
       | password                  |
       | 15%&*UPPloweZZZ           |
@@ -93,10 +93,10 @@ Feature: enforce combinations of password policies when creating a user
     And the administrator has set the restricted special characters required to "$%^&*"
     When the administrator creates this user using the occ command:
       | username | password   |
-      | user1    | <password> |
+      | Alice    | <password> |
     Then the command should have failed with exit code 1
     And the command error output should contain the text '<message>'
-    And user "user1" should not exist
+    And user "Alice" should not exist
     Examples:
       | password        | message                                                                   |
       | 15#!!UPPloweZZZ | The password contains invalid special characters. Only $%^&* are allowed. |
@@ -111,10 +111,10 @@ Feature: enforce combinations of password policies when creating a user
     And the administrator has set the restricted special characters required to "$%^&*"
     When the administrator creates this user using the occ command:
       | username | password   |
-      | user1    | <password> |
+      | Alice    | <password> |
     Then the command should have failed with exit code 1
     And the command error output should contain the text '<message>'
-    And user "user1" should not exist
+    And user "Alice" should not exist
     Examples:
       | password        | message                                                                   |
       | 15#!!UPPloweZZZ | The password contains invalid special characters. Only $%^&* are allowed. |

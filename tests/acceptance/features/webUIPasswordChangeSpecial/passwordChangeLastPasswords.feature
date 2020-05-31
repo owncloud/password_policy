@@ -10,17 +10,17 @@ Feature: enforce the number of last passwords that must not be used when resetti
     And the administrator has set the number of last passwords that should not be used to "3"
     And these users have been created with default attributes and skeleton files:
       | username | password |
-      | user1    | Number1  |
-    And the administrator has reset the password of user "user1" to "Number2"
-    And the administrator has reset the password of user "user1" to "Number3"
-    And the administrator has reset the password of user "user1" to "Number4"
+      | Alice    | Number1  |
+    And the administrator has reset the password of user "Alice" to "Number2"
+    And the administrator has reset the password of user "Alice" to "Number3"
+    And the administrator has reset the password of user "Alice" to "Number4"
     And the user has browsed to the login page
-    And the user has logged in with username "user1" and password "Number4" using the webUI
+    And the user has logged in with username "Alice" and password "Number4" using the webUI
     And the user has browsed to the personal general settings page
 
   Scenario Outline: user changes their password to a string that is not one of their last 3 passwords
     When the user changes the password to "<password>" using the webUI
-    And the user re-logs in with username "user1" and password "<password>" using the webUI
+    And the user re-logs in with username "Alice" and password "<password>" using the webUI
     Then the user should be redirected to a webUI page with the title "Files - ownCloud"
     Examples:
       | password     |

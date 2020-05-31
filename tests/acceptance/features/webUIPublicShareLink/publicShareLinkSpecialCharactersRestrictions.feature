@@ -12,9 +12,9 @@ Feature: enforce the restricted special characters in a password on the public s
     And the administrator has set the restricted special characters required to "$%^&*"
     And these users have been created with default attributes and skeleton files:
       | username | password   |
-      | user1    | a$b%c^1234 |
+      | Alice    | a$b%c^1234 |
     And the user has browsed to the login page
-    And the user has logged in with username "user1" and password "a$b%c^1234" using the webUI
+    And the user has logged in with username "Alice" and password "a$b%c^1234" using the webUI
 
   Scenario Outline: user creates a public share link with enough restricted special characters
     When the user creates a new public link for folder "simple-folder" using the webUI with

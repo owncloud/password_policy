@@ -46,7 +46,7 @@ Feature: enforce combinations of password policies on user creation
       | aA!123456789012345             | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
 
   Scenario Outline: user sets their password to a string with valid restricted special characters after being created with an Email address only
-    When the administrator creates a user with the name "user1" and the email "guiusr1@owncloud" without a password using the webUI
+    When the administrator creates a user with the name "Alice" and the email "guiusr1@owncloud" without a password using the webUI
     And the administrator logs out of the webUI
     And the user follows the password set link received by "guiusr1@owncloud" using the webUI
     And the user sets the password to "<password>" and confirms with the same password using the webUI
@@ -55,7 +55,7 @@ Feature: enforce combinations of password policies on user creation
       """
       Password changed successfully
       """
-    When the user logs in with username "user1" and password "<password>" using the webUI
+    When the user logs in with username "Alice" and password "<password>" using the webUI
     Then the user should be redirected to a webUI page with the title "Files - %productname%"
     Examples:
       | password                  |
@@ -65,7 +65,7 @@ Feature: enforce combinations of password policies on user creation
   Scenario Outline: user tries to set their password to a string with invalid restricted special characters after being created with an Email address only
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
-    When the administrator creates a user with the name "user1" and the email "guiusr1@owncloud" without a password using the webUI
+    When the administrator creates a user with the name "Alice" and the email "guiusr1@owncloud" without a password using the webUI
     And the administrator logs out of the webUI
     And the user follows the password set link received by "guiusr1@owncloud" using the webUI
     And the user sets the password to "<password>" and confirms with the same password using the webUI

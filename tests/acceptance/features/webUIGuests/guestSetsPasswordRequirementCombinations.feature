@@ -2,7 +2,7 @@
 Feature: enforce combinations of password policies when a guest user sets its own password
 
   Background:
-    Given user "user0" has been created with default attributes and skeleton files
+    Given user "Alice" has been created with default attributes and skeleton files
     And the administrator has enabled the minimum characters password policy
     And the administrator has set the minimum characters required to "15"
     And the administrator has enabled the lowercase letters password policy
@@ -14,7 +14,7 @@ Feature: enforce combinations of password policies when a guest user sets its ow
     And the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
     And the administrator has created guest user "guest" with email "guest@example.com"
-    And user "user0" has shared folder "/simple-folder" with user "guest@example.com"
+    And user "Alice" has shared folder "/simple-folder" with user "guest@example.com"
 
   Scenario Outline: A guest user sets own password to a valid string
     When guest user "guest" registers and sets password to "<password>" using the webUI
@@ -41,4 +41,3 @@ Feature: enforce combinations of password policies when a guest user sets its ow
         # where multiple requirements are not met, only the first error message is shown to the user
       | aA!1                           | The password is too short. At least 15 characters are required.                               |
       | aA!123456789012345             | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
-

@@ -8,11 +8,11 @@ Feature: enforce the required number of uppercase letters in a password on the p
   Background:
     Given these users have been created with default attributes and skeleton files:
       | username | password |
-      | user1    | abc123   |
+      | Alice    | abc123   |
     And the administrator has enabled the uppercase letters password policy
     And the administrator has set the uppercase letters required to "3"
     And the user has browsed to the login page
-    And the user has logged in with username "user1" and password "abc123" using the webUI
+    And the user has logged in with username "Alice" and password "abc123" using the webUI
 
   Scenario Outline: user creates a public share link with enough uppercase letters
     When the user creates a new public link for folder "simple-folder" using the webUI with

@@ -6,8 +6,8 @@ Feature: enforce public link expiration policies
   So public shares have default expiration if the expiration date is not changed
 
   Background:
-    Given user "user1" has been created with default attributes and skeleton files
-    And user "user1" has logged in using the webUI
+    Given user "Alice" has been created with default attributes and skeleton files
+    And user "Alice" has logged in using the webUI
 
   Scenario: user tries to create a public share without expiration date and password when "days maximum until link expires if password is not set" is enabled
     Given the administrator has enabled the days until link expires if password is not set public link password policy
@@ -70,7 +70,7 @@ Feature: enforce public link expiration policies
     And the administrator has set the value for the maximum days until link expires if password is not set to "10"
     When the user creates a new public link for folder "simple-folder" using the webUI with
       | expiration | +10 days |
-	And the public accesses the last created public link using the webUI
+    And the public accesses the last created public link using the webUI
     Then file "lorem.txt" should be listed on the webUI
 
   Scenario: user creates a public share with password and expiration date when "days maximum until link expires if password is set" is enabled and the default maximum days is changed
@@ -127,7 +127,7 @@ Feature: enforce public link expiration policies
   Scenario: user decreases the default maximum days until link expires if password is not set and then edits expiration date of the already created public link
     Given the administrator has enabled the days until link expires if password is not set public link password policy
     And the user has created a new public link for folder "simple-folder" using the webUI with
-      | expiration | +6 days  |
+      | expiration | +6 days |
     And the administrator has set the value for the maximum days until link expires if password is not set to "3"
     And the user has reloaded the current page of the webUI
     When the user changes the expiration of the public link "Public link" of folder "simple-folder" to "+5 days"

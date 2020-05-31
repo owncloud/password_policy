@@ -12,11 +12,11 @@ Feature: enforce the required number of uppercase letters in a password when cre
   Scenario Outline: admin creates a user with a password that has enough uppercase letters
     When the administrator creates this user using the occ command:
       | username | password   |
-      | user1    | <password> |
+      | Alice    | <password> |
     Then the command should have been successful
-    And the command output should contain the text 'The user "user1" was created successfully'
-    And user "user1" should exist
-    And the content of file "textfile0.txt" for user "user1" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
+    And the command output should contain the text 'The user "Alice" was created successfully'
+    And user "Alice" should exist
+    And the content of file "textfile0.txt" for user "Alice" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
     Examples:
       | password                  |
       | 3UpperCaseLetters         |
@@ -27,11 +27,11 @@ Feature: enforce the required number of uppercase letters in a password when cre
   Scenario Outline: admin creates a user with a password that does not have enough uppercase letters
     When the administrator creates this user using the occ command:
       | username | password   |
-      | user1    | <password> |
+      | Alice    | <password> |
     Then the command should have failed with exit code 1
     # Long text output comes on multiple lines. Here we just check for enough that will fit on one of the lines.
     And the command error output should contain the text 'The password contains too few uppercase letters. At least 3 uppercase'
-    And user "user1" should not exist
+    And user "Alice" should not exist
     Examples:
       | password       |
       | 0uppercase     |
@@ -42,11 +42,11 @@ Feature: enforce the required number of uppercase letters in a password when cre
   Scenario Outline: admin creates a user with a password that does not have enough uppercase letters
     When the administrator creates this user using the occ command:
       | username | password   |
-      | user1    | <password> |
+      | Alice    | <password> |
     Then the command should have failed with exit code 1
     # Long text output comes on multiple lines. Here we just check for enough that will fit on one of the lines.
     And the command error output should contain the text 'The password contains too few uppercase letters. At least 3 uppercase'
-    And user "user1" should not exist
+    And user "Alice" should not exist
     Examples:
       | password       |
       | 0uppercase     |

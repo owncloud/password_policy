@@ -12,17 +12,17 @@ Feature: enforce the required number of restricted special characters in a passw
     And the administrator has set the restricted special characters required to "$%^&*"
     And these users have been created with default attributes and skeleton files:
       | username | password   |
-      | user1    | a$b%c^1234 |
+      | Alice    | a$b%c^1234 |
 
   Scenario Outline: admin changes a user password to one that has enough restricted special characters
     Given using OCS API version "<ocs-api-version>"
-    When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/user1" with body
+    When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/Alice" with body
       | key   | password   |
       | value | <password> |
     Then the OCS status code should be "<ocs-status>"
     And the HTTP status code should be "200"
-    And the content of file "textfile0.txt" for user "user1" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
-    But user "user1" using password "a$b%c^1234" should not be able to download file "textfile0.txt"
+    And the content of file "textfile0.txt" for user "Alice" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
+    But user "Alice" using password "a$b%c^1234" should not be able to download file "textfile0.txt"
     Examples:
       | password              | ocs-api-version | ocs-status |
       | 3$Special%Characters^ | 1               | 100        |
@@ -32,7 +32,7 @@ Feature: enforce the required number of restricted special characters in a passw
 
   Scenario Outline: admin changes a user password to one that does not have enough restricted special characters
     Given using OCS API version "<ocs-api-version>"
-    When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/user1" with body
+    When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/Alice" with body
       | key   | password   |
       | value | <password> |
     Then the HTTP status code should be "<http-status>"
@@ -42,8 +42,8 @@ Feature: enforce the required number of restricted special characters in a passw
       """
       The password contains too few special characters. At least 3 special characters ($%^&*) are required.
       """
-    And the content of file "textfile0.txt" for user "user1" using password "a$b%c^1234" should be "ownCloud test text file 0" plus end-of-line
-    But user "user1" using password "<password>" should not be able to download file "textfile0.txt"
+    And the content of file "textfile0.txt" for user "Alice" using password "a$b%c^1234" should be "ownCloud test text file 0" plus end-of-line
+    But user "Alice" using password "<password>" should not be able to download file "textfile0.txt"
     Examples:
       | password                 | ocs-api-version | ocs-status | http-status | http-reason-phrase |
       | NoSpecialCharacters123   | 1               | 403        | 200         | OK                 |
@@ -53,7 +53,7 @@ Feature: enforce the required number of restricted special characters in a passw
 
   Scenario Outline: admin changes a user password to one that has invalid special characters
     Given using OCS API version "<ocs-api-version>"
-    When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/user1" with body
+    When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/Alice" with body
       | key   | password   |
       | value | <password> |
     Then the HTTP status code should be "<http-status>"
@@ -63,8 +63,8 @@ Feature: enforce the required number of restricted special characters in a passw
       """
       The password contains invalid special characters. Only $%^&* are allowed.
       """
-    And the content of file "textfile0.txt" for user "user1" using password "a$b%c^1234" should be "ownCloud test text file 0" plus end-of-line
-    But user "user1" using password "<password>" should not be able to download file "textfile0.txt"
+    And the content of file "textfile0.txt" for user "Alice" using password "a$b%c^1234" should be "ownCloud test text file 0" plus end-of-line
+    But user "Alice" using password "<password>" should not be able to download file "textfile0.txt"
     Examples:
       | password                                 | ocs-api-version | ocs-status | http-status | http-reason-phrase |
       | Only#Invalid!Special@Characters          | 1               | 403        | 200         | OK                 |

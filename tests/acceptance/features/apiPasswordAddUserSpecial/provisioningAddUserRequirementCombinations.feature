@@ -19,12 +19,12 @@ Feature: enforce combinations of password policies when creating a user
 
   Scenario Outline: admin creates a user with a password that meets the password policy
     Given using OCS API version "<ocs-api-version>"
-    And user "brand-new-user" has been deleted
-    When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
+    And user "Alice" has been deleted
+    When the administrator sends a user creation request for user "Alice" password "<password>" using the provisioning API
     Then the OCS status code should be "<ocs-status>"
     And the HTTP status code should be "200"
-    And user "brand-new-user" should exist
-    And the content of file "textfile0.txt" for user "brand-new-user" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
+    And user "Alice" should exist
+    And the content of file "textfile0.txt" for user "Alice" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
     Examples:
       | password                  | ocs-api-version | ocs-status |
       | 15***UPPloweZZZ           | 1               | 100        |
@@ -34,13 +34,13 @@ Feature: enforce combinations of password policies when creating a user
 
   Scenario Outline: admin creates a user with a password that does not meet the password policy
     Given using OCS API version "<ocs-api-version>"
-    And user "brand-new-user" has been deleted
-    When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
+    And user "Alice" has been deleted
+    When the administrator sends a user creation request for user "Alice" password "<password>" using the provisioning API
     Then the HTTP status code should be "<http-status>"
     And the HTTP reason phrase should be "<http-reason-phrase>"
     And the OCS status code should be "<ocs-status>"
     And the OCS status message should be "<ocs-status-message>"
-    And user "brand-new-user" should not exist
+    And user "Alice" should not exist
     Examples:
       | password                       | ocs-api-version | ocs-status | http-status | http-reason-phrase | ocs-status-message                                                                            |
         # just one of the requirements is not met
@@ -64,12 +64,12 @@ Feature: enforce combinations of password policies when creating a user
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
     And using OCS API version "<ocs-api-version>"
-    And user "brand-new-user" has been deleted
-    When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
+    And user "Alice" has been deleted
+    When the administrator sends a user creation request for user "Alice" password "<password>" using the provisioning API
     Then the OCS status code should be "<ocs-status>"
     And the HTTP status code should be "200"
-    And user "brand-new-user" should exist
-    And the content of file "textfile0.txt" for user "brand-new-user" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
+    And user "Alice" should exist
+    And the content of file "textfile0.txt" for user "Alice" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
     Examples:
       | password                  | ocs-api-version | ocs-status |
       | 15%&*UPPloweZZZ           | 1               | 100        |
@@ -81,13 +81,13 @@ Feature: enforce combinations of password policies when creating a user
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
     And using OCS API version "<ocs-api-version>"
-    And user "brand-new-user" has been deleted
-    When the administrator sends a user creation request for user "brand-new-user" password "<password>" using the provisioning API
+    And user "Alice" has been deleted
+    When the administrator sends a user creation request for user "Alice" password "<password>" using the provisioning API
     Then the HTTP status code should be "<http-status>"
     And the HTTP reason phrase should be "<http-reason-phrase>"
     And the OCS status code should be "<ocs-status>"
     And the OCS status message should be "<ocs-status-message>"
-    And user "brand-new-user" should not exist
+    And user "Alice" should not exist
     Examples:
       | password        | ocs-api-version | ocs-status | http-status | http-reason-phrase | ocs-status-message                                                                          |
       | 15#!!UPPloweZZZ | 1               | 101        | 200         | OK                 | The password contains invalid special characters. Only $%^&* are allowed.                   |

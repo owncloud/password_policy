@@ -10,9 +10,9 @@ Feature: enforce the required number of lowercase letters in a password on the p
     And the administrator has set the lowercase letters required to "3"
     And these users have been created with default attributes and skeleton files:
       | username | password   |
-      | user1    | abcABC1234 |
+      | Alice    | abcABC1234 |
     And the user has browsed to the login page
-    And the user has logged in with username "user1" and password "abcABC1234" using the webUI
+    And the user has logged in with username "Alice" and password "abcABC1234" using the webUI
 
   Scenario Outline: user creates a public share link with enough lowercase letters
     When the user creates a new public link for folder "simple-folder" using the webUI with
