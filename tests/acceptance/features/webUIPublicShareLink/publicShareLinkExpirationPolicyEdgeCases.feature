@@ -16,12 +16,12 @@ Feature: enforce public link expiration policies on public links only
   @issue-287 @skipOnOcV10.3 @skipOnOcV10.4.0
   Scenario: user tries to create a user share when "days maximum until link expires if password is not set" is enabled
     Given the administrator has enabled the days until link expires if password is not set public link password policy
-    When the user shares folder "folder-to-share" with user "Brian Murphy" using the webUI
+    When the user shares folder "folder-to-share" with user "Brian" using the webUI
     Then as "Brian" folder "folder-to-share" should exist
 
   Scenario: user tries to create a user share when "days maximum until link expires if password is set" is enabled
     Given the administrator has enabled the days until link expires if password is set public link password policy
-    When the user shares folder "folder-to-share" with user "Brian Murphy" using the webUI
+    When the user shares folder "folder-to-share" with user "Brian" using the webUI
     And as "Brian" folder "folder-to-share" should exist
 
   @issue-287 @skipOnOcV10.3 @skipOnOcV10.4.0
