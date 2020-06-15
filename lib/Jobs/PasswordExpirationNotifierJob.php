@@ -167,7 +167,6 @@ class PasswordExpirationNotifierJob extends TimedJob {
 				'user' => $this->userManager->get($passInfo->getUid()),
 				'passwordExpireInSeconds' => $expirationTime
 			]);
-		/* @phpstan-ignore-next-line */
 		$this->eventDispatcher->dispatch($aboutToExpireEvent, 'user.passwordAboutToExpire');
 	}
 
@@ -213,7 +212,6 @@ class PasswordExpirationNotifierJob extends TimedJob {
 				'user' => $this->userManager->get($passInfo->getUid()),
 				'passwordExpireInSeconds' => $expirationTime
 			]);
-		/* @phpstan-ignore-next-line */
 		$this->eventDispatcher->dispatch($expiredEvent, 'user.passwordExpired');
 	}
 
