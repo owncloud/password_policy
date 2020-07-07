@@ -49,6 +49,7 @@ default:
         - FeatureContext: *common_feature_context_params
         - OccContext:
         - PublicWebDavContext:
+        - WebDavPropertiesContext:
 
     apiGuests:
       paths:
