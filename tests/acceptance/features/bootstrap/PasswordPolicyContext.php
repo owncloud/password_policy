@@ -39,6 +39,12 @@ class PasswordPolicyContext implements Context {
 	 */
 	private $featureContext;
 
+	/**
+	 *
+	 * @var OccContext
+	 */
+	private $occContext;
+
 	private $appParameterValues = null;
 
 	/**
@@ -358,6 +364,31 @@ class PasswordPolicyContext implements Context {
 			'spv_user_password_force_change_on_first_login_checked',
 			$this->appSettingIsExpectedToBe($action)
 		);
+	}
+
+	/**
+	 * @Given the administrator has expired the password of user :username
+	 *
+	 * @param string $username
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdministratorExpiresThePasswordOfUser($username) {
+		$this->expireUserPassword($username);
+		$this->occContext->theCommandShouldHaveBeenSuccessful();
+	}
+
+	/**
+	 * @When the administrator expires the password of user :username using the occ command
+	 *
+	 * @param string $username
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function theAdministratorHasExpiredThePasswordOfUser($username) {
+		$this->expireUserPassword($username);
 	}
 
 	/**
@@ -920,6 +951,20 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
+	 * Expire user password
+	 *
+	 * @param string $username
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function expireUserPassword($username) {
+		$username = $this->featureContext->getActualUsername($username);
+		$this->featureContext->runOcc(
+			["user:expire-password -u $username"]
+		);
+	}
+	/**
 	 *
 	 * @param string $setting
 	 *
@@ -956,6 +1001,7 @@ class PasswordPolicyContext implements Context {
 		$environment = $scope->getEnvironment();
 		// Get all the contexts you need in this context
 		$this->featureContext = $environment->getContext('FeatureContext');
+		$this->occContext = $environment->getContext('OccContext');
 		SetupHelper::init(
 			$this->featureContext->getAdminUsername(),
 			$this->featureContext->getAdminPassword(),

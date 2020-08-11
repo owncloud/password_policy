@@ -72,6 +72,7 @@ config = {
 				'webUIPublicShareLink': 'webUIPublicShare',
 				'webUIPasswordChangeUsersPage': 'webUIPwdChgUP',
 				'webUIPasswordChangeUsersPageSpecial': 'webUIPwdChgUPSp',
+				'webUIPasswordExpire': 'webUIPwdExpire',
 
 			},
 			'browsers': [
@@ -111,6 +112,7 @@ config = {
 			'suites': [
 				'cliPasswordAddUser',
 				'cliPasswordChange',
+				'cliPasswordExpire',
 			],
 		},
 	},

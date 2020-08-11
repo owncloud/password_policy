@@ -67,6 +67,11 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	];
 	private $passwordPolicyFormId = 'password_policy';
 	private $saveButtonValue = 'Save';
+	private $currentPasswordInputId = "current_password";
+	private $newPasswordInputId = "new_password";
+	private $confirmNewPasswordInputId = "confirm_password";
+	private $chooseNewPasswordFormXpath = "//form[@id='password_policy']";
+	private $submitLoginId = "submit";
 
 	/**
 	 * toggle checkbox
@@ -153,6 +158,30 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 				__METHOD__ . " unknown policyCheckboxKey: $policyCheckboxKey"
 			);
 		}
+	}
+
+	/**
+	 * choose new password for user after password expiration
+	 *
+	 * @param string $currentPassword
+	 * @param string $newPassword
+	 * @param Session $session
+	 *
+	 * @return void
+	 */
+	public function chooseNewPassword($currentPassword, $newPassword, Session $session) {
+		$form = $this->waitTillElementIsNotNull($this->chooseNewPasswordFormXpath);
+		$this->assertElementNotNull(
+			$form,
+			__METHOD__ .
+			" xpath $this->chooseNewPasswordFormXpath " .
+			'could not find choose a new password form.'
+		);
+		$this->fillField($this->currentPasswordInputId, $currentPassword);
+		$this->fillField($this->newPasswordInputId, $newPassword);
+		$this->fillField($this->confirmNewPasswordInputId, $newPassword);
+		$this->findById($this->submitLoginId)->click();
+		$this->waitForAjaxCallsToStartAndFinish($session);
 	}
 
 	/**
