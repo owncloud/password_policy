@@ -47,13 +47,12 @@ default:
         - PasswordPolicyContext:
         - OccContext:
         - FeatureContext: *common_feature_context_params
-        - OccContext:
         - PublicWebDavContext:
         - WebDavPropertiesContext:
 
     apiGuests:
       paths:
-        features: '%paths.base%/../features/apiGuests'
+        - '%paths.base%/../features/apiGuests'
       contexts:
         - PasswordPolicyContext:
         - FeatureContext: *common_feature_context_params
@@ -100,6 +99,7 @@ default:
         - WebUIFilesContext:
         - WebUIPersonalGeneralSettingsContext:
         - WebUIUsersContext:
+        - OccContext:
         - FeatureContext: *common_feature_context_params
 
     webUIPasswordAddUserSpecial:
@@ -114,6 +114,7 @@ default:
         - WebUIFilesContext:
         - WebUIPersonalGeneralSettingsContext:
         - WebUIUsersContext:
+        - OccContext:
         - FeatureContext: *common_feature_context_params
 
     webUIPasswordChange:
@@ -125,6 +126,7 @@ default:
         - WebUIGeneralContext:
         - WebUILoginContext:
         - WebUIPersonalGeneralSettingsContext:
+        - OccContext:
         - FeatureContext: *common_feature_context_params
 
     webUIPasswordChangeSpecial:
@@ -136,6 +138,7 @@ default:
         - WebUIGeneralContext:
         - WebUILoginContext:
         - WebUIPersonalGeneralSettingsContext:
+        - OccContext:
         - FeatureContext: *common_feature_context_params
 
     webUIPasswordChangeUsersPage:
@@ -148,6 +151,7 @@ default:
         - WebUIUsersContext:
         - WebUILoginContext:
         - WebUIPersonalGeneralSettingsContext:
+        - OccContext:
         - FeatureContext: *common_feature_context_params
 
     webUIPasswordChangeUsersPageSpecial:
@@ -160,6 +164,7 @@ default:
         - WebUIUsersContext:
         - WebUILoginContext:
         - WebUIPersonalGeneralSettingsContext:
+        - OccContext:
         - FeatureContext: *common_feature_context_params
 
     webUIPasswordPolicySettings:
@@ -170,6 +175,7 @@ default:
         - WebUIPasswordPolicyContext:
         - WebUIGeneralContext:
         - WebUILoginContext:
+        - OccContext:
         - FeatureContext: *common_feature_context_params
 
     webUIPasswordReset:
@@ -181,6 +187,7 @@ default:
         - WebUIGeneralContext:
         - WebUILoginContext:
         - EmailContext:
+        - OccContext:
         - FeatureContext: *common_feature_context_params
 
     webUIPublicShareLink:
@@ -194,6 +201,7 @@ default:
         - WebUISharingContext:
         - WebUIFilesContext:
         - WebUIPersonalGeneralSettingsContext:
+        - OccContext:
         - FeatureContext: *common_feature_context_params
 
     webUIGuests:
@@ -207,6 +215,7 @@ default:
         - WebUIGuestsContext:
         - EmailContext:
         - GuestsContext:
+        - OccContext:
         - FeatureContext: *common_feature_context_params
 
     webUIPasswordExpire:
@@ -217,6 +226,7 @@ default:
         - WebUIPasswordPolicyContext:
         - WebUIGeneralContext:
         - WebUILoginContext:
+        - OccContext:
         - FeatureContext: *common_feature_context_params
 
   extensions:
