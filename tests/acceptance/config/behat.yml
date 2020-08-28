@@ -80,6 +80,14 @@ default:
         - OccUsersGroupsContext:
         - FeatureContext: *common_feature_context_params
 
+    cliPasswordExpire:
+      paths:
+        - '%paths.base%/../features/cliPasswordExpire'
+      contexts:
+        - PasswordPolicyContext:
+        - OccContext:
+        - FeatureContext: *common_feature_context_params
+
     webUIPasswordAddUser:
       paths:
         - '%paths.base%/../features/webUIPasswordAddUser'
@@ -199,6 +207,16 @@ default:
         - WebUIGuestsContext:
         - EmailContext:
         - GuestsContext:
+        - FeatureContext: *common_feature_context_params
+
+    webUIPasswordExpire:
+      paths:
+        - '%paths.base%/../features/webUIPasswordExpire'
+      contexts:
+        - PasswordPolicyContext:
+        - WebUIPasswordPolicyContext:
+        - WebUIGeneralContext:
+        - WebUILoginContext:
         - FeatureContext: *common_feature_context_params
 
   extensions:

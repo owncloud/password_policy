@@ -63,6 +63,12 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @var LoginPage
 	 */
 	private $loginPage;
+
+	/**
+	 *
+	 * @var  $webUILoginContext;
+	 */
+	private $webUILoginContext;
 	/**
 	 * WebUIPasswordPolicyContext constructor.
 	 *
@@ -167,6 +173,53 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	) {
 		$this->passwordPolicySettingsPage->enterPolicyValue(
 			'lowercaseLetters', $value
+		);
+	}
+
+	/**
+	 * @When user :username enters the current password, chooses a new password :newPassword and confirms it using the webUI
+	 *
+	 * @param string $username
+	 * @param string $newPassword
+	 *
+	 * @return void
+	 */
+	public function theUserEntersTheCurrentPasswordChoosesANewPasswordAndConfirmsItUsingTheWebui($username, $newPassword) {
+		$currentPassword = $this->featureContext->getPasswordForUser($username);
+		$this->passwordPolicySettingsPage->chooseNewPassword($currentPassword, $newPassword, $this->getSession());
+	}
+
+	/**
+	 * @param string $username
+	 * @param string $password
+	 *
+	 * @return OwncloudPage
+	 * @throws \Exception
+	 */
+	public function loginWithExpiredPassword($username, $password) {
+		$session = $this->getSession();
+		$this->loginPage->waitTillPageIsLoaded($session);
+		$this->loginPage->loginAs(
+			$username,
+			$password
+		);
+		$this->featureContext->asUser($username);
+	}
+
+	/**
+	 * @When user :username logs in with expired password using the webUI
+	 *
+	 * @param string $username
+	 *
+	 * @return OwncloudPage
+	 * @throws \Exception
+	 */
+	public function userLogsInWithExpiredPasswordUsingTheWebui($username) {
+		$usernameActual = $this->featureContext->getActualUsername($username);
+		$this->webUILoginContext->theUserBrowsesToTheLoginPage();
+		$this->loginWithExpiredPassword(
+			$usernameActual,
+			$this->featureContext->getPasswordForUser($usernameActual)
 		);
 	}
 
@@ -942,5 +995,6 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		// Get all the contexts you need in this context
 		$this->featureContext = $environment->getContext('FeatureContext');
 		$this->webUIGeneralContext = $environment->getContext('WebUIGeneralContext');
+		$this->webUILoginContext = $environment->getContext('WebUILoginContext');
 	}
 }
