@@ -22,6 +22,7 @@
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Page\OwncloudPage;
 use Page\PasswordPolicySettingsPage;
@@ -39,7 +40,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @var FeatureContext
 	 */
 	private $featureContext;
-	
+
 	/**
 	 *
 	 * @var WebUIGeneralContext
@@ -177,24 +178,11 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
-	 * @When user :username enters the current password, chooses a new password :newPassword and confirms it using the webUI
-	 *
-	 * @param string $username
-	 * @param string $newPassword
-	 *
-	 * @return void
-	 */
-	public function theUserEntersTheCurrentPasswordChoosesANewPasswordAndConfirmsItUsingTheWebui($username, $newPassword) {
-		$currentPassword = $this->featureContext->getPasswordForUser($username);
-		$this->passwordPolicySettingsPage->chooseNewPassword($currentPassword, $newPassword, $this->getSession());
-	}
-
-	/**
 	 * @param string $username
 	 * @param string $password
 	 *
-	 * @return OwncloudPage
-	 * @throws \Exception
+	 * @return void
+	 * @throws Exception
 	 */
 	public function loginWithExpiredPassword($username, $password) {
 		$session = $this->getSession();
@@ -207,12 +195,30 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @Given user :username has logged in with expired password using the webUI
+	 *
+	 * @param string $username
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
+	public function userHasLoggedInWithExpiredPasswordUsingTheWebui($username) {
+		$usernameActual = $this->featureContext->getActualUsername($username);
+		$this->webUILoginContext->theUserBrowsesToTheLoginPage();
+		$this->loginWithExpiredPassword(
+			$usernameActual,
+			$this->featureContext->getPasswordForUser($usernameActual)
+		);
+		$this->webUIGeneralContext->theUserShouldBeRedirectedToAWebUIPageWithTheTitle("%productname%");
+	}
+
+	/**
 	 * @When user :username logs in with expired password using the webUI
 	 *
 	 * @param string $username
 	 *
-	 * @return OwncloudPage
-	 * @throws \Exception
+	 * @return void
+	 * @throws Exception
 	 */
 	public function userLogsInWithExpiredPasswordUsingTheWebui($username) {
 		$usernameActual = $this->featureContext->getActualUsername($username);
@@ -531,6 +537,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @When /^the administrator saves the password policy settings using the webUI$/
 	 *
 	 * @return void
+	 * @throws ElementNotFoundException
 	 */
 	public function theAdminSavesThePasswordPolicySettingsUsingTheWebui() {
 		$this->passwordPolicySettingsPage->saveSettings(

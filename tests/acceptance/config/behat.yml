@@ -224,6 +224,7 @@ default:
       contexts:
         - PasswordPolicyContext:
         - WebUIPasswordPolicyContext:
+        - WebUIPasswordUpdateContext:
         - WebUIGeneralContext:
         - WebUILoginContext:
         - OccContext:

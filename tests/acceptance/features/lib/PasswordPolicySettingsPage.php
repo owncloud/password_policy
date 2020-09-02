@@ -25,7 +25,7 @@ namespace Page;
 
 use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Session;
-use SensioLabs\Behat\PageObjectExtension\PageObject\Exception\ElementNotFoundException;
+use \Behat\Mink\Exception\ElementNotFoundException;
 
 /**
  * PageObject for the password policy settings Page
@@ -38,6 +38,10 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @var string $path
 	 */
 	protected $path = '/index.php/settings/admin?sectionid=security';
+
+	private $passwordPolicyFormId = 'password_policy';
+	private $saveButtonValue = 'Save';
+
 	private $policyCheckboxNames = [
 		'minimumCharacters' => 'spv_min_chars_checked',
 		'lowercaseLetters' => 'spv_lowercase_checked',
@@ -65,13 +69,6 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 		'daysUntilLinkExpiresWithPassword' => 'spv_expiration_password_value',
 		'daysUntilLinkExpiresWithoutPassword' => 'spv_expiration_nopassword_value',
 	];
-	private $passwordPolicyFormId = 'password_policy';
-	private $saveButtonValue = 'Save';
-	private $currentPasswordInputId = "current_password";
-	private $newPasswordInputId = "new_password";
-	private $confirmNewPasswordInputId = "confirm_password";
-	private $chooseNewPasswordFormXpath = "//form[@id='password_policy']";
-	private $submitLoginId = "submit";
 
 	/**
 	 * toggle checkbox
@@ -81,7 +78,7 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @return NodeElement
 	 * @throws ElementNotFoundException
 	 */
-	public function findSettingsCheckbox($checkboxName) {
+	public function findSettingsCheckbox(string $checkboxName) {
 		$checkbox = $this->findField($checkboxName);
 		if ($checkbox === null) {
 			throw new ElementNotFoundException(
@@ -101,7 +98,7 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @return void
 	 * @throws \Exception
 	 */
-	public function toggleCheckbox($checkboxName, $action) {
+	public function toggleCheckbox(string $checkboxName, string $action) {
 		$checkbox = $this->findSettingsCheckbox($checkboxName);
 		if ($action === "disables") {
 			if ($checkbox->isChecked()) {
@@ -127,7 +124,7 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @return void
 	 * @throws \Exception
 	 */
-	public function togglePolicyCheckbox($policyCheckboxKey, $action) {
+	public function togglePolicyCheckbox(string $policyCheckboxKey, string $action) {
 		if (\array_key_exists($policyCheckboxKey, $this->policyCheckboxNames)) {
 			$this->toggleCheckbox(
 				$this->policyCheckboxNames[$policyCheckboxKey], $action
@@ -147,7 +144,7 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @return boolean
 	 * @throws \Exception
 	 */
-	public function isPolicyCheckboxChecked($policyCheckboxKey) {
+	public function isPolicyCheckboxChecked(string $policyCheckboxKey) {
 		if (\array_key_exists($policyCheckboxKey, $this->policyCheckboxNames)) {
 			$checkbox = $this->findSettingsCheckbox(
 				$this->policyCheckboxNames[$policyCheckboxKey]
@@ -161,40 +158,15 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	}
 
 	/**
-	 * choose new password for user after password expiration
-	 *
-	 * @param string $currentPassword
-	 * @param string $newPassword
-	 * @param Session $session
-	 *
-	 * @return void
-	 */
-	public function chooseNewPassword($currentPassword, $newPassword, Session $session) {
-		$form = $this->waitTillElementIsNotNull($this->chooseNewPasswordFormXpath);
-		$this->assertElementNotNull(
-			$form,
-			__METHOD__ .
-			" xpath $this->chooseNewPasswordFormXpath " .
-			'could not find choose a new password form.'
-		);
-		$this->fillField($this->currentPasswordInputId, $currentPassword);
-		$this->fillField($this->newPasswordInputId, $newPassword);
-		$this->fillField($this->confirmNewPasswordInputId, $newPassword);
-		$this->findById($this->submitLoginId)->click();
-		$this->waitForAjaxCallsToStartAndFinish($session);
-	}
-
-	/**
 	 * enter a value in the specified field
 	 *
 	 * @param string $policyValueKey one of the known keys in the policyValueNames array
 	 * @param string $value
 	 *
 	 * @return void
-	 * @throws \Behat\Mink\Exception\ElementNotFoundException
-	 * @throws \Exception
+	 * @throws ElementNotFoundException
 	 */
-	public function enterPolicyValue($policyValueKey, $value) {
+	public function enterPolicyValue(string $policyValueKey, string $value) {
 		if (\array_key_exists($policyValueKey, $this->policyValueNames)) {
 			$this->fillField($this->policyValueNames[$policyValueKey], $value);
 		} else {
@@ -210,8 +182,7 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @param string $policyValueKey one of the known keys in the policyValueNames array
 	 *
 	 * @return string value in the field
-	 * @throws \Behat\Mink\Exception\ElementNotFoundException
-	 * @throws \Exception
+	 * @throws ElementNotFoundException
 	 */
 	public function getPolicyValue($policyValueKey) {
 		if (\array_key_exists($policyValueKey, $this->policyValueNames)) {
@@ -240,7 +211,7 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @return PasswordPolicySettingsPage
 	 * @throws ElementNotFoundException
 	 */
-	public function saveSettings($session) {
+	public function saveSettings(Session $session) {
 		$saveButton = $this->findButton($this->saveButtonValue);
 		if ($saveButton === null) {
 			throw new ElementNotFoundException(
@@ -282,7 +253,6 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 				__METHOD__ . " timeout waiting for password policy page to load"
 			);
 		}
-
 		$this->waitForOutstandingAjaxCalls($session);
 	}
 }
