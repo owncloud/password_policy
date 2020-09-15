@@ -124,7 +124,7 @@ class UpdatePasswordPage extends OwncloudPage {
 	}
 
 	/**
-	 * Returns update password error message
+	 * Returns the value of the disabled attribute of the submit button
 	 *
 	 * @return string
 	 * @throws ElementNotFoundException

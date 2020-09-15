@@ -195,7 +195,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
-	 * @Given user :username has logged in with expired password using the webUI
+	 * @Given user :username has logged in with the expired password using the webUI
 	 *
 	 * @param string $username
 	 *
@@ -213,7 +213,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	}
 
 	/**
-	 * @When user :username logs in with expired password using the webUI
+	 * @When user :username logs in with the expired password using the webUI
 	 *
 	 * @param string $username
 	 *

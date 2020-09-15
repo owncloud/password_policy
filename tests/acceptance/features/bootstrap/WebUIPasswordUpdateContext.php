@@ -90,7 +90,7 @@ class WebUIPasswordUpdateContext extends RawMinkContext implements Context {
 	}
 
 	/**
-	 * @When the user requests for password update with following credentials using the webUI
+	 * @When the user requests for password update with the following credentials using the webUI
 	 *
 	 * @param TableNode $table
 	 *
@@ -109,7 +109,7 @@ class WebUIPasswordUpdateContext extends RawMinkContext implements Context {
 	}
 
 	/**
-	 * @Then an error message with following text should be displayed on the webUI:
+	 * @Then an error message with the following text should be displayed on the webUI:
 	 *
 	 * @param PyStringNode $string
 	 *
@@ -141,7 +141,7 @@ class WebUIPasswordUpdateContext extends RawMinkContext implements Context {
 	}
 
 	/**
-	 * @Then /^password update submit button should be disabled$/
+	 * @Then /^the password update submit button should be disabled$/
 	 *
 	 * @return void
 	 * @throws ElementNotFoundException
