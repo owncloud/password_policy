@@ -44,7 +44,7 @@ OC.L10N.register(
     "Save" : "บันทึก",
     "Please set a new password" : "โปรดตั้งรหัสผ่านใหม่",
     "Your password has expired." : "รหัสผ่านของคุณหมดอายุแล้ว",
-    "Please choose a new password." : "โปรดเลือกรหัสผ่านใหม่",
+    "Please choose a new password." : "โปรดกำหนดรหัสผ่านใหม่",
     "Current password" : "รหัสผ่านปัจจุบัน",
     "New password" : "รหัสผ่านใหม่",
     "Confirm new password" : "ป้อนรหัสผ่านใหม่อีกครั้ง"
