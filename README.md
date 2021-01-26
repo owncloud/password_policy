@@ -1,7 +1,9 @@
 # Password Policy
 
 [![Build Status](https://drone.owncloud.com/api/badges/owncloud/password_policy/status.svg?branch=master)](https://drone.owncloud.com/owncloud/password_policy)
-[![codecov](https://codecov.io/gh/owncloud/password_policy/branch/master/graph/badge.svg?token=JoJt5NmSSC)](https://codecov.io/gh/owncloud/password_policy)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=owncloud_password_policy&metric=alert_status)](https://sonarcloud.io/dashboard?id=owncloud_password_policy)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=owncloud_password_policy&metric=security_rating)](https://sonarcloud.io/dashboard?id=owncloud_password_policy)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=owncloud_password_policy&metric=coverage)](https://sonarcloud.io/dashboard?id=owncloud_password_policy)
 
 The Password Policy extension enables ownCloud administrators to define password requirements like minimum characters, numbers, capital letters and more for all kinds of password endpoints like user account and public link sharing passwords. To add another layer of security, the administrator can enforce maximum expiration dates for public link shares depending on whether a password has been set or not. As a further measure the extension saves a history of hashed user passwords to prevent users from choosing a former password again, enforcing password security even more. Users can also be required to change their password upon first login. To impose regular password changes administrators can set up password expiration policies. For this users can be notified via email, web interface and the ownCloud Clients when their password is about to expire and when it has expired.
 
