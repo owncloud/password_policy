@@ -18,7 +18,7 @@ Feature: enforce the restricted special characters in a password when creating a
     Then the OCS status code should be "<ocs-status>"
     And the HTTP status code should be "200"
     And user "Alice" should exist
-    And the content of file "textfile0.txt" for user "Alice" using password "<password>" should be "ownCloud test text file 0" plus end-of-line
+    And user "Alice" should be able to upload file "filesForUpload/textfile.txt" to "/textfile.txt"
     Examples:
       | password              | ocs-api-version | ocs-status |
       | 3$Special%Characters^ | 1               | 100        |

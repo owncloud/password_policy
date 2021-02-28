@@ -8,7 +8,7 @@ Feature: enforce the minimum length of a password on public share links
   Background:
     Given the administrator has enabled the minimum characters password policy
     And the administrator has set the minimum characters required to "10"
-    And these users have been created with default attributes and skeleton files:
+    And these users have been created with default attributes and small skeleton files:
       | username | password   |
       | Alice    | 1234567890 |
     And user "Alice" has uploaded file with content "Alice file" to "/randomfile.txt"

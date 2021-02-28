@@ -16,7 +16,7 @@ Feature: enforce combinations of password policies on public share links
     And the administrator has set the numbers required to "2"
     And the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
-    And these users have been created with default attributes and skeleton files:
+    And these users have been created with default attributes and small skeleton files:
       | username | password        |
       | Alice    | aA1!bB2#cC&deee |
     And user "Alice" has uploaded file with content "Alice file" to "/randomfile.txt"

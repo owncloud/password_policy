@@ -10,7 +10,7 @@ Feature: enforce the restricted special characters in a password on the public s
     And the administrator has set the special characters required to "3"
     And the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
-    And these users have been created with default attributes and skeleton files:
+    And these users have been created with default attributes and large skeleton files:
       | username | password   |
       | Alice    | a$b%c^1234 |
     And the user has browsed to the login page

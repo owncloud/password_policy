@@ -8,7 +8,7 @@ Feature: enforce the required number of lowercase letters on public share links
   Background:
     Given the administrator has enabled the lowercase letters password policy
     And the administrator has set the lowercase letters required to "3"
-    And these users have been created with default attributes and skeleton files:
+    And these users have been created with default attributes and small skeleton files:
       | username | password   |
       | Alice    | abcABC1234 |
     And user "Alice" has uploaded file with content "Alice file" to "/randomfile.txt"

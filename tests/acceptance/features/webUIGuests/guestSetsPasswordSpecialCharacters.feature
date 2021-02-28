@@ -2,7 +2,7 @@
 Feature: enforce the required number of special characters in a password when a guest user sets its own password
 
   Background:
-    Given user "Alice" has been created with default attributes and skeleton files
+    Given user "Alice" has been created with default attributes and large skeleton files
     And the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
     And the administrator has created guest user "guest" with email "guest@example.com"
