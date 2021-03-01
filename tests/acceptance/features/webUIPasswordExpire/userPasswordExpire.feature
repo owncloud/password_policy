@@ -6,7 +6,7 @@ Feature: expire user's password using the occ command
   So that users change their password regularly
 
   Background:
-    Given user "Alice" has been created with default attributes and skeleton files
+    Given user "Alice" has been created with default attributes and large skeleton files
 
   Scenario: admin expires password of a user
     Given the administrator has enabled the days until user password expires user password policy

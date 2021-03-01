@@ -5,7 +5,7 @@ Feature:
   So that users can be forced to change their password as appropriate
 
   Background:
-    Given user "Alice" has been created with default attributes and skeleton files
+    Given user "Alice" has been created with default attributes and large skeleton files
 
   Scenario: user tries to reset their password to one of their last 3 passwords after user password has expired
     Given the administrator has enabled the last passwords user password policy

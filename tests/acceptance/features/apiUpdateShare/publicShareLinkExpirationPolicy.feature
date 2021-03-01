@@ -6,7 +6,7 @@ Feature: enforce public link expiration policies
   So public shares have default expiration if the expiration date is not changed
 
   Background:
-    Given user "Alice" has been created with default attributes and skeleton files
+    Given user "Alice" has been created with default attributes and small skeleton files
 
   Scenario Outline: user tries to create a public share without expiration date and password when "days maximum until link expires if password is not set" is enabled
     Given using OCS API version "<ocs-api-version>"

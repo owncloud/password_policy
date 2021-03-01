@@ -8,7 +8,7 @@ Feature: enforce the required number of lowercase letters in a password on the p
   Background:
     Given the administrator has enabled the lowercase letters password policy
     And the administrator has set the lowercase letters required to "3"
-    And these users have been created with default attributes and skeleton files:
+    And these users have been created with default attributes and large skeleton files:
       | username | password   |
       | Alice    | abcABC1234 |
     And the user has browsed to the login page
