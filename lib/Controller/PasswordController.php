@@ -95,6 +95,9 @@ class PasswordController extends Controller implements IAccountModuleController 
 		];
 
 		$user = $this->userSession->getUser();
+
+		$params['user'] = $user->getUID();
+
 		if ($user !== null) {
 			if ($this->config->getUserValue($user->getUID(), 'password_policy', 'firstLoginPasswordChange') === '1') {
 				$params['firstLogin'] = true;

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Jörn Friedrich Dreyer <jfd@butonic.de>
  *
@@ -30,6 +31,9 @@ style('password_policy', 'styles');
  */
 ?>
 
+<input type="hidden" id="user" value=""/>
+<?php if (isset($_['firstLogin'])) {
+	?>
 <form id="password_policy" method="post">
 	<fieldset>
 		<h1 class="warning">
@@ -39,35 +43,44 @@ style('password_policy', 'styles');
 						p($l->t('Please set a new password'));
 					} else {
 						p($l->t('Your password has expired.'));
-					}
-				?>
+					} ?>
 			</div>
 			<div>
 				<?php
 					if ($_['firstLogin'] !== true) {
 						p($l->t('Please choose a new password.'));
-					}
-				?>
+					} ?>
 			</div>
 		</h1>
 		<?php if (isset($_['error'])) {
-					?><div id="error" class="warning"><?php p($_['error']) ?></div> <?php
-				} ?>
+						?><div id="error" class="warning"><?php p($_['error']) ?></div> <?php
+					} ?>
+
+
 		<input type="hidden" name="redirect_url" value="<?php p($_['redirect_url']) ?>" />
 		<input type="hidden" name="app" value="oca-password-policy" />
 		<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>" id="requesttoken">
 
-		<label for="current_password" class="infield"><?php p($l->t('Current password'));?></label>
-		<input type="password" id="current_password" name="current_password" value="" autofocus placeholder="<?php p($l->t('Current password'));?>"/>
+		<label for="current_password" class="infield"><?php p($l->t('Current password')); ?></label>
+		<input type="password" id="current_password" name="current_password" value="" autofocus placeholder="<?php p($l->t('Current password')); ?>"/>
 
 		<div class="grouptop">
-			<label for="new_password" class="infield"><?php p($l->t('New password'));?></label>
-			<input type="password" id="new_password" name="new_password" value="" placeholder="<?php p($l->t('New password'));?>"/>
+			<label for="new_password" class="infield"><?php p($l->t('New password')); ?></label>
+			<input type="password" id="new_password" name="new_password" value="" placeholder="<?php p($l->t('New password')); ?>"/>
 		</div>
 		<div class="groupbottom">
-			<label for="confirm_password" class="infield"><?php p($l->t('Confirm new password'));?></label>
-			<input type="password" id="confirm_password" name="confirm_password" value="" placeholder="<?php p($l->t('Confirm new password'));?>"/>
+			<label for="confirm_password" class="infield"><?php p($l->t('Confirm new password')); ?></label>
+			<input type="password" id="confirm_password" name="confirm_password" value="" placeholder="<?php p($l->t('Confirm new password')); ?>"/>
 		</div>
-		<button id="submit" type="submit"><?php p($l->t('Save'));?></button>
+		<button id="submit" type="submit"><?php p($l->t('Save')); ?></button>
 	</fieldset>
 </form>
+	<?php
+} else {
+						?>
+	<span id="send-mail" style="margin-top: 20px" data-user="<?php p($_['user']); ?>" class="warning">
+	<?php p($l->t('Your password has expired automatically. Click here to get a reset link via email.')); ?>
+	</span>
+	<span id="send-mail-message" class="warning hidden"></span>
+<?php
+					}?>
