@@ -35,4 +35,38 @@ $(document).ready(function() {
 	};
 	$newPassword.keyup(check);
 	$confirmPassword.keyup(check);
+
+	$('#send-mail').click(resetLink);
+
+	function resetLink(){
+			var user = $("#send-mail").data('user');
+			if (OC.config['lost_password_link']) {
+				window.location = OC.config['lost_password_link'];
+			} else {
+				$.post(
+					OC.generateUrl('/lostpassword/email'),
+					{
+						user : user,
+					},
+					sendLinkDone
+				);
+			}
+
+	}
+
+	function sendLinkDone(result){
+		var message;
+
+		if (result && result.status === 'success'){
+			message = ( t('core', 'The link to reset your password has been sent to your email. If you do not receive it within a reasonable amount of time, check your spam/junk folders.<br><br>If it is not there please contact us via servicedesk@pagani.com.'));
+		} else {
+			if (result && result.msg){
+				message = result.msg;
+			} else {
+				message = t('core', 'Couldn\'t send reset email. Please contact us via servicedesk@pagani.com.');
+			}
+		}
+
+		$("#send-mail-message").html(message).css("color", "white");
+	}
 });
