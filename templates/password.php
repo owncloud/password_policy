@@ -81,6 +81,6 @@ style('password_policy', 'styles');
 	<span id="send-mail" style="margin-top: 20px" data-user="<?php p($_['user']); ?>" class="warning">
 	<?php p($l->t('Your password has expired automatically. Click here to get a reset link via email.')); ?>
 	</span>
-	<span id="send-mail-message"></span>
+	<span id="send-mail-message" class="warning hidden"></span>
 <?php
 					}?>

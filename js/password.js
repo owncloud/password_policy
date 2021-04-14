@@ -67,6 +67,6 @@ $(document).ready(function() {
 			}
 		}
 
-		$("#send-mail-message").html(message).css("color", "white");
+		$("#send-mail-message").html(message).removeClass('hidden');
 	}
 });

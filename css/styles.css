@@ -39,3 +39,7 @@
 #password_policy .margin-add-top {
 	margin-top: 24px;
 }
+
+#send-mail-message.hidden{
+	display: none !important;
+}
