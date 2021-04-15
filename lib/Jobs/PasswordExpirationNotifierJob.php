@@ -216,7 +216,7 @@ class PasswordExpirationNotifierJob extends TimedJob {
 	}
 
 	private function getNotificationLink() {
-		return $this->urlGenerator->linkToRouteAbsolute(
+		return $this->urlGenerator->linkToRoute(
 			'settings.SettingsPage.getPersonal',
 			['sectionid' => 'general']
 		);
