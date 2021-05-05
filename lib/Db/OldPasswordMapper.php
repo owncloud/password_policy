@@ -56,7 +56,9 @@ class OldPasswordMapper extends Mapper {
 			$qb->andWhere($qb->expr()->neq($passwordField, $qb->expr()->literal(OldPassword::EXPIRED)));
 		}
 		$result = $qb->execute();
+		/* @phan-suppress-next-line PhanDeprecatedFunction */
 		$rows = $result->fetchAll();
+		/* @phan-suppress-next-line PhanDeprecatedFunction */
 		$result->closeCursor();
 		return \array_map(function ($row) {
 			return OldPassword::fromRow($row);
@@ -100,15 +102,18 @@ class OldPasswordMapper extends Mapper {
 		$result = $stmt->execute();
 
 		if ($result === false) {
+			/* @phan-suppress-next-line PhanDeprecatedFunction */
 			$info = \json_encode($stmt->errorInfo());
 			$message = "Cannot get the passwords that are about to expire. Error: {$info}";
 			\OCP\Util::writeLog('password_policy', $message, \OCP\Util::ERROR);
 			return;
 		}
 
+		/* @phan-suppress-next-line PhanDeprecatedFunction */
 		while ($row = $stmt->fetch()) {
 			yield OldPassword::fromRow($row);
 		}
+		/* @phan-suppress-next-line PhanDeprecatedFunction */
 		$stmt->closeCursor();
 	}
 
