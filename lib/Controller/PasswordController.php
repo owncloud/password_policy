@@ -23,6 +23,7 @@
 namespace OCA\PasswordPolicy\Controller;
 
 use OCA\PasswordPolicy\Rules\PolicyException;
+use OCA\PasswordPolicy\ConfigProvider;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\JSONResponse;
@@ -51,6 +52,8 @@ class PasswordController extends Controller implements IAccountModuleController 
 	protected $urlGenerator;
 	/** @var IL10N */
 	protected $l10n;
+	/** @var ConfigProvider */
+	protected $configProvider;
 
 	/**
 	 * PasswordController constructor.
@@ -63,6 +66,7 @@ class PasswordController extends Controller implements IAccountModuleController 
 	 * @param ISession $session
 	 * @param IURLGenerator $urlGenerator
 	 * @param IL10N $l10n
+	 * @param ConfigProvider $configProvider
 	 */
 	public function __construct(
 		$appName,
@@ -72,7 +76,8 @@ class PasswordController extends Controller implements IAccountModuleController 
 		IConfig $config,
 		ISession $session,
 		IURLGenerator $urlGenerator,
-		IL10N $l10n
+		IL10N $l10n,
+		ConfigProvider $configProvider
 	) {
 		parent::__construct($appName, $request);
 		$this->userSession = $userSession;
@@ -81,6 +86,7 @@ class PasswordController extends Controller implements IAccountModuleController 
 		$this->session = $session;
 		$this->urlGenerator = $urlGenerator;
 		$this->l10n = $l10n;
+		$this->configProvider = $configProvider;
 	}
 
 	/**
@@ -91,7 +97,8 @@ class PasswordController extends Controller implements IAccountModuleController 
 	protected function createPasswordTemplateResponse($redirect_url, $error = null) {
 		$params = [
 			'redirect_url' => $redirect_url,
-			'webroot' => \OC::$WEBROOT
+			'webroot' => \OC::$WEBROOT,
+			'password_requirements' => $this->configProvider->getActivePasswordRequirements(),
 		];
 
 		$user = $this->userSession->getUser();

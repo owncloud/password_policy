@@ -39,3 +39,7 @@
 #password_policy .margin-add-top {
 	margin-top: 24px;
 }
+
+#password_policy #password_hint {
+	margin-top: 5px;
+}
