@@ -68,6 +68,31 @@ style('password_policy', 'styles');
 			<label for="confirm_password" class="infield"><?php p($l->t('Confirm new password'));?></label>
 			<input type="password" id="confirm_password" name="confirm_password" value="" placeholder="<?php p($l->t('Confirm new password'));?>"/>
 		</div>
+		<?php if ($_['password_requirements']) {?>
+			<div id="password_hint" class="warning">
+				<h1><?php p($l->t('Password requirements:'));?></h1>
+				<ul>
+					<?php if (isset($_['password_requirements']['spv_min_chars_value'])) {?>
+						<li><?php p($l->n('At least one character', 'At least %n characters', (int)$_['password_requirements']['spv_min_chars_value']));?></li>
+					<?php }?>
+					<?php if (isset($_['password_requirements']['spv_lowercase_value'])) {?>
+						<li><?php p($l->n('At least one lowercase letter', 'At least %n lowercase letters', (int)$_['password_requirements']['spv_lowercase_value']));?></li>
+					<?php }?>
+					<?php if (isset($_['password_requirements']['spv_uppercase_value'])) {?>
+						<li><?php p($l->n('At least one uppercase letter', 'At least %n uppercase letters', (int)$_['password_requirements']['spv_uppercase_value']));?></li>
+					<?php }?>
+					<?php if (isset($_['password_requirements']['spv_numbers_value'])) {?>
+						<li><?php p($l->n('At least one number', 'At least %n numbers', (int)$_['password_requirements']['spv_numbers_value']));?></li>
+					<?php }?>
+					<?php if (isset($_['password_requirements']['spv_special_chars_value'])) {?>
+						<li><?php p($l->n('At least one special character', 'At least %d special characters', (int)$_['password_requirements']['spv_special_chars_value']));?></li>
+					<?php }?>
+					<?php if (isset($_['password_requirements']['spv_def_special_chars_value'])) {?>
+						<li><?php p($l->t('Only special characters "%s" are allowed', [$_['password_requirements']['spv_def_special_chars_value']]));?></li>
+					<?php }?>
+				</ul>
+			</div>
+		<?php }?>
 		<button id="submit" type="submit"><?php p($l->t('Save'));?></button>
 	</fieldset>
 </form>

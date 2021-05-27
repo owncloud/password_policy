@@ -22,6 +22,7 @@
 
 namespace OCA\PasswordPolicy\Tests\Controller;
 
+use OCA\PasswordPolicy\ConfigProvider;
 use OCA\PasswordPolicy\Controller\PasswordController;
 use OCA\PasswordPolicy\Rules\PolicyException;
 use OCP\AppFramework\Http\JSONResponse;
@@ -53,6 +54,8 @@ class PasswordControllerTest extends TestCase {
 	protected $urlGenerator;
 	/** @var IL10N | \PHPUnit\Framework\MockObject\MockObject */
 	protected $l10n;
+	/** @var ConfigProvider | \PHPUnit\Framework\MockObject\MockObject */
+	protected $configProvider;
 	/** @var PasswordController | \PHPUnit\Framework\MockObject\MockObject */
 	private $c;
 
@@ -71,6 +74,7 @@ class PasswordControllerTest extends TestCase {
 			->will($this->returnCallback(function ($text, $parameters = []) {
 				return \vsprintf($text, $parameters);
 			}));
+		$this->configProvider = $this->createMock(ConfigProvider::class);
 		$this->c = $this->getMockBuilder(PasswordController::class)
 			->setConstructorArgs([
 				'password_policy',
@@ -80,7 +84,8 @@ class PasswordControllerTest extends TestCase {
 				$this->config,
 				$this->session,
 				$this->urlGenerator,
-				$this->l10n
+				$this->l10n,
+				$this->configProvider
 			])
 			->setMethods(['createPasswordTemplateResponse'])
 			->getMock();
@@ -95,7 +100,8 @@ class PasswordControllerTest extends TestCase {
 				$this->config,
 				$this->session,
 				$this->urlGenerator,
-				$this->l10n
+				$this->l10n,
+				$this->configProvider
 			);
 
 		$this->config->expects($this->exactly(2))

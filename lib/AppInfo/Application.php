@@ -21,12 +21,21 @@
 namespace OCA\PasswordPolicy\AppInfo;
 
 use OCP\AppFramework\App;
+use OCP\IConfig;
 use OCP\Notification\Events\RegisterNotifierEvent;
 use OCA\PasswordPolicy\Notifier;
+use OCA\PasswordPolicy\Capabilities;
+use OCA\PasswordPolicy\ConfigProvider;
+use OCP\IContainer;
 
 class Application extends App {
 	public function __construct(array $urlParams = []) {
 		parent::__construct('password_policy', $urlParams);
+		$container = $this->getContainer();
+		$container->registerService('Capabilities', function (IContainer $c) {
+			return new Capabilities(new ConfigProvider($c->query(IConfig::class)));
+		});
+		$container->registerCapability('Capabilities');
 	}
 
 	/**
