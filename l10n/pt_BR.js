@@ -47,6 +47,13 @@ OC.L10N.register(
     "Please choose a new password." : "Por favor, escolha uma nova senha.",
     "Current password" : "Senha atual",
     "New password" : "Nova senha",
-    "Confirm new password" : "Confirme a nova senha"
+    "Confirm new password" : "Confirme a nova senha",
+    "Password requirements:" : "Requisitos de senha: ",
+    "_At least one character_::_At least %n characters_" : ["Pelo menos um caracter","Pelo menos %n caracteres"],
+    "_At least one lowercase letter_::_At least %n lowercase letters_" : ["Pelo menos uma letra minúscula ","Pelo menos %n letras minúsculas "],
+    "_At least one uppercase letter_::_At least %n uppercase letters_" : ["Pelo menos uma letra maiuscula","Pelo menos %n letras maiúsculas"],
+    "_At least one number_::_At least %n numbers_" : ["Pelo menos um número","Pelo menos %n numeros"],
+    "_At least one special character_::_At least %d special characters_" : ["Pelo menos um caractere especial","Pelo menos%d caracteres especiais"],
+    "Only special characters \"%s\" are allowed" : "Somente caracteres especiais \"%s\" são permitidos"
 },
 "nplurals=2; plural=(n > 1);");
