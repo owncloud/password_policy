@@ -47,6 +47,8 @@ OC.L10N.register(
     "Please choose a new password." : "Por favor elija una nueva contraseña.",
     "Current password" : "Contraseña actual",
     "New password" : "Nueva contraseña",
-    "Confirm new password" : "Confirmar nueva contraseña"
+    "Confirm new password" : "Confirmar nueva contraseña",
+    "Password requirements:" : "Requisitos de contraseña:",
+    "Only special characters \"%s\" are allowed" : "Solo se permiten los caracteres especiales \"%s\""
 },
 "nplurals=2; plural=(n != 1);");
