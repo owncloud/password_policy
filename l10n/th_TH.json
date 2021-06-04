@@ -45,6 +45,13 @@
     "Please choose a new password." : "โปรดกำหนดรหัสผ่านใหม่",
     "Current password" : "รหัสผ่านปัจจุบัน",
     "New password" : "รหัสผ่านใหม่",
-    "Confirm new password" : "ป้อนรหัสผ่านใหม่อีกครั้ง"
+    "Confirm new password" : "ป้อนรหัสผ่านใหม่อีกครั้ง",
+    "Password requirements:" : "ข้อกำหนดการตั้งรหัสผ่าน: ",
+    "_At least one character_::_At least %n characters_" : ["ต้องมีอย่างน้อย %n ตัวอักษร"],
+    "_At least one lowercase letter_::_At least %n lowercase letters_" : ["ต้องมีตัวพิมพ์เล็กอย่างน้อย %n ตัวอักษร"],
+    "_At least one uppercase letter_::_At least %n uppercase letters_" : ["ต้องมีตัวพิมพ์ใหญ่อย่างน้อย %n ตัวอักษร"],
+    "_At least one number_::_At least %n numbers_" : ["ต้องมีตัวเลขอย่างน้อย %n ตัวอักษร"],
+    "_At least one special character_::_At least %d special characters_" : ["ต้องมีอักขระพิเศษอย่างน้อย %d ตัวอักษร"],
+    "Only special characters \"%s\" are allowed" : "อนุญาตให้ใช้เฉพาะอักขระพิเศษ \"%s\" เท่านั้น"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
