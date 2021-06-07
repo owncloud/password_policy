@@ -45,6 +45,12 @@
     "Please choose a new password." : "Пожалуйста, задайте новый пароль.",
     "Current password" : "Текущий пароль",
     "New password" : "Новый пароль",
-    "Confirm new password" : "Подтвердите новый пароль"
+    "Confirm new password" : "Подтвердите новый пароль",
+    "Password requirements:" : "Требования к паролю:",
+    "_At least one character_::_At least %n characters_" : ["Как минимум %n символ","Как минимум %n символа","Как минимум %n символов","Как минимум %n символов"],
+    "_At least one lowercase letter_::_At least %n lowercase letters_" : ["Как минимум %n буква нижнего регистра","Как минимум %n буквы нижнего регистра","Как минимум %n букв нижнего регистра","Как минимум %n букв нижнего регистра"],
+    "_At least one uppercase letter_::_At least %n uppercase letters_" : ["Как минимум %n буква верхнего регистра","Как минимум %n буквы верхнего регистра","Как минимум %n букв верхнего регистра","Как минимум %n букв верхнего регистра"],
+    "_At least one number_::_At least %n numbers_" : ["Как минимум %n цифра","Как минимум %n цифры","Как минимум %n цифр","Как минимум %n цифр"],
+    "Only special characters \"%s\" are allowed" : "Допустимы только специальные символы \"%s\""
 },"pluralForm" :"nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);"
 }
