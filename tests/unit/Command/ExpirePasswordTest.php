@@ -204,7 +204,11 @@ Unknown group: group3
 	 * @dataProvider providesExpirePassword
 	 */
 	public function testExpirePassword(
-		$expireArg, $expireRuleDays, $expectedHistoryTimestamp, $expectedReportedTimestamp) {
+		$expireArg,
+		$expireRuleDays,
+		$expectedHistoryTimestamp,
+		$expectedReportedTimestamp
+	) {
 		$user = $this->createMock(IUser::class);
 		$user->expects($this->any())
 			->method('getUID')

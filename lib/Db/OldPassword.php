@@ -34,7 +34,7 @@ use OCP\AppFramework\Db\Entity;
  * @method void setChangeTime(int $changeTime)
  */
 class OldPassword extends Entity {
-	const EXPIRED = 'expired';
+	public const EXPIRED = 'expired';
 
 	/** @var string $uid */
 	protected $uid;

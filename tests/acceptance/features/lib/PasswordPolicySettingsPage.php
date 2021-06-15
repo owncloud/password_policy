@@ -127,7 +127,8 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	public function togglePolicyCheckbox(string $policyCheckboxKey, string $action) {
 		if (\array_key_exists($policyCheckboxKey, $this->policyCheckboxNames)) {
 			$this->toggleCheckbox(
-				$this->policyCheckboxNames[$policyCheckboxKey], $action
+				$this->policyCheckboxNames[$policyCheckboxKey],
+				$action
 			);
 		} else {
 			throw new \Exception(

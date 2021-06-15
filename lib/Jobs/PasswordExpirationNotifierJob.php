@@ -161,12 +161,14 @@ class PasswordExpirationNotifierJob extends TimedJob {
 
 		$this->unConfigHandler->markAboutToExpireNotificationSentFor($passInfo);
 
-		$aboutToExpireEvent = new GenericEvent(null,
+		$aboutToExpireEvent = new GenericEvent(
+			null,
 			[
 				'expireStatus' => 'about_to_expire',
 				'user' => $this->userManager->get($passInfo->getUid()),
 				'passwordExpireInSeconds' => $expirationTime
-			]);
+			]
+		);
 		$this->eventDispatcher->dispatch($aboutToExpireEvent, 'user.passwordAboutToExpire');
 	}
 
@@ -206,12 +208,14 @@ class PasswordExpirationNotifierJob extends TimedJob {
 
 		$this->unConfigHandler->markExpiredNotificationSentFor($passInfo);
 
-		$expiredEvent = new GenericEvent(null,
+		$expiredEvent = new GenericEvent(
+			null,
 			[
 				'expireStatus' => 'expired',
 				'user' => $this->userManager->get($passInfo->getUid()),
 				'passwordExpireInSeconds' => $expirationTime
-			]);
+			]
+		);
 		$this->eventDispatcher->dispatch($expiredEvent, 'user.passwordExpired');
 	}
 

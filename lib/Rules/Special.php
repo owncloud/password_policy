@@ -38,7 +38,8 @@ class Special extends Base {
 			});
 			if (\count($s) > 0) {
 				throw new PolicyException(
-					$this->l10n->t('The password contains invalid special characters. Only %s are allowed.', [$allowedSpecialChars]));
+					$this->l10n->t('The password contains invalid special characters. Only %s are allowed.', [$allowedSpecialChars])
+				);
 			}
 		}
 		if (\strlen($special) < $val) {

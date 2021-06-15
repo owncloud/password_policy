@@ -360,10 +360,12 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 		$this->userManager->expects($this->once())
 			->method('get')
 			->willReturn($iUser);
-		$aboutToExpireEvent = new GenericEvent(null,
+		$aboutToExpireEvent = new GenericEvent(
+			null,
 			['expireStatus' => 'about_to_expire',
 				'user' => $iUser,
-				'passwordExpireInSeconds' => 180]);
+				'passwordExpireInSeconds' => 180]
+		);
 		$this->eventDispatcher->expects($this->once())
 			->method('dispatch')
 			->with($aboutToExpireEvent, 'user.passwordAboutToExpire');
@@ -405,10 +407,12 @@ class PasswordExpirationNotifierJobTest extends TestCase {
 		$this->userManager->expects($this->once())
 			->method('get')
 			->willReturn($iUser);
-		$aboutToExpireEvent = new GenericEvent(null,
+		$aboutToExpireEvent = new GenericEvent(
+			null,
 			['expireStatus' => 'expired',
 				'user' => $iUser,
-				'passwordExpireInSeconds' => 180]);
+				'passwordExpireInSeconds' => 180]
+		);
 		$this->eventDispatcher->expects($this->once())
 			->method('dispatch')
 			->with($aboutToExpireEvent, 'user.passwordExpired');
