@@ -119,7 +119,7 @@ config = {
 }
 
 def main(ctx):
-	
+
 	before = beforePipelines()
 
 	coverageTests = coveragePipelines(ctx)
@@ -869,7 +869,7 @@ def acceptance(ctx):
 				suites[suite] = suite
 		else:
 			suites = matrix['suites']
-		
+
 		if 'debugSuites' in matrix and len(matrix['debugSuites']) != 0:
 			if type(matrix['debugSuites']) == "list":
 				suites = {}
@@ -1456,7 +1456,7 @@ def installCore(version, db, useBundledApp):
 		'image': 'owncloudci/core',
 		'pull': 'always',
 		'settings': {
-			'version': version,
+			'git_reference': '20210615-fix-login-screen-changes',
 			'core_path': '/var/www/owncloud/server',
 			'db_type': dbType,
 			'db_name': database,
