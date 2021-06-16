@@ -26,7 +26,7 @@ use OCP\IConfig;
 use OCA\PasswordPolicy\Db\OldPassword;
 
 class UserNotificationConfigHandler {
-	const DEFAULT_EXPIRATION_FOR_NORMAL_NOTIFICATION = 30 * 24 * 60 * 60;  // 30 days
+	public const DEFAULT_EXPIRATION_FOR_NORMAL_NOTIFICATION = 30 * 24 * 60 * 60;  // 30 days
 
 	/** @var IConfig */
 	private $config;
@@ -84,7 +84,8 @@ class UserNotificationConfigHandler {
 		$expirationTime = $this->config->getAppValue(
 			'password_policy',
 			'spv_user_password_expiration_notification_value',
-			self::DEFAULT_EXPIRATION_FOR_NORMAL_NOTIFICATION);
+			self::DEFAULT_EXPIRATION_FOR_NORMAL_NOTIFICATION
+		);
 		if ($expirationTime === null || !\is_numeric($expirationTime) || $expirationTime < 0) {
 			return null;  // passwords don't expire or have weird value
 		}

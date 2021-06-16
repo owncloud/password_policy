@@ -31,7 +31,8 @@ class Length extends Base {
 	public function verify($password, $val) {
 		if (\mb_strlen($password, 'UTF-8') < $val) {
 			throw new PolicyException(
-				$this->l10n->t('The password is too short. At least %d characters are required.', [$val]));
+				$this->l10n->t('The password is too short. At least %d characters are required.', [$val])
+			);
 		}
 	}
 }

@@ -40,13 +40,13 @@ class ExpirePassword extends Command {
 	 * Catchall for general errors
 	 * @see http://tldp.org/LDP/abs/html/exitcodes.html#FTN.AEN23647
 	 */
-	const EX_GENERAL_ERROR = 1;
+	public const EX_GENERAL_ERROR = 1;
 
 	/**
 	 * return EX_NOUSER from /usr/include/sysexits.h
 	 * @see http://tldp.org/LDP/abs/html/exitcodes.html#FTN.AEN23647
 	 */
-	const EX_NOUSER = 67;
+	public const EX_NOUSER = 67;
 
 	/** @var \OCP\IConfig */
 	private $config;
@@ -92,12 +92,12 @@ class ExpirePassword extends Command {
 			->setName('user:expire-password')
 			->setDescription('Expire a user\'s password')
 			->addArgument(
-					'expiredate',
-					InputArgument::OPTIONAL,
-					'The date and time when a password expires, e.g. "2019-01-01 14:00:00 CET".',
-					'-1 days'		// base.php sets timezone to utc, so
+				'expiredate',
+				InputArgument::OPTIONAL,
+				'The date and time when a password expires, e.g. "2019-01-01 14:00:00 CET".',
+				'-1 days'		// base.php sets timezone to utc, so
 										// make sure date is in the past
-				)
+			)
 			->addOption(
 				'all',
 				null,

@@ -24,8 +24,10 @@ use OCA\PasswordPolicy\HooksHandler;
 $handler = new HooksHandler();
 
 OCP\Util::connectHook(
-	'\OC\Share', 'verifyExpirationDate',
-	$handler, 'updateLinkExpiry'
+	'\OC\Share',
+	'verifyExpirationDate',
+	$handler,
+	'updateLinkExpiry'
 );
 
 $eventDispatcher = \OC::$server->getEventDispatcher();

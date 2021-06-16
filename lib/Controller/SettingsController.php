@@ -33,7 +33,7 @@ class SettingsController extends Controller implements ISettings {
 	/** @var IConfig  */
 	protected $config;
 
-	const DEFAULTS = [
+	public const DEFAULTS = [
 		'spv_min_chars_checked' => false,
 		'spv_min_chars_value' => 8,
 		'spv_lowercase_checked' => false,
@@ -63,16 +63,18 @@ class SettingsController extends Controller implements ISettings {
 	 * functions to convert values between what is shown and what is stored
 	 * these functions must be defined in this class, they're per config key
 	 */
-	const CONVERSIONS = [
+	public const CONVERSIONS = [
 		'spv_user_password_expiration_notification_value' => [
 			'in' => 'daysToSeconds',
 			'out' => 'secondsToDays',
 		],
 	];
 
-	public function __construct($appName,
-								IRequest $request,
-								IConfig $config) {
+	public function __construct(
+		$appName,
+		IRequest $request,
+		IConfig $config
+	) {
 		parent::__construct($appName, $request);
 		$this->config = $config;
 	}

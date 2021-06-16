@@ -93,16 +93,16 @@ class PasswordControllerTest extends TestCase {
 
 	public function testCreatePasswordTemplateResponse() {
 		$this->c = new PasswordController(
-				'password_policy',
-				$this->request,
-				$this->userSession,
-				$this->userManager,
-				$this->config,
-				$this->session,
-				$this->urlGenerator,
-				$this->l10n,
-				$this->configProvider
-			);
+			'password_policy',
+			$this->request,
+			$this->userSession,
+			$this->userManager,
+			$this->config,
+			$this->session,
+			$this->urlGenerator,
+			$this->l10n,
+			$this->configProvider
+		);
 
 		$this->config->expects($this->exactly(2))
 			->method('getUserValue')
@@ -118,11 +118,15 @@ class PasswordControllerTest extends TestCase {
 		self::assertInstanceOf(
 			TemplateResponse::class,
 			self::invokePrivate(
-			$this->c, 'createPasswordTemplateResponse',
-			['redirect/target', 'Error message']
-		));
-		$this->assertInstanceOf(TemplateResponse::class,
-			$this->invokePrivate($this->c, 'createPasswordTemplateResponse', ['']));
+				$this->c,
+				'createPasswordTemplateResponse',
+				['redirect/target', 'Error message']
+			)
+		);
+		$this->assertInstanceOf(
+			TemplateResponse::class,
+			$this->invokePrivate($this->c, 'createPasswordTemplateResponse', [''])
+		);
 	}
 
 	public function testShowWeb() {
