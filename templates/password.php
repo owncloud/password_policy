@@ -94,6 +94,11 @@ style('password_policy', 'styles');
 				</ul>
 			</div>
 		<?php }?>
-		<button id="submit" type="submit"><?php p($l->t('Save'));?></button>
+		<div class="submit-wrap">
+			<button id="submit" type="submit">
+				<span><?php p($l->t('Save')); ?></span>
+				<div class="loading-spinner"><div></div><div></div><div></div><div></div></div>
+			</button>
+		</div>
 	</fieldset>
 </form>
