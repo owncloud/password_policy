@@ -57,10 +57,11 @@ style('password_policy', 'styles');
 		<input type="hidden" name="app" value="oca-password-policy" />
 		<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>" id="requesttoken">
 
-		<label for="current_password" class="infield"><?php p($l->t('Current password'));?></label>
-		<input type="password" id="current_password" name="current_password" value="" autofocus placeholder="<?php p($l->t('Current password'));?>"/>
-
 		<div class="grouptop">
+			<label for="current_password" class="infield"><?php p($l->t('Current password'));?></label>
+			<input type="password" id="current_password" name="current_password" value="" autofocus placeholder="<?php p($l->t('Current password'));?>"/>
+		</div>
+		<div class="groupmiddle">
 			<label for="new_password" class="infield"><?php p($l->t('New password'));?></label>
 			<input type="password" id="new_password" name="new_password" value="" placeholder="<?php p($l->t('New password'));?>"/>
 		</div>
@@ -93,6 +94,11 @@ style('password_policy', 'styles');
 				</ul>
 			</div>
 		<?php }?>
-		<button id="submit" type="submit"><?php p($l->t('Save'));?></button>
+		<div class="submit-wrap">
+			<button id="submit" type="submit">
+				<span><?php p($l->t('Save')); ?></span>
+				<div class="loading-spinner"><div></div><div></div><div></div><div></div></div>
+			</button>
+		</div>
 	</fieldset>
 </form>

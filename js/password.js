@@ -35,4 +35,8 @@ $(document).ready(function() {
 	};
 	$newPassword.keyup(check);
 	$confirmPassword.keyup(check);
+
+	$('form').on('submit', function() {
+		$('#submit').addClass('icon-loading-small');
+	});
 });
