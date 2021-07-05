@@ -53,7 +53,7 @@ config = {
 			},
 			'servers': [
 				'daily-master-qa',
-				'latest'
+				// 'latest'
 			],
 			'browsers': [
 				'chrome',
