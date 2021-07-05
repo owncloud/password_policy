@@ -38,31 +38,31 @@ script('password_policy', 'ajax');
 			<li>
 				<label>
 					<input type="checkbox" name="spv_min_chars_checked" <?php if ($_['spv_min_chars_checked']): ?> checked="checked"<?php endif; ?>>
-					<input type="number" name="spv_min_chars_value" min="0" max="255" value="<?php p($_['spv_min_chars_value']) ?>"> <?php p($l->t('minimum characters'));?>
+					<input type="number" name="spv_min_chars_value" min="1" max="255" value="<?php p($_['spv_min_chars_value']) ?>"> <?php p($l->t('minimum characters'));?>
 				</label>
 			</li>
 			<li>
 				<label>
 					<input type="checkbox" name="spv_lowercase_checked" <?php if ($_['spv_lowercase_checked']): ?> checked="checked"<?php endif; ?>>
-					<input type="number" name="spv_lowercase_value" min="0" max="255" value="<?php p($_['spv_lowercase_value']) ?>"> <?php p($l->t('lowercase letters'));?>
+					<input type="number" name="spv_lowercase_value" min="1" max="255" value="<?php p($_['spv_lowercase_value']) ?>"> <?php p($l->t('lowercase letters'));?>
 				</label>
 			</li>
 			<li>
 				<label>
 					<input type="checkbox" name="spv_uppercase_checked" <?php if ($_['spv_uppercase_checked']): ?> checked="checked"<?php endif; ?>>
-					<input type="number" name="spv_uppercase_value" min="0" max="255" value="<?php p($_['spv_uppercase_value']) ?>"> <?php p($l->t('uppercase letters'));?>
+					<input type="number" name="spv_uppercase_value" min="1" max="255" value="<?php p($_['spv_uppercase_value']) ?>"> <?php p($l->t('uppercase letters'));?>
 				</label>
 			</li>
 			<li>
 				<label>
 					<input type="checkbox" name="spv_numbers_checked" <?php if ($_['spv_numbers_checked']): ?> checked="checked"<?php endif; ?>>
-					<input type="number" name="spv_numbers_value" min="0" max="255" value="<?php p($_['spv_numbers_value']) ?>"> <?php p($l->t('numbers'));?>
+					<input type="number" name="spv_numbers_value" min="1" max="255" value="<?php p($_['spv_numbers_value']) ?>"> <?php p($l->t('numbers'));?>
 				</label>
 			</li>
 			<li>
 				<label>
 					<input type="checkbox" name="spv_special_chars_checked" <?php if ($_['spv_special_chars_checked']): ?> checked="checked"<?php endif; ?>>
-					<input type="number" name="spv_special_chars_value" min="0" max="255" value="<?php p($_['spv_special_chars_value']) ?>"> <?php p($l->t('special characters'));?>
+					<input type="number" name="spv_special_chars_value" min="1" max="255" value="<?php p($_['spv_special_chars_value']) ?>"> <?php p($l->t('special characters'));?>
 				</label>
 			</li>
 			<li class="indented">

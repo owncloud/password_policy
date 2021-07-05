@@ -73,19 +73,19 @@ style('password_policy', 'styles');
 			<div id="password_hint" class="warning">
 				<h1><?php p($l->t('Password requirements:'));?></h1>
 				<ul>
-					<?php if (isset($_['password_requirements']['spv_min_chars_value'])) {?>
+					<?php if (isset($_['password_requirements']['spv_min_chars_value']) && (int)$_['password_requirements']['spv_min_chars_value'] > 0) {?>
 						<li><?php p($l->n('At least one character', 'At least %n characters', (int)$_['password_requirements']['spv_min_chars_value']));?></li>
 					<?php }?>
-					<?php if (isset($_['password_requirements']['spv_lowercase_value'])) {?>
+					<?php if (isset($_['password_requirements']['spv_lowercase_value']) && (int)$_['password_requirements']['spv_lowercase_value'] > 0) {?>
 						<li><?php p($l->n('At least one lowercase letter', 'At least %n lowercase letters', (int)$_['password_requirements']['spv_lowercase_value']));?></li>
 					<?php }?>
-					<?php if (isset($_['password_requirements']['spv_uppercase_value'])) {?>
+					<?php if (isset($_['password_requirements']['spv_uppercase_value']) && (int)$_['password_requirements']['spv_uppercase_value'] > 0) {?>
 						<li><?php p($l->n('At least one uppercase letter', 'At least %n uppercase letters', (int)$_['password_requirements']['spv_uppercase_value']));?></li>
 					<?php }?>
-					<?php if (isset($_['password_requirements']['spv_numbers_value'])) {?>
+					<?php if (isset($_['password_requirements']['spv_numbers_value']) && (int)$_['password_requirements']['spv_numbers_value'] > 0) {?>
 						<li><?php p($l->n('At least one number', 'At least %n numbers', (int)$_['password_requirements']['spv_numbers_value']));?></li>
 					<?php }?>
-					<?php if (isset($_['password_requirements']['spv_special_chars_value'])) {?>
+					<?php if (isset($_['password_requirements']['spv_special_chars_value']) && (int)$_['password_requirements']['spv_special_chars_value'] > 0) {?>
 						<li><?php p($l->n('At least one special character', 'At least %d special characters', (int)$_['password_requirements']['spv_special_chars_value']));?></li>
 					<?php }?>
 					<?php if (isset($_['password_requirements']['spv_def_special_chars_value'])) {?>
