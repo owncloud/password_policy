@@ -50,7 +50,7 @@ script('password_policy', 'ajax');
 			<li>
 				<label>
 					<input type="checkbox" name="spv_uppercase_checked" <?php if ($_['spv_uppercase_checked']): ?> checked="checked"<?php endif; ?>>
-					<input type="number" name="spv_uppercase_value" min="1 max="255" value="<?php p($_['spv_uppercase_value']) ?>"> <?php p($l->t('uppercase letters'));?>
+					<input type="number" name="spv_uppercase_value" min="1" max="255" value="<?php p($_['spv_uppercase_value']) ?>"> <?php p($l->t('uppercase letters'));?>
 				</label>
 			</li>
 			<li>
