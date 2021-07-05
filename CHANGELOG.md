@@ -109,6 +109,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Translate save button - #102
 - Change headline and subheadlines - #92
 
+[Unreleased]: https://github.com/owncloud/password_policy/compare/v2.1.3...master
 [2.1.3]: https://github.com/owncloud/password_policy/compare/v2.1.2...v2.1.3
 [2.1.2]: https://github.com/owncloud/password_policy/compare/v2.1.1...v2.1.2
 [2.1.1]: https://github.com/owncloud/password_policy/compare/v2.1.0...v2.1.1
