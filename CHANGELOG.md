@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Show only hints if numeric value is gt 0 - [#345](https://github.com/owncloud/password_policy/issues/345)
+- Adapt ui to new login design - [#343](https://github.com/owncloud/password_policy/issues/343)
 - Add password requirement hints and Capabilities API - [#335](https://github.com/owncloud/password_policy/issues/335)
 - Use relative url instead of absoulute url - [#330](https://github.com/owncloud/password_policy/issues/330)
 
