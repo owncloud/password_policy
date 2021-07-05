@@ -53,7 +53,6 @@ config = {
 			},
 			'servers': [
 				'daily-master-qa',
-				// 'latest'
 			],
 			'browsers': [
 				'chrome',
@@ -85,8 +84,7 @@ config = {
 				'apiGuests',
 			],
 			'servers': [
-				'daily-master-qa',
-				'latest'
+				'daily-master-qa'
 			],
 			'databases': [
 				'mariadb:10.2', 'oracle'
@@ -858,7 +856,8 @@ def acceptance(ctx):
 	errorFound = False
 
 	default = {
-		'servers': ['daily-master-qa', 'latest'],
+		#'servers': ['daily-master-qa', 'latest'],
+		'servers': ['daily-master-qa'],
 		'browsers': ['chrome'],
 		'phpVersions': ['7.2'],
 		'databases': ['mariadb:10.2'],
