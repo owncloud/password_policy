@@ -913,7 +913,8 @@ class PasswordPolicyContext implements Context {
 				'config:app:get',
 				'password_policy',
 				$setting
-			]
+			],
+			$this->featureContext->getStepLineRef()
 		);
 		if ($occResult['code'] !== "0") {
 			// The setting is not set. This is expected if settings have never
@@ -939,7 +940,8 @@ class PasswordPolicyContext implements Context {
 				$setting,
 				'--value',
 				$value
-			]
+			],
+			$this->featureContext->getStepLineRef()
 		);
 		if ($occResult['code'] !== "0") {
 			throw new \Exception(
@@ -977,7 +979,8 @@ class PasswordPolicyContext implements Context {
 				'config:app:delete',
 				'password_policy',
 				$setting
-			]
+			],
+			$this->featureContext->getStepLineRef()
 		);
 		if ($occResult['code'] !== "0") {
 			throw new \Exception(
@@ -1015,7 +1018,8 @@ class PasswordPolicyContext implements Context {
 				$this->featureContext->getBaseUrl(),
 				$this->featureContext->getAdminUsername(),
 				$this->featureContext->getAdminPassword(),
-				'password_policy'
+				'password_policy',
+				$this->featureContext->getStepLineRef()
 			);
 		}
 
@@ -1058,7 +1062,8 @@ class PasswordPolicyContext implements Context {
 			$this->featureContext->getBaseUrl(),
 			$this->featureContext->getAdminUsername(),
 			$this->featureContext->getAdminPassword(),
-			$appConfigSettingsToDelete
+			$appConfigSettingsToDelete,
+			$this->featureContext->getStepLineRef()
 		);
 	}
 
@@ -1077,7 +1082,8 @@ class PasswordPolicyContext implements Context {
 			$this->featureContext->getBaseUrl(),
 			$this->featureContext->getAdminUsername(),
 			$this->featureContext->getAdminPassword(),
-			$this->appParameterValues
+			$this->appParameterValues,
+			$this->featureContext->getStepLineRef()
 		);
 	}
 }
