@@ -1,7 +1,7 @@
 OC.L10N.register(
     "password_policy",
     {
-    "Error: The special characters cannot be empty." : "Σφάλμα: Ο ειδικός χαρακτήρας δεν πρέπει να είναι κενός",
+    "Error: The special characters cannot be empty." : "Σφάλμα: Ο ειδικός χαρακτήρας δεν πρέπει να είναι κενός.",
     "Failed to save!" : "Αποτυχία αποθήκευσης!",
     "Saved" : "Αποθηκεύτηκε",
     "Password Policy" : "Πολιτική συνθηματικού",
@@ -47,6 +47,13 @@ OC.L10N.register(
     "Please choose a new password." : "Παρακαλούμε επιλέξτε νέο συνθηματικό.",
     "Current password" : "Τρέχων συνθηματικό",
     "New password" : "Νέο συνθηματικό",
-    "Confirm new password" : "Επιβεβαιώστε νέο συνθηματικό"
+    "Confirm new password" : "Επιβεβαιώστε νέο συνθηματικό",
+    "Password requirements:" : "Απαιτήσεις συνθηματικού:",
+    "_At least one character_::_At least %n characters_" : ["Τουλάχιστον ένας χαρακτήρας","Τουλάχιστον %n χαρακτήρες"],
+    "_At least one lowercase letter_::_At least %n lowercase letters_" : ["Τουλάχιστον ένα πεζό γράμμα","Τουλάχιστον %n πεζά γράμματα"],
+    "_At least one uppercase letter_::_At least %n uppercase letters_" : ["Τουλάχιστον ένα κεφαλαίο γράμμα","Τουλάχιστον %n κεφαλαία γράμματα"],
+    "_At least one number_::_At least %n numbers_" : ["Τουλάχιστον ένας αριθμός","Τουλάχιστον %n αριθμοί"],
+    "_At least one special character_::_At least %d special characters_" : ["Τουλάχιστον ένας ειδικός χαρακτήρας","Τουλάχιστον %d ειδικοί χαρακτήρες"],
+    "Only special characters \"%s\" are allowed" : "Επιτρέπονται μόνο ειδικοί χαρακτήρες «%s»"
 },
 "nplurals=2; plural=(n != 1);");
