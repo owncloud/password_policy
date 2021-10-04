@@ -408,14 +408,17 @@ class HooksHandlerTest extends TestCase {
 		/** @var IUser | MockObject $user */
 		$user = $this->createMock(IUser::class);
 		$user->method('getUID')->willReturn('testuid');
-		$this->config->expects($this->at(0))
+		$this->config
+			->expects($this->exactly(2))
 			->method('getUserValue')
-			->with('testuid', 'password_policy', 'forcePasswordChange', '')
-			->willReturn('2018-06-28T10:13:00Z'); // = 1530180780
-		$this->config->expects($this->at(1))
-			->method('getUserValue')
-			->with('testuid', 'password_policy', 'firstLoginPasswordChange')
-			->willReturn($firstLoginPasswordChange); // = 1530180780
+			->withConsecutive(
+				['testuid', 'password_policy', 'forcePasswordChange', ''],
+				['testuid', 'password_policy', 'firstLoginPasswordChange'],
+			)
+			->willReturnOnConsecutiveCalls(
+				'2018-06-28T10:13:00Z',  // = 1530180780
+				$firstLoginPasswordChange,  // = 1530180780
+			);
 
 		$this->timeFactory->expects($this->once())
 			->method('getTime')
