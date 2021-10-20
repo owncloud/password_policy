@@ -21,7 +21,6 @@
  */
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use PHPUnit\Framework\Assert;
 use TestHelpers\AppConfigHelper;
@@ -52,7 +51,7 @@ class PasswordPolicyContext implements Context {
 	 *
 	 * @return string "on" or ""
 	 */
-	private function appSettingIsExpectedToBe($enabledOrDisabled) {
+	private function appSettingIsExpectedToBe(string $enabledOrDisabled): string {
 		if (\substr($enabledOrDisabled, 0, 6) === "enable") {
 			return 'on';
 		} else {
@@ -70,8 +69,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesMinimumCharactersPasswordPolicyUsingOcc(
-		$action
-	) {
+		string $action
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_min_chars_checked',
 			$this->appSettingIsExpectedToBe($action)
@@ -88,8 +87,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsMinimumCharactersRequiredUsingOcc(
-		$value
-	) {
+		string $value
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_min_chars_value',
 			$value
@@ -106,8 +105,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesLowercaseLettersPasswordPolicyUsingOcc(
-		$action
-	) {
+		string $action
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_lowercase_checked',
 			$this->appSettingIsExpectedToBe($action)
@@ -124,8 +123,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsLowercaseLettersRequiredUsingOcc(
-		$value
-	) {
+		string $value
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_lowercase_value',
 			$value
@@ -142,8 +141,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesUppercaseLettersPasswordPolicyUsingOcc(
-		$action
-	) {
+		string $action
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_uppercase_checked',
 			$this->appSettingIsExpectedToBe($action)
@@ -160,8 +159,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsUppercaseLettersRequiredUsingOcc(
-		$value
-	) {
+		string $value
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_uppercase_value',
 			$value
@@ -178,8 +177,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesNumbersPasswordPolicyUsingOcc(
-		$action
-	) {
+		string $action
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_numbers_checked',
 			$this->appSettingIsExpectedToBe($action)
@@ -196,8 +195,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsNumbersRequiredUsingOcc(
-		$value
-	) {
+		string $value
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_numbers_value',
 			$value
@@ -214,8 +213,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesSpecialCharactersPasswordPolicyUsingOcc(
-		$action
-	) {
+		string $action
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_special_chars_checked',
 			$this->appSettingIsExpectedToBe($action)
@@ -232,8 +231,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsSpecialCharactersRequiredUsingOcc(
-		$value
-	) {
+		string $value
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_special_chars_value',
 			$value
@@ -250,8 +249,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesRestrictSpecialCharactersPasswordPolicyUsingOcc(
-		$action
-	) {
+		string $action
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_def_special_chars_checked',
 			$this->appSettingIsExpectedToBe($action)
@@ -268,8 +267,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsRestrictSpecialCharactersUsingOcc(
-		$value
-	) {
+		string $value
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_def_special_chars_value',
 			$value
@@ -286,8 +285,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesLastPasswordsPasswordPolicyUsingOcc(
-		$action
-	) {
+		string $action
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_password_history_checked',
 			$this->appSettingIsExpectedToBe($action)
@@ -304,8 +303,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsLastPasswordsUsingOcc(
-		$value
-	) {
+		string $value
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_password_history_value',
 			$value
@@ -322,8 +321,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesDaysUntilUserPasswordExpiresPasswordPolicyUsingOcc(
-		$action
-	) {
+		string $action
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_user_password_expiration_checked',
 			$this->appSettingIsExpectedToBe($action)
@@ -340,8 +339,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesNotificationDaysBeforeUserPasswordExpiresPasswordPolicyUsingOcc(
-		$action
-	) {
+		string $action
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_user_password_expiration_notification_checked',
 			$this->appSettingIsExpectedToBe($action)
@@ -358,8 +357,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesForcePasswordChangeOnFirstLoginPasswordPolicyUsingOcc(
-		$action
-	) {
+		string $action
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_user_password_force_change_on_first_login_checked',
 			$this->appSettingIsExpectedToBe($action)
@@ -374,7 +373,7 @@ class PasswordPolicyContext implements Context {
 	 * @return void
 	 * @throws Exception
 	 */
-	public function theAdministratorExpiresThePasswordOfUser($username) {
+	public function theAdministratorExpiresThePasswordOfUser(string $username): void {
 		$this->expireUserPassword($username);
 		$this->occContext->theCommandShouldHaveBeenSuccessful();
 	}
@@ -387,7 +386,7 @@ class PasswordPolicyContext implements Context {
 	 * @return void
 	 * @throws Exception
 	 */
-	public function theAdministratorHasExpiredThePasswordOfUser($username) {
+	public function theAdministratorHasExpiredThePasswordOfUser(string $username): void {
 		$this->expireUserPassword($username);
 	}
 
@@ -401,8 +400,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesDaysUntilLinkExpiresWithPasswordPublicLinkPasswordPolicyUsingOcc(
-		$action
-	) {
+		string $action
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_expiration_password_checked',
 			$this->appSettingIsExpectedToBe($action)
@@ -419,8 +418,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesDaysUntilLinkExpiresWithoutPasswordPublicLinkPasswordPolicyUsingOcc(
-		$action
-	) {
+		string $action
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_expiration_nopassword_checked',
 			$this->appSettingIsExpectedToBe($action)
@@ -437,8 +436,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsMaxDaysUntilLinkExpiresWithPasswordPublicLinkPasswordPolicyUsingOcc(
-		$value
-	) {
+		string $value
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_expiration_password_value',
 			$value
@@ -455,8 +454,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsMaxDaysUntilLinkExpiresWithoutPasswordPublicLinkPasswordPolicyUsingOcc(
-		$value
-	) {
+		string $value
+	): void {
 		$this->setPasswordPolicySetting(
 			'spv_expiration_nopassword_value',
 			$value
@@ -472,8 +471,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theMinimumCharactersPasswordPolicyShouldBe(
-		$enabledOrDisabled
-	) {
+		string $enabledOrDisabled
+	): void {
 		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
@@ -491,8 +490,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theMinimumCharactersShouldBeSetTo(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
@@ -510,8 +509,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theLowercaseLettersPasswordPolicyShouldBe(
-		$enabledOrDisabled
-	) {
+		string $enabledOrDisabled
+	): void {
 		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
@@ -529,8 +528,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theLowercaseLettersShouldBeSetTo(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
@@ -548,8 +547,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theUppercaseLettersPasswordPolicyShouldBe(
-		$enabledOrDisabled
-	) {
+		string $enabledOrDisabled
+	): void {
 		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
@@ -567,8 +566,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theUppercaseLettersShouldBeSetTo(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
@@ -586,8 +585,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theNumbersPasswordPolicyShouldBe(
-		$enabledOrDisabled
-	) {
+		string $enabledOrDisabled
+	): void {
 		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
@@ -605,8 +604,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theNumbersShouldBeSetTo(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
@@ -624,8 +623,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theSpecialCharactersPasswordPolicyShouldBe(
-		$enabledOrDisabled
-	) {
+		string $enabledOrDisabled
+	): void {
 		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
@@ -643,8 +642,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theSpecialCharactersShouldBeSetTo(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
@@ -662,8 +661,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theRestrictSpecialCharactersPasswordPolicyShouldBe(
-		$enabledOrDisabled
-	) {
+		string $enabledOrDisabled
+	): void {
 		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
@@ -681,8 +680,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function restrictSpecialCharactersShouldBeSetTo(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
@@ -700,8 +699,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theLastPasswordsPasswordPolicyShouldBe(
-		$enabledOrDisabled
-	) {
+		string $enabledOrDisabled
+	): void {
 		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
@@ -719,8 +718,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theLastPasswordsShouldBeSetTo(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
@@ -738,8 +737,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theDaysUntilUserPasswordExpiresPasswordPolicyShouldBe(
-		$enabledOrDisabled
-	) {
+		string $enabledOrDisabled
+	): void {
 		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
@@ -757,8 +756,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theDaysUntilUserPasswordExpiresShouldBeSetTo(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
@@ -776,8 +775,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theNotificationDaysBeforeUserPasswordExpiresPasswordPolicyShouldBe(
-		$enabledOrDisabled
-	) {
+		string $enabledOrDisabled
+	): void {
 		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
@@ -795,8 +794,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theNotificationSecondsBeforeUserPasswordExpiresShouldBeSetTo(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
@@ -814,8 +813,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theForcePasswordChangeOnFirstLoginPasswordPolicyShouldBe(
-		$enabledOrDisabled
-	) {
+		string $enabledOrDisabled
+	): void {
 		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
@@ -833,8 +832,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theDaysUntilLinkExpiresWithPasswordPasswordPolicyShouldBe(
-		$enabledOrDisabled
-	) {
+		string $enabledOrDisabled
+	): void {
 		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
@@ -852,8 +851,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theDaysUntilLinkExpiresWithPasswordShouldBeSetTo(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
@@ -871,8 +870,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theDaysUntilLinkExpiresWithoutPasswordPasswordPolicyShouldBe(
-		$enabledOrDisabled
-	) {
+		string $enabledOrDisabled
+	): void {
 		Assert::assertEquals(
 			$this->appSettingIsExpectedToBe($enabledOrDisabled),
 			$this->getPasswordPolicySetting(
@@ -890,8 +889,8 @@ class PasswordPolicyContext implements Context {
 	 * @throws Exception
 	 */
 	public function theDaysUntilLinkExpiresWithoutPasswordShouldBeSetTo(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->getPasswordPolicySetting(
@@ -907,7 +906,7 @@ class PasswordPolicyContext implements Context {
 	 * @return string
 	 * @throws Exception
 	 */
-	public function getPasswordPolicySetting($setting) {
+	public function getPasswordPolicySetting(string $setting): string {
 		$occResult = SetupHelper::runOcc(
 			[
 				'config:app:get',
@@ -932,7 +931,10 @@ class PasswordPolicyContext implements Context {
 	 * @throws \Exception
 	 * @return void
 	 */
-	public function setPasswordPolicySetting($setting, $value) {
+	public function setPasswordPolicySetting(
+		string $setting,
+		string $value
+	): void {
 		$occResult = SetupHelper::runOcc(
 			[
 				'config:app:set',
@@ -960,7 +962,7 @@ class PasswordPolicyContext implements Context {
 	 * @return void
 	 * @throws Exception
 	 */
-	public function expireUserPassword($username) {
+	public function expireUserPassword(string $username): void {
 		$username = $this->featureContext->getActualUsername($username);
 		$this->featureContext->runOcc(
 			["user:expire-password -u $username"]
@@ -973,7 +975,7 @@ class PasswordPolicyContext implements Context {
 	 * @throws \Exception
 	 * @return void
 	 */
-	public function deletePasswordPolicySetting($setting) {
+	public function deletePasswordPolicySetting(string $setting): void {
 		$occResult = SetupHelper::runOcc(
 			[
 				'config:app:delete',
@@ -999,7 +1001,7 @@ class PasswordPolicyContext implements Context {
 	 * @return void
 	 * @throws Exception
 	 */
-	public function setUpScenario(BeforeScenarioScope $scope) {
+	public function setUpScenario(BeforeScenarioScope $scope): void {
 		// Get the environment
 		$environment = $scope->getEnvironment();
 		// Get all the contexts you need in this context
@@ -1072,11 +1074,9 @@ class PasswordPolicyContext implements Context {
 	 *
 	 * @AfterScenario @webUI
 	 *
-	 * @param AfterScenarioScope $afterScenarioScope
-	 *
 	 * @return void
 	 */
-	public function restoreScenario(AfterScenarioScope $afterScenarioScope) {
+	public function restoreScenario(): void {
 		// Restore app config settings
 		AppConfigHelper::modifyAppConfigs(
 			$this->featureContext->getBaseUrl(),

@@ -78,7 +78,7 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @return NodeElement
 	 * @throws ElementNotFoundException
 	 */
-	public function findSettingsCheckbox(string $checkboxName) {
+	public function findSettingsCheckbox(string $checkboxName): NodeElement {
 		$checkbox = $this->findField($checkboxName);
 		if ($checkbox === null) {
 			throw new ElementNotFoundException(
@@ -98,7 +98,10 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @return void
 	 * @throws \Exception
 	 */
-	public function toggleCheckbox(string $checkboxName, string $action) {
+	public function toggleCheckbox(
+		string $checkboxName,
+		string $action
+	): void {
 		$checkbox = $this->findSettingsCheckbox($checkboxName);
 		if ($action === "disables") {
 			if ($checkbox->isChecked()) {
@@ -124,7 +127,10 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @return void
 	 * @throws \Exception
 	 */
-	public function togglePolicyCheckbox(string $policyCheckboxKey, string $action) {
+	public function togglePolicyCheckbox(
+		string $policyCheckboxKey,
+		string $action
+	): void {
 		if (\array_key_exists($policyCheckboxKey, $this->policyCheckboxNames)) {
 			$this->toggleCheckbox(
 				$this->policyCheckboxNames[$policyCheckboxKey],
@@ -145,7 +151,7 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @return boolean
 	 * @throws \Exception
 	 */
-	public function isPolicyCheckboxChecked(string $policyCheckboxKey) {
+	public function isPolicyCheckboxChecked(string $policyCheckboxKey): bool {
 		if (\array_key_exists($policyCheckboxKey, $this->policyCheckboxNames)) {
 			$checkbox = $this->findSettingsCheckbox(
 				$this->policyCheckboxNames[$policyCheckboxKey]
@@ -167,7 +173,10 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @return void
 	 * @throws ElementNotFoundException
 	 */
-	public function enterPolicyValue(string $policyValueKey, string $value) {
+	public function enterPolicyValue(
+		string $policyValueKey,
+		string $value
+	): void {
 		if (\array_key_exists($policyValueKey, $this->policyValueNames)) {
 			$this->fillField($this->policyValueNames[$policyValueKey], $value);
 		} else {
@@ -185,7 +194,7 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @return string value in the field
 	 * @throws ElementNotFoundException
 	 */
-	public function getPolicyValue($policyValueKey) {
+	public function getPolicyValue(string $policyValueKey): string {
 		if (\array_key_exists($policyValueKey, $this->policyValueNames)) {
 			$name = $this->policyValueNames[$policyValueKey];
 			$field = $this->findField($name);
@@ -212,7 +221,7 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @return PasswordPolicySettingsPage
 	 * @throws ElementNotFoundException
 	 */
-	public function saveSettings(Session $session) {
+	public function saveSettings(Session $session): PasswordPolicySettingsPage {
 		$saveButton = $this->findButton($this->saveButtonValue);
 		if ($saveButton === null) {
 			throw new ElementNotFoundException(
@@ -237,8 +246,8 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 */
 	public function waitTillPageIsLoaded(
 		Session $session,
-		$timeout_msec = STANDARD_UI_WAIT_TIMEOUT_MILLISEC
-	) {
+		int $timeout_msec = STANDARD_UI_WAIT_TIMEOUT_MILLISEC
+	): void {
 		$currentTime = \microtime(true);
 		$end = $currentTime + ($timeout_msec / 1000);
 		while ($currentTime <= $end) {

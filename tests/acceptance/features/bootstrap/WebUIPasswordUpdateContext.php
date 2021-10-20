@@ -66,7 +66,10 @@ class WebUIPasswordUpdateContext extends RawMinkContext implements Context {
 	 * @return void
 	 * @throws ElementNotFoundException
 	 */
-	public function theUserEntersTheCurrentPasswordChoosesANewPasswordAndConfirmsItUsingTheWebui($username, $newPassword) {
+	public function theUserEntersTheCurrentPasswordChoosesANewPasswordAndConfirmsItUsingTheWebui(
+		string $username,
+		string $newPassword
+	): void {
 		$currentPassword = $this->featureContext->getPasswordForUser($username);
 		$this->updatePasswordPage->chooseNewPassword(
 			$currentPassword,
@@ -83,7 +86,7 @@ class WebUIPasswordUpdateContext extends RawMinkContext implements Context {
 	 *
 	 * @return void
 	 */
-	public function setUpScenario(BeforeScenarioScope $scope) {
+	public function setUpScenario(BeforeScenarioScope $scope): void {
 		$environment = $scope->getEnvironment();
 
 		$this->featureContext = $environment->getContext('FeatureContext');
@@ -97,7 +100,9 @@ class WebUIPasswordUpdateContext extends RawMinkContext implements Context {
 	 * @return void
 	 * @throws Exception
 	 */
-	public function theUserRequestsForPasswordUpdateWithFollowingCredentialsUsingTheWebui(TableNode $table) {
+	public function theUserRequestsForPasswordUpdateWithFollowingCredentialsUsingTheWebui(
+		TableNode $table
+	): void {
 		$this->featureContext->verifyTableNodeRows($table, ["old_password", "new_password", "confirm_new_password"]);
 		$updateData = $table->getRowsHash();
 		$this->updatePasswordPage->chooseNewPassword(
@@ -116,7 +121,9 @@ class WebUIPasswordUpdateContext extends RawMinkContext implements Context {
 	 * @return void
 	 * @throws ElementNotFoundException
 	 */
-	public function anErrorMessageWithFollowingTextShouldBeDisplayedOnTheWebui(PyStringNode $string) {
+	public function anErrorMessageWithFollowingTextShouldBeDisplayedOnTheWebui(
+		PyStringNode $string
+	): void {
 		$expectedString = $string->getRaw();
 		$errorMessage = $this->updatePasswordPage->getErrorMessage();
 		Assert::assertEquals(
@@ -135,7 +142,9 @@ class WebUIPasswordUpdateContext extends RawMinkContext implements Context {
 	 *
 	 * @return void
 	 */
-	public function newPasswordFieldsShouldBeHighlightedWithRedColor(int $numberOfFields) {
+	public function newPasswordFieldsShouldBeHighlightedWithRedColor(
+		int $numberOfFields
+	): void {
 		$actualCount = $this->updatePasswordPage->getNewPasswordEditFieldErrorCount();
 		Assert::assertEquals($numberOfFields, $actualCount);
 	}
@@ -146,7 +155,7 @@ class WebUIPasswordUpdateContext extends RawMinkContext implements Context {
 	 * @return void
 	 * @throws ElementNotFoundException
 	 */
-	public function passwordUpdateSubmitButtonShouldBeDisabled() {
+	public function passwordUpdateSubmitButtonShouldBeDisabled(): void {
 		$disabled = $this->updatePasswordPage->getSubmitButtonDisabledAttribute();
 		Assert::assertEquals("disabled", $disabled);
 	}

@@ -94,7 +94,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @return void
 	 * @throws Exception
 	 */
-	public function theAdminBrowsesToTheAdminSecuritySettingsPage() {
+	public function theAdminBrowsesToTheAdminSecuritySettingsPage(): void {
 		$this->webUIGeneralContext->adminLogsInUsingTheWebUI();
 		$this->theAdminReloadsTheAdminSecuritySettingsPage();
 	}
@@ -106,7 +106,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @return void
 	 * @throws Exception
 	 */
-	public function theAdminReloadsTheAdminSecuritySettingsPage() {
+	public function theAdminReloadsTheAdminSecuritySettingsPage(): void {
 		$this->passwordPolicySettingsPage->open();
 		$this->passwordPolicySettingsPage->waitTillPageIsLoaded(
 			$this->getSession()
@@ -122,8 +122,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesMinimumCharactersPasswordPolicyUsingTheWebui(
-		$action
-	) {
+		string $action
+	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'minimumCharacters',
 			$action
@@ -139,8 +139,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsMinimumCharactersUsingTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		$this->passwordPolicySettingsPage->enterPolicyValue(
 			'minimumCharacters',
 			$value
@@ -156,8 +156,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesLowercaseLettersPasswordPolicyUsingTheWebui(
-		$action
-	) {
+		string $action
+	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'lowercaseLetters',
 			$action
@@ -173,8 +173,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsLowercaseLettersUsingTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		$this->passwordPolicySettingsPage->enterPolicyValue(
 			'lowercaseLetters',
 			$value
@@ -188,7 +188,10 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @return void
 	 * @throws Exception
 	 */
-	public function loginWithExpiredPassword($username, $password) {
+	public function loginWithExpiredPassword(
+		string $username,
+		string $password
+	): void {
 		$session = $this->getSession();
 		$this->loginPage->waitTillPageIsLoaded($session);
 		$this->loginPage->loginAs(
@@ -206,7 +209,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @return void
 	 * @throws Exception
 	 */
-	public function userHasLoggedInWithExpiredPasswordUsingTheWebui($username) {
+	public function userHasLoggedInWithExpiredPasswordUsingTheWebui(string $username): void {
 		$usernameActual = $this->featureContext->getActualUsername($username);
 		$this->webUILoginContext->theUserBrowsesToTheLoginPage();
 		$this->loginWithExpiredPassword(
@@ -224,7 +227,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @return void
 	 * @throws Exception
 	 */
-	public function userLogsInWithExpiredPasswordUsingTheWebui($username) {
+	public function userLogsInWithExpiredPasswordUsingTheWebui(string $username): void {
 		$usernameActual = $this->featureContext->getActualUsername($username);
 		$this->webUILoginContext->theUserBrowsesToTheLoginPage();
 		$this->loginWithExpiredPassword(
@@ -242,8 +245,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesUppercaseLettersPasswordPolicyUsingTheWebui(
-		$action
-	) {
+		string $action
+	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'uppercaseLetters',
 			$action
@@ -259,8 +262,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsUppercaseLettersUsingTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		$this->passwordPolicySettingsPage->enterPolicyValue(
 			'uppercaseLetters',
 			$value
@@ -276,8 +279,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesNumbersPasswordPolicyUsingTheWebui(
-		$action
-	) {
+		string $action
+	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'numbers',
 			$action
@@ -293,8 +296,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsNumbersUsingTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		$this->passwordPolicySettingsPage->enterPolicyValue(
 			'numbers',
 			$value
@@ -310,8 +313,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesSpecialCharactersPasswordPolicyUsingTheWebui(
-		$action
-	) {
+		string $action
+	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'specialCharacters',
 			$action
@@ -327,8 +330,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsSpecialCharactersUsingTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		$this->passwordPolicySettingsPage->enterPolicyValue(
 			'specialCharacters',
 			$value
@@ -344,8 +347,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesRestrictSpecialCharactersPasswordPolicyUsingTheWebui(
-		$action
-	) {
+		string $action
+	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'restrictToTheseSpecialCharacters',
 			$action
@@ -361,8 +364,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsRestrictSpecialCharactersUsingTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		$this->passwordPolicySettingsPage->enterPolicyValue(
 			'restrictToTheseSpecialCharacters',
 			$value
@@ -378,8 +381,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesLastPasswordsPasswordPolicyUsingTheWebui(
-		$action
-	) {
+		string $action
+	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'lastPasswords',
 			$action
@@ -395,8 +398,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsLastPasswordsUsingTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		$this->passwordPolicySettingsPage->enterPolicyValue(
 			'lastPasswords',
 			$value
@@ -412,8 +415,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesDaysUntilUserPasswordExpiresPasswordPolicyUsingTheWebui(
-		$action
-	) {
+		string $action
+	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'daysUntilUserPasswordExpires',
 			$action
@@ -429,8 +432,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsDaysUntilUserPasswordExpiresUsingTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		$this->passwordPolicySettingsPage->enterPolicyValue(
 			'daysUntilUserPasswordExpires',
 			$value
@@ -446,8 +449,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesNotificationDaysBeforeUserPasswordExpiresPasswordPolicyUsingTheWebui(
-		$action
-	) {
+		string $action
+	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'notificationDaysBeforeUserPasswordExpires',
 			$action
@@ -463,8 +466,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsNotificationDaysBeforeUserPasswordExpiresUsingTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		$this->passwordPolicySettingsPage->enterPolicyValue(
 			'notificationDaysBeforeUserPasswordExpires',
 			$value
@@ -480,8 +483,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesForcePasswordChangeOnFirstLoginPasswordPolicyUsingTheWebui(
-		$action
-	) {
+		string $action
+	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'forcePasswordChangeOnFirstLogin',
 			$action
@@ -497,8 +500,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesDaysUntilLinkExpiresWithPasswordPublicLinkPasswordPolicyUsingTheWebui(
-		$action
-	) {
+		string $action
+	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'daysUntilLinkExpiresWithPassword',
 			$action
@@ -514,8 +517,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsDaysUntilLinkExpiresWithPasswordUsingTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		$this->passwordPolicySettingsPage->enterPolicyValue(
 			'daysUntilLinkExpiresWithPassword',
 			$value
@@ -531,8 +534,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminTogglesDaysUntilLinkExpiresWithoutPasswordPublicLinkPasswordPolicyUsingTheWebui(
-		$action
-	) {
+		string $action
+	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
 			'daysUntilLinkExpiresWithoutPassword',
 			$action
@@ -548,8 +551,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theAdminSetsDaysUntilLinkExpiresWithoutPasswordUsingTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		$this->passwordPolicySettingsPage->enterPolicyValue(
 			'daysUntilLinkExpiresWithoutPassword',
 			$value
@@ -562,7 +565,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @return void
 	 * @throws ElementNotFoundException
 	 */
-	public function theAdminSavesThePasswordPolicySettingsUsingTheWebui() {
+	public function theAdminSavesThePasswordPolicySettingsUsingTheWebui(): void {
 		$this->passwordPolicySettingsPage->saveSettings(
 			$this->getSession()
 		);
@@ -573,7 +576,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 *
 	 * @return bool
 	 */
-	private function isExpectedToBeChecked($checkedOrUnchecked) {
+	private function isExpectedToBeChecked(string $checkedOrUnchecked): bool {
 		return ($checkedOrUnchecked === "checked");
 	}
 
@@ -586,8 +589,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theMinimumCharactersCheckboxShouldBeOnTheWebui(
-		$checkedOrUnchecked
-	) {
+		string $checkedOrUnchecked
+	): void {
 		Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
@@ -605,8 +608,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theMinimumCharactersShouldBeSetToOnTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
@@ -624,8 +627,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theLowercaseLettersCheckboxShouldBeOnTheWebui(
-		$checkedOrUnchecked
-	) {
+		string $checkedOrUnchecked
+	): void {
 		Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
@@ -643,8 +646,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theLowercaseLettersShouldBeSetToOnTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
@@ -662,8 +665,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theUppercaseLettersCheckboxShouldBeOnTheWebui(
-		$checkedOrUnchecked
-	) {
+		string $checkedOrUnchecked
+	): void {
 		Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
@@ -681,8 +684,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theUppercaseLettersShouldBeSetToOnTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
@@ -699,7 +702,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @return void
 	 * @throws Exception
 	 */
-	public function theNumbersCheckboxShouldBeOnTheWebui($checkedOrUnchecked) {
+	public function theNumbersCheckboxShouldBeOnTheWebui(string $checkedOrUnchecked): void {
 		Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
@@ -717,8 +720,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theNumbersShouldBeSetToOnTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
@@ -736,8 +739,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theSpecialCharactersCheckboxShouldBeOnTheWebui(
-		$checkedOrUnchecked
-	) {
+		string $checkedOrUnchecked
+	): void {
 		Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
@@ -755,8 +758,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theSpecialCharactersShouldBeSetToOnTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
@@ -774,8 +777,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theRestrictSpecialCharactersCheckboxShouldBeOnTheWebui(
-		$checkedOrUnchecked
-	) {
+		string $checkedOrUnchecked
+	): void {
 		Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
@@ -793,8 +796,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function restrictSpecialCharactersShouldBeSetToOnTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
@@ -812,8 +815,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theLastPasswordsCheckboxShouldBeOnTheWebui(
-		$checkedOrUnchecked
-	) {
+		string $checkedOrUnchecked
+	): void {
 		Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
@@ -831,8 +834,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function lastPasswordsShouldBeSetToOnTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
@@ -850,8 +853,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theDaysUntilUserPasswordExpiresCheckboxShouldBeOnTheWebui(
-		$checkedOrUnchecked
-	) {
+		string $checkedOrUnchecked
+	): void {
 		Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
@@ -869,8 +872,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theDaysUntilUserPasswordExpiresShouldBeSetToOnTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
@@ -888,8 +891,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theNotificationDaysBeforeUserPasswordExpiresCheckboxShouldBeOnTheWebui(
-		$checkedOrUnchecked
-	) {
+		string $checkedOrUnchecked
+	): void {
 		Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
@@ -907,8 +910,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theNotificationDaysBeforeUserPasswordExpiresShouldBeSetToOnTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
@@ -926,8 +929,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theForcePasswordChangeOnFirstLoginCheckboxShouldBeOnTheWebui(
-		$checkedOrUnchecked
-	) {
+		string $checkedOrUnchecked
+	): void {
 		Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
@@ -945,8 +948,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theDaysUntilLinkExpiresWithPasswordCheckboxShouldBeOnTheWebui(
-		$checkedOrUnchecked
-	) {
+		string $checkedOrUnchecked
+	): void {
 		Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
@@ -964,8 +967,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theDaysUntilLinkExpiresWithPasswordShouldBeSetToOnTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
@@ -983,8 +986,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theDaysUntilLinkExpiresWithoutPasswordCheckboxShouldBeOnTheWebui(
-		$checkedOrUnchecked
-	) {
+		string $checkedOrUnchecked
+	): void {
 		Assert::assertEquals(
 			$this->isExpectedToBeChecked($checkedOrUnchecked),
 			$this->passwordPolicySettingsPage->isPolicyCheckboxChecked(
@@ -1002,8 +1005,8 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 * @throws Exception
 	 */
 	public function theDaysUntilLinkExpiresWithoutPasswordShouldBeSetToOnTheWebui(
-		$value
-	) {
+		string $value
+	): void {
 		Assert::assertEquals(
 			$value,
 			$this->passwordPolicySettingsPage->getPolicyValue(
@@ -1019,7 +1022,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 	 *
 	 * @return void
 	 */
-	public function setUpScenario(BeforeScenarioScope $scope) {
+	public function setUpScenario(BeforeScenarioScope $scope): void {
 		// Get the environment
 		$environment = $scope->getEnvironment();
 		// Get all the contexts you need in this context
