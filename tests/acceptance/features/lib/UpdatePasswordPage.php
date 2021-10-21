@@ -60,7 +60,7 @@ class UpdatePasswordPage extends OwncloudPage {
 		string $newPassword,
 		string $confirmPassword,
 		Session $session
-	) {
+	): void {
 		$form = $this->waitTillElementIsNotNull($this->chooseNewPasswordFormXpath);
 		$this->assertElementNotNull(
 			$form,
@@ -83,7 +83,7 @@ class UpdatePasswordPage extends OwncloudPage {
 	 * @return UpdatePasswordPage
 	 * @throws ElementNotFoundException
 	 */
-	public function saveSettings(Session $session) {
+	public function saveSettings(Session $session): UpdatePasswordPage {
 		$saveButton = $this->findById($this->submitUpdateId);
 		if ($saveButton === null) {
 			throw new ElementNotFoundException(
@@ -102,7 +102,7 @@ class UpdatePasswordPage extends OwncloudPage {
 	 * @return string
 	 * @throws ElementNotFoundException
 	 */
-	public function getErrorMessage() {
+	public function getErrorMessage(): string {
 		$errorMessage = $this->findById($this->errorMessageId);
 		if ($errorMessage === null) {
 			throw new ElementNotFoundException(
@@ -116,9 +116,9 @@ class UpdatePasswordPage extends OwncloudPage {
 	/**
 	 * Returns no of error labelled fields
 	 *
-	 * @return int|void
+	 * @return int
 	 */
-	public function getNewPasswordEditFieldErrorCount() {
+	public function getNewPasswordEditFieldErrorCount(): int {
 		$errorFields = $this->findAll("css", $this->passwordMissMatchSelector);
 		return \count($errorFields);
 	}
@@ -129,7 +129,7 @@ class UpdatePasswordPage extends OwncloudPage {
 	 * @return string
 	 * @throws ElementNotFoundException
 	 */
-	public function getSubmitButtonDisabledAttribute() {
+	public function getSubmitButtonDisabledAttribute():string {
 		$submitButton = $this->findById($this->submitUpdateId);
 		if ($submitButton === null) {
 			throw new ElementNotFoundException(
