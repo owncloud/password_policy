@@ -24,10 +24,10 @@ use OCP\Migration\IOutput;
 
 class Version20211102124544 implements ISimpleMigration {
 
-    /**
-     * @param IOutput $out
-     */
-    public function run(IOutput $out) {
-        \OC::$server->getConfig()->setAppValue('password_policy', 'types', 'authentication');
-    }
+	/**
+	 * @param IOutput $out
+	 */
+	public function run(IOutput $out) {
+		\OC::$server->getConfig()->setAppValue('password_policy', 'types', 'authentication');
+	}
 }
