@@ -33,6 +33,9 @@ Administrators find the configuration options in the 'Security' section of the o
 	<background-jobs>
 		<job>OCA\PasswordPolicy\Jobs\PasswordExpirationNotifierJob</job>
 	</background-jobs>
+	<types>
+		<authentication/>
+	</types>
 
 	<screenshot>https://raw.githubusercontent.com/owncloud/screenshots/master/password_policy/owncloud-app-password_policy.jpg</screenshot>
 	<screenshot>https://raw.githubusercontent.com/owncloud/screenshots/master/password_policy/owncloud-app-password_policy2.jpg</screenshot>

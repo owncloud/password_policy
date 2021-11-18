@@ -1086,4 +1086,36 @@ class PasswordPolicyContext implements Context {
 			$this->featureContext->getStepLineRef()
 		);
 	}
+
+	/**
+	 * @Then /^user "([^"]*)" downloading the file "([^"]*)" and using the password "([^"]*)" should receive hint to change their password$/
+	 *
+	 * @param string $user
+	 * @param string $fileName
+	 * @param string $password
+	 *
+	 * @return void
+	 */
+	public function userReceivesChangePasswordHintOnFileDownload(
+		string $user,
+		string $fileName,
+		string $password
+	):void {
+		$user = $this->featureContext->getActualUsername($user);
+		$password = $this->featureContext->getActualPassword($password);
+		$this->featureContext->downloadFileAsUserUsingPassword($user, $fileName, $password);
+		Assert::assertSame(
+			503,
+			$this->featureContext->getResponse()->getStatusCode(),
+			__METHOD__
+			. ' 503 error expected but got status code "'
+			. $this->featureContext->getResponse()->getStatusCode() . '"'
+		);
+		Assert::assertStringContainsString(
+			'The user must reset their password.',
+			$this->featureContext->getResponse()->getBody(),
+			__METHOD__
+			. ' expected to contain "The user must reset their password." but does not"'
+		);
+	}
 }
