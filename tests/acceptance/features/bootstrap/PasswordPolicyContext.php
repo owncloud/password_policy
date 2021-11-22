@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * ownCloud
  *
@@ -1113,7 +1113,7 @@ class PasswordPolicyContext implements Context {
 		);
 		Assert::assertStringContainsString(
 			'The user must reset their password.',
-			$this->featureContext->getResponse()->getBody(),
+			$this->featureContext->getResponse()->getBody()->getContents(),
 			__METHOD__
 			. ' expected to contain "The user must reset their password." but does not"'
 		);
