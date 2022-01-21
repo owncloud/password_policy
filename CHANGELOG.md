@@ -4,8 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased] - XXXX-XX-XX
+## [Unreleased] - xxxx-xx-xx
 
+## [2.1.4] - 2022-01-14
+
+### Fixed
+
+- Fix: Api requests even work if user needs to reset the password - [#355](https://github.com/owncloud/password_policy/issues/355)
 
 
 ## [2.1.3] - 2021-07-05
@@ -113,7 +118,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Translate save button - #102
 - Change headline and subheadlines - #92
 
-[Unreleased]: https://github.com/owncloud/password_policy/compare/v2.1.3...master
+[Unreleased]: https://github.com/owncloud/password_policy/compare/v2.1.4...master
+[2.1.4]: https://github.com/owncloud/password_policy/compare/v2.1.3...v2.1.4
 [2.1.3]: https://github.com/owncloud/password_policy/compare/v2.1.2...v2.1.3
 [2.1.2]: https://github.com/owncloud/password_policy/compare/v2.1.1...v2.1.2
 [2.1.1]: https://github.com/owncloud/password_policy/compare/v2.1.0...v2.1.1
