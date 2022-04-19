@@ -1,5 +1,5 @@
 @webUI @insulated @disablePreviews @mailhog
-Feature: enforce the restricted special characters in a password when a guest user sets its own password
+Feature: enforce the restricted special characters in a password when a guest user sets its own password test
 
   Background:
     Given user "Alice" has been created with default attributes and large skeleton files
