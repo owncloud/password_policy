@@ -35,16 +35,17 @@ style('password_policy', 'styles');
 		<h1 class="warning">
 			<div>
 				<?php
-					if ($_['firstLogin'] === true) {
+					if (isset($_['firstLogin']) && $_['firstLogin'] === true) {
 						p($l->t('Please set a new password'));
 					} else {
+						// NOTE: this should show together with 'Please choose a new password.'
 						p($l->t('Your password has expired.'));
 					}
 				?>
 			</div>
 			<div>
 				<?php
-					if ($_['firstLogin'] !== true) {
+					if (!isset($_['firstLogin']) || $_['firstLogin'] !== true) {
 						p($l->t('Please choose a new password.'));
 					}
 				?>
