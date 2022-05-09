@@ -49,6 +49,11 @@ OC.L10N.register(
     "New password" : "Nueva contraseña",
     "Confirm new password" : "Confirmar nueva contraseña",
     "Password requirements:" : "Requisitos de contraseña:",
+    "_At least one character_::_At least %n characters_" : ["Al menos un caracter","Al menos %n caracteres"],
+    "_At least one lowercase letter_::_At least %n lowercase letters_" : ["Al menos una letra minúscula","Al menos %n letras minúsculas"],
+    "_At least one uppercase letter_::_At least %n uppercase letters_" : ["Al menos una letra mayúscula","Al menos %n letras mayúsculas"],
+    "_At least one number_::_At least %n numbers_" : ["Al menos un número","Al menos %n números"],
+    "_At least one special character_::_At least %d special characters_" : ["Al menos un caracter especial","Al menos %d caracteres especiales"],
     "Only special characters \"%s\" are allowed" : "Solo se permiten los caracteres especiales \"%s\""
 },
 "nplurals=2; plural=(n != 1);");
