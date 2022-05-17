@@ -900,33 +900,6 @@ class PasswordPolicyContext implements Context {
 	}
 
 	/**
-	 * @Then /^the email address "([^"]*)" should not have received any emails$/
-	 *
-	 * @param string $emailAddress
-	 *
-	 * @return void
-	 * @throws Exception
-	 */
-	public function shouldNotReceiveAnyEmails(string $emailAddress):void {
-		$emails = [];
-		foreach (\TestHelpers\EmailHelper::getEmails(\TestHelpers\EmailHelper::getLocalMailhogUrl(), $this->featureContext->getStepLineRef())->items as $item) {
-			$emailSentTo
-				= $item->To[0]->Mailbox . "@" . $item->To[0]->Domain;
-			if ($emailSentTo === $emailAddress) {
-				\array_push($emails, $item);
-			}
-		}
-		Assert::assertEquals(
-			0,
-			\count($emails),
-			__METHOD__
-			. " Expected no of email is '0' but got '"
-			. \count($emails)
-			. "'"
-		);
-	}
-
-	/**
 	 *
 	 * @param string $setting
 	 *
