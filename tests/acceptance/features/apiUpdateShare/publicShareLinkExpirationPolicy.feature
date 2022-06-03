@@ -28,7 +28,7 @@ Feature: enforce public link expiration policies
       | path     | PARENT   |
     Then the HTTP status code should be "<http-status>"
     And the OCS status code should be "<ocs-status>"
-    And the public should be able to download file "parent.txt" from inside the last public shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
+    And the public should be able to download file "parent.txt" from inside the last public link shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
     Examples:
       | ocs-api-version | ocs-status | http-status |
       | 1               | 100        | 200         |
@@ -41,7 +41,7 @@ Feature: enforce public link expiration policies
       | path | PARENT |
     Then the HTTP status code should be "<http-status>"
     And the OCS status code should be "<ocs-status>"
-    And the public should be able to download file "parent.txt" from inside the last public shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
+    And the public should be able to download file "parent.txt" from inside the last public link shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
     Examples:
       | ocs-api-version | ocs-status | http-status |
       | 1               | 100        | 200         |
@@ -85,7 +85,7 @@ Feature: enforce public link expiration policies
       | password   | abcdefgh |
     Then the HTTP status code should be "<http-status>"
     And the OCS status code should be "<ocs-status>"
-    And the public should be able to download file "parent.txt" from inside the last public shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
+    And the public should be able to download file "parent.txt" from inside the last public link shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
     Examples:
       | ocs-api-version | ocs-status | http-status |
       | 1               | 100        | 200         |
@@ -99,7 +99,7 @@ Feature: enforce public link expiration policies
       | expireDate | +10 days |
     Then the HTTP status code should be "<http-status>"
     And the OCS status code should be "<ocs-status>"
-    And the public should be able to download file "parent.txt" from inside the last public shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
+    And the public should be able to download file "parent.txt" from inside the last public link shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
     Examples:
       | ocs-api-version | ocs-status | http-status |
       | 1               | 100        | 200         |
@@ -129,7 +129,7 @@ Feature: enforce public link expiration policies
       | expireDate | +10 days |
     Then the HTTP status code should be "<http-status>"
     And the OCS status code should be "<ocs-status>"
-    And the public should be able to download file "parent.txt" from inside the last public shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
+    And the public should be able to download file "parent.txt" from inside the last public link shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
     Examples:
       | ocs-api-version | ocs-status | http-status |
       | 1               | 100        | 200         |
@@ -145,7 +145,7 @@ Feature: enforce public link expiration policies
       | password   | abcdefgh |
     Then the HTTP status code should be "<http-status>"
     And the OCS status code should be "<ocs-status>"
-    And the public should be able to download file "parent.txt" from inside the last public shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
+    And the public should be able to download file "parent.txt" from inside the last public link shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
     Examples:
       | ocs-api-version | ocs-status | http-status |
       | 1               | 100        | 200         |
@@ -190,7 +190,7 @@ Feature: enforce public link expiration policies
       | expireDate | +20 days |
     Then the HTTP status code should be "<http-status>"
     And the OCS status code should be "<ocs-status>"
-    And the public should be able to download file "parent.txt" from inside the last public shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
+    And the public should be able to download file "parent.txt" from inside the last public link shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
     Examples:
       | ocs-api-version | ocs-status | http-status |
       | 1               | 100        | 200         |
@@ -205,7 +205,7 @@ Feature: enforce public link expiration policies
       | password   | abcdefgh |
     Then the HTTP status code should be "<http-status>"
     And the OCS status code should be "<ocs-status>"
-    And the public should be able to download file "parent.txt" from inside the last public shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
+    And the public should be able to download file "parent.txt" from inside the last public link shared folder using the new public WebDAV API with password "abcdefgh" and the content should be "ownCloud test text file parent" plus end-of-line
     Examples:
       | ocs-api-version | ocs-status | http-status |
       | 1               | 100        | 200         |
@@ -219,7 +219,7 @@ Feature: enforce public link expiration policies
       | expireDate | +6 days  |
       | password   | abcdefgh |
     And the administrator has set the value for the maximum days until link expires if password is set to "3"
-    When user "Alice" updates the last share using the sharing API with
+    When user "Alice" updates the last public link share using the sharing API with
       | expireDate | +5 days |
     Then the HTTP status code should be "<http-status>"
     And the OCS status code should be "<ocs-status>"
@@ -236,7 +236,7 @@ Feature: enforce public link expiration policies
       | path       | PARENT  |
       | expireDate | +6 days |
     And the administrator has set the value for the maximum days until link expires if password is not set to "3"
-    When user "Alice" updates the last share using the sharing API with
+    When user "Alice" updates the last public link share using the sharing API with
       | expireDate | +5 days |
     Then the HTTP status code should be "<http-status>"
     And the OCS status code should be "<ocs-status>"

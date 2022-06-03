@@ -1,8 +1,8 @@
 @webUI @insulated @disablePreviews
-Feature: enforce combinations of password policies on the public share link page
+Feature: enforce combinations of password policies on the public link share page
 
   As an administrator
-  I want public share link passwords to always have some combination of minimum length, lowercase, uppercase, numbers and special characters
+  I want public link share passwords to always have some combination of minimum length, lowercase, uppercase, numbers and special characters
   So that users cannot set passwords that are too easy to guess
 
   Background:
@@ -22,7 +22,7 @@ Feature: enforce combinations of password policies on the public share link page
     And the user has browsed to the login page
     And the user has logged in with username "Alice" and password "aA1!bB2#cC&deee" using the webUI
 
-  Scenario Outline: user creates a public share link with valid password
+  Scenario Outline: user creates a public link share with valid password
     When the user creates a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
     And the public accesses the last created public link with password "<password>" using the webUI
@@ -32,7 +32,7 @@ Feature: enforce combinations of password policies on the public share link page
       | 15***UPPloweZZZ           |
       | More%Than$15!Characters-0 |
 
-  Scenario Outline: user tries to create a public share link with invalid password
+  Scenario Outline: user tries to create a public link share with invalid password
     When the user tries to create a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
     Then the user should see an error message on the public link share dialog saying "<message>"
@@ -49,7 +49,7 @@ Feature: enforce combinations of password policies on the public share link page
       | aA!1                           | The password is too short. At least 15 characters are required.                               |
       | aA!123456789012345             | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
 
-  Scenario Outline: user creates a public share link using valid restricted special characters
+  Scenario Outline: user creates a public link share using valid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
     When the user creates a new public link for folder "simple-folder" using the webUI with
@@ -61,7 +61,7 @@ Feature: enforce combinations of password policies on the public share link page
       | 15%&*UPPloweZZZ           |
       | More^Than$15&Characters*0 |
 
-  Scenario Outline: user tries to create a public share link using invalid restricted special characters
+  Scenario Outline: user tries to create a public link share using invalid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
     When the user tries to create a new public link for folder "simple-folder" using the webUI with
