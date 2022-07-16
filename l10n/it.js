@@ -1,6 +1,7 @@
 OC.L10N.register(
     "password_policy",
     {
+    "Error: The special characters cannot be empty." : "Errore: il carattere speciale non può essere vuoto.",
     "Failed to save!" : "Salvataggio fallito!",
     "Saved" : "Salvato",
     "Password Policy" : "Password Policy",
@@ -38,12 +39,21 @@ OC.L10N.register(
     "days before password expires, users will receive a reminder notification" : "giorni alla scadenza della password, gli utenti riceveranno un promemoria",
     "Force users to change their password on first login" : "Obbliga gli utenti a cambiare la password al primo accesso",
     "Public link expiration policies:" : "Regole di scadenza link pubblico:",
+    "days maximum until link expires if password is set" : "Giorni massimi dopo i quali il link scade se è impostata una password",
+    "days maximum until link expires if password is not set" : "Giorni massimi dopo i quali il link scade se non è impostata una password",
     "Save" : "Salva",
     "Please set a new password" : "Imposta una nuova password",
     "Your password has expired." : "La tua password è scaduta.",
     "Please choose a new password." : "Scegli una nuova password.",
     "Current password" : "Password attuale",
     "New password" : "Nuova password",
-    "Confirm new password" : "Conferma la nuova password"
+    "Confirm new password" : "Conferma la nuova password",
+    "Password requirements:" : "Requisiti della password:",
+    "_At least one character_::_At least %n characters_" : ["Almeno un carattere","Almeno %n caratteri","Almeno %n caratteri"],
+    "_At least one lowercase letter_::_At least %n lowercase letters_" : ["Almeno una lettera minuscola","Almeno una lettera minuscola","Almeno %n lettere minuscole"],
+    "_At least one uppercase letter_::_At least %n uppercase letters_" : ["Almeno una lettera maiuscola","Almeno %n lettere maiuscole","Almeno %n lettere maiuscole"],
+    "_At least one number_::_At least %n numbers_" : ["Almeno un numero","Almeno %n numeri","Almeno %n numeri"],
+    "_At least one special character_::_At least %d special characters_" : ["Almeno un carattere speciale","Almeno %d caratteri speciali","Almeno %d caratteri speciali"],
+    "Only special characters \"%s\" are allowed" : "Sono consentiti solo i caratteri speciali '%s'"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
