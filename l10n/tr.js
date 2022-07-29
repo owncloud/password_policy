@@ -47,6 +47,13 @@ OC.L10N.register(
     "Please choose a new password." : "Lütfen yeni bir parola belirleyin.",
     "Current password" : "Mevcut parola",
     "New password" : "Yeni parola",
-    "Confirm new password" : "Yeni parolayı onaylayın:"
+    "Confirm new password" : "Yeni parolayı onaylayın:",
+    "Password requirements:" : "Parola gereksinimleri:",
+    "_At least one character_::_At least %n characters_" : ["En az bir karakter","En az %n karakter"],
+    "_At least one lowercase letter_::_At least %n lowercase letters_" : ["En az bir küçük harf","En az %n küçük harf"],
+    "_At least one uppercase letter_::_At least %n uppercase letters_" : ["En az bir büyük harf","En az %n büyük harf"],
+    "_At least one number_::_At least %n numbers_" : ["En az bir sayı","En az %n sayı"],
+    "_At least one special character_::_At least %d special characters_" : ["En az bir özel karakter","En az %d özel karakter"],
+    "Only special characters \"%s\" are allowed" : "Sadece \"%s\" özel karakterine izin verilir"
 },
 "nplurals=2; plural=(n > 1);");
