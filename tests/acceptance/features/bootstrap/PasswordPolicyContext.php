@@ -964,8 +964,10 @@ class PasswordPolicyContext implements Context {
 	 */
 	public function expireUserPassword(string $username): void {
 		$username = $this->featureContext->getActualUsername($username);
-		$this->featureContext->runOcc(
-			["user:expire-password -u $username"]
+		$this->featureContext->setOccLastCode(
+			$this->featureContext->runOcc(
+				["user:expire-password -u $username"]
+			)
 		);
 	}
 	/**
