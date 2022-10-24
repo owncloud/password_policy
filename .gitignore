@@ -24,3 +24,5 @@ node_modules/
 
 # Generated from .drone.star
 .drone.yml
+
+.idea/
