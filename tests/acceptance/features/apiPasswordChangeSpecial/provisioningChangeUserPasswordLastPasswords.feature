@@ -12,6 +12,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
       | username | password |
       | Alice    | Number1  |
 
+
   Scenario Outline: admin resets the password of a user to the existing password
     Given using OCS API version "<ocs-api-version>"
     When the administrator resets the password of user "Alice" to "Number1" using the provisioning API
@@ -24,6 +25,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
       | ocs-api-version | ocs-status | http-status | http-reason-phrase |
       | 1               | 403        | 200         | OK                 |
       | 2               | 403        | 403         | Forbidden          |
+
 
   Scenario Outline: admin resets the password of a user to the 1st of 2 passwords
     Given using OCS API version "<ocs-api-version>"
@@ -40,6 +42,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
       | 1               | 403        | 200         | OK                 |
       | 2               | 403        | 403         | Forbidden          |
 
+
   Scenario Outline: admin resets the password of a user to the 2nd of 2 passwords
     Given using OCS API version "<ocs-api-version>"
     And the administrator has reset the password of user "Alice" to "Number2"
@@ -54,6 +57,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
       | ocs-api-version | ocs-status | http-status | http-reason-phrase |
       | 1               | 403        | 200         | OK                 |
       | 2               | 403        | 403         | Forbidden          |
+
 
   Scenario Outline: admin resets the password of a user to the 2nd of 3 passwords
     Given using OCS API version "<ocs-api-version>"
@@ -70,6 +74,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
       | ocs-api-version | ocs-status | http-status | http-reason-phrase |
       | 1               | 403        | 200         | OK                 |
       | 2               | 403        | 403         | Forbidden          |
+
 
   Scenario Outline: admin resets the password of a user to the 2nd of 4 passwords
     Given using OCS API version "<ocs-api-version>"
@@ -88,6 +93,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
       | 1               | 403        | 200         | OK                 |
       | 2               | 403        | 403         | Forbidden          |
 
+
   Scenario Outline: admin resets the password of a user to the 1st of 4 passwords - the password can be reused
     Given using OCS API version "<ocs-api-version>"
     And the administrator has reset the password of user "Alice" to "Number2"
@@ -102,6 +108,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
       | ocs-api-version | ocs-status |
       | 1               | 100        |
       | 2               | 200        |
+
 
   Scenario Outline: admin resets the password of a user to a value different to any previous passwords - the password can be reused
     Given using OCS API version "<ocs-api-version>"

@@ -14,6 +14,7 @@ Feature: enforce the required number of restricted special characters in a passw
       | username | password   |
       | Alice    | a$b%c^1234 |
 
+
   Scenario Outline: admin changes a user password to one that has enough restricted special characters
     Given using OCS API version "<ocs-api-version>"
     When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/Alice" with body
@@ -29,6 +30,7 @@ Feature: enforce the required number of restricted special characters in a passw
       | 3$Special%Characters^ | 2               | 200        |
       | 1*2&3^4%5$6           | 1               | 100        |
       | 1*2&3^4%5$6           | 2               | 200        |
+
 
   Scenario Outline: admin changes a user password to one that does not have enough restricted special characters
     Given using OCS API version "<ocs-api-version>"
@@ -50,6 +52,7 @@ Feature: enforce the required number of restricted special characters in a passw
       | NoSpecialCharacters123   | 2               | 403        | 403         | Forbidden          |
       | Only2$Special&Characters | 1               | 403        | 200         | OK                 |
       | Only2$Special&Characters | 2               | 403        | 403         | Forbidden          |
+
 
   Scenario Outline: admin changes a user password to one that has invalid special characters
     Given using OCS API version "<ocs-api-version>"

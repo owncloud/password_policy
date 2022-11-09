@@ -12,6 +12,7 @@ Feature: enforce the required number of uppercase letters in a password when cha
       | username | password   |
       | Alice    | abcABC1234 |
 
+
   Scenario Outline: admin changes a user password to one that has enough uppercase letters
     Given using OCS API version "<ocs-api-version>"
     When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/Alice" with body
@@ -27,6 +28,7 @@ Feature: enforce the required number of uppercase letters in a password when cha
       | 3UpperCaseLetters         | 2               | 200        |
       | MoreThan3UpperCaseLetters | 1               | 100        |
       | MoreThan3UpperCaseLetters | 2               | 200        |
+
 
   Scenario Outline: admin changes a user password to one that does not have enough uppercase letters
     Given using OCS API version "<ocs-api-version>"

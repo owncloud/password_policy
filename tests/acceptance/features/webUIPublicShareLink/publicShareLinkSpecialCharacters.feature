@@ -14,6 +14,7 @@ Feature: enforce the required number of special characters on the public link sh
     And the user has browsed to the login page
     And the user has logged in with username "Alice" and password "a!b@c#1234" using the webUI
 
+
   Scenario Outline: user creates a public link share with enough special characters
     When the user creates a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
@@ -23,6 +24,7 @@ Feature: enforce the required number of special characters on the public link sh
       | password              |
       | 3#Special$Characters! |
       | 1!2@3#4$5%6^7&8*      |
+
 
   Scenario Outline: user tries to create a public link share with too few special characters
     When the user tries to create a new public link for folder "simple-folder" using the webUI with

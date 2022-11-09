@@ -11,6 +11,7 @@ Feature: enforce the restricted special characters in a password when creating a
     And the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
 
+
   Scenario Outline: admin creates a user with a password that has enough restricted special characters
     When the administrator creates this user using the occ command:
       | username | password   |

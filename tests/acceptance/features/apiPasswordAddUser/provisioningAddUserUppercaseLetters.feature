@@ -9,6 +9,7 @@ Feature: enforce the required number of uppercase letters in a password when cre
     Given the administrator has enabled the uppercase letters password policy
     And the administrator has set the uppercase letters required to "3"
 
+
   Scenario Outline: admin creates a user with a password that has enough uppercase letters
     Given using OCS API version "<ocs-api-version>"
     And user "Alice" has been deleted
@@ -23,6 +24,7 @@ Feature: enforce the required number of uppercase letters in a password when cre
       | 3UpperCaseLetters         | 2               | 200        |
       | MoreThan3UpperCaseLetters | 1               | 100        |
       | MoreThan3UpperCaseLetters | 2               | 200        |
+
 
   Scenario Outline: admin creates a user with a password that does not have enough uppercase letters
     Given using OCS API version "<ocs-api-version>"

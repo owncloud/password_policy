@@ -12,6 +12,7 @@ Feature: enforce the required number of numbers in a password when changing a us
       | username | password   |
       | Alice    | abcABC1234 |
 
+
   Scenario Outline: admin changes a user password to one that has enough numbers
     Given using OCS API version "<ocs-api-version>"
     When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/Alice" with body
@@ -27,6 +28,7 @@ Feature: enforce the required number of numbers in a password when changing a us
       | 333Numbers      | 2               | 200        |
       | moreNumbers1234 | 1               | 100        |
       | moreNumbers1234 | 2               | 200        |
+
 
   Scenario Outline: admin changes a user password to one that does not have enough numbers
     Given using OCS API version "<ocs-api-version>"

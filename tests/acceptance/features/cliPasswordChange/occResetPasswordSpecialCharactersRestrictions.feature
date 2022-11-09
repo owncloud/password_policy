@@ -14,6 +14,7 @@ Feature: enforce the required number of restricted special characters in a passw
       | username | password   |
       | Alice    | a$b%c^1234 |
 
+
   Scenario Outline: admin resets the password of a user with a password that has enough restricted special characters
     When the administrator resets the password of user "Alice" to "<password>" using the occ command
     Then the command should have been successful
@@ -24,6 +25,7 @@ Feature: enforce the required number of restricted special characters in a passw
       | password              |
       | 3$Special%Characters^ |
       | 1*2&3^4%5$6           |
+
 
   Scenario Outline: admin resets the password of a user with a password that does not have enough restricted special characters
     When the administrator resets the password of user "Alice" to "<password>" using the occ command
@@ -36,6 +38,7 @@ Feature: enforce the required number of restricted special characters in a passw
       | password                 |
       | NoSpecialCharacters123   |
       | Only2$Special&Characters |
+
 
   Scenario Outline: admin resets the password of a user with a password that has invalid special characters
     When the administrator resets the password of user "Alice" to "<password>" using the occ command

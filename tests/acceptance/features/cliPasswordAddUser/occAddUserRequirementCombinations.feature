@@ -17,6 +17,7 @@ Feature: enforce combinations of password policies when creating a user
     And the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
 
+
   Scenario Outline: admin creates a user with a password that meets the password policy
     When the administrator creates this user using the occ command:
       | username | password   |

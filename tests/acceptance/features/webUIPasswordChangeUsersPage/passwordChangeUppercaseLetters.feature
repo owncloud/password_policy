@@ -15,6 +15,7 @@ Feature: enforce the required number of uppercase letters in a password on the p
     And user admin has logged in using the webUI
     And the user has browsed to the users page
 
+
   Scenario Outline: Admin changes user's password to a string with enough uppercase letters
     When the administrator changes the password of user "Alice" to "<password>" using the webUI
     And the user re-logs in with username "Alice" and password "<password>" using the webUI
@@ -23,6 +24,7 @@ Feature: enforce the required number of uppercase letters in a password on the p
       | password                  |
       | 3UpperCaseLetters         |
       | MoreThan3UpperCaseLetters |
+
 
   Scenario Outline: Admin tries to change user's password to a string that has too few uppercase letters
     When the administrator changes the password of user "Alice" to "<password>" using the webUI

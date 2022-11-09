@@ -8,6 +8,7 @@ Feature: enforce the required number of lowercase letters in a password when a g
     And the administrator has created guest user "guest" with email "guest@example.com"
     And user "Alice" has shared folder "/simple-folder" with user "guest@example.com"
 
+
   Scenario Outline: A guest user sets own password to a string that has enough lowercase letters
     When guest user "guest" registers and sets password to "<password>" using the webUI
     And user "guest@example.com" logs in using the webUI
@@ -17,6 +18,7 @@ Feature: enforce the required number of lowercase letters in a password when a g
       | password                  |
       | 3LCase                    |
       | moreThan3LowercaseLetters |
+
 
   Scenario Outline: A guest user sets own password to a string that does not have enough lowercase letters
     When guest user "guest" registers and sets password to "<password>" using the webUI

@@ -20,6 +20,7 @@ Feature: enforce combinations of password policies when changing a user password
       | username | password        |
       | Alice    | aA1!bB2#cC&deee |
 
+
   Scenario Outline: admin changes a user password to one that meets the password policy
     Given using OCS API version "<ocs-api-version>"
     When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/Alice" with body
@@ -35,6 +36,7 @@ Feature: enforce combinations of password policies when changing a user password
       | 15***UPPloweZZZ           | 2               | 200        |
       | More%Than$15!Characters-0 | 1               | 100        |
       | More%Than$15!Characters-0 | 2               | 200        |
+
 
   Scenario Outline: admin changes a user password to one that does not meet the password policy
     Given using OCS API version "<ocs-api-version>"
@@ -66,6 +68,7 @@ Feature: enforce combinations of password policies when changing a user password
       | aA!123456789012345             | 1               | 403        | 200         | OK                 | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
       | aA!123456789012345             | 2               | 403        | 403         | Forbidden          | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
 
+
   Scenario Outline: admin changes a user password to one that has valid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
@@ -83,6 +86,7 @@ Feature: enforce combinations of password policies when changing a user password
       | 15%&*UPPloweZZZ           | 2               | 200        |
       | More^Than$15&Characters*0 | 1               | 100        |
       | More^Than$15&Characters*0 | 2               | 200        |
+
 
   Scenario Outline: admin changes a user password to one that has invalid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy

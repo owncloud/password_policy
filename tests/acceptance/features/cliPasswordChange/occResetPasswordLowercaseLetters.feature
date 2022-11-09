@@ -12,6 +12,7 @@ Feature: enforce the required number of lowercase letters in a password when res
       | username | password   |
       | Alice    | abcABC1234 |
 
+
   Scenario Outline: admin resets the password of a user with a password that has enough lowercase letters
     When the administrator resets the password of user "Alice" to "<password>" using the occ command
     Then the command should have been successful
@@ -22,6 +23,7 @@ Feature: enforce the required number of lowercase letters in a password when res
       | password                  |
       | 3LCase                    |
       | moreThan3LowercaseLetters |
+
 
   Scenario Outline: admin resets the password of a user with a password that does not have enough lowercase letters
     When the administrator resets the password of user "Alice" to "<password>" using the occ command

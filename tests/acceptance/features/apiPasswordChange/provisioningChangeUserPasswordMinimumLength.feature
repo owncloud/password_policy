@@ -12,6 +12,7 @@ Feature: enforce the minimum length of a password when changing a user password
       | username | password   |
       | Alice    | 1234567890 |
 
+
   Scenario Outline: admin changes a user password to one that is long enough
     Given using OCS API version "<ocs-api-version>"
     When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/Alice" with body
@@ -27,6 +28,7 @@ Feature: enforce the minimum length of a password when changing a user password
       | 10tenchars           | 2               | 200        |
       | morethan10characters | 1               | 100        |
       | morethan10characters | 2               | 200        |
+
 
   Scenario Outline: admin changes a user password to one that is not long enough
     Given using OCS API version "<ocs-api-version>"

@@ -16,6 +16,7 @@ Feature: enforce the required number of special characters in a password on the 
     And the user has requested the password reset link using the webUI
     And the user has followed the password reset link from the email address of user "Alice"
 
+
   Scenario Outline: user resets their password to a string with enough special characters
     When the user resets the password to "<password>" and confirms with the same password using the webUI
     And the user logs in with username "Alice" and password "<password>" using the webUI
@@ -24,6 +25,7 @@ Feature: enforce the required number of special characters in a password on the 
       | password              |
       | 3#Special$Characters! |
       | 1!2@3#4$5%6^7&8*      |
+
 
   Scenario Outline: user tries to reset their password to a string that has too few special characters
     When the user resets the password to "<password>" and confirms with the same password using the webUI

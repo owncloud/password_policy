@@ -11,6 +11,7 @@ Feature: enforce the required number of numbers in a password on user creation
     And the administrator has logged in using the webUI
     And the administrator has browsed to the users page
 
+
   Scenario Outline: administrator creates a user with password set to a string with enough numbers
     When the administrator creates a user with the name "guiusr1" and the password "<password>" using the webUI
     And the administrator logs out of the webUI
@@ -21,6 +22,7 @@ Feature: enforce the required number of numbers in a password on user creation
       | 333Numbers      |
       | moreNumbers1234 |
 
+
   Scenario Outline: administrator creates a user with password set to a string that has too few numbers
     When the administrator attempts to create a user with the name "guiusr1" and the password "<password>" using the webUI
     Then a notification should be displayed on the webUI with the text "Error creating user: The password contains too few numbers. At least 3 numbers are required."
@@ -29,6 +31,7 @@ Feature: enforce the required number of numbers in a password on user creation
       | password      |
       | NoNumbers     |
       | Only22Numbers |
+
 
   Scenario Outline: user sets their password to a string with enough numbers after being created with an Email address only
     When the administrator creates a user with the name "Alice" and the email "guiusr1@owncloud" without a password using the webUI
@@ -46,6 +49,7 @@ Feature: enforce the required number of numbers in a password on user creation
       | password        |
       | 333Numbers      |
       | moreNumbers1234 |
+
 
   Scenario Outline: user tries to set their password to a string that has too few numbers after being created with an Email address only
     When the administrator creates a user with the name "Alice" and the email "guiusr1@owncloud" without a password using the webUI

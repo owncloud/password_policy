@@ -14,6 +14,7 @@ Feature: enforce the required number of lowercase letters in a password on the p
     And the user has browsed to the login page
     And the user has logged in with username "Alice" and password "abcABC1234" using the webUI
 
+
   Scenario Outline: user creates a public link share with enough lowercase letters
     When the user creates a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
@@ -23,6 +24,7 @@ Feature: enforce the required number of lowercase letters in a password on the p
       | password                  |
       | 3LCase                    |
       | moreThan3LowercaseLetters |
+
 
   Scenario Outline: user tries to create a public link share with too few lowercase letters
     When the user tries to create a new public link for folder "simple-folder" using the webUI with

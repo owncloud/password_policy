@@ -8,6 +8,7 @@ Feature: enforce public link expiration policies
   Background:
     Given user "Alice" has been created with default attributes and small skeleton files
 
+
   Scenario Outline: user tries to create a public share without expiration date and password when "days maximum until link expires if password is not set" is enabled
     Given using OCS API version "<ocs-api-version>"
     And the administrator has enabled the days until link expires if password is not set public link password policy
@@ -19,6 +20,7 @@ Feature: enforce public link expiration policies
       | ocs-api-version | ocs-status | http-status |
       | 1               | 403        | 200         |
       | 2               | 403        | 403         |
+
 
   Scenario Outline: user creates a public share without expiration date when "days maximum until link expires if password is not set" is enabled
     Given using OCS API version "<ocs-api-version>"
@@ -33,6 +35,7 @@ Feature: enforce public link expiration policies
       | ocs-api-version | ocs-status | http-status |
       | 1               | 100        | 200         |
       | 2               | 200        | 200         |
+
 
   Scenario Outline: user creates a public share without expiration date and password when "days maximum until link expires if password is set" is enabled
     Given using OCS API version "<ocs-api-version>"
@@ -62,6 +65,7 @@ Feature: enforce public link expiration policies
       | 1               | 403        | 200         |
       | 2               | 403        | 403         |
 
+
   Scenario Outline: user tries to create a public share without password but with expiration date exceeding the default maximum days when "days maximum until link expires if password is not set" is enabled
     Given using OCS API version "<ocs-api-version>"
     And the administrator has enabled the days until link expires if password is not set public link password policy
@@ -75,6 +79,7 @@ Feature: enforce public link expiration policies
       | ocs-api-version | ocs-status | http-status |
       | 1               | 403        | 200         |
       | 2               | 403        | 403         |
+
 
   Scenario Outline: user creates a public share with password but with expiration date exceeding the default maximum days when "days maximum until link expires if password is not set" is enabled
     Given using OCS API version "<ocs-api-version>"
@@ -91,6 +96,7 @@ Feature: enforce public link expiration policies
       | 1               | 100        | 200         |
       | 2               | 200        | 200         |
 
+
   Scenario Outline: user creates a public share without password but expiration date exceeding the default maximum days when "days maximum until link expires if password is set" is enabled
     Given using OCS API version "<ocs-api-version>"
     And the administrator has enabled the days until link expires if password is set public link password policy
@@ -104,6 +110,7 @@ Feature: enforce public link expiration policies
       | ocs-api-version | ocs-status | http-status |
       | 1               | 100        | 200         |
       | 2               | 200        | 200         |
+
 
   Scenario Outline: user tries to create a public share with password but expiration date exceeding the default maximum days when "days maximum until link expires if password is set" is enabled
     Given using OCS API version "<ocs-api-version>"
@@ -120,6 +127,7 @@ Feature: enforce public link expiration policies
       | 1               | 403        | 200         |
       | 2               | 403        | 403         |
 
+
   Scenario Outline: user creates a public share with expiration date when "days maximum until link expires if password is not set" is enabled and the default maximum days is changed
     Given using OCS API version "<ocs-api-version>"
     And the administrator has enabled the days until link expires if password is not set public link password policy
@@ -134,6 +142,7 @@ Feature: enforce public link expiration policies
       | ocs-api-version | ocs-status | http-status |
       | 1               | 100        | 200         |
       | 2               | 200        | 200         |
+
 
   Scenario Outline: user creates a public share with password and expiration date when "days maximum until link expires if password is set" is enabled and the default maximum days is changed
     Given using OCS API version "<ocs-api-version>"
@@ -151,6 +160,7 @@ Feature: enforce public link expiration policies
       | 1               | 100        | 200         |
       | 2               | 200        | 200         |
 
+
   Scenario Outline: user tries to create a public share with expiration date exceeding the default value when "days maximum until link expires if password is not set" is enabled and the default maximum days is changed
     Given using OCS API version "<ocs-api-version>"
     And the administrator has enabled the days until link expires if password is not set public link password policy
@@ -165,6 +175,7 @@ Feature: enforce public link expiration policies
       | ocs-api-version | ocs-status | http-status |
       | 1               | 403        | 200         |
       | 2               | 403        | 403         |
+
 
   Scenario Outline: user tries to create a public share with password, and expiration date exceeding the default value when "days maximum until link expires if password is set" is enabled and the default maximum days is changed
     Given using OCS API version "<ocs-api-version>"
@@ -182,6 +193,7 @@ Feature: enforce public link expiration policies
       | 1               | 403        | 200         |
       | 2               | 403        | 403         |
 
+
   Scenario Outline: user tries to create a public share with expiration date exceeding the default value when "days maximum until link expires if password is not set" is disabled but the default maximum days is changed
     Given using OCS API version "<ocs-api-version>"
     And the administrator has set the value for the maximum days until link expires if password is not set to "10"
@@ -195,6 +207,7 @@ Feature: enforce public link expiration policies
       | ocs-api-version | ocs-status | http-status |
       | 1               | 100        | 200         |
       | 2               | 200        | 200         |
+
 
   Scenario Outline: user tries to create a public share with password, and expiration date exceeding the default value when "days maximum until link expires if password is not set" is disabled but the default maximum days is changed
     Given using OCS API version "<ocs-api-version>"
@@ -210,6 +223,7 @@ Feature: enforce public link expiration policies
       | ocs-api-version | ocs-status | http-status |
       | 1               | 100        | 200         |
       | 2               | 200        | 200         |
+
 
   Scenario Outline: user decreases the default maximum days until link expires if password is set and then edits expiration date of the already created public link
     Given using OCS API version "<ocs-api-version>"
@@ -228,6 +242,7 @@ Feature: enforce public link expiration policies
       | ocs-api-version | ocs-status | http-status |
       | 1               | 400        | 200         |
       | 2               | 400        | 400         |
+
 
   Scenario Outline: user decreases the default maximum days until link expires if password is not set and then edits expiration date of the already created public link
     Given using OCS API version "<ocs-api-version>"

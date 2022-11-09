@@ -7,6 +7,7 @@ Feature:
   Background:
     Given user "Alice" has been created with default attributes and large skeleton files
 
+
   Scenario: user tries to reset their password to one of their last 3 passwords after user password has expired
     Given the administrator has enabled the last passwords user password policy
     And the administrator has set the number of last passwords that should not be used to "3"
@@ -22,6 +23,7 @@ Feature:
     The password must be different than your previous 3 passwords.
     """
 
+
   Scenario: user tries to update expired password with enabled lowercase letters password policy
     Given the administrator has enabled the lowercase letters password policy
     And the administrator has set the lowercase letters required to "3"
@@ -33,6 +35,7 @@ Feature:
     """
     The password contains too few lowercase letters. At least 3 lowercase letters are required.
     """
+
 
   Scenario: user tries to update expired password with enabled minimum characters password policy
     Given the administrator has enabled the minimum characters password policy
@@ -46,6 +49,7 @@ Feature:
     The password is too short. At least 10 characters are required.
     """
 
+
   Scenario: user tries to update expired password with enabled numbers password policy
     Given the administrator has enabled the numbers password policy
     And the administrator has set the numbers required to "3"
@@ -58,6 +62,7 @@ Feature:
     The password contains too few numbers. At least 3 numbers are required.
     """
 
+
   Scenario: user tries to update expired password with enabled special characters password policy
     Given the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
@@ -69,6 +74,7 @@ Feature:
     """
     The password contains too few special characters. At least 3 special characters are required.
     """
+
 
   Scenario Outline: user tries to update expired password with enabled special characters
   password policy with required restricted special characters
@@ -89,6 +95,7 @@ Feature:
       | Only#Invalid!Special@Characters | The password contains invalid special characters. Only $%^&* are allowed.                             |
       | NoSpecialCharacters123          | The password contains too few special characters. At least 3 special characters ($%^&*) are required. |
 
+
   Scenario: user tries to update expired password with enabled uppercase letters password policy
     Given the administrator has enabled the uppercase letters password policy
     And the administrator has set the uppercase letters required to "3"
@@ -100,6 +107,7 @@ Feature:
     """
     The password contains too few uppercase letters. At least 3 uppercase letters are required.
     """
+
 
   Scenario: user tries to update expired password with a combination of password policy settings
     Given the administrator has enabled the minimum characters password policy
@@ -121,6 +129,7 @@ Feature:
     """
     The password contains too few lowercase letters. At least 4 lowercase letters are required.
     """
+
 
   Scenario: user updates expired password with a password that meets the policy requirements
     Given the administrator has enabled the minimum characters password policy

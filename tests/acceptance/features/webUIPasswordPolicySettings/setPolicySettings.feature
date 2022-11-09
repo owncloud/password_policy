@@ -8,6 +8,7 @@ Feature: set password policy settings
   Background:
     Given the administrator has browsed to the admin security settings page
 
+
   Scenario: set minimum length of password
     When the administrator enables the minimum characters password policy using the webUI
     And the administrator sets the minimum characters required to "5" using the webUI
@@ -17,6 +18,7 @@ Feature: set password policy settings
     And the required minimum characters should be set to "5" on the webUI
     And the required minimum characters should be set to "5"
     And the minimum characters password policy should be enabled
+
 
   Scenario: set lowercase letters required in password
     When the administrator enables the lowercase letters password policy using the webUI
@@ -28,6 +30,7 @@ Feature: set password policy settings
     And the required number of lowercase letters should be set to "2"
     And the lowercase letters password policy should be enabled
 
+
   Scenario: set uppercase letters required in password
     When the administrator enables the uppercase letters password policy using the webUI
     And the administrator sets the uppercase letters required to "2" using the webUI
@@ -37,6 +40,7 @@ Feature: set password policy settings
     And the required number of uppercase letters should be set to "2" on the webUI
     And the required number of uppercase letters should be set to "2"
     And the uppercase letters password policy should be enabled
+
 
   Scenario: set numbers required in password
     When the administrator enables the numbers password policy using the webUI
@@ -48,6 +52,7 @@ Feature: set password policy settings
     And the required number of numbers should be set to "2"
     And the numbers password policy should be enabled
 
+
   Scenario: set special characters required in password
     When the administrator enables the special characters password policy using the webUI
     And the administrator sets the special characters required to "2" using the webUI
@@ -57,6 +62,7 @@ Feature: set password policy settings
     And the required number of special characters should be set to "2" on the webUI
     And the required number of special characters should be set to "2"
     And the special characters password policy should be enabled
+
 
   Scenario: set "restrict to these special characters" list of characters
     When the administrator enables the restrict to these special characters password policy using the webUI
@@ -68,6 +74,7 @@ Feature: set password policy settings
     And restrict to these special characters should be set to "!@#$%^&*"
     And the restrict to these special characters password policy should be enabled
 
+
   Scenario: set "restrict to these special characters" empty receives user notification and the change is not saved
     When the administrator enables the restrict to these special characters password policy using the webUI
     And the administrator sets the restricted list of special characters to "" using the webUI
@@ -76,6 +83,7 @@ Feature: set password policy settings
       | Error: The special characters cannot be empty. |
     And the administrator reloads the admin security settings page
     And restrict to these special characters should be set to "#!" on the webUI
+
 
   Scenario: set number of last passwords that should not be used
     When the administrator enables the last passwords user password policy using the webUI
@@ -87,6 +95,7 @@ Feature: set password policy settings
     And last passwords that should not be used should be set to "12"
     And the last passwords user password policy should be enabled
 
+
   Scenario: set "days until user password expires"
     When the administrator enables the days until user password expires user password policy using the webUI
     And the administrator sets the number of days until user password expires to "42" using the webUI
@@ -96,6 +105,7 @@ Feature: set password policy settings
     And the number of days until user password expires should be set to "42" on the webUI
     And the number of days until user password expires should be set to "42"
     And the days until user password expires user password policy should be enabled
+
 
   Scenario: set "notification days before password expires"
     When the administrator enables the notification days before password expires user password policy using the webUI
@@ -108,6 +118,7 @@ Feature: set password policy settings
     And the notification seconds before password expires should be set to "1209600"
     And the notification days before password expires user password policy should be enabled
 
+
   Scenario: set "days until link expires if password is set" for public links
     When the administrator enables the days until link expires if password is set public link password policy using the webUI
     And the administrator sets the number of days until link expires if password is set to "35" using the webUI
@@ -117,6 +128,7 @@ Feature: set password policy settings
     And the number of days until link expires if password is set should be set to "35" on the webUI
     And the number of days until link expires if password is set should be set to "35"
     And the days until link expires if password is set public link password policy should be enabled
+
 
   Scenario: set "days until link expires if password is not set" for public links
     When the administrator enables the days until link expires if password is not set public link password policy using the webUI

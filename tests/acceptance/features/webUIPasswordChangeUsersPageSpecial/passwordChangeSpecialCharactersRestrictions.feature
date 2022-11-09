@@ -17,6 +17,7 @@ Feature: enforce the restricted special characters in a password on the password
     And user admin has logged in using the webUI
     And the user has browsed to the users page
 
+
   Scenario Outline: Admin changes user's password to a string with enough restricted special characters
     When the administrator changes the password of user "Alice" to "<password>" using the webUI
     And the user re-logs in with username "Alice" and password "<password>" using the webUI
@@ -26,6 +27,7 @@ Feature: enforce the restricted special characters in a password on the password
       | 3$Special%Characters^ |
       | 1*2&3^4%5$6           |
 
+
   Scenario Outline: Admin tries to change user's password to a string that has too few restricted special characters
     When the administrator changes the password of user "Alice" to "<password>" using the webUI
     Then notifications should be displayed on the webUI with the text
@@ -34,6 +36,7 @@ Feature: enforce the restricted special characters in a password on the password
       | password                 |
       | NoSpecialCharacters123   |
       | Only2$Special&Characters |
+
 
   Scenario Outline: Admin tries to change user's password to a string that has invalid special characters
     When the administrator changes the password of user "Alice" to "<password>" using the webUI

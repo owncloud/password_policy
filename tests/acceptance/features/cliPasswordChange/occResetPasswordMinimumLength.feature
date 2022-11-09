@@ -12,6 +12,7 @@ Feature: enforce the minimum length of a password when resetting the password us
       | username | password   |
       | Alice    | 1234567890 |
 
+
   Scenario Outline: admin resets the password of a user to one that is long enough
     When the administrator resets the password of user "Alice" to "<password>" using the occ command
     Then the command should have been successful
@@ -22,6 +23,7 @@ Feature: enforce the minimum length of a password when resetting the password us
       | password             |
       | 10tenchars           |
       | morethan10characters |
+
 
   Scenario Outline: admin resets the password of a user to one that is not long enough
     When the administrator resets the password of user "Alice" to "<password>" using the occ command

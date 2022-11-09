@@ -22,6 +22,7 @@ Feature: enforce combinations of password policies on the password reset UI page
     And the user has browsed to the login page
     And the user logs in with username "Alice" and invalid password "invalidpassword" using the webUI
 
+
   Scenario Outline: user resets their password to a valid string
     When the user requests the password reset link using the webUI
     And the user follows the password reset link from the email address of user "Alice"
@@ -32,6 +33,7 @@ Feature: enforce combinations of password policies on the password reset UI page
       | password                  |
       | 15***UPPloweZZZ           |
       | More%Than$15!Characters-0 |
+
 
   Scenario Outline: user tries to reset their password to an invalid string
     When the user requests the password reset link using the webUI
@@ -53,6 +55,7 @@ Feature: enforce combinations of password policies on the password reset UI page
       | aA!1                           | The password is too short. At least 15 characters are required.                               |
       | aA!123456789012345             | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
 
+
   Scenario Outline: user resets their password using valid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
@@ -65,6 +68,7 @@ Feature: enforce combinations of password policies on the password reset UI page
       | password                  |
       | 15%&*UPPloweZZZ           |
       | More^Than$15&Characters*0 |
+
 
   Scenario Outline: user tries to reset their password using invalid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy

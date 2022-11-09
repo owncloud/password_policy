@@ -15,6 +15,7 @@ Feature: enforce the minimum length of a password on the password change UI page
     And the user has logged in with username "Alice" and password "1234567890" using the webUI
     And the user has browsed to the personal general settings page
 
+
   Scenario Outline: user changes their password to a long-enough string
     When the user changes the password to "<password>" using the webUI
     And the user re-logs in with username "Alice" and password "<password>" using the webUI
@@ -23,6 +24,7 @@ Feature: enforce the minimum length of a password on the password change UI page
       | password             |
       | 10tenchars           |
       | morethan10characters |
+
 
   Scenario Outline: user tries to change their password to a string that is too short
     When the user changes the password to "<password>" using the webUI

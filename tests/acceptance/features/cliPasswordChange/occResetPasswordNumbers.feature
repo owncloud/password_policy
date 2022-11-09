@@ -12,6 +12,7 @@ Feature: enforce the required number of numbers in a password when resetting the
       | username | password   |
       | Alice    | abcABC1234 |
 
+
   Scenario Outline: admin resets the password of a user with a password that has enough numbers
     When the administrator resets the password of user "Alice" to "<password>" using the occ command
     Then the command should have been successful
@@ -22,6 +23,7 @@ Feature: enforce the required number of numbers in a password when resetting the
       | password        |
       | 333Numbers      |
       | moreNumbers1234 |
+
 
   Scenario Outline: admin resets the password of a user with a password that does not have enough numbers
     When the administrator resets the password of user "Alice" to "<password>" using the occ command

@@ -10,6 +10,7 @@ Feature: enforce the restricted special characters in a password when a guest us
     And the administrator has created guest user "guest" with email "guest@example.com"
     And user "Alice" has shared folder "/simple-folder" with user "guest@example.com"
 
+
   Scenario Outline: A guest user sets own password to a string with enough restricted special characters
     When guest user "guest" registers and sets password to "<password>" using the webUI
     And user "guest@example.com" logs in using the webUI
@@ -20,6 +21,7 @@ Feature: enforce the restricted special characters in a password when a guest us
       | 3$Special%Characters^ |
       | 1*2&3^4%5$6           |
 
+
   Scenario Outline: A guest user sets own password to a string that has too few restricted special characters
     When guest user "guest" registers and sets password to "<password>" using the webUI
     Then the user should be redirected to a webUI page with the title "%productname%"
@@ -28,6 +30,7 @@ Feature: enforce the restricted special characters in a password when a guest us
       | password                 |
       | NoSpecialCharacters123   |
       | Only2$Special&Characters |
+
 
   Scenario Outline: A guest user sets own password to a string that has invalid special characters
     When guest user "guest" registers and sets password to "<password>" using the webUI

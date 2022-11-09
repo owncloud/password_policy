@@ -17,6 +17,7 @@ Feature: enforce the restricted special characters in a password on the password
     And the user has logged in with username "Alice" and password "a$b%c^1234" using the webUI
     And the user has browsed to the personal general settings page
 
+
   Scenario Outline: user changes their password to a string with enough restricted special characters
     When the user changes the password to "<password>" using the webUI
     And the user re-logs in with username "Alice" and password "<password>" using the webUI
@@ -26,6 +27,7 @@ Feature: enforce the restricted special characters in a password on the password
       | 3$Special%Characters^ |
       | 1*2&3^4%5$6           |
 
+
   Scenario Outline: user tries to change their password to a string that has too few restricted special characters
     When the user changes the password to "<password>" using the webUI
     Then a password error message should be displayed on the webUI with the text "The password contains too few special characters. At least 3 special characters ($%^&*) are required."
@@ -33,6 +35,7 @@ Feature: enforce the restricted special characters in a password on the password
       | password                 |
       | NoSpecialCharacters123   |
       | Only2$Special&Characters |
+
 
   Scenario Outline: user tries to change their password to a string that has invalid special characters
     When the user changes the password to "<password>" using the webUI

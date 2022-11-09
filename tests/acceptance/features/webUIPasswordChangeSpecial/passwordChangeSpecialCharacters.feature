@@ -15,6 +15,7 @@ Feature: enforce the required number of special characters in a password on the 
     And the user has logged in with username "Alice" and password "a!b@c#1234" using the webUI
     And the user has browsed to the personal general settings page
 
+
   Scenario Outline: user changes their password to a string with enough special characters
     When the user changes the password to "<password>" using the webUI
     And the user re-logs in with username "Alice" and password "<password>" using the webUI
@@ -23,6 +24,7 @@ Feature: enforce the required number of special characters in a password on the 
       | password              |
       | 3#Special$Characters! |
       | 1!2@3#4$5%6^7&8*      |
+
 
   Scenario Outline: user tries to change their password to a string that has too few special characters
     When the user changes the password to "<password>" using the webUI

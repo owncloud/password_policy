@@ -18,6 +18,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
     And user admin has logged in using the webUI
     And the user has browsed to the users page
 
+
   Scenario Outline: Admin changes user's password to a string that is not one of their last 3 passwords
     When the administrator changes the password of user "Alice" to "<password>" using the webUI
     And the user re-logs in with username "Alice" and password "<password>" using the webUI
@@ -26,6 +27,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
       | password     |
       | Number1      |
       | AnotherValue |
+
 
   Scenario Outline: Admin tries to change user's password to one of their last 3 passwords
     When the administrator changes the password of user "Alice" to "<password>" using the webUI

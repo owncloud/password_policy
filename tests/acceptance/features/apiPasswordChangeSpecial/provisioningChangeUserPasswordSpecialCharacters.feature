@@ -12,6 +12,7 @@ Feature: enforce the required number of special characters in a password when ch
       | username | password   |
       | Alice    | a!b@c#1234 |
 
+
   Scenario Outline: admin changes a user password to one that has enough special characters
     Given using OCS API version "<ocs-api-version>"
     When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/Alice" with body
@@ -27,6 +28,7 @@ Feature: enforce the required number of special characters in a password when ch
       | 3#Special$Characters! | 2               | 200        |
       | 1!2@3#4$5%6^7&8*      | 1               | 100        |
       | 1!2@3#4$5%6^7&8*      | 2               | 200        |
+
 
   Scenario Outline: admin changes a user password to one that does not have enough special characters
     Given using OCS API version "<ocs-api-version>"

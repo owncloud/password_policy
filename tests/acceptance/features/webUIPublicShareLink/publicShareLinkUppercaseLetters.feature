@@ -14,6 +14,7 @@ Feature: enforce the required number of uppercase letters in a password on the p
     And the user has browsed to the login page
     And the user has logged in with username "Alice" and password "abc123" using the webUI
 
+
   Scenario Outline: user creates a public link share with enough uppercase letters
     When the user creates a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
@@ -23,6 +24,7 @@ Feature: enforce the required number of uppercase letters in a password on the p
       | password                  |
       | 3UpperCaseLetters         |
       | MoreThan3UpperCaseLetters |
+
 
   Scenario Outline: user tries to create a public link share with too few uppercase letters
     When the user tries to create a new public link for folder "simple-folder" using the webUI with

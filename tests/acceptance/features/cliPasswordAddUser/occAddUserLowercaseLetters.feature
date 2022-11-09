@@ -9,6 +9,7 @@ Feature: enforce the required number of lowercase letters in a password when cre
     Given the administrator has enabled the lowercase letters password policy
     And the administrator has set the lowercase letters required to "3"
 
+
   Scenario Outline: admin creates a user with a password that has enough lowercase letters
     When the administrator creates this user using the occ command:
       | username | password   |

@@ -9,6 +9,7 @@ Feature: enforce the minimum length of a password when creating a user
     Given the administrator has enabled the minimum characters password policy
     And the administrator has set the minimum characters required to "10"
 
+
   Scenario Outline: admin creates a user with a password that is long enough
     When the administrator creates this user using the occ command:
       | username | password   |

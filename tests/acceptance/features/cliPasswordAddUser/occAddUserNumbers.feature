@@ -9,6 +9,7 @@ Feature: enforce the required number of numbers in a password when creating a us
     Given the administrator has enabled the numbers password policy
     And the administrator has set the numbers required to "3"
 
+
   Scenario Outline: admin creates a user with a password that has enough numbers
     When the administrator creates this user using the occ command:
       | username | password   |
