@@ -8,6 +8,7 @@ Feature: enforce the minimum length of a password when a guest user sets its own
     And the administrator has created guest user "guest" with email "guest@example.com"
     And user "Alice" has shared folder "/simple-folder" with user "guest@example.com"
 
+
   Scenario Outline: A guest user sets own password to a long-enough string
     When guest user "guest" registers and sets password to "<password>" using the webUI
     And user "guest@example.com" logs in using the webUI
@@ -17,6 +18,7 @@ Feature: enforce the minimum length of a password when a guest user sets its own
       | password             |
       | 10tenchars           |
       | morethan10characters |
+
 
   Scenario Outline: A guest user sets own password to a string that is too short
     When guest user "guest" registers and sets password to "<password>" using the webUI

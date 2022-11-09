@@ -12,6 +12,7 @@ Feature: enforce the required number of lowercase letters in a password when cha
       | username | password   |
       | Alice    | abcABC1234 |
 
+
   Scenario Outline: admin changes a user password to one that has enough lowercase letters
     Given using OCS API version "<ocs-api-version>"
     When user "admin" sends HTTP method "PUT" to OCS API endpoint "/cloud/users/Alice" with body
@@ -27,6 +28,7 @@ Feature: enforce the required number of lowercase letters in a password when cha
       | 3LCase                    | 2               | 200        |
       | moreThan3LowercaseLetters | 1               | 100        |
       | moreThan3LowercaseLetters | 2               | 200        |
+
 
   Scenario Outline: admin changes a user password to one that does not have enough lowercase letters
     Given using OCS API version "<ocs-api-version>"

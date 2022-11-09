@@ -15,6 +15,7 @@ Feature: enforce the minimum length of a password on the password change from us
     And user admin has logged in using the webUI
     And the user has browsed to the users page
 
+
   Scenario Outline: Admin changes user's their password to a long-enough string
     When the administrator changes the password of user "Alice" to "<password>" using the webUI
     And the user re-logs in with username "Alice" and password "<password>" using the webUI
@@ -23,6 +24,7 @@ Feature: enforce the minimum length of a password on the password change from us
       | password             |
       | 10tenchars           |
       | morethan10characters |
+
 
   Scenario Outline: Admin tries to change user's password to a string that is too short
     When the administrator changes the password of user "Alice" to "<password>" using the webUI

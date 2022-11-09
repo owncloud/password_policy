@@ -9,6 +9,7 @@ Feature: enforce the required number of numbers in a password when creating a us
     Given the administrator has enabled the numbers password policy
     And the administrator has set the numbers required to "3"
 
+
   Scenario Outline: admin creates a user with a password that has enough numbers
     Given using OCS API version "<ocs-api-version>"
     And user "Alice" has been deleted
@@ -23,6 +24,7 @@ Feature: enforce the required number of numbers in a password when creating a us
       | 333Numbers      | 2               | 200        |
       | moreNumbers1234 | 1               | 100        |
       | moreNumbers1234 | 2               | 200        |
+
 
   Scenario Outline: admin creates a user with a password that does not have enough numbers
     Given using OCS API version "<ocs-api-version>"

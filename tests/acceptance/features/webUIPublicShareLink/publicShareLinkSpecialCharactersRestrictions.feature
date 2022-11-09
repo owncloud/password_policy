@@ -16,6 +16,7 @@ Feature: enforce the restricted special characters in a password on the public l
     And the user has browsed to the login page
     And the user has logged in with username "Alice" and password "a$b%c^1234" using the webUI
 
+
   Scenario Outline: user creates a public link share with enough restricted special characters
     When the user creates a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
@@ -26,6 +27,7 @@ Feature: enforce the restricted special characters in a password on the public l
       | 3$Special%Characters^ |
       | 1*2&3^4%5$6           |
 
+
   Scenario Outline: user tries to create a link with too few restricted special characters
     When the user tries to create a new public link for folder "simple-folder" using the webUI with
       | password | <password> |
@@ -35,6 +37,7 @@ Feature: enforce the restricted special characters in a password on the public l
       | password                 |
       | NoSpecialCharacters123   |
       | Only2$Special&Characters |
+
 
   Scenario Outline: user tries to create a public link share with invalid special characters
     When the user tries to create a new public link for folder "simple-folder" using the webUI with

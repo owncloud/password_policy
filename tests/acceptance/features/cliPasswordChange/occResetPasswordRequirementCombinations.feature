@@ -20,6 +20,7 @@ Feature: enforce combinations of password policies when resetting a user passwor
       | username | password        |
       | Alice    | aA1!bB2#cC&deee |
 
+
   Scenario Outline: admin resets the password of a user with a password that meets the password policy
     When the administrator resets the password of user "Alice" to "<password>" using the occ command
     Then the command should have been successful
@@ -30,6 +31,7 @@ Feature: enforce combinations of password policies when resetting a user passwor
       | password                  |
       | 15***UPPloweZZZ           |
       | More%Than$15!Characters-0 |
+
 
   Scenario Outline: admin resets the password of a user with a password that does not meet the password policy
     When the administrator resets the password of user "Alice" to "<password>" using the occ command
@@ -49,6 +51,7 @@ Feature: enforce combinations of password policies when resetting a user passwor
       | aA!1                           | The password is too short. At least 15 characters are required.           |
       | aA!123456789012345             | The password contains too few lowercase letters. At least 4 lowercase     |
 
+
   Scenario Outline: admin resets the password of a user with a password that has valid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
@@ -61,6 +64,7 @@ Feature: enforce combinations of password policies when resetting a user passwor
       | password                  |
       | 15%&*UPPloweZZZ           |
       | More^Than$15&Characters*0 |
+
 
   Scenario Outline: admin resets the password of a user with a password that has invalid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy

@@ -11,6 +11,7 @@ Feature: enforce the minimum length of a password on user creation
     And the administrator has logged in using the webUI
     And the administrator has browsed to the users page
 
+
   Scenario Outline: administrator creates a user with password set to a long-enough string
     When the administrator creates a user with the name "guiusr1" and the password "<password>" using the webUI
     And the administrator logs out of the webUI
@@ -21,6 +22,7 @@ Feature: enforce the minimum length of a password on user creation
       | 10tenchars           |
       | morethan10characters |
 
+
   Scenario Outline: administrator creates a user with password set to a string that is too short
     When the administrator attempts to create a user with the name "guiusr1" and the password "<password>" using the webUI
     Then a notification should be displayed on the webUI with the text "Error creating user: The password is too short. At least 10 characters are required."
@@ -29,6 +31,7 @@ Feature: enforce the minimum length of a password on user creation
       | password  |
       | A         |
       | 123456789 |
+
 
   Scenario Outline: user sets their password to a long-enough string after being created with an Email address only
     When the administrator creates a user with the name "Alice" and the email "guiusr1@owncloud" without a password using the webUI
@@ -46,6 +49,7 @@ Feature: enforce the minimum length of a password on user creation
       | password             |
       | 10tenchars           |
       | morethan10characters |
+
 
   Scenario Outline: user tries to set their password set to a string that is too short after being created with an Email address only
     When the administrator creates a user with the name "Alice" and the email "guiusr1@owncloud" without a password using the webUI

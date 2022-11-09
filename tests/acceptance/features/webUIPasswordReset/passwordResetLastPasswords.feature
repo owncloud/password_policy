@@ -19,6 +19,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
     And the user has requested the password reset link using the webUI
     And the user has followed the password reset link from the email address of user "Alice"
 
+
   Scenario Outline: user resets their password to a string that is not one of their last 3 passwords
     When the user resets the password to "<password>" and confirms with the same password using the webUI
     And the user logs in with username "Alice" and password "<password>" using the webUI
@@ -27,6 +28,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
       | password     |
       | Number1      |
       | AnotherValue |
+
 
   Scenario Outline: user tries to reset their password to one of their last 3 passwords
     When the user resets the password to "<password>" and confirms with the same password using the webUI

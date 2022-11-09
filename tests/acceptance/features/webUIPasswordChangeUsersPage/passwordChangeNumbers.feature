@@ -15,6 +15,7 @@ Feature: enforce the required number of numbers in a password on the password ch
     And user admin has logged in using the webUI
     And the user has browsed to the users page
 
+
   Scenario Outline: Admin changes user's password to a string with enough numbers
     When the administrator changes the password of user "Alice" to "<password>" using the webUI
     And the user re-logs in with username "Alice" and password "<password>" using the webUI
@@ -23,6 +24,7 @@ Feature: enforce the required number of numbers in a password on the password ch
       | password        |
       | 333Numbers      |
       | moreNumbers1234 |
+
 
   Scenario Outline: Admin tries to change user's password to a string that has too few numbers
     When the administrator changes the password of user "Alice" to "<password>" using the webUI

@@ -11,6 +11,7 @@ Feature: enforce the restricted special characters in a password when creating a
     And the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
 
+
   Scenario Outline: admin creates a user with a password that has enough restricted special characters
     Given using OCS API version "<ocs-api-version>"
     And user "Alice" has been deleted
@@ -25,6 +26,7 @@ Feature: enforce the restricted special characters in a password when creating a
       | 3$Special%Characters^ | 2               | 200        |
       | 1*2&3^4%5$6           | 1               | 100        |
       | 1*2&3^4%5$6           | 2               | 200        |
+
 
   Scenario Outline: admin creates a user with a password that does not have enough restricted special characters
     Given using OCS API version "<ocs-api-version>"
@@ -44,6 +46,7 @@ Feature: enforce the restricted special characters in a password when creating a
       | NoSpecialCharacters123   | 2               | 400        | 400         | Bad Request        |
       | Only2$Special&Characters | 1               | 101        | 200         | OK                 |
       | Only2$Special&Characters | 2               | 400        | 400         | Bad Request        |
+
 
   Scenario Outline: admin creates a user with a password that has invalid special characters
     Given using OCS API version "<ocs-api-version>"

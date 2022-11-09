@@ -12,6 +12,7 @@ Feature: enforce the required number of special characters in a password when re
       | username | password   |
       | Alice    | a!b@c#1234 |
 
+
   Scenario Outline: admin resets the password of a user with a password that has enough special characters
     When the administrator resets the password of user "Alice" to "<password>" using the occ command
     Then the command should have been successful
@@ -22,6 +23,7 @@ Feature: enforce the required number of special characters in a password when re
       | password              |
       | 3#Special$Characters! |
       | 1!2@3#4$5%6^7&8*      |
+
 
   Scenario Outline: admin resets the password of a user with a password that does not have enough special characters
     When the administrator resets the password of user "Alice" to "<password>" using the occ command

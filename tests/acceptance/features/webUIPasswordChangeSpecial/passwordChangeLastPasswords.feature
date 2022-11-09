@@ -18,6 +18,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
     And the user has logged in with username "Alice" and password "Number4" using the webUI
     And the user has browsed to the personal general settings page
 
+
   Scenario Outline: user changes their password to a string that is not one of their last 3 passwords
     When the user changes the password to "<password>" using the webUI
     And the user re-logs in with username "Alice" and password "<password>" using the webUI
@@ -26,6 +27,7 @@ Feature: enforce the number of last passwords that must not be used when resetti
       | password     |
       | Number1      |
       | AnotherValue |
+
 
   Scenario Outline: user tries to change their password to one of their last 3 passwords
     When the user changes the password to "<password>" using the webUI

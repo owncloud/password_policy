@@ -16,6 +16,7 @@ Feature: enforce combinations of password policies when a guest user sets its ow
     And the administrator has created guest user "guest" with email "guest@example.com"
     And user "Alice" has shared folder "/simple-folder" with user "guest@example.com"
 
+
   Scenario Outline: A guest user sets own password to a valid string
     When guest user "guest" registers and sets password to "<password>" using the webUI
     And user "guest@example.com" logs in using the webUI
@@ -25,6 +26,7 @@ Feature: enforce combinations of password policies when a guest user sets its ow
       | password                  |
       | 15***UPPloweZZZ           |
       | More%Than$15!Characters-0 |
+
 
   Scenario Outline: A guest user sets own password to an invalid string
     When guest user "guest" registers and sets password to "<password>" using the webUI

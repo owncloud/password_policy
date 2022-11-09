@@ -5,6 +5,7 @@ Feature: expire guest user's password using the occ command
   I want to expire guest user's password
   So that guest users change their password
 
+
   Scenario: admin expires password of a guest user
     Given the administrator has created guest user "guest" with email "guest@example.com"
     And the administrator has enabled the days until user password expires user password policy

@@ -17,6 +17,7 @@ Feature: enforce combinations of password policies when creating a user
     And the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
 
+
   Scenario Outline: admin creates a user with a password that meets the password policy
     Given using OCS API version "<ocs-api-version>"
     And user "Alice" has been deleted
@@ -31,6 +32,7 @@ Feature: enforce combinations of password policies when creating a user
       | 15***UPPloweZZZ           | 2               | 200        |
       | More%Than$15!Characters-0 | 1               | 100        |
       | More%Than$15!Characters-0 | 2               | 200        |
+
 
   Scenario Outline: admin creates a user with a password that does not meet the password policy
     Given using OCS API version "<ocs-api-version>"
@@ -60,6 +62,7 @@ Feature: enforce combinations of password policies when creating a user
       | aA!123456789012345             | 1               | 101        | 200         | OK                 | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
       | aA!123456789012345             | 2               | 400        | 400         | Bad Request        | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
 
+
   Scenario Outline: admin creates a user with a password that has valid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
@@ -76,6 +79,7 @@ Feature: enforce combinations of password policies when creating a user
       | 15%&*UPPloweZZZ           | 2               | 200        |
       | More^Than$15&Characters*0 | 1               | 100        |
       | More^Than$15&Characters*0 | 2               | 200        |
+
 
   Scenario Outline: admin creates a user with a password that has invalid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy

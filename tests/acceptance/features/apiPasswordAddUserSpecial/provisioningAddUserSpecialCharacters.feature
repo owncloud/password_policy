@@ -9,6 +9,7 @@ Feature: enforce the required number of special characters in a password when cr
     Given the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
 
+
   Scenario Outline: admin creates a user with a password that has enough special characters
     Given using OCS API version "<ocs-api-version>"
     And user "Alice" has been deleted
@@ -23,6 +24,7 @@ Feature: enforce the required number of special characters in a password when cr
       | 3#Special$Characters! | 2               | 200        |
       | 1!2@3#4$5%6^7&8*      | 1               | 100        |
       | 1!2@3#4$5%6^7&8*      | 2               | 200        |
+
 
   Scenario Outline: admin creates a user with a password that does not have enough special characters
     Given using OCS API version "<ocs-api-version>"

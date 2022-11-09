@@ -16,6 +16,7 @@ Feature: enforce the required number of uppercase letters in a password on the p
     And the user has requested the password reset link using the webUI
     And the user has followed the password reset link from the email address of user "Alice"
 
+
   Scenario Outline: user resets their password to a string with enough uppercase letters
     When the user resets the password to "<password>" and confirms with the same password using the webUI
     And the user logs in with username "Alice" and password "<password>" using the webUI
@@ -24,6 +25,7 @@ Feature: enforce the required number of uppercase letters in a password on the p
       | password                  |
       | 3UpperCaseLetters         |
       | MoreThan3UpperCaseLetters |
+
 
   Scenario Outline: user tries to reset their password to a string that has too few uppercase letters
     When the user resets the password to "<password>" and confirms with the same password using the webUI

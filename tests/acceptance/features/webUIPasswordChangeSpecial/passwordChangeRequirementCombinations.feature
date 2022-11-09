@@ -23,6 +23,7 @@ Feature: enforce combinations of password policies on the password change UI pag
     And the user has logged in with username "Alice" and password "aA1!bB2#cC&deee" using the webUI
     And the user has browsed to the personal general settings page
 
+
   Scenario Outline: user changes their password to a valid string
     When the user changes the password to "<password>" using the webUI
     And the user re-logs in with username "Alice" and password "<password>" using the webUI
@@ -31,6 +32,7 @@ Feature: enforce combinations of password policies on the password change UI pag
       | password                  |
       | 15***UPPloweZZZ           |
       | More%Than$15!Characters-0 |
+
 
   Scenario Outline: user tries to change their password to an invalid string
     When the user changes the password to "<password>" using the webUI
@@ -47,6 +49,7 @@ Feature: enforce combinations of password policies on the password change UI pag
       | aA!1                           | The password is too short. At least 15 characters are required.                               |
       | aA!123456789012345             | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
 
+
   Scenario Outline: user changes their password using valid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy
     And the administrator has set the restricted special characters required to "$%^&*"
@@ -57,6 +60,7 @@ Feature: enforce combinations of password policies on the password change UI pag
       | password                  |
       | 15%&*UPPloweZZZ           |
       | More^Than$15&Characters*0 |
+
 
   Scenario Outline: user tries to change their password using invalid restricted special characters
     Given the administrator has enabled the restrict to these special characters password policy

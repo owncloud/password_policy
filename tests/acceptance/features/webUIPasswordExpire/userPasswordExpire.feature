@@ -8,6 +8,7 @@ Feature: expire user's password using the occ command
   Background:
     Given user "Alice" has been created with default attributes and large skeleton files
 
+
   Scenario: admin expires password of a user
     Given the administrator has enabled the days until user password expires user password policy
     And the administrator has expired the password of user "Alice"
@@ -15,6 +16,7 @@ Feature: expire user's password using the occ command
     Then the user should be redirected to a webUI page with the title "%productname%"
     When user "Alice" enters the current password, chooses a new password "newpassword" and confirms it using the webUI
     Then the user should be redirected to a webUI page with the title "Files - %productname%"
+
 
   Scenario: password update with wrong old password
     Given the administrator has enabled the days until user password expires user password policy
@@ -28,6 +30,7 @@ Feature: expire user's password using the occ command
       """
       Old password is wrong.
       """
+
 
   Scenario: new password should be confirmed for successful update
     Given the administrator has enabled the days until user password expires user password policy

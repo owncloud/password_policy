@@ -9,6 +9,7 @@ Feature: enforce the required number of lowercase letters in a password when cre
     Given the administrator has enabled the lowercase letters password policy
     And the administrator has set the lowercase letters required to "3"
 
+
   Scenario Outline: admin creates a user with a password that has enough lowercase letters
     Given using OCS API version "<ocs-api-version>"
     And user "Alice" has been deleted
@@ -23,6 +24,7 @@ Feature: enforce the required number of lowercase letters in a password when cre
       | 3LCase                    | 2               | 200        |
       | moreThan3LowercaseLetters | 1               | 100        |
       | moreThan3LowercaseLetters | 2               | 200        |
+
 
   Scenario Outline: admin creates a user with a password that does not have enough lowercase letters
     Given using OCS API version "<ocs-api-version>"

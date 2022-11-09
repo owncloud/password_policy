@@ -19,6 +19,7 @@ Feature: enforce combinations of password policies on user creation
     And the administrator has logged in using the webUI
     And the administrator has browsed to the users page
 
+
   Scenario Outline: administrator creates a user with password set to a valid string
     When the administrator creates a user with the name "guiusr1" and the password "<password>" using the webUI
     And the administrator logs out of the webUI
@@ -28,6 +29,7 @@ Feature: enforce combinations of password policies on user creation
       | password                  |
       | 15***UPPloweZZZ           |
       | More%Than$15!Characters-0 |
+
 
   Scenario Outline: administrator creates a user with password set to an invalid string
     When the administrator attempts to create a user with the name "guiusr1" and the password "<password>" using the webUI
@@ -45,6 +47,7 @@ Feature: enforce combinations of password policies on user creation
       | aA!1                           | The password is too short. At least 15 characters are required.                               |
       | aA!123456789012345             | The password contains too few lowercase letters. At least 4 lowercase letters are required.   |
 
+
   Scenario Outline: user sets their password to a string with valid restricted special characters after being created with an Email address only
     When the administrator creates a user with the name "Alice" and the email "guiusr1@owncloud" without a password using the webUI
     And the administrator logs out of the webUI
@@ -61,6 +64,7 @@ Feature: enforce combinations of password policies on user creation
       | password                  |
       | 15***UPPloweZZZ           |
       | More%Than$15!Characters-0 |
+
 
   Scenario Outline: user tries to set their password to a string with invalid restricted special characters after being created with an Email address only
     Given the administrator has enabled the restrict to these special characters password policy

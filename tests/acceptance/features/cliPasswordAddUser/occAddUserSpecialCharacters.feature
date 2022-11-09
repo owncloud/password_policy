@@ -9,6 +9,7 @@ Feature: enforce the required number of special characters in a password when cr
     Given the administrator has enabled the special characters password policy
     And the administrator has set the special characters required to "3"
 
+
   Scenario Outline: admin creates a user with a password that has enough special characters
     When the administrator creates this user using the occ command:
       | username | password   |

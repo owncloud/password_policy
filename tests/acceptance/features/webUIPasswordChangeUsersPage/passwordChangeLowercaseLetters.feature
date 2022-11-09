@@ -15,6 +15,7 @@ Feature: enforce the required number of lowercase letters in a password on the p
     And user admin has logged in using the webUI
     And the user has browsed to the users page
 
+
   Scenario Outline: Admin changes user's password to a string with enough lowercase letters
     When the administrator changes the password of user "Alice" to "<password>" using the webUI
     Then user "Alice" should exist
@@ -24,6 +25,7 @@ Feature: enforce the required number of lowercase letters in a password on the p
       | password                  |
       | 3LCase                    |
       | moreThan3LowercaseLetters |
+
 
   Scenario Outline: Admin tries to change user's password to a string that has too few lowercase letters
     When the administrator changes the password of user "Alice" to "<password>" using the webUI
