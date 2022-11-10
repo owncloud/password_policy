@@ -1,4 +1,4 @@
-@webUI @insulated @disablePreviews @mailhog
+@webUI @insulated @disablePreviews @email
 Feature: enforce combinations of password policies on the password reset UI page
 
   As an administrator

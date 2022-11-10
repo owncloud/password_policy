@@ -1,4 +1,4 @@
-@webUI @insulated @disablePreviews @mailhog
+@webUI @insulated @disablePreviews @email
 Feature: enforce the restricted special characters in a password on the password reset UI page
 
   As an administrator
