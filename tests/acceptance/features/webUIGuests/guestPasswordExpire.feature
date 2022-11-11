@@ -1,4 +1,4 @@
-@webUI @insulated @disablePreviews @mailhog
+@webUI @insulated @disablePreviews @email
 Feature: expire guest user's password using the occ command
 
   As an administrator

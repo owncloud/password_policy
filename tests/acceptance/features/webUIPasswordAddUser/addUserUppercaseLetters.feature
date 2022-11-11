@@ -1,4 +1,4 @@
-@webUI @insulated @disablePreviews @mailhog
+@webUI @insulated @disablePreviews @email
 Feature: enforce the required number of uppercase letters in a password on user creation
 
   As an administrator

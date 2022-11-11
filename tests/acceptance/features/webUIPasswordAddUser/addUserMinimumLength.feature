@@ -1,4 +1,4 @@
-@webUI @insulated @disablePreviews @mailhog
+@webUI @insulated @disablePreviews @email
 Feature: enforce the minimum length of a password on user creation
 
   As an administrator

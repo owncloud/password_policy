@@ -6,7 +6,7 @@ Feature: Guests
     And the administrator has enabled the lowercase letters password policy
     And the administrator has set the lowercase letters required to "3"
 
-  @mailhog
+  @email
   Scenario Outline: A guest user sets own password to a string that has enough lowercase letters
     Given using OCS API version "<ocs-api-version>"
     And the administrator has created guest user "guest" with email "guest@example.com"
@@ -23,7 +23,7 @@ Feature: Guests
       | moreThan3LowercaseLetters | 1               |
       | moreThan3LowercaseLetters | 2               |
 
-  @mailhog
+  @email
   Scenario Outline: A guest user sets own password to a string that does not have enough lowercase letters
     Given using OCS API version "<ocs-api-version>"
     And the administrator has created guest user "guest" with email "guest@example.com"
@@ -39,7 +39,7 @@ Feature: Guests
       | 2lOWERcASE | 1               |
       | 2lOWERcASE | 2               |
 
-  @mailhog
+  @email
   Scenario Outline: A guest user changes own password to a string that has enough lowercase letters
     Given using OCS API version "<ocs-api-version>"
     And the administrator has created guest user "guest" with email "guest@example.com"
@@ -56,7 +56,7 @@ Feature: Guests
       | moreThan3LowercaseLetters | 1               |
       | moreThan3LowercaseLetters | 2               |
 
-  @mailhog
+  @email
   Scenario Outline: A guest user changes own password to a string that does not have enough lowercase letters
     Given using OCS API version "<ocs-api-version>"
     And the administrator has created guest user "guest" with email "guest@example.com"
@@ -79,7 +79,7 @@ Feature: Guests
       | 2lOWERcASE | 1               | 403        | 200         | OK                 |
       | 2lOWERcASE | 2               | 403        | 403         | Forbidden          |
 
-  @mailhog
+  @email
   Scenario Outline: A guest user creates a public link share with a password that has enough lowercase letters
     Given using OCS API version "<ocs-api-version>"
     And the administrator has created guest user "guest" with email "guest@example.com"
@@ -102,7 +102,7 @@ Feature: Guests
       | moreThan3LowercaseLetters | 1               | 100        |
       | moreThan3LowercaseLetters | 2               | 200        |
 
-  @mailhog
+  @email
   Scenario Outline: A guest user creates a public link share with a password that does not have enough lowercase letters
     Given using OCS API version "<ocs-api-version>"
     And the administrator has created guest user "guest" with email "guest@example.com"
