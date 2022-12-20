@@ -2,7 +2,7 @@
 host = https://www.transifex.com
 lang_map = ja_JP: ja
 
-[owncloud.password_policy]
+[o:owncloud-org:p:owncloud:r:password_policy]
 file_filter = <lang>/password_policy.po
 source_file = templates/password_policy.pot
 source_lang = en
