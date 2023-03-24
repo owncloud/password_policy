@@ -45,6 +45,13 @@
     "Please choose a new password." : "새로운 암호를 설정하세요.",
     "Current password" : "현재 암호",
     "New password" : "새 암호",
-    "Confirm new password" : "새 암호를 확인하십시오"
+    "Confirm new password" : "새 암호를 확인하십시오",
+    "Password requirements:" : "암호 요구사항:",
+    "_At least one character_::_At least %n characters_" : ["글자 %n자 이상"],
+    "_At least one lowercase letter_::_At least %n lowercase letters_" : ["소문자 %n자 이상"],
+    "_At least one uppercase letter_::_At least %n uppercase letters_" : ["대문자 %n자 이상"],
+    "_At least one number_::_At least %n numbers_" : ["숫자 %n자 이상"],
+    "_At least one special character_::_At least %d special characters_" : ["특수문자 %d자 이상"],
+    "Only special characters \"%s\" are allowed" : "특수문자는 \"%s\"만 허용"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
