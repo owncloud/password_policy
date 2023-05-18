@@ -127,7 +127,7 @@ class ExpirePassword extends Command {
 	 * @return int
 	 * @throws \OCP\PreConditionNotMetException
 	 */
-	protected function execute(InputInterface $input, OutputInterface $output) {
+	protected function execute(InputInterface $input, OutputInterface $output): int {
 		$groups = $input->getOption('group');
 		$allUsers = $input->getOption('all');
 		$uids = $input->getOption('uid');
