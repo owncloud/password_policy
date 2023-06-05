@@ -31,7 +31,6 @@ use OCP\IURLGenerator;
 use OCP\IUser;
 
 class AccountModule implements IAccountModule {
-
 	/**
 	 * @var ISession
 	 */

@@ -30,7 +30,6 @@ use OCP\ILogger;
 use OCP\Security\IHasher;
 
 class PasswordExpired extends Base {
-
 	/** @var ILogger */
 	protected $logger;
 

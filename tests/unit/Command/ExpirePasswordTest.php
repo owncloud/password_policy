@@ -34,7 +34,6 @@ use Test\TestCase;
 use OCP\AppFramework\Utility\ITimeFactory;
 
 class ExpirePasswordTest extends TestCase {
-
 	/** @var IConfig | \PHPUnit\Framework\MockObject\MockObject */
 	protected $config;
 	/** @var IUserManager | \PHPUnit\Framework\MockObject\MockObject */

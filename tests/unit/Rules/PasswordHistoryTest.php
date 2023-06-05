@@ -28,7 +28,6 @@ use OCA\PasswordPolicy\Db\OldPassword;
 use OCP\IL10N;
 
 class PasswordHistoryTest extends \PHPUnit\Framework\TestCase {
-
 	/** @var PasswordHistory */
 	private $r;
 

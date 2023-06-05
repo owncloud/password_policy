@@ -39,7 +39,6 @@ use OCP\IUserManager;
 use OCP\IUserSession;
 
 class PasswordController extends Controller implements IAccountModuleController {
-
 	/** @var IUserSession */
 	protected $userSession;
 	/** @var IUserManager */

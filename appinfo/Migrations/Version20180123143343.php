@@ -25,7 +25,6 @@ use Doctrine\DBAL\Schema\Schema;
 use OCP\Migration\ISchemaMigration;
 
 class Version20180123143343 implements ISchemaMigration {
-
 	/** @var  string */
 	private $prefix;
 

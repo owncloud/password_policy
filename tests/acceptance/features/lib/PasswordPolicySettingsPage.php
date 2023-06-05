@@ -32,7 +32,6 @@ use \Behat\Mink\Exception\ElementNotFoundException;
  *
  */
 class PasswordPolicySettingsPage extends OwncloudPage {
-
 	/**
 	 *
 	 * @var string $path

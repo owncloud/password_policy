@@ -39,7 +39,6 @@ use OCP\IUserSession;
 use Test\TestCase;
 
 class PasswordControllerTest extends TestCase {
-
 	/** @var IRequest | \PHPUnit\Framework\MockObject\MockObject */
 	protected $request;
 	/** @var IUserSession | \PHPUnit\Framework\MockObject\MockObject */

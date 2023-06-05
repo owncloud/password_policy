@@ -22,7 +22,6 @@
 namespace OCA\PasswordPolicy\Rules;
 
 class Length extends Base {
-
 	/**
 	 * @param string $password
 	 * @param int $val

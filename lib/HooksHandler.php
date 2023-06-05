@@ -37,7 +37,6 @@ use OCP\Share;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
 class HooksHandler {
-
 	/** @var IConfig */
 	private $config;
 

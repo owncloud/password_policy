@@ -24,7 +24,6 @@ namespace OCA\PasswordPolicy\Rules;
 use OCP\IL10N;
 
 class Base {
-
 	/** @var IL10N */
 	protected $l10n;
 

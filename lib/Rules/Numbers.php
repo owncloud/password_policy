@@ -22,7 +22,6 @@
 namespace OCA\PasswordPolicy\Rules;
 
 class Numbers extends Base {
-
 	/**
 	 * @param string $password
 	 * @param int $val

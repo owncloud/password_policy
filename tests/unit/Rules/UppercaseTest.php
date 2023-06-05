@@ -27,7 +27,6 @@ use OCP\IL10N;
 use Test\TestCase;
 
 class UppercaseTest extends TestCase {
-
 	/** @var Uppercase */
 	private $r;
 

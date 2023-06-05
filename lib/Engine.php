@@ -35,7 +35,6 @@ use OCP\Security\IHasher;
 use OCP\Security\ISecureRandom;
 
 class Engine {
-
 	/** @var array */
 	private $configValues;
 	/** @var IL10N */

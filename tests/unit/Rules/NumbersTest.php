@@ -26,7 +26,6 @@ use OCA\PasswordPolicy\Rules\Numbers;
 use OCP\IL10N;
 
 class NumbersTest extends \Test\TestCase {
-
 	/** @var Numbers */
 	private $r;
 

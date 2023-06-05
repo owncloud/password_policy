@@ -43,7 +43,6 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 use Test\TestCase;
 
 class HooksHandlerTest extends TestCase {
-
 	/** @var IConfig | MockObject */
 	protected $config;
 	/** @var Engine | MockObject */
