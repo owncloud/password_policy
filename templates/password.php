@@ -41,19 +41,19 @@ style('password_policy', 'styles');
 						// NOTE: this should show together with 'Please choose a new password.'
 						p($l->t('Your password has expired.'));
 					}
-				?>
+?>
 			</div>
 			<div>
 				<?php
-					if (!isset($_['firstLogin']) || $_['firstLogin'] !== true) {
-						p($l->t('Please choose a new password.'));
-					}
-				?>
+	if (!isset($_['firstLogin']) || $_['firstLogin'] !== true) {
+		p($l->t('Please choose a new password.'));
+	}
+?>
 			</div>
 		</h1>
 		<?php if (isset($_['error'])) {
-					?><div id="error" class="warning"><?php p($_['error']) ?></div> <?php
-				} ?>
+			?><div id="error" class="warning"><?php p($_['error']) ?></div> <?php
+		} ?>
 		<input type="hidden" name="redirect_url" value="<?php p($_['redirect_url']) ?>" />
 		<input type="hidden" name="app" value="oca-password-policy" />
 		<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>" id="requesttoken">

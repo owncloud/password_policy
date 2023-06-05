@@ -27,7 +27,6 @@ use OCP\IL10N;
 use OCP\Security\IHasher;
 
 class PasswordHistory extends Base {
-
 	/** @var OldPasswordMapper */
 	protected $mapper;
 	/** @var IHasher */

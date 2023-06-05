@@ -96,7 +96,7 @@ class ExpirePassword extends Command {
 				InputArgument::OPTIONAL,
 				'The date and time when a password expires, e.g. "2019-01-01 14:00:00 CET".',
 				'-1 days'		// base.php sets timezone to utc, so
-										// make sure date is in the past
+				// make sure date is in the past
 			)
 			->addOption(
 				'all',

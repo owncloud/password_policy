@@ -29,7 +29,6 @@ use OCP\Template;
 use OCA\PasswordPolicy\UserNotificationConfigHandler;
 
 class SettingsController extends Controller implements ISettings {
-
 	/** @var IConfig  */
 	protected $config;
 

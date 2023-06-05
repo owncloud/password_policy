@@ -35,7 +35,6 @@ require_once 'bootstrap.php';
  * Context for password policy specific webUI steps
  */
 class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
-
 	/**
 	 * @var FeatureContext
 	 */

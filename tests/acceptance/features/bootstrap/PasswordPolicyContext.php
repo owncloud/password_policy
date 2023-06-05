@@ -32,7 +32,6 @@ require_once 'bootstrap.php';
  * Context for password policy specific steps
  */
 class PasswordPolicyContext implements Context {
-
 	/**
 	 * @var FeatureContext
 	 */

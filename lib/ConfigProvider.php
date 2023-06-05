@@ -25,7 +25,6 @@ namespace OCA\PasswordPolicy;
 use OCP\IConfig;
 
 class ConfigProvider {
-
 	/** @var IConfig */
 	private $config;
 

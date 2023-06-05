@@ -27,7 +27,6 @@ use OCA\PasswordPolicy\Rules\Special;
 use OCP\IL10N;
 
 class SpecialTest extends \PHPUnit\Framework\TestCase {
-
 	/** @var Special */
 	private $r;
 

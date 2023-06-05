@@ -6,3 +6,4 @@ parameters:
     -
       message: '#Dead catch - OCA\\PasswordPolicy\\Rules\\PolicyException is never thrown in the try block#'
       path:  lib/Controller/PasswordController.php
+      count: 1

@@ -29,7 +29,6 @@ use OCP\Capabilities\ICapability;
  * @package OCA\PasswordPolicy
  */
 class Capabilities implements ICapability {
-
 	/** @var ConfigProvider */
 	private $configProvider;
 

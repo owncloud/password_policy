@@ -28,7 +28,6 @@ use OCP\IL10N;
 use Test\TestCase;
 
 class LengthTest extends TestCase {
-
 	/** @var Length */
 	private $r;
 

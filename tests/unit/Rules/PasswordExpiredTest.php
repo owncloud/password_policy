@@ -32,7 +32,6 @@ use OCP\Security\IHasher;
 use Test\TestCase;
 
 class PasswordExpiredTest extends TestCase {
-
 	/** @var ILogger | \PHPUnit\Framework\MockObject\MockObject */
 	protected $logger;
 	/** @var OldPasswordMapper | \PHPUnit\Framework\MockObject\MockObject */
