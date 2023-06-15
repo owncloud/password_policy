@@ -124,6 +124,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		string $action
 	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
+			$this->getSession(),
 			'minimumCharacters',
 			$action
 		);
@@ -158,6 +159,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		string $action
 	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
+			$this->getSession(),
 			'lowercaseLetters',
 			$action
 		);
@@ -247,6 +249,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		string $action
 	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
+			$this->getSession(),
 			'uppercaseLetters',
 			$action
 		);
@@ -281,6 +284,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		string $action
 	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
+			$this->getSession(),
 			'numbers',
 			$action
 		);
@@ -315,6 +319,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		string $action
 	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
+			$this->getSession(),
 			'specialCharacters',
 			$action
 		);
@@ -349,6 +354,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		string $action
 	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
+			$this->getSession(),
 			'restrictToTheseSpecialCharacters',
 			$action
 		);
@@ -383,6 +389,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		string $action
 	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
+			$this->getSession(),
 			'lastPasswords',
 			$action
 		);
@@ -417,6 +424,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		string $action
 	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
+			$this->getSession(),
 			'daysUntilUserPasswordExpires',
 			$action
 		);
@@ -451,6 +459,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		string $action
 	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
+			$this->getSession(),
 			'notificationDaysBeforeUserPasswordExpires',
 			$action
 		);
@@ -485,6 +494,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		string $action
 	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
+			$this->getSession(),
 			'forcePasswordChangeOnFirstLogin',
 			$action
 		);
@@ -502,6 +512,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		string $action
 	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
+			$this->getSession(),
 			'daysUntilLinkExpiresWithPassword',
 			$action
 		);
@@ -536,6 +547,7 @@ class WebUIPasswordPolicyContext extends RawMinkContext implements Context {
 		string $action
 	): void {
 		$this->passwordPolicySettingsPage->togglePolicyCheckbox(
+			$this->getSession(),
 			'daysUntilLinkExpiresWithoutPassword',
 			$action
 		);

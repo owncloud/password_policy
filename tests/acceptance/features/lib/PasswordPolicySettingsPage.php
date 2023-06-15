@@ -91,16 +91,20 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	/**
 	 * toggle checkbox
 	 *
+	 * @param Session $session
 	 * @param string $checkboxName that should be in the HTML
 	 * @param string $action "enables|disables"
 	 *
 	 * @return void
-	 * @throws \Exception
+	 * @throws ElementNotFoundException
 	 */
 	public function toggleCheckbox(
+		Session $session,
 		string $checkboxName,
 		string $action
 	): void {
+		$script = "jQuery('input[name=\"$checkboxName\"]').get(0).scrollIntoView();";
+		$session->executeScript($script);
 		$checkbox = $this->findSettingsCheckbox($checkboxName);
 		if ($action === "disables") {
 			if ($checkbox->isChecked()) {
@@ -120,6 +124,7 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	/**
 	 * toggle policy checkbox
 	 *
+	 * @param Session $session
 	 * @param string $policyCheckboxKey one of the known keys in the policyCheckboxNames array
 	 * @param string $action "enables|disables"
 	 *
@@ -127,11 +132,13 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @throws \Exception
 	 */
 	public function togglePolicyCheckbox(
+		Session $session,
 		string $policyCheckboxKey,
 		string $action
 	): void {
 		if (\array_key_exists($policyCheckboxKey, $this->policyCheckboxNames)) {
 			$this->toggleCheckbox(
+				$session,
 				$this->policyCheckboxNames[$policyCheckboxKey],
 				$action
 			);
@@ -221,6 +228,8 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @throws ElementNotFoundException
 	 */
 	public function saveSettings(Session $session): PasswordPolicySettingsPage {
+		$script = "jQuery('input[type=\"submit\"][value=\"Save\"]').get(0).scrollIntoView();";
+		$session->executeScript($script);
 		$saveButton = $this->findButton($this->saveButtonValue);
 		if ($saveButton === null) {
 			throw new ElementNotFoundException(
