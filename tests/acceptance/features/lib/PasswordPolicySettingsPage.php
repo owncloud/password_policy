@@ -24,6 +24,8 @@
 namespace Page;
 
 use Behat\Mink\Element\NodeElement;
+use Behat\Mink\Exception\DriverException;
+use Behat\Mink\Exception\UnsupportedDriverActionException;
 use Behat\Mink\Session;
 use \Behat\Mink\Exception\ElementNotFoundException;
 
@@ -91,20 +93,19 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	/**
 	 * toggle checkbox
 	 *
-	 * @param Session $session
 	 * @param string $checkboxName that should be in the HTML
 	 * @param string $action "enables|disables"
 	 *
 	 * @return void
 	 * @throws ElementNotFoundException
+	 * @throws DriverException
+	 * @throws UnsupportedDriverActionException
 	 */
 	public function toggleCheckbox(
-		Session $session,
 		string $checkboxName,
 		string $action
 	): void {
-		$script = "jQuery('input[name=\"$checkboxName\"]').get(0).scrollIntoView();";
-		$session->executeScript($script);
+		$this->scrollInToView("input[name='$checkboxName']");
 		$checkbox = $this->findSettingsCheckbox($checkboxName);
 		if ($action === "disables") {
 			if ($checkbox->isChecked()) {
@@ -124,21 +125,20 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	/**
 	 * toggle policy checkbox
 	 *
-	 * @param Session $session
 	 * @param string $policyCheckboxKey one of the known keys in the policyCheckboxNames array
 	 * @param string $action "enables|disables"
 	 *
 	 * @return void
-	 * @throws \Exception
+	 * @throws DriverException
+	 * @throws ElementNotFoundException
+	 * @throws UnsupportedDriverActionException
 	 */
 	public function togglePolicyCheckbox(
-		Session $session,
 		string $policyCheckboxKey,
 		string $action
 	): void {
 		if (\array_key_exists($policyCheckboxKey, $this->policyCheckboxNames)) {
 			$this->toggleCheckbox(
-				$session,
 				$this->policyCheckboxNames[$policyCheckboxKey],
 				$action
 			);
@@ -225,11 +225,12 @@ class PasswordPolicySettingsPage extends OwncloudPage {
 	 * @param Session $session
 	 *
 	 * @return PasswordPolicySettingsPage
+	 * @throws DriverException
 	 * @throws ElementNotFoundException
+	 * @throws UnsupportedDriverActionException
 	 */
 	public function saveSettings(Session $session): PasswordPolicySettingsPage {
-		$script = "jQuery('input[type=\"submit\"][value=\"Save\"]').get(0).scrollIntoView();";
-		$session->executeScript($script);
+		$this->scrollInToView("input[type='submit'][value='Save']");
 		$saveButton = $this->findButton($this->saveButtonValue);
 		if ($saveButton === null) {
 			throw new ElementNotFoundException(
