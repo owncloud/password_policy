@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased] - xxxx-xx-xx
+## [2.2.0] - 2023-07-10
+
+### Changed
+
+- [#394](https://github.com/owncloud/password_policy/pull/394) - Always return an int from Symfony Command execute method
+- [#372](https://github.com/owncloud/password_policy/pull/372) - get rid of firstLogin warning
+
 
 ## [2.1.4] - 2022-01-14
 
@@ -118,7 +124,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Translate save button - #102
 - Change headline and subheadlines - #92
 
-[Unreleased]: https://github.com/owncloud/password_policy/compare/v2.1.4...master
+[Unreleased]: https://github.com/owncloud/password_policy/compare/v2.2.0...master
+[2.2.0]: https://github.com/owncloud/password_policy/compare/v2.1.4...v2.2.0
 [2.1.4]: https://github.com/owncloud/password_policy/compare/v2.1.3...v2.1.4
 [2.1.3]: https://github.com/owncloud/password_policy/compare/v2.1.2...v2.1.3
 [2.1.2]: https://github.com/owncloud/password_policy/compare/v2.1.1...v2.1.2
