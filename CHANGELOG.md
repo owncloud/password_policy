@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 - [#394](https://github.com/owncloud/password_policy/pull/394) - Always return an int from Symfony Command execute method
 - [#372](https://github.com/owncloud/password_policy/pull/372) - get rid of firstLogin warning
+- Minimum core version 10.11, minimum php version 7.4
 
 
 ## [2.1.4] - 2022-01-14

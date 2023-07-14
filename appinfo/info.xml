@@ -18,7 +18,8 @@ Administrators find the configuration options in the 'Security' section of the o
 	</documentation>
 	<bugs>https://github.com/owncloud/password_policy/issues</bugs>
 	<dependencies>
-		<owncloud min-version="10.8" max-version="10" />
+                <owncloud min-version="10.11" max-version="10" />
+                <php min-version="7.4" />
 	</dependencies>
 	<namespace>PasswordPolicy</namespace>
 	<settings>
