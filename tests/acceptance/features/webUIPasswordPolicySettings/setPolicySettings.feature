@@ -98,24 +98,24 @@ Feature: set password policy settings
 
   Scenario: set "days until user password expires"
     When the administrator enables the days until user password expires user password policy using the webUI
-    And the administrator sets the number of days until user password expires to "42" using the webUI
+    And the administrator sets the number of days until user password expires to "365" using the webUI
     And the administrator saves the password policy settings using the webUI
     And the administrator reloads the admin security settings page
     Then the days until user password expires user password policy checkbox should be checked on the webUI
-    And the number of days until user password expires should be set to "42" on the webUI
-    And the number of days until user password expires should be set to "42"
+    And the number of days until user password expires should be set to "365" on the webUI
+    And the number of days until user password expires should be set to "365"
     And the days until user password expires user password policy should be enabled
 
 
   Scenario: set "notification days before password expires"
     When the administrator enables the notification days before password expires user password policy using the webUI
-    And the administrator sets the notification days before password expires to "14" using the webUI
+    And the administrator sets the notification days before password expires to "300" using the webUI
     And the administrator saves the password policy settings using the webUI
     And the administrator reloads the admin security settings page
     Then the notification days before password expires user password policy checkbox should be checked on the webUI
-    And the notification days before password expires should be set to "14" on the webUI
-    # This settting is stored in seconds. 14 days = 14*24*60*60 = 1209600 seconds
-    And the notification seconds before password expires should be set to "1209600"
+    And the notification days before password expires should be set to "300" on the webUI
+    # This setting is stored in seconds. 300 days = 300*24*60*60 = 25920000 seconds
+    And the notification seconds before password expires should be set to "25920000"
     And the notification days before password expires user password policy should be enabled
 
 
