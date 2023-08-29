@@ -85,7 +85,7 @@ class SettingsController extends Controller implements ISettings {
 		foreach (self::DEFAULTS as $key => $default) {
 			if ($this->request->getParam($key) !== null) {
 				if ($key !== 'spv_def_special_chars_value' && \substr($key, -6) === '_value') {
-					$value = \min(\max(0, (int)$this->request->getParam($key)), 255);
+					$value = \min(\max(0, (int)$this->request->getParam($key)), 750);
 					if (\array_key_exists($key, self::CONVERSIONS)
 						&& \array_key_exists('in', self::CONVERSIONS[$key])
 					) {
