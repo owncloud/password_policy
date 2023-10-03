@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased] - 
+## [2.2.1] - 2023-10-02
+
+### Changed
+
+- [#402](https://github.com/owncloud/password_policy/pull/402) - Adjust maximum days to 750
 
 
 
@@ -129,7 +133,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Translate save button - #102
 - Change headline and subheadlines - #92
 
-[Unreleased]: https://github.com/owncloud/password_policy/compare/v2.2.0...master
+[Unreleased]: https://github.com/owncloud/password_policy/compare/v2.2.1...master
+[2.2.1]: https://github.com/owncloud/password_policy/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/owncloud/password_policy/compare/v2.1.4...v2.2.0
 [2.1.4]: https://github.com/owncloud/password_policy/compare/v2.1.3...v2.1.4
 [2.1.3]: https://github.com/owncloud/password_policy/compare/v2.1.2...v2.1.3
