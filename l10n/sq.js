@@ -54,6 +54,6 @@ OC.L10N.register(
     "_At least one uppercase letter_::_At least %n uppercase letters_" : ["Të paktën një shkronjë të madhe","Të paktën %n shkronja të mëdha"],
     "_At least one number_::_At least %n numbers_" : ["Të paktën një numër","Të paktën %n numra"],
     "_At least one special character_::_At least %d special characters_" : ["Të paktën një shenjë speciale","Të paktën %d shenja speciale"],
-    "Only special characters \"%s\" are allowed" : "Lejohen vetëm shenjat speciale \"%s\""
+    "Only special characters \"%s\" are allowed" : "Lejohen vetëm shenjat speciale “%s”"
 },
 "nplurals=2; plural=(n != 1);");
