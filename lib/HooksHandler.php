@@ -68,16 +68,16 @@ class HooksHandler {
 	private $userNotificationConfigHandler;
 
 	public function __construct(
-		IConfig $config = null,
-		Engine $engine = null,
-		IHasher $hasher = null,
-		ITimeFactory $timeFactory = null,
-		IL10N $l10n = null,
-		PasswordExpired $passwordExpiredRule = null,
-		OldPasswordMapper $oldPasswordMapper = null,
-		ISession $session = null,
-		IManager $notificationManager = null,
-		UserNotificationConfigHandler $userNotificationConfigHandler = null
+		?IConfig $config = null,
+		?Engine $engine = null,
+		?IHasher $hasher = null,
+		?ITimeFactory $timeFactory = null,
+		?IL10N $l10n = null,
+		?PasswordExpired $passwordExpiredRule = null,
+		?OldPasswordMapper $oldPasswordMapper = null,
+		?ISession $session = null,
+		?IManager $notificationManager = null,
+		?UserNotificationConfigHandler $userNotificationConfigHandler = null
 	) {
 		$this->config = $config;
 		$this->engine = $engine;
@@ -262,7 +262,7 @@ class HooksHandler {
 	/**
 	 * Flags the session to require a password change
 	 */
-	protected function forcePasswordChange($firstLogin = null, IUser $user = null) {
+	protected function forcePasswordChange(?bool $firstLogin = null, ?IUser $user = null) {
 		if (($firstLogin === true) && ($user !== null)) {
 			$this->config->setUserValue($user->getUID(), 'password_policy', 'firstLoginPasswordChange', '1');
 		}
