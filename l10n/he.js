@@ -47,6 +47,13 @@ OC.L10N.register(
     "Please choose a new password." : "יש לבחור סיסמא חדשה.",
     "Current password" : "סיסמא נוכחית",
     "New password" : "סיסמא חדשה",
-    "Confirm new password" : "יש לאשר סיסמא חדשה"
+    "Confirm new password" : "יש לאשר סיסמא חדשה",
+    "Password requirements:" : "דרישות סיסמה:",
+    "_At least one character_::_At least %n characters_" : ["לפחות תו אחד","לפחות %n תווים","לפחות %n תווים"],
+    "_At least one lowercase letter_::_At least %n lowercase letters_" : ["לפחות אות אחת קטנה","לפחות %n אותיות קטנות","לפחות %n אותיות קטנות"],
+    "_At least one uppercase letter_::_At least %n uppercase letters_" : ["לפחות אות אחת גדולה","לפחות %n אותיות גדולות","לפחות %n אותיות גדולות"],
+    "_At least one number_::_At least %n numbers_" : ["לפחות ספרה אחת","לפחות %n ספרות","לפחות %n ספרות"],
+    "_At least one special character_::_At least %d special characters_" : ["לפחות תו מיוחד אחד","לפחות %d תווים מיוחדים","לפחות %d תווים מיוחדים"],
+    "Only special characters \"%s\" are allowed" : "רק התווים המיוחדים „%s” מורשים"
 },
 "nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;");
