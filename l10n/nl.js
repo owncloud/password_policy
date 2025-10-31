@@ -47,6 +47,13 @@ OC.L10N.register(
     "Please choose a new password." : "Kies alstublieft een nieuw wachtwoord.",
     "Current password" : "Huidig wachtwoord",
     "New password" : "Nieuw wachtwoord",
-    "Confirm new password" : "Bevestig nieuw wachtwoord"
+    "Confirm new password" : "Bevestig nieuw wachtwoord",
+    "Password requirements:" : "Wachtwoord vereisten:",
+    "_At least one character_::_At least %n characters_" : ["Tenminste één letterteken","Tenminste %n lettertekens"],
+    "_At least one lowercase letter_::_At least %n lowercase letters_" : ["Tenminste één kleine letter","Tenminste %nkleine letters"],
+    "_At least one uppercase letter_::_At least %n uppercase letters_" : ["Tenminste één hoofdletter","Tenminste%n hoofdletters"],
+    "_At least one number_::_At least %n numbers_" : ["Tenminste één cijfer","Tenminste%n cijfers"],
+    "_At least one special character_::_At least %d special characters_" : ["Tenminste één speciaal letterteken","Tenminste %dspeciale lettertekens"],
+    "Only special characters \"%s\" are allowed" : "Alleen speciale tekens \"%s\" zijn toegestaan"
 },
 "nplurals=2; plural=(n != 1);");
