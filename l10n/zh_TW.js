@@ -47,6 +47,13 @@ OC.L10N.register(
     "Please choose a new password." : "請選擇一個新密碼。",
     "Current password" : "目前密碼",
     "New password" : "新密碼",
-    "Confirm new password" : "確認新密碼"
+    "Confirm new password" : "確認新密碼",
+    "Password requirements:" : "密码要求：",
+    "_At least one character_::_At least %n characters_" : ["至少 %n 个字符"],
+    "_At least one lowercase letter_::_At least %n lowercase letters_" : ["至少 %n 个小写字母"],
+    "_At least one uppercase letter_::_At least %n uppercase letters_" : ["至少 %n 个大写字母"],
+    "_At least one number_::_At least %n numbers_" : ["至少 %n 个数字"],
+    "_At least one special character_::_At least %d special characters_" : ["至少 %d 个特殊字符"],
+    "Only special characters \"%s\" are allowed" : "只允许使用特殊字符“%s”"
 },
 "nplurals=1; plural=0;");
