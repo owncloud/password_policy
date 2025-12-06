@@ -43,6 +43,8 @@
     "Please set a new password" : "Please set a new password",
     "Your password has expired." : "Your password has expired.",
     "Please choose a new password." : "Please choose a new password.",
+    "Current password" : "Current password",
+    "New password" : "New password",
     "Confirm new password" : "Confirm new password",
     "Password requirements:" : "Password requirements:",
     "_At least one character_::_At least %n characters_" : ["At least one character","At least %n characters"],
