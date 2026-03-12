@@ -39,7 +39,6 @@ class OldPasswordMapper extends Mapper {
 	 * @return OldPassword[]
 	 */
 	public function getOldPasswords($uid, $length, $excludeForceExpired = true) {
-		/* @var OCP\DB\QueryBuilder\IQueryBuilder $qb */
 		$qb = $this->db->getQueryBuilder();
 		$qb->select('*')
 			->from('user_password_history')
@@ -56,11 +55,9 @@ class OldPasswordMapper extends Mapper {
 			$qb->andWhere($qb->expr()->neq($passwordField, $qb->expr()->literal(OldPassword::EXPIRED)));
 		}
 		$result = $qb->execute();
-		/* @phan-suppress-next-line PhanDeprecatedFunction */
-		$rows = $result->fetchAll();
-		/* @phan-suppress-next-line PhanDeprecatedFunction */
-		$result->closeCursor();
-		return \array_map(function ($row) {
+		$rows = $result->fetchAllAssociative();
+		$result->free();
+		return \array_map(static function ($row) {
 			return OldPassword::fromRow($row);
 		}, $rows);
 	}
@@ -99,22 +96,12 @@ class OldPasswordMapper extends Mapper {
 
 		$stmt = $this->db->prepare($query);
 		$stmt->bindValue(1, $maxTimestamp);
-		$result = $stmt->execute();
+		$result = $stmt->executeQuery();
 
-		if ($result === false) {
-			/* @phan-suppress-next-line PhanDeprecatedFunction */
-			$info = \json_encode($stmt->errorInfo());
-			$message = "Cannot get the passwords that are about to expire. Error: {$info}";
-			\OCP\Util::writeLog('password_policy', $message, \OCP\Util::ERROR);
-			return;
-		}
-
-		/* @phan-suppress-next-line PhanDeprecatedFunction */
-		while ($row = $stmt->fetch()) {
+		while ($row = $result->fetchAssociative()) {
 			yield OldPassword::fromRow($row);
 		}
-		/* @phan-suppress-next-line PhanDeprecatedFunction */
-		$stmt->closeCursor();
+		$result->free();
 	}
 
 	/**
@@ -124,7 +111,6 @@ class OldPasswordMapper extends Mapper {
 	 * @param string $uid uid of a user
 	 */
 	public function cleanUserHistory($uid) {
-		/* @var IQueryBuilder $qb */
 		$qb = $this->db->getQueryBuilder();
 		$qb->delete('user_password_history')
 			->where($qb->expr()->eq('uid', $qb->createNamedParameter($uid)));
