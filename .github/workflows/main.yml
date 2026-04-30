@@ -55,3 +55,67 @@ jobs:
       app-name: ${{ needs.get-vars.outputs.app-name }}
       php-versions: ${{ needs.get-vars.outputs.php-versions }}
 
+  acceptance-api:
+    name: API acceptance tests
+    needs:
+      - get-vars
+    uses: owncloud/reusable-workflows/.github/workflows/acceptance.yml@main
+    with:
+      app-name: ${{ needs.get-vars.outputs.app-name }}
+      do-api-tests: true
+      test-suites: "['apiPasswordAddUser', 'apiPasswordAddUserSpecial', 'apiPasswordChange', 'apiPasswordChangeSpecial', 'apiUpdateShare']"
+
+  acceptance-api-guests:
+    name: API acceptance tests with guests app
+    needs:
+      - get-vars
+    uses: owncloud/reusable-workflows/.github/workflows/acceptance.yml@main
+    with:
+      app-name: ${{ needs.get-vars.outputs.app-name }}
+      do-api-tests: true
+      use-email-server: true
+      additional-app: 'guests'
+      test-suites: "['apiGuests']"
+
+  acceptance-cli:
+    name: CLI acceptance tests
+    needs:
+      - get-vars
+    uses: owncloud/reusable-workflows/.github/workflows/acceptance.yml@main
+    with:
+      app-name: ${{ needs.get-vars.outputs.app-name }}
+      do-cli-tests: true
+      test-suites: "['cliPasswordAddUser', 'cliPasswordChange', 'cliPasswordExpire']"
+
+  acceptance-webui-email:
+    name: WebUI acceptance tests with email
+    needs:
+      - get-vars
+    uses: owncloud/reusable-workflows/.github/workflows/acceptance.yml@main
+    with:
+      app-name: ${{ needs.get-vars.outputs.app-name }}
+      do-webui-tests: true
+      use-email-server: true
+      test-suites: "['webUIPasswordAddUser', 'webUIPasswordAddUserSpecial', 'webUIPasswordReset']"
+
+  acceptance-webui:
+    name: WebUI acceptance tests
+    needs:
+      - get-vars
+    uses: owncloud/reusable-workflows/.github/workflows/acceptance.yml@main
+    with:
+      app-name: ${{ needs.get-vars.outputs.app-name }}
+      do-webui-tests: true
+      test-suites: "['webUIPasswordChange', 'webUIPasswordChangeSpecial', 'webUIPasswordPolicySettings', 'webUIPublicShareLink', 'webUIPasswordChangeUsersPage', 'webUIPasswordChangeUsersPageSpecial', 'webUIPasswordExpire']"
+
+  acceptance-webui-guests:
+    name: WebUI acceptance tests with guests app
+    needs:
+      - get-vars
+    uses: owncloud/reusable-workflows/.github/workflows/acceptance.yml@main
+    with:
+      app-name: ${{ needs.get-vars.outputs.app-name }}
+      do-webui-tests: true
+      use-email-server: true
+      additional-app: 'guests'
+      test-suites: "['webUIGuests']"
