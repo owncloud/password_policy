@@ -59,7 +59,7 @@ Feature: enforce public link expiration policies
 
   Scenario: user creates a public share without password but expiration date exceeding the default maximum days when "days maximum until link expires if password is set" is enabled
     Given the administrator has enabled the days until link expires if password is set public link password policy
-    When the user creates a new public link for folder "simple-folder" using the webUI
+    When the user creates a new public link for folder "simple-folder" using the webUI with
       | expiration | +10 days |
     And the public accesses the last created public link using the webUI
     Then file "lorem.txt" should be listed on the webUI
