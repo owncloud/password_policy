@@ -37,6 +37,18 @@ script('password_policy', 'ajax');
 		<ul>
 			<li>
 				<label>
+					<input type="checkbox" name="spv_apply_to_users_checked" <?php if ($_['spv_apply_to_users_checked']): ?> checked="checked"<?php endif; ?>> <?php p($l->t('Apply to user account passwords'));?>
+				</label>
+			</li>
+			<li>
+				<label>
+					<input type="checkbox" name="spv_apply_to_links_checked" <?php if ($_['spv_apply_to_links_checked']): ?> checked="checked"<?php endif; ?>> <?php p($l->t('Apply to public link passwords'));?>
+				</label>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<label>
 					<input type="checkbox" name="spv_min_chars_checked" <?php if ($_['spv_min_chars_checked']): ?> checked="checked"<?php endif; ?>>
 					<input type="number" name="spv_min_chars_value" min="1" max="255" value="<?php p($_['spv_min_chars_value']) ?>"> <?php p($l->t('minimum characters'));?>
 				</label>

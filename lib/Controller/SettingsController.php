@@ -56,6 +56,8 @@ class SettingsController extends Controller implements ISettings {
 		'spv_expiration_password_value' => 7,
 		'spv_expiration_nopassword_checked' => false,
 		'spv_expiration_nopassword_value' => 7,
+		'spv_apply_to_users_checked' => 'true',
+		'spv_apply_to_links_checked' => 'true',
 	];
 
 	/**
@@ -97,7 +99,11 @@ class SettingsController extends Controller implements ISettings {
 					$this->config->setAppValue('password_policy', $key, $this->request->getParam($key));
 				}
 			} else {
-				$this->config->setAppValue('password_policy', $key, $default);
+				if (\substr($key, -8) === '_checked') {
+					$this->config->setAppValue('password_policy', $key, false);
+				} else {
+					$this->config->setAppValue('password_policy', $key, $default);
+				}
 			}
 		}
 	}
