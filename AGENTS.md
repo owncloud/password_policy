@@ -1,4 +1,4 @@
-# agents.md -- Password Policy
+# AGENTS.md -- Password Policy
 
 ## Repository Overview
 
