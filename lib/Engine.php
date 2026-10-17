@@ -117,6 +117,16 @@ class Engine {
 			return;
 		}
 
+		// skip complexity rules if this type is not in scope
+		if ($type === 'user' && !$this->yes('spv_apply_to_users_checked')) {
+			if ($uid !== null && $this->yes('spv_password_history_checked')) {
+				$val = (int) $this->configValues['spv_password_history_value'];
+				$dbMapper = new OldPasswordMapper($this->db);
+				$r = new PasswordHistory($this->l10n, $dbMapper, $this->hasher);
+				$r->verify($password, $val, $uid);
+			}
+			return;
+		}
 		if ($this->yes('spv_min_chars_checked')) {
 			$val = (int) $this->configValues['spv_min_chars_value'];
 			$r = new Length($this->l10n);
